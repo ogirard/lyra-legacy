@@ -25,8 +25,8 @@ namespace Lyra2.LyraShell
     // info & build 
     public const string NAME = "Lyra";
     public const string BUILDNR = "50";
-    public const string VER = "2.3.2"; // with PocketPC
-    public static string BUILD = "{build 20120303." + BUILDNR + "}";
+    public const string VER = "2.3.5"; // with PocketPC
+    public static string BUILD = "{build 20120304." + BUILDNR + "}";
     public static string GUINAME = NAME; // + " v" + Util.VER + "   " + Util.BUILD;
 
     // lyra update

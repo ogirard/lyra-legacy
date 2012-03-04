@@ -34,8 +34,20 @@ namespace Lyra2.LyraShell
       set
       {
         _titleFont = value;
-        number.Font = value;
-        title.Font = value;
+        if (value == null)
+        {
+          number.Appearance.ResetFontData();
+          title.Appearance.ResetFontData();
+        }
+        else
+        {
+          number.Appearance.FontData.Name = value.Name;
+          title.Appearance.FontData.Name = value.Name;
+
+          number.Appearance.FontData.SizeInPoints = value.SizeInPoints;
+          title.Appearance.FontData.SizeInPoints = value.SizeInPoints;
+        }
+        
         UpdateSize();
       }
     }

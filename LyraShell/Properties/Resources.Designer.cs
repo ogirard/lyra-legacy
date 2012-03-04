@@ -137,6 +137,13 @@ namespace Lyra2.LyraShell.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap InfoBackgroundImage {
+            get {
+                object obj = ResourceManager.GetObject("InfoBackgroundImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap lyra_menu {
             get {
                 object obj = ResourceManager.GetObject("lyra_menu", resourceCulture);
@@ -224,6 +231,13 @@ namespace Lyra2.LyraShell.Properties {
         internal static System.Drawing.Bitmap splash2009 {
             get {
                 object obj = ResourceManager.GetObject("splash2009", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap splash2012 {
+            get {
+                object obj = ResourceManager.GetObject("splash2012", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

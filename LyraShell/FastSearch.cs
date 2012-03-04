@@ -83,7 +83,12 @@ namespace Lyra2.LyraShell
 
     private static IList<string> GetTags(string query)
     {
-      return QueryHelper.ExtractWordsOrPhrases(query, false).Select(tag => QueryHelper.FormatTag(tag, 4)).ToList();
+      return QueryHelper.ExtractWordsOrPhrases(query, false).Where(tag => !IsKeyWord(tag)).Select(tag => QueryHelper.FormatTag(tag, 4)).ToList();
+    }
+
+    private static bool IsKeyWord(string tag)
+    {
+      return tag == "OR" || tag == "AND" || tag == "(" || tag == ")";
     }
 
     #endregion

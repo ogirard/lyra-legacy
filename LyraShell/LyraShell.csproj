@@ -237,6 +237,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="lyra.ico" />
+    <None Include="Resources\InfoBackgroundImage.png" />
+    <None Include="Resources\splash2012.png" />
     <None Include="Resources\lyra_menu.png" />
     <EmbeddedResource Include="ViewTitle.resx">
       <DependentUpon>ViewTitle.cs</DependentUpon>

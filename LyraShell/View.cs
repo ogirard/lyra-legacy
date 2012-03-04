@@ -441,7 +441,7 @@ namespace Lyra2.LyraShell
 
       _richTextBox1.Left = 12;
       _richTextBox1.Width = Width - 24;
-      _richTextBox1.Top = _title.Visible ? _title.Bottom + 4 : 12;
+      _richTextBox1.Top = _title.Visible ? _title.Bottom + 12 : 12;
       _richTextBox1.Height = Height - 12 - _richTextBox1.Top;
       _scrollVisual.Top = _richTextBox1.Top;
       _scrollVisual.Height = _richTextBox1.Height;
@@ -890,7 +890,7 @@ namespace Lyra2.LyraShell
       this.Name = "View";
       this.ShowInTaskbar = false;
       this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-      // this.TopMost = true;
+      this.TopMost = true;
       this._panel2.ResumeLayout(false);
       this._panel2.PerformLayout();
       ((System.ComponentModel.ISupportInitialize) (this._pictureBox1)).EndInit();

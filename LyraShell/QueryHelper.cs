@@ -29,11 +29,11 @@ namespace Lyra2.LyraShell
       {
         if (word.StartsWith(Quote) && phrase == null)
         {
-          phrase = QueryParser.Escape(word.TrimStart(QuoteChar));
+          phrase = EscapeWord(word.TrimStart(QuoteChar));
         }
         else if (word.EndsWith(Quote) && phrase != null)
         {
-          phrase += " " + QueryParser.Escape(word.TrimEnd(QuoteChar));
+          phrase += " " + EscapeWord(word.TrimEnd(QuoteChar));
           wordsOrPhrases.Add(QuoteChar + phrase + QuoteChar);
           phrase = null;
         }
@@ -41,7 +41,7 @@ namespace Lyra2.LyraShell
         {
           if (phrase == null)
           {
-            wordsOrPhrases.Add(QueryParser.Escape(word));
+            wordsOrPhrases.Add(EscapeWord(word));
           }
           else
           {
@@ -61,6 +61,16 @@ namespace Lyra2.LyraShell
       }
 
       return wordsOrPhrases;
+    }
+
+    private static string EscapeWord(string word)
+    {
+      var escaped = QueryParser.Escape(word);
+      escaped = escaped.Replace("\\*", "*");
+      escaped = escaped.Replace("\\?", "?");
+      escaped = escaped.Replace("\\(", "(");
+      escaped = escaped.Replace("\\)", ")");
+      return escaped;
     }
 
     public static bool IsPhrase(string word)
@@ -92,7 +102,7 @@ namespace Lyra2.LyraShell
         return Convert.ToString(nr, CultureInfo.InvariantCulture).PadLeft(Math.Max(0, desiredNumberLength), '0');
       }
 
-      return word.Trim(QuoteChar);
+      return word.Trim(QuoteChar, '(', ')').Replace("*", "").Replace("?", "");
     }
 
     public static bool Contains(string text, IEnumerable<string> tags)

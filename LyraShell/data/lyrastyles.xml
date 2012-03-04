@@ -18,8 +18,21 @@
           <scale>no</scale>
         </image>
       </Background>
+      <Title mode="NumberAndTitle">
+        <Foreground>
+          <color>
+          </color>
+          <font>
+          </font>
+          <fontsize>0</fontsize>
+        </Foreground>
+        <Background>
+          <color>
+          </color>
+        </Background>
+      </Title>
     </Style>
-    <Style id="5dc011bc-cab3-46ee-91c6-a7ec7d50c43f" name="Weiss auf Schwarz" isdefault="yes">
+    <Style id="5dc011bc-cab3-46ee-91c6-a7ec7d50c43f" name="Weiss auf Schwarz" isdefault="no">
       <Foreground>
         <color>#ffffff</color>
         <font>Arial</font>
@@ -36,6 +49,19 @@
           <scale>no</scale>
         </image>
       </Background>
+      <Title mode="NumberAndTitle">
+        <Foreground>
+          <color>
+          </color>
+          <font>
+          </font>
+          <fontsize>0</fontsize>
+        </Foreground>
+        <Background>
+          <color>
+          </color>
+        </Background>
+      </Title>
     </Style>
     <Style id="1b1ffd51-9e2f-4536-a383-55297a1aff6e" name="Weiss auf Grau 8" isdefault="no">
       <Foreground>
@@ -54,6 +80,19 @@
           <scale>no</scale>
         </image>
       </Background>
+      <Title mode="NumberAndTitle">
+        <Foreground>
+          <color>
+          </color>
+          <font>
+          </font>
+          <fontsize>0</fontsize>
+        </Foreground>
+        <Background>
+          <color>
+          </color>
+        </Background>
+      </Title>
     </Style>
     <Style id="ff5b6ba8-6bcf-49eb-9f09-81325e344503" name="Test mit Hintergrundbild" isdefault="no">
       <Foreground>
@@ -73,12 +112,43 @@
       </Background>
       <Title mode="NumberAndTitle">
         <Foreground>
-          <color>#ffffff</color>
-          <font>Cambria</font>
-          <fontsize>24</fontsize>
+          <color>
+          </color>
+          <font>
+          </font>
+          <fontsize>0</fontsize>
         </Foreground>
         <Background>
-          <color>#000000</color>
+          <color>
+          </color>
+        </Background>
+      </Title>
+    </Style>
+    <Style id="0b563032-a0a3-462f-b9f9-61ef50609b95" name="Lyra 2012" isdefault="yes">
+      <Foreground>
+        <color>#404040</color>
+        <font>Segoe UI</font>
+        <fontsize>22</fontsize>
+      </Foreground>
+      <Background>
+        <color>#ffffff</color>
+        <image>
+          <uri>
+          </uri>
+          <cache>
+          </cache>
+          <transparency>0</transparency>
+          <scale>no</scale>
+        </image>
+      </Background>
+      <Title mode="TitleOnly">
+        <Foreground>
+          <color>#ffffff</color>
+          <font>Segoe UI</font>
+          <fontsize>28</fontsize>
+        </Foreground>
+        <Background>
+          <color>#4595d2</color>
         </Background>
       </Title>
     </Style>

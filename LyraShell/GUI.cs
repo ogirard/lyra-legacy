@@ -339,7 +339,7 @@ namespace Lyra2.LyraShell
     {
       Logger.Debug("Initialize Data from " + Util.BASEURL + "\\" + Util.URL);
       this.storage = new Storage(Util.URL, this);
-      Thread.Sleep(1000);
+      Thread.Sleep(3000);
     }
 
     private delegate void InvokeSearch();

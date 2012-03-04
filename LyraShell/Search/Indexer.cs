@@ -416,27 +416,45 @@ namespace Lyra2.LyraShell.Search
     /// <returns></returns>
     private string PrepareLuceneQuery(string query)
     {
-      StringBuilder luceneQuery = new StringBuilder();
+      string luceneQuery = string.Empty;
       query = query.TrimStart(' ', '*', '?', '~');
 
       foreach (var word in QueryHelper.ExtractWordsOrPhrases(query))
       {
-        luceneQuery.Append(word + BoolOperator);
+        var keyWord = word.Trim();
+
+        if (keyWord == "OR" || keyWord == "AND")
+        {
+          luceneQuery = RemoveLastOperator(luceneQuery) + " " + keyWord + " ";
+        }
+        else if (keyWord == "(" || keyWord == ")")
+        {
+          luceneQuery += " " + keyWord + " ";
+        }
+        else
+        {
+          luceneQuery += word + BoolOperator;
+        }
       }
 
-      var preparedQuery = luceneQuery.ToString();
-      if (preparedQuery.EndsWith(BoolOperator))
-      {
-        preparedQuery = preparedQuery.Substring(0, preparedQuery.Length - BoolOperator.Length);
-      }
+      var preparedQuery = RemoveLastOperator(luceneQuery.ToString());
 
       return preparedQuery.Trim();
     }
 
-
     private string BoolOperator
     {
       get { return IsAndQuery ? " AND " : " OR "; }
+    }
+
+    private string RemoveLastOperator(string preparedQuery)
+    {
+      if (preparedQuery.EndsWith(BoolOperator))
+      {
+        return preparedQuery.Substring(0, preparedQuery.Length - BoolOperator.Length);
+      }
+
+      return preparedQuery;
     }
 
     #endregion Search Index
