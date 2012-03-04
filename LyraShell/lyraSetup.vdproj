@@ -1,0 +1,2051 @@
+"DeployProject"
+{
+"VSVersion" = "3:700"
+"ProjectType" = "8:{5443560c-dbb4-11d2-8724-00a0c9a8b90c}"
+"IsWebType" = "8:FALSE"
+"ProjectName" = "8:lyraSetup"
+"LanguageId" = "3:1031"
+"CodePage" = "3:1252"
+"UILanguageId" = "3:1031"
+"SccProjectName" = "8:"
+"SccLocalPath" = "8:"
+"SccAuxPath" = "8:"
+"SccProvider" = "8:"
+    "Hierarchy"
+    {
+        "Entry"
+        {
+        "MsmKey" = "8:_064B782CC92543AF9A6C01272734E1BF"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\FRST.RESX"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0F2E869FDBA84D529436225A736DC0C7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\SCHEMA.XSX"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_1378366CA2A641C3A566B0D8D2E1E337"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\BIN\\DEBUG\\DATA\\CURTEXT.XSD"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_155DBB64E1814247A8E95F232B526849"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\EDITOR.CS"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_24E19BF6AC414F8299EB7F25784D177A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\HELP.RESX"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2A1BD37A6CE648A3AF65AB42CB2004C0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\LYRA.CSPROJ.USER"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2FEFFB6FE285422785E6C2BD3B5CBF82"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\LYRA.SLN"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_38FBE494038241568A3E8135A3FFA325"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\BIN\\DEBUG\\DATA\\CURTEXT.XSX"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3C745C70255F47059D3FBB441CE4A9CE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\EDITOR.RESX"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_42E657E12E0B4C3DBD8AA0B809104236"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\IPHYSICALSTORAGE.CS"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_462DC2F88694413194599CACD5AFB63A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\MENU.RESX"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_47B0174349014606BC662B84BAD25F8F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\SEARCH.CS"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_482EE082EFFF473DA86D99812A858C3B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\ISTORAGE.CS"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4E3CC993996A4A968874F5A1A39BC19E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:lyraf:\\work\\andreas\\lyra\\bin\\debug\\lyra.exe"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5A4B5FDC355D40B2BC84BB4A80381468"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\GUI.CS"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_637666B1F14B41EEB2A95878DBC0B278"
+        "OwnerKey" = "8:_4E3CC993996A4A968874F5A1A39BC19E"
+        "MsmSig" = "8:mondo.E4183BB4_18A8_11D5_A549_0090278A1BB8"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_64A7C7E575064D718924BD0D1B6C060C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\APP.ICO"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6733AB6C6162494FA0FA0F1F299BB837"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\ASSEMBLYINFO.CS"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_68342E079F6B4B52A1416A51D29BE421"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\SCHEMA.XSD"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6E505EE8D45E4B4E8678B64AE99D0784"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:lyra.resourcesf:\\work\\andreas\\lyra\\bin\\debug\\de-ch\\lyra.resources.dll"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6FD81D76611548E69871428115673250"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\FRST.CS"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_73D2045E07644D57919794E73D546939"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\BIN\\DEBUG\\BSP.LTX"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7B48B22106A8484481852196AA3E1273"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:lyra.resourcesf:\\work\\andreas\\lyra\\bin\\debug\\vi-vn\\lyra.resources.dll"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7ED9A6FB3B6C45A3AF4294D78A8D6279"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\START.CS"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_83FA75626C734169AB317233FFE20BBA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\VIEW.RESX"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_83FF8DC312C3496B84663EB10EE739C5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\MENU.CS"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_91430CF577A44306946496B29EFCDC77"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\UTIL.CS"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_922FC7ED61D2429FA5BA67BEFBFE75C8"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\VIEW.CS"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_93F8BF21566449ECB479C2F2C0D5632F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\VIEW.VI.RESX"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_95A5AA1CEFB24E2EB3E89B0C9B236381"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\HELP.CS"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_96AD50A4CF994BF0AC04CCA335A2F54D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\STORAGE.CS"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A4418E3D86D243FF93E8EE17C4BCED7A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\BIN\\DEBUG\\LYRA.PDB"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A6AC42A6D8664507AC8E1D58A30A397C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\GUI.RESX"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_ABB8A940E4334FBBA62B4C5F94F72161"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\BIN\\DEBUG\\LYRA.ICO"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C1C42E88A09B46C4A2E28BF6812BC9B9"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\PHYSICALXML.CS"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C381471E301C429C93C7B754927CC7DB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\SONG.CS"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CA39492CFC51433294B1FD2AA7E10638"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\BIN\\DEBUG\\DATA\\BUILDNEWS.TXT"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CDD8D23A280D495F82947BA32FC0A229"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\START.RESX"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D42E8FF31DA54AFDA889B11E99C23019"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\BIN\\DEBUG\\DATA\\CURTEXT.XML"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E7B7FFAA7CEA483F95C58EB1767A5B12"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:lyra.resourcesf:\\work\\andreas\\lyra\\bin\\debug\\de\\lyra.resources.dll"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E9C73D73325C41839D98E6247330D4D3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:lyra.resourcesf:\\work\\andreas\\lyra\\bin\\debug\\vi\\lyra.resources.dll"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EA5FC20654A34C62BE3DD19F76C47973"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\LYRA.CSPROJ"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EBDB7975DF2343EA811A6090AAADED15"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:lyra.resourcesf:\\work\\andreas\\lyra\\bin\\debug\\af\\lyra.resources.dll"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EFA0D5F888F74E8F9AD4AC1EF695B529"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\BIN\\DEBUG\\DATA\\HELP.TXT"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F0924AB8AA4A4955BC9A4D8715A48F19"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\ISEARCH.CS"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F81EF9B6A04542838F687242B7E98648"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:F:\\WORK\\ANDREAS\\LYRA\\VIEW.VI-VN.RESX"
+        }
+    }
+    "Configurations"
+    {
+        "Debug"
+        {
+        "DisplayName" = "8:Debug"
+        "IsDebugOnly" = "11:TRUE"
+        "IsReleaseOnly" = "11:FALSE"
+        "OutputFilename" = "8:Debug\\lyraSetup.msi"
+        "PackageFilesAs" = "3:2"
+        "PackageFileSize" = "3:-2147483648"
+        "CabType" = "3:1"
+        "Compression" = "3:2"
+        "SignOutput" = "11:FALSE"
+        "CertificateFile" = "8:"
+        "PrivateKeyFile" = "8:"
+        "TimeStampServer" = "8:"
+        "InstallerBootstrapper" = "3:2"
+        }
+        "Release"
+        {
+        "DisplayName" = "8:Release"
+        "IsDebugOnly" = "11:FALSE"
+        "IsReleaseOnly" = "11:TRUE"
+        "OutputFilename" = "8:Release\\lyraSetup.msi"
+        "PackageFilesAs" = "3:2"
+        "PackageFileSize" = "3:-2147483648"
+        "CabType" = "3:1"
+        "Compression" = "3:2"
+        "SignOutput" = "11:FALSE"
+        "CertificateFile" = "8:"
+        "PrivateKeyFile" = "8:"
+        "TimeStampServer" = "8:"
+        "InstallerBootstrapper" = "3:2"
+        }
+    }
+    "Deployable"
+    {
+        "CustomAction"
+        {
+        }
+        "DefaultFeature"
+        {
+        "Name" = "8:DefaultFeature"
+        "Title" = "8:"
+        "Description" = "8:"
+        }
+        "Feature"
+        {
+        }
+        "File"
+        {
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_064B782CC92543AF9A6C01272734E1BF"
+            {
+            "SourcePath" = "8:..\\lyra\\Frst.resx"
+            "TargetName" = "8:Frst.resx"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_0F2E869FDBA84D529436225A736DC0C7"
+            {
+            "SourcePath" = "8:..\\lyra\\schema.xsx"
+            "TargetName" = "8:schema.xsx"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_1378366CA2A641C3A566B0D8D2E1E337"
+            {
+            "SourcePath" = "8:..\\lyra\\bin\\Debug\\data\\curtext.xsd"
+            "TargetName" = "8:curtext.xsd"
+            "Tag" = "8:"
+            "Folder" = "8:_ABFA638F684241B6BDD7EAE89D34A96A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_155DBB64E1814247A8E95F232B526849"
+            {
+            "SourcePath" = "8:..\\lyra\\Editor.cs"
+            "TargetName" = "8:Editor.cs"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_24E19BF6AC414F8299EB7F25784D177A"
+            {
+            "SourcePath" = "8:..\\lyra\\Help.resx"
+            "TargetName" = "8:Help.resx"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_2A1BD37A6CE648A3AF65AB42CB2004C0"
+            {
+            "SourcePath" = "8:..\\lyra\\lyra.csproj.user"
+            "TargetName" = "8:lyra.csproj.user"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_2FEFFB6FE285422785E6C2BD3B5CBF82"
+            {
+            "SourcePath" = "8:..\\lyra\\lyra.sln"
+            "TargetName" = "8:lyra.sln"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_38FBE494038241568A3E8135A3FFA325"
+            {
+            "SourcePath" = "8:..\\lyra\\bin\\Debug\\data\\curtext.xsx"
+            "TargetName" = "8:curtext.xsx"
+            "Tag" = "8:"
+            "Folder" = "8:_ABFA638F684241B6BDD7EAE89D34A96A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_3C745C70255F47059D3FBB441CE4A9CE"
+            {
+            "SourcePath" = "8:..\\lyra\\Editor.resx"
+            "TargetName" = "8:Editor.resx"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_42E657E12E0B4C3DBD8AA0B809104236"
+            {
+            "SourcePath" = "8:..\\lyra\\IPhysicalStorage.cs"
+            "TargetName" = "8:IPhysicalStorage.cs"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_462DC2F88694413194599CACD5AFB63A"
+            {
+            "SourcePath" = "8:..\\lyra\\Menu.resx"
+            "TargetName" = "8:Menu.resx"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_47B0174349014606BC662B84BAD25F8F"
+            {
+            "SourcePath" = "8:..\\lyra\\Search.cs"
+            "TargetName" = "8:Search.cs"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_482EE082EFFF473DA86D99812A858C3B"
+            {
+            "SourcePath" = "8:..\\lyra\\IStorage.cs"
+            "TargetName" = "8:IStorage.cs"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{C7BF5952-4B9D-11D3-8E24-00C04F6837D0}:_4E3CC993996A4A968874F5A1A39BC19E"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:lyra, Version=1.0.1433.34377, Culture=neutral"
+                "ScatterAssemblies"
+                {
+                    "_4E3CC993996A4A968874F5A1A39BC19E"
+                    {
+                    "Name" = "8:lyra.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\lyra\\bin\\Debug\\lyra.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_93F5093DA4FE43A29077CE715B103643"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_5A4B5FDC355D40B2BC84BB4A80381468"
+            {
+            "SourcePath" = "8:..\\lyra\\GUI.cs"
+            "TargetName" = "8:GUI.cs"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_64A7C7E575064D718924BD0D1B6C060C"
+            {
+            "SourcePath" = "8:..\\lyra\\App.ico"
+            "TargetName" = "8:App.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_6733AB6C6162494FA0FA0F1F299BB837"
+            {
+            "SourcePath" = "8:..\\lyra\\AssemblyInfo.cs"
+            "TargetName" = "8:AssemblyInfo.cs"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_68342E079F6B4B52A1416A51D29BE421"
+            {
+            "SourcePath" = "8:..\\lyra\\schema.xsd"
+            "TargetName" = "8:schema.xsd"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{C7BF5952-4B9D-11D3-8E24-00C04F6837D0}:_6E505EE8D45E4B4E8678B64AE99D0784"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:lyra.resources, Version=1.0.1394.20293, Culture=de-CH"
+                "ScatterAssemblies"
+                {
+                    "_6E505EE8D45E4B4E8678B64AE99D0784"
+                    {
+                    "Name" = "8:lyra.resources.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\lyra\\bin\\Debug\\de-CH\\lyra.resources.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_1FACA039B9864358A5DFDFC2117A9DFD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_6FD81D76611548E69871428115673250"
+            {
+            "SourcePath" = "8:..\\lyra\\Frst.cs"
+            "TargetName" = "8:Frst.cs"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_73D2045E07644D57919794E73D546939"
+            {
+            "SourcePath" = "8:..\\lyra\\bin\\Debug\\bsp.ltx"
+            "TargetName" = "8:bsp.ltx"
+            "Tag" = "8:"
+            "Folder" = "8:_93F5093DA4FE43A29077CE715B103643"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{C7BF5952-4B9D-11D3-8E24-00C04F6837D0}:_7B48B22106A8484481852196AA3E1273"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:lyra.resources, Version=1.0.1433.34377, Culture=vi-VN"
+                "ScatterAssemblies"
+                {
+                    "_7B48B22106A8484481852196AA3E1273"
+                    {
+                    "Name" = "8:lyra.resources.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\lyra\\bin\\Debug\\vi-VN\\lyra.resources.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_30E11C54487640EE8CF761F5DA39634A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_7ED9A6FB3B6C45A3AF4294D78A8D6279"
+            {
+            "SourcePath" = "8:..\\lyra\\Start.cs"
+            "TargetName" = "8:Start.cs"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_83FA75626C734169AB317233FFE20BBA"
+            {
+            "SourcePath" = "8:..\\lyra\\View.resx"
+            "TargetName" = "8:View.resx"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_83FF8DC312C3496B84663EB10EE739C5"
+            {
+            "SourcePath" = "8:..\\lyra\\Menu.cs"
+            "TargetName" = "8:Menu.cs"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_91430CF577A44306946496B29EFCDC77"
+            {
+            "SourcePath" = "8:..\\lyra\\Util.cs"
+            "TargetName" = "8:Util.cs"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_922FC7ED61D2429FA5BA67BEFBFE75C8"
+            {
+            "SourcePath" = "8:..\\lyra\\View.cs"
+            "TargetName" = "8:View.cs"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_93F8BF21566449ECB479C2F2C0D5632F"
+            {
+            "SourcePath" = "8:..\\lyra\\View.vi.resx"
+            "TargetName" = "8:View.vi.resx"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_95A5AA1CEFB24E2EB3E89B0C9B236381"
+            {
+            "SourcePath" = "8:..\\lyra\\Help.cs"
+            "TargetName" = "8:Help.cs"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_96AD50A4CF994BF0AC04CCA335A2F54D"
+            {
+            "SourcePath" = "8:..\\lyra\\Storage.cs"
+            "TargetName" = "8:Storage.cs"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_A4418E3D86D243FF93E8EE17C4BCED7A"
+            {
+            "SourcePath" = "8:..\\lyra\\bin\\Debug\\lyra.pdb"
+            "TargetName" = "8:lyra.pdb"
+            "Tag" = "8:"
+            "Folder" = "8:_93F5093DA4FE43A29077CE715B103643"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_A6AC42A6D8664507AC8E1D58A30A397C"
+            {
+            "SourcePath" = "8:..\\lyra\\GUI.resx"
+            "TargetName" = "8:GUI.resx"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_ABB8A940E4334FBBA62B4C5F94F72161"
+            {
+            "SourcePath" = "8:..\\lyra\\bin\\Debug\\lyra.ico"
+            "TargetName" = "8:lyra.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_93F5093DA4FE43A29077CE715B103643"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_C1C42E88A09B46C4A2E28BF6812BC9B9"
+            {
+            "SourcePath" = "8:..\\lyra\\PhysicalXML.cs"
+            "TargetName" = "8:PhysicalXML.cs"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_C381471E301C429C93C7B754927CC7DB"
+            {
+            "SourcePath" = "8:..\\lyra\\Song.cs"
+            "TargetName" = "8:Song.cs"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_CA39492CFC51433294B1FD2AA7E10638"
+            {
+            "SourcePath" = "8:..\\lyra\\bin\\Debug\\data\\buildnews.txt"
+            "TargetName" = "8:buildnews.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_ABFA638F684241B6BDD7EAE89D34A96A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_CDD8D23A280D495F82947BA32FC0A229"
+            {
+            "SourcePath" = "8:..\\lyra\\Start.resx"
+            "TargetName" = "8:Start.resx"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_D42E8FF31DA54AFDA889B11E99C23019"
+            {
+            "SourcePath" = "8:..\\lyra\\bin\\Debug\\data\\curtext.xml"
+            "TargetName" = "8:curtext.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_ABFA638F684241B6BDD7EAE89D34A96A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{C7BF5952-4B9D-11D3-8E24-00C04F6837D0}:_E7B7FFAA7CEA483F95C58EB1767A5B12"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:lyra.resources, Version=1.0.1394.20293, Culture=de"
+                "ScatterAssemblies"
+                {
+                    "_E7B7FFAA7CEA483F95C58EB1767A5B12"
+                    {
+                    "Name" = "8:lyra.resources.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\lyra\\bin\\Debug\\de\\lyra.resources.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7055B8A7A5CF4EB082E269F93E782617"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{C7BF5952-4B9D-11D3-8E24-00C04F6837D0}:_E9C73D73325C41839D98E6247330D4D3"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:lyra.resources, Version=1.0.1433.34377, Culture=vi"
+                "ScatterAssemblies"
+                {
+                    "_E9C73D73325C41839D98E6247330D4D3"
+                    {
+                    "Name" = "8:lyra.resources.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\lyra\\bin\\Debug\\vi\\lyra.resources.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_6CF50C0D284B4518BEDF5F3259D77041"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_EA5FC20654A34C62BE3DD19F76C47973"
+            {
+            "SourcePath" = "8:..\\lyra\\lyra.csproj"
+            "TargetName" = "8:lyra.csproj"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{C7BF5952-4B9D-11D3-8E24-00C04F6837D0}:_EBDB7975DF2343EA811A6090AAADED15"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:lyra.resources, Version=1.0.1394.20293, Culture=af"
+                "ScatterAssemblies"
+                {
+                    "_EBDB7975DF2343EA811A6090AAADED15"
+                    {
+                    "Name" = "8:lyra.resources.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\lyra\\bin\\Debug\\af\\lyra.resources.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_5ADC5D2C06C24EBBA7D7DD14487817A9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_EFA0D5F888F74E8F9AD4AC1EF695B529"
+            {
+            "SourcePath" = "8:..\\lyra\\bin\\Debug\\data\\help.txt"
+            "TargetName" = "8:help.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_ABFA638F684241B6BDD7EAE89D34A96A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_F0924AB8AA4A4955BC9A4D8715A48F19"
+            {
+            "SourcePath" = "8:..\\lyra\\ISearch.cs"
+            "TargetName" = "8:ISearch.cs"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{54DA9790-1474-11D3-8E00-00C04F6837D0}:_F81EF9B6A04542838F687242B7E98648"
+            {
+            "SourcePath" = "8:..\\lyra\\View.vi-VN.resx"
+            "TargetName" = "8:View.vi-VN.resx"
+            "Tag" = "8:"
+            "Folder" = "8:_F32C27624F2D4C9C82E23593EEB04C16"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+        }
+        "FileType"
+        {
+        }
+        "Folder"
+        {
+            "{777C097F-0ED8-11D3-8D6C-00A0C9CFCEE6}:_213D42948C7441BFB114960EC619F89D"
+            {
+            "Name" = "8:#1916"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:DesktopFolder"
+                "Folders"
+                {
+                }
+            }
+            "{777C097F-0ED8-11D3-8D6C-00A0C9CFCEE6}:_26FEAE96571749AB9863F4FE95552A46"
+            {
+            "Name" = "8:#1919"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:ProgramMenuFolder"
+                "Folders"
+                {
+                }
+            }
+            "{EE62640D-12F2-11D3-8D6C-00A0C9CFCEE6}:_93F5093DA4FE43A29077CE715B103643"
+            {
+            "DefaultLocation" = "8:[ProgramFilesFolder]\\[ProductName]"
+            "Name" = "8:#1925"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:TARGETDIR"
+                "Folders"
+                {
+                    "{461E96AF-1495-11D3-8D6C-00A0C9CFCEE6}:_1FACA039B9864358A5DFDFC2117A9DFD"
+                    {
+                    "Name" = "8:de-CH"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_02E2D03784E34CAE8849955AC7B85E6D"
+                        "Folders"
+                        {
+                        }
+                    }
+                    "{461E96AF-1495-11D3-8D6C-00A0C9CFCEE6}:_30E11C54487640EE8CF761F5DA39634A"
+                    {
+                    "Name" = "8:vi-VN"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_551E83D1811240E7A479A4A278B154B6"
+                        "Folders"
+                        {
+                        }
+                    }
+                    "{461E96AF-1495-11D3-8D6C-00A0C9CFCEE6}:_5ADC5D2C06C24EBBA7D7DD14487817A9"
+                    {
+                    "Name" = "8:af"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_EBFC6C7113F0458AB1B89808435E4505"
+                        "Folders"
+                        {
+                        }
+                    }
+                    "{461E96AF-1495-11D3-8D6C-00A0C9CFCEE6}:_6CF50C0D284B4518BEDF5F3259D77041"
+                    {
+                    "Name" = "8:vi"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_9B5C21AEC0F74CB58B10EDEBA24542B1"
+                        "Folders"
+                        {
+                        }
+                    }
+                    "{461E96AF-1495-11D3-8D6C-00A0C9CFCEE6}:_7055B8A7A5CF4EB082E269F93E782617"
+                    {
+                    "Name" = "8:de"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_9E3B3FF940BE44D3B4D8300DF6C4775D"
+                        "Folders"
+                        {
+                        }
+                    }
+                    "{461E96AF-1495-11D3-8D6C-00A0C9CFCEE6}:_ABFA638F684241B6BDD7EAE89D34A96A"
+                    {
+                    "Name" = "8:data"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_1DB9F6D9506F4CE9835EBCC47CE90D01"
+                        "Folders"
+                        {
+                        }
+                    }
+                    "{461E96AF-1495-11D3-8D6C-00A0C9CFCEE6}:_F32C27624F2D4C9C82E23593EEB04C16"
+                    {
+                    "Name" = "8:source"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_7F5539028E454349B99F97B8AB594BB6"
+                        "Folders"
+                        {
+                        }
+                    }
+                }
+            }
+        }
+        "LaunchCondition"
+        {
+            "{B26CFB94-18E3-45BF-8D42-933BDAF5E76C}:_39DB966D28DF43BCBA091B899D145865"
+            {
+            "Name" = "8:MsiNetAssemblySupport"
+            "Condition" = "8:MsiNetAssemblySupport"
+            "Message" = "8:[VSDNETMSG]"
+            }
+        }
+        "Locator"
+        {
+        }
+        "Shortcut"
+        {
+            "{D0C99CFE-1238-11D3-8E00-00C04F6837D0}:_9B3EDEDA02A84F08854747E337E81DFB"
+            {
+            "Name" = "8:lyra"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_4E3CC993996A4A968874F5A1A39BC19E"
+            "Folder" = "8:_213D42948C7441BFB114960EC619F89D"
+            "WorkingFolder" = "8:_93F5093DA4FE43A29077CE715B103643"
+            "Icon" = "8:_ABB8A940E4334FBBA62B4C5F94F72161"
+            "Feature" = "8:"
+            }
+        }
+        "Sequences"
+        {
+        }
+        "Registry"
+        {
+            "HKLM"
+            {
+                "Keys"
+                {
+                    "{7DF0CD0A-FF27-11D2-8D6B-00A0C9CFCEE6}:_598A29BFAC1843B3B7FC377DA5078845"
+                    {
+                    "Name" = "8:Software"
+                    "Condition" = "8:"
+                    "AlwaysCreate" = "11:FALSE"
+                    "DeleteAtUninstall" = "11:FALSE"
+                    "Transitive" = "11:FALSE"
+                        "Keys"
+                        {
+                        }
+                        "Values"
+                        {
+                        }
+                    }
+                }
+            }
+            "HKCU"
+            {
+                "Keys"
+                {
+                    "{7DF0CD0A-FF27-11D2-8D6B-00A0C9CFCEE6}:_28D1A3A597DB42F2A12D1D0A419402A8"
+                    {
+                    "Name" = "8:Software"
+                    "Condition" = "8:"
+                    "AlwaysCreate" = "11:FALSE"
+                    "DeleteAtUninstall" = "11:FALSE"
+                    "Transitive" = "11:FALSE"
+                        "Keys"
+                        {
+                            "{7DF0CD0A-FF27-11D2-8D6B-00A0C9CFCEE6}:_8574DD4B9A5F40F2AE19C3FA29FDE9CC"
+                            {
+                            "Name" = "8:lyra"
+                            "Condition" = "8:"
+                            "AlwaysCreate" = "11:FALSE"
+                            "DeleteAtUninstall" = "11:FALSE"
+                            "Transitive" = "11:FALSE"
+                                "Keys"
+                                {
+                                    "{7DF0CD0A-FF27-11D2-8D6B-00A0C9CFCEE6}:_F06596751072420A9634DC99D75A87E8"
+                                    {
+                                    "Name" = "8:fonts"
+                                    "Condition" = "8:"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "DeleteAtUninstall" = "11:FALSE"
+                                    "Transitive" = "11:FALSE"
+                                        "Keys"
+                                        {
+                                        }
+                                        "Values"
+                                        {
+                                            "{B73D4F5A-FF29-11D2-8D6B-00A0C9CFCEE6}:_87441B8D063C461A9FE2331205BEE6B7"
+                                            {
+                                            "Name" = "8:refcolor"
+                                            "Condition" = "8:"
+                                            "Transitive" = "11:FALSE"
+                                            "ValueTypes" = "3:1"
+                                            "Value" = "8:00;00;80"
+                                            }
+                                            "{B73D4F5A-FF29-11D2-8D6B-00A0C9CFCEE6}:_9DEDDB30EB7B4F8FA236E5DA2D1AD589"
+                                            {
+                                            "Name" = "8:color"
+                                            "Condition" = "8:"
+                                            "Transitive" = "11:FALSE"
+                                            "ValueTypes" = "3:1"
+                                            "Value" = "8:00;00;00"
+                                            }
+                                            "{B73D4F5A-FF29-11D2-8D6B-00A0C9CFCEE6}:_EBCBB3C9D2C2451082270C6121A14166"
+                                            {
+                                            "Name" = "8:standard"
+                                            "Condition" = "8:"
+                                            "Transitive" = "11:FALSE"
+                                            "ValueTypes" = "3:1"
+                                            "Value" = "8:Microsoft Sans Serif;12;s"
+                                            }
+                                            "{B73D4F5A-FF29-11D2-8D6B-00A0C9CFCEE6}:_F9E3C637FA0A46EA8F59781D075CDD0C"
+                                            {
+                                            "Name" = "8:special"
+                                            "Condition" = "8:"
+                                            "Transitive" = "11:FALSE"
+                                            "ValueTypes" = "3:1"
+                                            "Value" = "8:Times New Roman;12;i"
+                                            }
+                                        }
+                                    }
+                                }
+                                "Values"
+                                {
+                                    "{B73D4F5A-FF29-11D2-8D6B-00A0C9CFCEE6}:_7050762B987F4FDBB6E01E8B4394CC5E"
+                                    {
+                                    "Name" = "8:validated"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "ValueTypes" = "3:4"
+                                    "Value" = "8:01"
+                                    }
+                                    "{B73D4F5A-FF29-11D2-8D6B-00A0C9CFCEE6}:_7A07E7AF5A1246008138B36B495DFCD2"
+                                    {
+                                    "Name" = "8:url"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "ValueTypes" = "3:1"
+                                    "Value" = "8:data\\curtext.xml"
+                                    }
+                                    "{B73D4F5A-FF29-11D2-8D6B-00A0C9CFCEE6}:_93F978D117924D73BC61A0D94EEECFBA"
+                                    {
+                                    "Name" = "8:schema"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "ValueTypes" = "3:1"
+                                    "Value" = "8:data\\curtext.xsd"
+                                    }
+                                    "{B73D4F5A-FF29-11D2-8D6B-00A0C9CFCEE6}:_9AB81AC3DFBD46A1B2F469FBF36102C0"
+                                    {
+                                    "Name" = "8:1"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "ValueTypes" = "3:1"
+                                    "Value" = "8:yes"
+                                    }
+                                    "{B73D4F5A-FF29-11D2-8D6B-00A0C9CFCEE6}:_B634FD8A33874C7B97A3DC0D017AA636"
+                                    {
+                                    "Name" = "8:help"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "ValueTypes" = "3:1"
+                                    "Value" = "8:data\\help.txt"
+                                    }
+                                }
+                            }
+                        }
+                        "Values"
+                        {
+                        }
+                    }
+                }
+            }
+            "HKCR"
+            {
+                "Keys"
+                {
+                }
+            }
+            "HKU"
+            {
+                "Keys"
+                {
+                }
+            }
+            "HKPU"
+            {
+                "Keys"
+                {
+                }
+            }
+        }
+        "ProjectOutput"
+        {
+        }
+        "Product"
+        {
+        "Name" = "8:Microsoft Visual Studio"
+        "ProductName" = "8:lyra"
+        "ProductCode" = "8:{00854A1A-5165-454C-97E8-F637C4C311F3}"
+        "PackageCode" = "8:{D25C0E3B-57EC-45C5-92C5-D5E2D51A8FBD}"
+        "UpgradeCode" = "8:{EC93B12C-6C73-4812-8008-48D6CFF39383}"
+        "RestartWWWService" = "11:FALSE"
+        "RemovePreviousVersions" = "11:FALSE"
+        "DetectNewerInstalledVersion" = "11:TRUE"
+        "ProductVersion" = "8:1.0.0"
+        "Manufacturer" = "8:privat"
+        "ARPHELPTELEPHONE" = "8:"
+        "ARPHELPLINK" = "8:"
+        "Title" = "8:lyra setup"
+        "Subject" = "8:"
+        "ARPCONTACT" = "8:og"
+        "Keywords" = "8:"
+        "ARPCOMMENTS" = "8:"
+        "ARPURLINFOABOUT" = "8:"
+        "ARPPRODUCTICON" = "8:"
+        "ARPIconIndex" = "3:0"
+        "SearchPath" = "8:"
+        "UseSystemSearchPath" = "11:TRUE"
+        }
+        "MsiBootstrapper"
+        {
+        "LangId" = "3:1031"
+        }
+        "MergeModule"
+        {
+            "{AC8774A4-3E09-11D3-8E14-00C04F6837D0}:_637666B1F14B41EEB2A95878DBC0B278"
+            {
+            "UseDynamicProperties" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "SourcePath" = "8:dotnetfxredist_x86_deu.msm"
+            "ModuleSignature" = "8:mondo.E4183BB4_18A8_11D5_A549_0090278A1BB8"
+                "Properties"
+                {
+                }
+            "LanguageId" = "3:1031"
+            "Exclude" = "11:TRUE"
+            "Folder" = "8:"
+            "Feature" = "8:"
+            "IsolateTo" = "8:"
+            }
+        }
+        "UserInterface"
+        {
+            "{E4ECAB26-4AB7-11D3-8D78-00A0C9CFCEE6}:_3D91F6ED028142A0987F1E5EF1BCA91A"
+            {
+            "UseDynamicProperties" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "SourcePath" = "8:<VsdDialogDir>\\VsdUserInterface.wim"
+            "ModuleSignature" = "8:VsdUserInterface.524F4245_5254_5341_4C45_534153783400"
+            }
+            "{E4ECAB26-4AB7-11D3-8D78-00A0C9CFCEE6}:_4E492D14B8E140CA9318CEB766B4695E"
+            {
+            "UseDynamicProperties" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "SourcePath" = "8:<VsdDialogDir>\\VsdBasicDialogs.wim"
+            "ModuleSignature" = "8:VsdDialogs.CE4B864F_F1C1_4B85_98D4_2A2BF5FFB12B"
+            }
+            "{7DFFC192-4ABE-11D3-8D78-00A0C9CFCEE6}:_63842827A5B54356BDFD47E73713AF11"
+            {
+            "Name" = "8:#1900"
+            "Sequence" = "3:1"
+            "Attributes" = "3:1"
+                "Dialogs"
+                {
+                    "{E4ECAB24-4AB7-11D3-8D78-00A0C9CFCEE6}:_0465CC337B224CFEAA7939E0248071FC"
+                    {
+                    "Sequence" = "3:200"
+                    "DisplayName" = "8:Installationsordner"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdFolderDlg.wid"
+                    "ModuleSignature" = "8:VsdDialogs.C113BC36_2532_4D45_8099_4818B1133B2F"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                    "{E4ECAB24-4AB7-11D3-8D78-00A0C9CFCEE6}:_0D4479375F0D435BA134F5516918699D"
+                    {
+                    "Sequence" = "3:300"
+                    "DisplayName" = "8:Installation bestätigen"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdConfirmDlg.wid"
+                    "ModuleSignature" = "8:VsdDialogs.6DBC9783_3677_4D68_8BF5_D749558A0AC1"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                    "{E4ECAB24-4AB7-11D3-8D78-00A0C9CFCEE6}:_48CB9B12CA13403095481721930EBF31"
+                    {
+                    "Sequence" = "3:100"
+                    "DisplayName" = "8:Willkommen"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdWelcomeDlg.wid"
+                    "ModuleSignature" = "8:VsdDialogs.68F69290_BB7C_474E_A153_6679845F3DDF"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "CopyrightWarning"
+                            {
+                            "Name" = "8:CopyrightWarning"
+                            "DisplayName" = "8:#1002"
+                            "Description" = "8:#1102"
+                            "Type" = "3:3"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:1"
+                            "Value" = "8:#1202"
+                            "DefaultValue" = "8:#1202"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Welcome"
+                            {
+                            "Name" = "8:Welcome"
+                            "DisplayName" = "8:#1003"
+                            "Description" = "8:#1103"
+                            "Type" = "3:3"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:1"
+                            "Value" = "8:#1203"
+                            "DefaultValue" = "8:#1203"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                }
+            }
+            "{7DFFC192-4ABE-11D3-8D78-00A0C9CFCEE6}:_8C53FBA0E77144D290E306F6AB9CE514"
+            {
+            "Name" = "8:#1901"
+            "Sequence" = "3:2"
+            "Attributes" = "3:2"
+                "Dialogs"
+                {
+                    "{E4ECAB24-4AB7-11D3-8D78-00A0C9CFCEE6}:_89DD67631C914B6E8A8712717331BF29"
+                    {
+                    "Sequence" = "3:100"
+                    "DisplayName" = "8:Status"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminProgressDlg.wid"
+                    "ModuleSignature" = "8:VsdDialogs.EE9A1AFA_41DD_4514_B727_DF0ACA1D7389"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "ShowProgress"
+                            {
+                            "Name" = "8:ShowProgress"
+                            "DisplayName" = "8:#1009"
+                            "Description" = "8:#1109"
+                            "Type" = "3:5"
+                            "ContextData" = "8:1;True=1;False=0"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:0"
+                            "Value" = "3:1"
+                            "DefaultValue" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                }
+            }
+            "{7DFFC192-4ABE-11D3-8D78-00A0C9CFCEE6}:_9F2FD2D1C6C04404B561B87261DEBAC9"
+            {
+            "Name" = "8:#1902"
+            "Sequence" = "3:1"
+            "Attributes" = "3:3"
+                "Dialogs"
+                {
+                    "{E4ECAB24-4AB7-11D3-8D78-00A0C9CFCEE6}:_FCE84C9D85EC4D1CAC4E464B45A788E5"
+                    {
+                    "Sequence" = "3:100"
+                    "DisplayName" = "8:Fertig"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdFinishedDlg.wid"
+                    "ModuleSignature" = "8:VsdDialogs.1DB77F5A_BA5C_4470_89B6_0B0EC07E3A10"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                }
+            }
+            "{7DFFC192-4ABE-11D3-8D78-00A0C9CFCEE6}:_C93327E4BECC4DD7894EB367C9CB71CD"
+            {
+            "Name" = "8:#1902"
+            "Sequence" = "3:2"
+            "Attributes" = "3:3"
+                "Dialogs"
+                {
+                    "{E4ECAB24-4AB7-11D3-8D78-00A0C9CFCEE6}:_5ED2641C128A4B688C791708BE91B579"
+                    {
+                    "Sequence" = "3:100"
+                    "DisplayName" = "8:Fertig"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminFinishedDlg.wid"
+                    "ModuleSignature" = "8:VsdDialogs.83D22742_1B79_46f6_9A99_DF0F2BD4C077"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                }
+            }
+            "{7DFFC192-4ABE-11D3-8D78-00A0C9CFCEE6}:_E2E0D7687A4642E9A927BD11FD6014F2"
+            {
+            "Name" = "8:#1900"
+            "Sequence" = "3:2"
+            "Attributes" = "3:1"
+                "Dialogs"
+                {
+                    "{E4ECAB24-4AB7-11D3-8D78-00A0C9CFCEE6}:_12F6039608C14CDD89ECAE313B4F27AE"
+                    {
+                    "Sequence" = "3:200"
+                    "DisplayName" = "8:Installationsordner"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminFolderDlg.wid"
+                    "ModuleSignature" = "8:VsdDialogs.2DED2424_5429_4616_A1AD_4D62837C2ADA"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                    "{E4ECAB24-4AB7-11D3-8D78-00A0C9CFCEE6}:_ED5B1DEF92C9405D8AF1F828A81DFEB5"
+                    {
+                    "Sequence" = "3:100"
+                    "DisplayName" = "8:Willkommen"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminWelcomeDlg.wid"
+                    "ModuleSignature" = "8:VsdDialogs.E35A0E2C_F131_4B57_B946_59A1A2A8F45F"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "CopyrightWarning"
+                            {
+                            "Name" = "8:CopyrightWarning"
+                            "DisplayName" = "8:#1002"
+                            "Description" = "8:#1102"
+                            "Type" = "3:3"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:1"
+                            "Value" = "8:#1202"
+                            "DefaultValue" = "8:#1202"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Welcome"
+                            {
+                            "Name" = "8:Welcome"
+                            "DisplayName" = "8:#1003"
+                            "Description" = "8:#1103"
+                            "Type" = "3:3"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:1"
+                            "Value" = "8:#1203"
+                            "DefaultValue" = "8:#1203"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                    "{E4ECAB24-4AB7-11D3-8D78-00A0C9CFCEE6}:_FA2AD939CA954AA4B68498C7D0CC1992"
+                    {
+                    "Sequence" = "3:300"
+                    "DisplayName" = "8:Installation bestätigen"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminConfirmDlg.wid"
+                    "ModuleSignature" = "8:VsdDialogs.FA58E60A_A1E8_4876_95FC_2AC3B5AAA5F8"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                }
+            }
+            "{7DFFC192-4ABE-11D3-8D78-00A0C9CFCEE6}:_F94BAD8D417846B8B4C9038032D060F2"
+            {
+            "Name" = "8:#1901"
+            "Sequence" = "3:1"
+            "Attributes" = "3:2"
+                "Dialogs"
+                {
+                    "{E4ECAB24-4AB7-11D3-8D78-00A0C9CFCEE6}:_C836A7A5B586461090F375DBF99DD38B"
+                    {
+                    "Sequence" = "3:100"
+                    "DisplayName" = "8:Status"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdProgressDlg.wid"
+                    "ModuleSignature" = "8:VsdDialogs.4FB12620_0D15_42D0_8677_2766FFA6923F"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "ShowProgress"
+                            {
+                            "Name" = "8:ShowProgress"
+                            "DisplayName" = "8:#1009"
+                            "Description" = "8:#1109"
+                            "Type" = "3:5"
+                            "ContextData" = "8:1;True=1;False=0"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:0"
+                            "Value" = "3:1"
+                            "DefaultValue" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Diese Datei wird automatisch vom XML-Schema-Designer generiert. Sie enthält Layoutinformationen für Komponenten auf der Designeroberfläche.-->
+<XSDDesignerLayout layoutVersion="1" viewPortLeft="1040" viewPortTop="0">
+    <Song_XmlComplexType left="1635" top="1000" width="5292" height="2964" selected="0" zOrder="39" index="0">
+        <Translations_XmlElement left="1635" top="5234" width="5292" height="2963" selected="0" zOrder="40" index="3">
+            <Translation_XmlElement left="1635" top="9467" width="5292" height="2963" selected="0" zOrder="42" index="0" />
+        </Translations_XmlElement>
+    </Song_XmlComplexType>
+    <Translation_XmlComplexType left="8197" top="1000" width="5292" height="2514" selected="0" zOrder="21" index="1" />
+    <Translations_XmlComplexType left="14759" top="1000" width="5292" height="2963" selected="0" zOrder="22" index="2">
+        <Translation_XmlElement left="14759" top="5233" width="5292" height="2963" selected="0" zOrder="23" index="0" />
+    </Translations_XmlComplexType>
+    <Songs_XmlComplexType left="21321" top="1000" width="5292" height="2963" selected="0" zOrder="25" index="3">
+        <Song_XmlElement left="21321" top="5233" width="5292" height="2963" selected="0" zOrder="26" index="0">
+            <Translations_XmlElement left="21321" top="9466" width="5292" height="2963" selected="0" zOrder="28" index="3">
+                <Translation_XmlElement left="21321" top="13699" width="5292" height="2963" selected="0" zOrder="30" index="0" />
+            </Translations_XmlElement>
+        </Song_XmlElement>
+    </Songs_XmlComplexType>
+    <lyra_XmlComplexType left="27883" top="1000" width="5292" height="2963" selected="0" zOrder="32" index="4">
+        <Songs_XmlElement left="27883" top="5233" width="5292" height="2963" selected="0" zOrder="33" index="0">
+            <Song_XmlElement left="27883" top="9466" width="5292" height="2963" selected="0" zOrder="35" index="0">
+                <Translations_XmlElement left="27883" top="13699" width="5292" height="2963" selected="0" zOrder="37" index="3">
+                    <Translation_XmlElement left="27883" top="17932" width="5292" height="2963" selected="0" zOrder="44" index="0" />
+                </Translations_XmlElement>
+            </Song_XmlElement>
+        </Songs_XmlElement>
+    </lyra_XmlComplexType>
+</XSDDesignerLayout>

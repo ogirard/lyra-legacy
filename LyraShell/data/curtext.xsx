@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Diese Datei wird automatisch vom XML-Schema-Designer generiert. Sie enthält Layoutinformationen für Komponenten auf der Designeroberfläche.-->
+<XSDDesignerLayout layoutVersion="1" viewPortLeft="0" viewPortTop="0">
+    <Songs_XmlElement left="635" top="635" width="5292" height="2963" selected="0" zOrder="1" index="0">
+        <Song_XmlElement left="635" top="4868" width="5292" height="2963" selected="0" zOrder="2" index="0">
+            <Translations_XmlElement left="635" top="9101" width="5292" height="2963" selected="0" zOrder="5" index="3">
+                <Translation_XmlElement left="635" top="13334" width="5292" height="2963" selected="0" zOrder="8" index="0" />
+            </Translations_XmlElement>
+        </Song_XmlElement>
+    </Songs_XmlElement>
+</XSDDesignerLayout>

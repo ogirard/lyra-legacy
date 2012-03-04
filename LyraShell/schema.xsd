@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema targetNamespace="http://tempuri.org/XMLSchema.xsd" elementFormDefault="qualified" xmlns="http://tempuri.org/XMLSchema.xsd" xmlns:mstns="http://tempuri.org/XMLSchema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:complexType name="Song">
+		<xs:sequence>
+			<xs:element name="Number" type="xs:integer"></xs:element>
+			<xs:element name="Title" type="xs:string"></xs:element>
+			<xs:element name="Text" type="xs:string"></xs:element>
+			<xs:element name="Translations" type="Translations" />
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID" />
+	</xs:complexType>
+	<xs:complexType name="Translation">
+		<xs:sequence>
+			<xs:element name="Title" type="xs:string" />
+			<xs:element name="Text" type="xs:string" />
+		</xs:sequence>
+		<xs:attribute name="lang" type="xs:language" />
+	</xs:complexType>
+	<xs:complexType name="Translations">
+		<xs:sequence>
+			<xs:element name="Translation" type="Translation" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Songs">
+		<xs:sequence>
+			<xs:element name="Song" type="Song" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="lyra">
+		<xs:sequence>
+			<xs:element name="Songs" type="Songs" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

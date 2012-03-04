@@ -1,0 +1,209 @@
+using System;
+using System.Collections;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
+using Lucene.Net.Analysis.Standard;
+using Lucene.Net.Documents;
+using Lucene.Net.Index;
+using Lucene.Net.QueryParsers;
+using Lucene.Net.Search;
+using System.Collections.Generic;
+using Lucene.Net.Store;
+using Lyra2.LyraShell.Search;
+using Directory = Lucene.Net.Store.Directory;
+using Version = Lucene.Net.Util.Version;
+
+namespace Lyra2.LyraShell
+{
+  /// <summary>
+  /// Summary description for IndexSearch
+  /// </summary>
+  public class IndexSearch : ISearch
+  {
+    private readonly string _indexDir = Application.StartupPath + "\\index";
+    private readonly StandardAnalyzer _indexAnalyzer;
+    private readonly Directory _indexDirectory;
+    private ICollection _songList;
+    private Hashtable _nrIndex;
+
+    public IndexSearch(ICollection songList, bool forceReIndex)
+    {
+      this.SetSongList(songList);
+      var indexDirectory = new DirectoryInfo(this._indexDir);
+      if (!indexDirectory.Exists)
+      {
+        indexDirectory.Create();
+      }
+      _indexDirectory = FSDirectory.Open(indexDirectory);
+      this._indexAnalyzer = new StandardAnalyzer(Version.LUCENE_29);
+      this.GenerateIndex(this._songList);
+    }
+
+    public IndexSearch(ICollection songList)
+      : this(songList, false)
+    {
+    }
+
+    private void SetSongList(ICollection songList)
+    {
+      this._songList = songList;
+      this._nrIndex = new Hashtable();
+      foreach (Song song in songList)
+      {
+        this._nrIndex.Add(song.Number, song);
+      }
+    }
+
+    #region ISearch Members
+
+    public void AddValues(IEnumerable<Song> values, bool append)
+    {
+      throw new NotImplementedException();
+    }
+
+    public bool SearchCollection(string query, SortedList list,
+                                 SongListBox resultBox, bool text, bool matchCase, bool whole, bool trans, SortMethod sortMethod)
+    {
+      var indexReader = IndexReader.Open(_indexDirectory, true);
+      IndexSearcher searcher = new IndexSearcher(indexReader);
+      QueryParser parser = new QueryParser(Version.LUCENE_29, text ? "text" : "title", this._indexAnalyzer);
+
+      LyraQuery lQuery = SearchUtil.CreateLyraQuery(query, whole, !text);
+      List<ISong> numberSongs = new List<ISong>();
+      // search for nr
+      if (lQuery.Numbers != null)
+      {
+        numberSongs.AddRange(lQuery.Numbers.Select(nr => this._nrIndex[nr]).OfType<Song>());
+      }
+
+      List<ISong> songs = new List<ISong>();
+
+      if (!string.IsNullOrEmpty(lQuery.LuceneQuery))
+      {
+        Query luceneQuery = parser.Parse(lQuery.LuceneQuery);
+
+        var topDocs = searcher.Search(luceneQuery, _songList.Count);
+        resultBox.Ratings.Clear();
+
+        foreach (var scoreDoc in topDocs.ScoreDocs)
+        {
+          var doc = searcher.GetIndexReader().Document(scoreDoc.doc);
+          int nr = Int32.Parse(doc.GetField("nr").StringValue());
+          var song = this._nrIndex[nr] as Song;
+          if (song != null)
+          {
+            songs.Add(song);
+            resultBox.Ratings.Add(song, scoreDoc.score);
+          }
+        }
+      }
+      searcher.Close();
+
+      lock (resultBox)
+      {
+        resultBox.BeginUpdate();
+        resultBox.Items.Clear();
+        resultBox.SetSearchTags(GetTags(query));
+        resultBox.ShowSongs(numberSongs, songs, sortMethod);
+        resultBox.EndUpdate();
+      }
+      return true;
+    }
+
+    private static IList<string> GetTags(string query)
+    {
+      IList<string> tags =
+             new List<string>(
+                 query.Replace("*", "").Replace("?", "").Replace("+", "").Replace("-", "").ToLowerInvariant().Split(
+                     new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+      for (int i = 0; i < tags.Count; i++)
+      {
+        int nr;
+        if (Int32.TryParse(tags[i], out nr) && nr >= 0 && nr < 10000)
+        {
+          tags[i] = Util.toFour(nr);
+        }
+      }
+      return tags;
+    }
+
+    #endregion
+
+    private void GenerateIndex(ICollection songList)
+    {
+      try
+      {
+        // set new songList and recreate number index
+        this.SetSongList(songList);
+
+        // open index writer
+        var writer = new IndexWriter(_indexDirectory, this._indexAnalyzer, true, IndexWriter.MaxFieldLength.UNLIMITED);
+        foreach (Song song in songList)
+        {
+          AddSong(writer, song);
+        }
+
+        // save index
+        writer.Commit();
+        writer.Optimize();
+        writer.Close();
+
+        // save hash
+        FileInfo curtext = new FileInfo(Application.StartupPath + "\\" + Util.URL);
+        FileInfo hash = new FileInfo(this._indexDir + "\\hash");
+        if (hash.Exists) hash.Delete();
+        StreamWriter fwriter = new StreamWriter(hash.FullName);
+        fwriter.Write(Util.MD5FileHash(curtext));
+        fwriter.Close();
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(ex.StackTrace);
+        throw;
+      }
+    }
+
+    private static void AddSong(IndexWriter writer, ISong song)
+    {
+      try
+      {
+        Document songDoc = new Document();
+        Field textField = new Field("text", (song.Text ?? "") + " " + (song.Title ?? ""), Field.Store.NO, Field.Index.ANALYZED);
+        Field titleField = new Field("title", song.Title ?? "", Field.Store.NO, Field.Index.ANALYZED);
+        Field nrField = new Field("nr", song.Number.ToString(CultureInfo.InvariantCulture), Field.Store.YES, Field.Index.ANALYZED);
+        songDoc.Add(nrField);
+        songDoc.Add(titleField);
+        songDoc.Add(textField);
+        writer.AddDocument(songDoc);
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(ex.Message + Environment.NewLine + ex.StackTrace);
+      }
+
+    }
+
+    private bool CheckIfFileChanged()
+    {
+      try
+      {
+        FileInfo curtext = new FileInfo(Application.StartupPath + "\\" + Util.URL);
+        FileInfo hash = new FileInfo(_indexDir + "\\hash");
+        if (!hash.Exists) return true;
+        StreamReader reader = new StreamReader(hash.FullName);
+        string hashStr = reader.ReadToEnd();
+        reader.Close();
+        // Console.Out.WriteLine(hashStr != Util.MD5FileHash(curtext) ? "changed" : "ok");
+        return hashStr != Util.MD5FileHash(curtext); // file changed if hash not equal
+      }
+      // ReSharper disable EmptyGeneralCatchClause
+      catch
+      // ReSharper restore EmptyGeneralCatchClause
+      {
+      }
+      return false;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "lyraSetup", "lyraSetup.vdproj", "{B86C8192-AFA4-4A68-A6AB-F711F8586D46}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{B86C8192-AFA4-4A68-A6AB-F711F8586D46}.Debug.ActiveCfg = Debug
+		{B86C8192-AFA4-4A68-A6AB-F711F8586D46}.Debug.Build.0 = Debug
+		{B86C8192-AFA4-4A68-A6AB-F711F8586D46}.Release.ActiveCfg = Release
+		{B86C8192-AFA4-4A68-A6AB-F711F8586D46}.Release.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

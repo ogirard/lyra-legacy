@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE lyra[
+  <!ELEMENT lyra (Songs,Translations)>
+  <!ELEMENT Songs (Song*) >
+  <!ELEMENT Song (Number,Title,Text) >
+  <!ELEMENT Translations (Translation*)>
+  <!ELEMENT Translation (Title,Text)>
+  <!ELEMENT Number (#PCDATA)>
+  <!ELEMENT Title (#PCDATA)>
+  <!ELEMENT Text (#PCDATA)>
+  <!ATTLIST lyra ver CDATA #REQUIRED>
+  <!ATTLIST lyra date CDATA #REQUIRED>
+  <!ATTLIST Song id ID #REQUIRED>
+  <!ATTLIST Song trans IDREFS #REQUIRED>
+  <!ATTLIST Song zus CDATA #REQUIRED>
+  <!ATTLIST Translation id ID #REQUIRED>
+  <!ATTLIST Translation lang CDATA #REQUIRED>
+  <!ATTLIST Translation unform CDATA #REQUIRED>]>
+<lyra ver="1.7-1" date="2005/03/31">
+  <Songs>
+    <Song id="s0001" trans="" zus="">
+      <Number>1</Number>
+      <Title>lyra Update</Title>
+      <Text>Führen Sie &lt;b&gt;"Extras-&gt;Expertentools-&gt;Update lyra Songtexte..."&lt;/b&gt; aus, um die aktuellen
+Liedtexte vom Internet zu beziehen!
+Dazu müssen Sie mit dem Internet verbunden sein.</Text>
+    </Song>
+  </Songs>
+  <Translations>
+  </Translations>
+</lyra>
