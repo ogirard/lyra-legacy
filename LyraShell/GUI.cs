@@ -1346,6 +1346,7 @@ namespace Lyra2.LyraShell
       // 
       this.menuItem20.Enabled = false;
       this.menuItem20.Index = 2;
+      this.menuItem20.Visible = false;
       this.menuItem20.Text = "Songbook drucken...";
       // 
       // menuItem21
@@ -1422,27 +1423,32 @@ namespace Lyra2.LyraShell
       // 
       this.menuItem64.Index = 1;
       this.menuItem64.Text = "-";
+      this.menuItem64.Visible = false;
       // 
       // menuItem38
       // 
       this.menuItem38.Index = 2;
       this.menuItem38.Text = "&Update lyra Songtexte...";
       this.menuItem38.Click += this.menuItem38_Click;
+      this.menuItem38.Visible = false;
       // 
       // menuItem41
       // 
       this.menuItem41.Index = 3;
       this.menuItem41.Text = "Letztes Update &rückgängig machen";
       this.menuItem41.Click += this.menuItem41_Click;
+      this.menuItem41.Visible = false;
       // 
       // menuItem45
       // 
       this.menuItem45.Index = 4;
       this.menuItem45.Text = "-";
+      this.menuItem45.Visible = false;
       // 
       // menuItem44
       // 
       this.menuItem44.Enabled = false;
+      this.menuItem44.Visible = false;
       this.menuItem44.Index = 5;
       this.menuItem44.MenuItems.AddRange(new[]
                                                    {
@@ -1466,6 +1472,7 @@ namespace Lyra2.LyraShell
       // menuItem43
       // 
       this.menuItem43.Index = 6;
+      this.menuItem43.Visible = false;
       this.menuItem43.Text = "-";
       // 
       // menuItem34
@@ -1473,15 +1480,17 @@ namespace Lyra2.LyraShell
       this.menuItem34.Index = 7;
       this.menuItem34.Text = "Liste für &Pocket PC...";
       this.menuItem34.Click += this.menuItem34_Click;
+      this.menuItem34.Visible = false;
       // 
       // menuItem46
       // 
       this.menuItem46.Index = 8;
       this.menuItem46.Text = "-";
+      this.menuItem46.Visible = false;
       // 
       // menuItem42
       // 
-      this.menuItem42.Enabled = false;
+      this.menuItem42.Visible = false;
       this.menuItem42.Index = 9;
       this.menuItem42.Text = "&Vorbereiten für Lyra 2.0";
       // 
@@ -3140,7 +3149,7 @@ namespace Lyra2.LyraShell
             lastWasBlankLine = false;
           }
 
-          
+
           cleanText = cleanText.Replace("$$_RefrainEnd_$$", Environment.NewLine).Replace("$$_RefrainStart_$$", Environment.NewLine + "Refrain:" + Environment.NewLine);
           while (cleanText.EndsWith("\r\n")) cleanText = cleanText.Substring(0, cleanText.Length - 2);
           if (cleanText.StartsWith(Environment.NewLine))
