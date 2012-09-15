@@ -371,7 +371,7 @@ namespace Lyra2.LyraShell
             fd.Filter = "Text Dateien|*.txt";
             fd.RestoreDirectory = true;
             fd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            fd.FileName = "Lyra_History_" + DateTime.Now.ToString("ddd_ddMMyyyy") + ".txt";
+            fd.FileName = DateTime.Now.ToString("yyyy-MM-dd") + "_history.txt";
             if(fd.ShowDialog(this.owner) == DialogResult.OK)
             {
                 using(StreamWriter sw = new StreamWriter(fd.FileName, false, Encoding.UTF8))

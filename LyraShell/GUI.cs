@@ -2986,7 +2986,7 @@ namespace Lyra2.LyraShell
     }
 
     private readonly string[] formats =
-        new[] { "refrain", "special", "p8", "p16", "p24", "p32", "p40", "b", "i", "pagebreak", };
+        new[] { "refrain", "special", "p8", "p16", "p24", "p32", "p40", "b", "i", "pagebreak", "jumpmark" };
 
     private bool isFormat(string s)
     {
@@ -3080,7 +3080,7 @@ namespace Lyra2.LyraShell
       SaveFileDialog sfd = new SaveFileDialog();
       sfd.Title = "Bitte geben Sie den Pfad für die Textdatei an!";
       sfd.Filter = "Textdatei|*.txt";
-      sfd.FileName = "lyra_" + DateTime.Now.ToString("ddMMyyyy") + ".txt";
+      sfd.FileName = DateTime.Now.ToString("yyyy-MM-dd") + "_lyra" + ".txt";
       if (sfd.ShowDialog(this) == DialogResult.OK)
       {
         StreamWriter sw = new StreamWriter(sfd.FileName, false);
@@ -3091,27 +3091,64 @@ namespace Lyra2.LyraShell
           string line = "".PadRight(title.Length, '-');
           sw.WriteLine(title);
           sw.WriteLine(line);
-          sw.WriteLine();
           string text = "";
           for (int i = 0; i < s.Text.Length; i++)
           {
             if (s.Text[i] == '<')
             {
-              if (this.isFormat(s.Text.Substring(i + 1)))
+              if (isFormat(s.Text.Substring(i + 1)))
               {
                 if (s.Text.Substring(i + 1).StartsWith("refrain"))
                 {
-                  text += "REFRAIN:" + Util.NL;
+                  text += "$$_RefrainStart_$$";
                 }
+
+                if (s.Text.Substring(i + 2).StartsWith("refrain"))
+                {
+                  text += "$$_RefrainEnd_$$";
+                }
+
                 i = s.Text.IndexOf('>', i) + 1;
               }
             }
-            if (i < s.Text.Length) text += s.Text[i];
+
+            if (i < s.Text.Length)
+            {
+              text += s.Text[i];
+            }
           }
-          text = text.Replace("&gt;", ">").Replace("&lt;", "<").Replace("\n", "\r\n");
-          while (text.EndsWith("\r\n")) text = text.Substring(0, text.Length - 2);
-          sw.WriteLine(text);
-          sw.WriteLine();
+
+          text = text.Replace("&gt;", ">").Replace("&lt;", "<").Replace(Environment.NewLine, "\r").Replace('\n', '\r');
+
+          // clean blank lines
+          var cleanText = string.Empty;
+          var lastWasBlankLine = false;
+          foreach (var c in text)
+          {
+            if (c == '\r')
+            {
+              if (lastWasBlankLine)
+              {
+                continue;
+              }
+              cleanText += Environment.NewLine;
+              lastWasBlankLine = true;
+              continue;
+            }
+
+            cleanText += c;
+            lastWasBlankLine = false;
+          }
+
+          
+          cleanText = cleanText.Replace("$$_RefrainEnd_$$", Environment.NewLine).Replace("$$_RefrainStart_$$", Environment.NewLine + "Refrain:" + Environment.NewLine);
+          while (cleanText.EndsWith("\r\n")) cleanText = cleanText.Substring(0, cleanText.Length - 2);
+          if (cleanText.StartsWith(Environment.NewLine))
+          {
+            cleanText = cleanText.Substring(2);
+          }
+
+          sw.WriteLine(cleanText);
           sw.WriteLine();
         }
         sw.Close();

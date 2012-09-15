@@ -17,6 +17,7 @@ namespace Lyra2.LyraShell
     {
       ScrollBars = RichTextBoxScrollBars.None;
       _contentSize = this.Size;
+      Enabled = false;
     }
 
     public bool IsMouseOver

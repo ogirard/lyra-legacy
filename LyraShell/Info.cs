@@ -2,86 +2,86 @@ using System;
 
 namespace Lyra2.LyraShell
 {
-	/// <summary>
-	/// Summary description for Info.
-	/// </summary>
-	public class Info : System.Windows.Forms.Form
-	{
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
+  /// <summary>
+  /// Summary description for Info.
+  /// </summary>
+  public class Info : System.Windows.Forms.Form
+  {
+    /// <summary>
+    /// Required designer variable.
+    /// </summary>
+    private System.ComponentModel.Container components = null;
 
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.Label label9;
-		private System.Windows.Forms.Label label24;
-		private System.Windows.Forms.Label label21;
-		private System.Windows.Forms.Label label29;
-		private System.Windows.Forms.Label label28;
-		private System.Windows.Forms.Label label27;
-		private System.Windows.Forms.Label label26;
-		private System.Windows.Forms.Label label22;
-		private System.Windows.Forms.Label label25;
-		private System.Windows.Forms.Label label23;
+    private System.Windows.Forms.Label label1;
+    private System.Windows.Forms.Label label2;
+    private System.Windows.Forms.Label label3;
+    private System.Windows.Forms.Label label4;
+    private System.Windows.Forms.Label label5;
+    private System.Windows.Forms.Label label6;
+    private System.Windows.Forms.Label label7;
+    private System.Windows.Forms.Label label8;
+    private System.Windows.Forms.Label label9;
+    private System.Windows.Forms.Label label24;
+    private System.Windows.Forms.Label label21;
+    private System.Windows.Forms.Label label29;
+    private System.Windows.Forms.Label label28;
+    private System.Windows.Forms.Label label27;
+    private System.Windows.Forms.Label label26;
+    private System.Windows.Forms.Label label22;
+    private System.Windows.Forms.Label label25;
+    private System.Windows.Forms.Label label23;
 
-		private static Info info = null;
+    private static Info info = null;
 
-		public static void showInfo(GUI owner)
-		{
-			if (Info.info == null) Info.info = new Info(owner);
-			Info.info.Show();
-			owner.Enabled = false;
-		}
+    public static void showInfo(GUI owner)
+    {
+      if (Info.info == null) Info.info = new Info(owner);
+      Info.info.Show();
+      owner.Enabled = false;
+    }
 
-		private GUI owner;
+    private GUI owner;
 
-		private Info(GUI owner)
-		{
-			this.owner = owner;
-			InitializeComponent();
-			this.label21.Text = Util.VER;
-			this.label22.Text = Util.BUILD;
-			this.label23.Text = GUI.DEBUG ? "ja" : "nein";
-			this.label24.Text = "Microsoft .NET " + Util.DOTNET;
-			this.label25.Text = Util.NRSONGS.ToString();
-			this.label26.Text = Util.NRUSE != 0 ? Convert.ToString(Util.TOTALLOAD/Util.NRUSE/TimeSpan.TicksPerMillisecond) + " ms" : "0 ms";
-			this.label27.Text = Util.NRSEARCH != 0 ? Convert.ToString(Util.TOTALSEARCH/Util.NRSEARCH/TimeSpan.TicksPerMillisecond) + " ms" : "0 ms";
-			this.label28.Text = Util.getUseTime();
+    private Info(GUI owner)
+    {
+      this.owner = owner;
+      InitializeComponent();
+      this.label21.Text = Util.VER;
+      this.label22.Text = Util.BUILD;
+      this.label23.Text = GUI.DEBUG ? "ja" : "nein";
+      this.label24.Text = "Microsoft .NET " + Util.DOTNET;
+      this.label25.Text = Util.NRSONGS.ToString();
+      this.label26.Text = Util.NRUSE != 0 ? Convert.ToString(Util.TOTALLOAD / Util.NRUSE / TimeSpan.TicksPerMillisecond) + " ms" : "0 ms";
+      this.label27.Text = Util.NRSEARCH != 0 ? Convert.ToString(Util.TOTALSEARCH / Util.NRSEARCH / TimeSpan.TicksPerMillisecond) + " ms" : "0 ms";
+      this.label28.Text = Util.getUseTime();
 
-		}
+    }
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose(bool disposing)
-		{
-			this.owner.Enabled = true;
-			Info.info = null;
-			if (disposing)
-			{
-				if (components != null)
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose(disposing);
-		}
+    /// <summary>
+    /// Clean up any resources being used.
+    /// </summary>
+    protected override void Dispose(bool disposing)
+    {
+      this.owner.Enabled = true;
+      Info.info = null;
+      if (disposing)
+      {
+        if (components != null)
+        {
+          components.Dispose();
+        }
+      }
+      base.Dispose(disposing);
+    }
 
-		#region Windows Form Designer generated code
+    #region Windows Form Designer generated code
 
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+    /// <summary>
+    /// Required method for Designer support - do not modify
+    /// the contents of this method with the code editor.
+    /// </summary>
+    private void InitializeComponent()
+    {
       this.label1 = new System.Windows.Forms.Label();
       this.label2 = new System.Windows.Forms.Label();
       this.label3 = new System.Windows.Forms.Label();
@@ -343,8 +343,8 @@ namespace Lyra2.LyraShell
       this.ResumeLayout(false);
       this.PerformLayout();
 
-		}
+    }
 
-		#endregion
-	}
+    #endregion
+  }
 }
