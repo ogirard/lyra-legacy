@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Infragistics4.Documents.Core.v12.2</name>
+    </assembly>
+    <members>
+        <member name="T:Infragistics.Shared.AssemblyVersion">
+            <summary>
+            Contains version information for the Infragistics assemblies.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Shared.AssemblyVersion.MajorMinor">
+            <summary>
+            Major.Minor number portion of the assembly version
+            </summary>
+        </member>
+        <member name="F:Infragistics.Shared.AssemblyVersion.Build">
+            <summary>
+            Build number portion of the assembly version
+            </summary>
+        </member>
+        <member name="F:Infragistics.Shared.AssemblyVersion.Revision">
+            <summary>
+            Revision number portion of the assembly version
+            </summary>
+        </member>
+        <member name="F:Infragistics.Shared.AssemblyVersion.Version">
+            <summary>
+            Assembly version number
+            </summary>
+        </member>
+        <member name="F:Infragistics.Shared.AssemblyVersion.ToolBoxBitmapFolder">
+            <summary>
+            Location of the resources for toolbox bitmaps. 
+            </summary>
+        </member>
+        <member name="F:Infragistics.Shared.AssemblyVersion.CompanyName">
+            <summary>
+            Assembly company name
+            </summary>
+        </member>
+        <member name="F:Infragistics.Shared.AssemblyVersion.EndCopyrightYear">
+            <summary>
+            End year of assembly copyright
+            </summary>
+        </member>
+        <member name="F:Infragistics.Shared.AssemblyVersion.SatelliteContractVersion">
+            <summary>
+            The assembly version number for the satellite assemblies.
+            </summary>
+        </member>
+        <member name="F:Infragistics.Shared.AssemblyVersion.Configuration">
+            <summary>
+            The current build configuration for the assembly.
+            </summary>
+        </member>
+    </members>
+</doc>

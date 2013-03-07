@@ -278,6 +278,10 @@ namespace Lyra2.LyraShell
       this.Resize += delegate { this.SizeSearchPane(); };
       this.personalizeStore.Load();
       this.sortCombo.SelectedIndex = 2;
+      this.sortMethod = SortMethod.RatingDescending;
+      this.searchListBox.BeginUpdate();
+      this.searchListBox.Sort(this.sortMethod);
+      this.searchListBox.EndUpdate();
       this.sortCombo.SelectedIndexChanged += this.SortMethodChanged;
 
       // init GUI size
