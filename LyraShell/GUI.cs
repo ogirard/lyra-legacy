@@ -277,7 +277,7 @@ namespace Lyra2.LyraShell
       this.statusBarPanel2.Text = Util.URL;
       this.Resize += delegate { this.SizeSearchPane(); };
       this.personalizeStore.Load();
-      this.sortCombo.SelectedIndex = 0;
+      this.sortCombo.SelectedIndex = 2;
       this.sortCombo.SelectedIndexChanged += this.SortMethodChanged;
 
       // init GUI size
