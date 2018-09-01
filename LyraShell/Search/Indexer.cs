@@ -1,9 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using log4net;
 using Lucene.Net.Analysis.Standard;
 using Lucene.Net.Documents;
@@ -11,15 +5,20 @@ using Lucene.Net.Index;
 using Lucene.Net.QueryParsers;
 using Lucene.Net.Search;
 using Lucene.Net.Store;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using Directory = Lucene.Net.Store.Directory;
 using Version = Lucene.Net.Util.Version;
 
 namespace Lyra2.LyraShell.Search
 {
-  /// <summary>
-  ///   Provides a Full-Text search index mapping to <see cref = "IIndexObject" />s
-  /// </summary>
-  public sealed class Indexer<TElement> : ISearchProvider<TElement>, IDisposable
+    /// <summary>
+    ///   Provides a Full-Text search index mapping to <see cref = "IIndexObject" />s
+    /// </summary>
+    public sealed class Indexer<TElement> : ISearchProvider<TElement>, IDisposable
       where TElement : class, IIndexObject
   {
     #region    Logging
@@ -304,7 +303,7 @@ namespace Lyra2.LyraShell.Search
         foreach (KeyValuePair<string, string> field in obj.SearchableText)
         {
           Field fld = new Field(field.Key, QueryHelper.NormalizeText(field.Value), Field.Store.NO, Field.Index.ANALYZED);
-          fld.SetBoost(this._searchFields[field.Key]);
+          fld.Boost = this._searchFields[field.Key];
           doc.Add(fld);
         }
 
@@ -381,19 +380,19 @@ namespace Lyra2.LyraShell.Search
           }
 
           var queryParser = new MultiFieldQueryParser(Version.LUCENE_29, fields.ToArray(), this._stdAnalyzer);
-          TopScoreDocCollector hitCollector = TopScoreDocCollector.create(_items.Count, true);
+          TopScoreDocCollector hitCollector = TopScoreDocCollector.Create(_items.Count, true);
           var preparedQuery = PrepareLuceneQuery(query);
           var luceneQuery = queryParser.Parse(preparedQuery);
           indexSearcher.Search(luceneQuery, hitCollector);
 
           foreach (ScoreDoc scoreDoc in hitCollector.TopDocs().ScoreDocs)
           {
-            Document doc = indexSearcher.Doc(scoreDoc.doc);
-            Guid key = new Guid(doc.GetField(KeyFieldName).StringValue());
+            Document doc = indexSearcher.Doc(scoreDoc.Doc);
+            Guid key = new Guid(doc.GetField(KeyFieldName).StringValue);
 
             if (!this._items.ContainsKey(key)) continue;
 
-            double rating = scoreDoc.score;
+            double rating = scoreDoc.Score;
             RatedResult<TElement> result = new RatedResult<TElement>(this._items[key], rating);
             results.Add(result);
           }
