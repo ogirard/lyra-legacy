@@ -41,7 +41,7 @@ namespace Lyra2.LyraShell
       this._songList = this._physicalStorage.GetSongs();
       this._owner = owner;
       Util.NRSONGS = this._songList.Count;
-      InitializeSearch();
+        this.InitializeSearch();
     }
 
     private void InitializeSearch()
@@ -64,7 +64,7 @@ namespace Lyra2.LyraShell
         {
           this._toBeCommited = false;
           Util.NRSONGS = this._songList.Count;
-          InitializeSearch();
+            this.InitializeSearch();
           return true;
         }
       }
@@ -84,7 +84,7 @@ namespace Lyra2.LyraShell
       this._owner.Enabled = false;
       try
       {
-        InitializeSearch();
+          this.InitializeSearch();
       }
       catch (Exception ex)
       {
@@ -117,7 +117,7 @@ namespace Lyra2.LyraShell
       this.PhysicalStorage.SetStyleAsDefault(style);
 
       // update all songs with default style
-      foreach (Song song in this._songList.Values.Cast<Song>().Where(song => song.UseDefaultStyle))
+      foreach (var song in this._songList.Values.Cast<Song>().Where(song => song.UseDefaultStyle))
       {
         song.Style = style;
       }
@@ -132,7 +132,7 @@ namespace Lyra2.LyraShell
     // get Song by Number
     public ISong GetSong(int nr)
     {
-      string id = "s" + Util.toFour(nr);
+      var id = "s" + Util.toFour(nr);
       Song ret;
       if (this._songList.ContainsKey(id))
       {
@@ -147,7 +147,7 @@ namespace Lyra2.LyraShell
 
       if (this._songList.ContainsKey("s7001"))
       {
-        int i = this._songList.IndexOfKey("7001");
+        var i = this._songList.IndexOfKey("7001");
         for (; i < this._songList.Count; i++)
         {
           if (((Song)this._songList.GetByIndex(i)).Number == nr)
@@ -219,7 +219,7 @@ namespace Lyra2.LyraShell
     {
       box.BeginUpdate();
       box.Items.Clear();
-      foreach (Song song in this._songList.Values.Cast<Song>().Where(song => !song.Deleted))
+      foreach (var song in this._songList.Values.Cast<Song>().Where(song => !song.Deleted))
       {
         box.Items.Add(song);
       }
@@ -261,8 +261,8 @@ namespace Lyra2.LyraShell
     // Export for Pocket PC
     private static string FormatText(string text)
     {
-      string ret = "";
-      for (int i = 0; i < text.Length; i++)
+      var ret = "";
+      for (var i = 0; i < text.Length; i++)
       {
         if (text[i] == '<')
         {
@@ -289,7 +289,7 @@ namespace Lyra2.LyraShell
     {
       try
       {
-        StreamWriter sw = new StreamWriter(url, false);
+        var sw = new StreamWriter(url, false);
         sw.AutoFlush = true;
         sw.WriteLine("[ lyra for Pocket PC ]");
         sw.WriteLine();
@@ -299,17 +299,17 @@ namespace Lyra2.LyraShell
         sw.WriteLine(this._songList.Count.ToString(CultureInfo.InvariantCulture));
         sw.WriteLine("####$DATA");
 
-        IDictionaryEnumerator en = this._songList.GetEnumerator();
+        var en = this._songList.GetEnumerator();
         en.Reset();
         while (en.MoveNext())
         {
-          Song song = (Song)en.Value;
-          string title = song.Title.Length > 0 ? song.Title : "  ";
-          string txt = FormatText(song.Text);
+          var song = (Song)en.Value;
+          var title = song.Title.Length > 0 ? song.Title : "  ";
+          var txt = FormatText(song.Text);
           sw.WriteLine(song.Number.ToString(CultureInfo.InvariantCulture) + " " + title + "%" + txt);
         }
         sw.Close();
-        string text = "Liste für Pocket PC wurde erfolgreich erstellt!" + Util.NL + "Sie finden Sie in " + url;
+        var text = "Liste für Pocket PC wurde erfolgreich erstellt!" + Util.NL + "Sie finden Sie in " + url;
         
         MessageBox.Show(this._owner, text, "lyra", MessageBoxButtons.OK, MessageBoxIcon.Information);
         return true;

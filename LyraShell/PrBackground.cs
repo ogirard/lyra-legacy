@@ -8,9 +8,9 @@ namespace Lyra2.LyraShell
 	/// <summary>
 	/// Summary description for PrBackground.
 	/// </summary>
-	public class PrBackground : System.Windows.Forms.Form
+	public class PrBackground : Form
 	{
-		private System.Windows.Forms.Label label1;
+		private Label label1;
 
 		/// <summary>
 		/// Required designer variable.
@@ -22,7 +22,7 @@ namespace Lyra2.LyraShell
 		public PrBackground(GUI owner)
 		{
 			this.owner = owner;
-			InitializeComponent();
+		    this.InitializeComponent();
 
 			// init Screen
 			this.Width = Screen.PrimaryScreen.Bounds.Width;
@@ -43,9 +43,9 @@ namespace Lyra2.LyraShell
 			if (this.bgbitmap != null) this.bgbitmap.Dispose();
 			if (disposing)
 			{
-				if (components != null)
+				if (this.components != null)
 				{
-					components.Dispose();
+				    this.components.Dispose();
 				}
 			}
 			base.Dispose(disposing);
@@ -57,7 +57,7 @@ namespace Lyra2.LyraShell
 		protected override void OnPaint(PaintEventArgs e)
 		{
 			base.OnPaint(e);
-			Graphics g = e.Graphics;
+			var g = e.Graphics;
 			switch (Util.PREMODE)
 			{
 				case 0:

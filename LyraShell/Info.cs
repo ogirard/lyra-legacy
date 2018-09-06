@@ -35,8 +35,8 @@ namespace Lyra2.LyraShell
 
     public static void showInfo(GUI owner)
     {
-      if (Info.info == null) Info.info = new Info(owner);
-      Info.info.Show();
+      if (info == null) info = new Info(owner);
+      info.Show();
       owner.Enabled = false;
     }
 
@@ -45,7 +45,7 @@ namespace Lyra2.LyraShell
     private Info(GUI owner)
     {
       this.owner = owner;
-      InitializeComponent();
+        this.InitializeComponent();
       this.label21.Text = Util.VER;
       this.label22.Text = Util.BUILD;
       this.label23.Text = GUI.DEBUG ? "ja" : "nein";
@@ -63,12 +63,12 @@ namespace Lyra2.LyraShell
     protected override void Dispose(bool disposing)
     {
       this.owner.Enabled = true;
-      Info.info = null;
+      info = null;
       if (disposing)
       {
-        if (components != null)
+        if (this.components != null)
         {
-          components.Dispose();
+            this.components.Dispose();
         }
       }
       base.Dispose(disposing);

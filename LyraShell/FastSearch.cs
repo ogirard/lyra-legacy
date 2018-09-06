@@ -27,7 +27,7 @@ namespace Lyra2.LyraShell
         this.nrIndex.Clear();
       }
       this.indexer.AddObjectsToSearch(values);
-      foreach (Song song in values)
+      foreach (var song in values)
       {
         if (!this.nrIndex.ContainsKey(song.Number))
         {
@@ -42,15 +42,15 @@ namespace Lyra2.LyraShell
 
     public bool SearchCollection(string query, SortedList list, SongListBox resultBox, bool text, bool matchCase, bool whole, bool trans, SortMethod sortMethod)
     {
-      LyraQuery lQuery = SearchUtil.CreateLyraQuery(query, whole, !text);
-      List<ISong> numberSongs = new List<ISong>();
+      var lQuery = SearchUtil.CreateLyraQuery(query, whole, !text);
+      var numberSongs = new List<ISong>();
 
       // search for nr
       if (lQuery.Numbers != null)
       {
-        foreach (int nr in lQuery.Numbers)
+        foreach (var nr in lQuery.Numbers)
         {
-          IList<Song> nrMatches = this.nrIndex.ContainsKey(nr) ? this.nrIndex[nr] : null;
+          var nrMatches = this.nrIndex.ContainsKey(nr) ? this.nrIndex[nr] : null;
           if (nrMatches != null)
           {
             numberSongs.AddRange(nrMatches);
@@ -58,11 +58,11 @@ namespace Lyra2.LyraShell
         }
       }
 
-      List<ISong> songs = new List<ISong>();
+      var songs = new List<ISong>();
       resultBox.Ratings.Clear();
       if (!string.IsNullOrEmpty(lQuery.Query))
       {
-        foreach (RatedResult<Song> songResult in this.indexer.SearchObjects(query, !text))
+        foreach (var songResult in this.indexer.SearchObjects(query, !text))
         {
           if (numberSongs.Contains(songResult.Result)) continue;
           resultBox.Ratings.Add(songResult.Result, (float)songResult.Rating);

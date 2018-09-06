@@ -1,69 +1,70 @@
 using System.ComponentModel;
 using System.Windows.Forms;
-using Infragistics.Win.Misc;
 
 namespace Lyra2.LyraShell
 {
-	/// <summary>
-	/// Summary description for SongPreview.
-	/// </summary>
-	public class SongPreview : UserControl
-	{
-		private Panel panel2;
-		private System.Windows.Forms.Panel panel3;
-		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.Label titlePreview;
-		private System.Windows.Forms.Label nrPreview;
-		private System.Windows.Forms.Label textPreview;
+    /// <summary>
+    /// Summary description for SongPreview.
+    /// </summary>
+    public class SongPreview : UserControl
+    {
+        private Panel panel2;
+        private Panel panel3;
+        private Panel panel1;
+        private Label titlePreview;
+        private Label nrPreview;
+        private Label textPreview;
 
-		/// <summary> 
-		/// Required designer variable.
-		/// </summary>
-		private Container components;
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+#pragma warning disable 649
+        private Container components;
+#pragma warning restore 649
 
-		public SongPreview()
-		{
-			// This call is required by the Windows.Forms Form Designer.
-			InitializeComponent();
-			this.Reset();
-		}
-		
-		public void Reset()
-		{
-			this.nrPreview.Text = "?";
-			this.titlePreview.Text = "Kein Lied ausgewählt!";
-			this.textPreview.Text = "";
-		}
-		
-		public void ShowSong(ISong song)
-		{
-			this.nrPreview.Text = song.Number.ToString();
-			this.titlePreview.Text = song.Title;
-			this.textPreview.Text = Util.CleanText(song.Text);
-		}
+        public SongPreview()
+        {
+            // This call is required by the Windows.Forms Form Designer.
+            this.InitializeComponent();
+            this.Reset();
+        }
 
-		/// <summary> 
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if(components != null)
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
+        public void Reset()
+        {
+            this.nrPreview.Text = "?";
+            this.titlePreview.Text = "Kein Lied ausgewählt!";
+            this.textPreview.Text = "";
+        }
 
-		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        public void ShowSong(ISong song)
+        {
+            this.nrPreview.Text = song.Number.ToString();
+            this.titlePreview.Text = song.Title;
+            this.textPreview.Text = Util.CleanText(song.Text);
+        }
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (this.components != null)
+                {
+                    this.components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SongPreview));
             this.panel2 = new System.Windows.Forms.Panel();
             this.textPreview = new System.Windows.Forms.Label();
@@ -148,7 +149,7 @@ namespace Lyra2.LyraShell
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
-		}
-		#endregion
-	}
+        }
+        #endregion
+    }
 }

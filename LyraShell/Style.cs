@@ -41,50 +41,50 @@ namespace Lyra2.LyraShell
     /// <param name="storage"> The storage. </param>
     public Style(XmlNode styleNode, IPhysicalStorage storage)
     {
-      _storage = storage;
-      _id = styleNode.GetId();
-      _isDefault = styleNode.GetAttributeBoolValue("isdefault");
-      _name = styleNode.GetAttributeValue("name");
+        this._storage = storage;
+        this._id = styleNode.GetId();
+        this._isDefault = styleNode.GetAttributeBoolValue("isdefault");
+        this._name = styleNode.GetAttributeValue("name");
 
-      _foregroundColor = styleNode.GetNodeColorValue("Foreground", "color");
-      _font = styleNode.GetNodeValue("Foreground", "font");
-      _fontSize = styleNode.GetNodeIntValue("Foreground", "fontsize");
+        this._foregroundColor = styleNode.GetNodeColorValue("Foreground", "color");
+        this._font = styleNode.GetNodeValue("Foreground", "font");
+        this._fontSize = styleNode.GetNodeIntValue("Foreground", "fontsize");
 
       if (styleNode.HasNode("Background"))
       {
-        _backgroundColor = styleNode.GetNodeColorValue("Background", "color");
+          this._backgroundColor = styleNode.GetNodeColorValue("Background", "color");
 
         if (styleNode.HasNode("Background", "image"))
         {
-          _backgroundImageUri = styleNode.GetNodeValue("Background", "image", "uri");
+            this._backgroundImageUri = styleNode.GetNodeValue("Background", "image", "uri");
 
           var cache = styleNode.GetNodeValue("Background", "image", "cache");
           if (!string.IsNullOrEmpty(cache))
           {
-            _backgroundImage = ImageSerializer.DeserializeBase64(cache);
+              this._backgroundImage = ImageSerializer.DeserializeBase64(cache);
           }
-          else if (File.Exists(_backgroundImageUri))
+          else if (File.Exists(this._backgroundImageUri))
           {
-            _backgroundImage = Image.FromFile(_backgroundImageUri);
+              this._backgroundImage = Image.FromFile(this._backgroundImageUri);
           }
 
-          _transparency = styleNode.GetNodeIntValue("Background", "image", "transparency");
-          _scale = styleNode.GetNodeBoolValue("Background", "image", "scale");
+            this._transparency = styleNode.GetNodeIntValue("Background", "image", "transparency");
+            this._scale = styleNode.GetNodeBoolValue("Background", "image", "scale");
         }
 
         if (styleNode.HasNode("Title"))
         {
-          _titleMode = TitleModeExtensions.AsTitleMode(styleNode["Title"].GetAttributeValue("mode"));
+            this._titleMode = TitleModeExtensions.AsTitleMode(styleNode["Title"].GetAttributeValue("mode"));
 
           if (styleNode.HasNode("Title", "Foreground"))
           {
-            _titleForegroundColor = styleNode.GetNodeColorValue("Title", "Foreground", "color");
-            _titleFont = styleNode.GetNodeValue("Title", "Foreground", "font");
-            _titleFontSize = styleNode.GetNodeIntValue("Title", "Foreground", "fontsize");
+              this._titleForegroundColor = styleNode.GetNodeColorValue("Title", "Foreground", "color");
+              this._titleFont = styleNode.GetNodeValue("Title", "Foreground", "font");
+              this._titleFontSize = styleNode.GetNodeIntValue("Title", "Foreground", "fontsize");
           }
           if (styleNode.HasNode("Title", "Background"))
           {
-            _titleBackgroundColor = styleNode.GetNodeColorValue("Title", "Background", "color");
+              this._titleBackgroundColor = styleNode.GetNodeColorValue("Title", "Background", "color");
           }
         }
       }
@@ -92,67 +92,67 @@ namespace Lyra2.LyraShell
 
     public XmlNode Serialize(XmlDocument doc)
     {
-      XmlElement styleNode = doc.CreateElement("Style");
-      XmlAttribute idAttr = doc.CreateAttribute("id");
-      idAttr.InnerText = _id.ToString().Trim('{', '}');
+      var styleNode = doc.CreateElement("Style");
+      var idAttr = doc.CreateAttribute("id");
+      idAttr.InnerText = this._id.ToString().Trim('{', '}');
       styleNode.Attributes.Append(idAttr);
-      XmlAttribute nameAttr = doc.CreateAttribute("name");
-      nameAttr.InnerText = _name;
+      var nameAttr = doc.CreateAttribute("name");
+      nameAttr.InnerText = this._name;
       styleNode.Attributes.Append(nameAttr);
-      XmlAttribute isDefAttr = doc.CreateAttribute("isdefault");
-      isDefAttr.InnerText = IsDefault ? "yes" : "no";
+      var isDefAttr = doc.CreateAttribute("isdefault");
+      isDefAttr.InnerText = this.IsDefault ? "yes" : "no";
       styleNode.Attributes.Append(isDefAttr);
-      XmlElement foregroundNode = doc.CreateElement("Foreground");
-      XmlElement foregroundColorNode = doc.CreateElement("color");
-      foregroundColorNode.InnerText = Serialization.ColorToHexString(_foregroundColor);
+      var foregroundNode = doc.CreateElement("Foreground");
+      var foregroundColorNode = doc.CreateElement("color");
+      foregroundColorNode.InnerText = Serialization.ColorToHexString(this._foregroundColor);
       foregroundNode.AppendChild(foregroundColorNode);
-      XmlElement fontNode = doc.CreateElement("font");
-      fontNode.InnerText = _font;
+      var fontNode = doc.CreateElement("font");
+      fontNode.InnerText = this._font;
       foregroundNode.AppendChild(fontNode);
-      XmlElement fontSizeNode = doc.CreateElement("fontsize");
-      fontSizeNode.InnerText = _fontSize.ToString();
+      var fontSizeNode = doc.CreateElement("fontsize");
+      fontSizeNode.InnerText = this._fontSize.ToString();
       foregroundNode.AppendChild(fontSizeNode);
       styleNode.AppendChild(foregroundNode);
-      XmlElement backgroundNode = doc.CreateElement("Background");
-      XmlElement backgroundColorNode = doc.CreateElement("color");
-      backgroundColorNode.InnerText = Serialization.ColorToHexString(_backgroundColor);
+      var backgroundNode = doc.CreateElement("Background");
+      var backgroundColorNode = doc.CreateElement("color");
+      backgroundColorNode.InnerText = Serialization.ColorToHexString(this._backgroundColor);
       backgroundNode.AppendChild(backgroundColorNode);
-      XmlElement imageNode = doc.CreateElement("image");
-      XmlElement uriNode = doc.CreateElement("uri");
-      uriNode.InnerText = _backgroundImageUri;
+      var imageNode = doc.CreateElement("image");
+      var uriNode = doc.CreateElement("uri");
+      uriNode.InnerText = this._backgroundImageUri;
       imageNode.AppendChild(uriNode);
-      XmlElement cacheNode = doc.CreateElement("cache");
+      var cacheNode = doc.CreateElement("cache");
       cacheNode.InnerText = ""; // ImageSerializer.SerializeBase64(this.backgroundImage);
       imageNode.AppendChild(cacheNode);
-      XmlElement transNode = doc.CreateElement("transparency");
-      transNode.InnerText = _transparency.ToString();
+      var transNode = doc.CreateElement("transparency");
+      transNode.InnerText = this._transparency.ToString();
       imageNode.AppendChild(transNode);
-      XmlElement scaleNode = doc.CreateElement("scale");
-      scaleNode.InnerText = _scale ? "yes" : "no";
+      var scaleNode = doc.CreateElement("scale");
+      scaleNode.InnerText = this._scale ? "yes" : "no";
       imageNode.AppendChild(scaleNode);
       backgroundNode.AppendChild(imageNode);
       styleNode.AppendChild(foregroundNode);
       styleNode.AppendChild(backgroundNode);
 
       // Title
-      XmlElement titleNode = doc.CreateElement("Title");
+      var titleNode = doc.CreateElement("Title");
       var titleMode = doc.CreateAttribute("mode");
-      titleMode.InnerText = _titleMode.AsString();
+      titleMode.InnerText = this._titleMode.AsString();
       titleNode.Attributes.Append(titleMode);
-      XmlElement titleForegroundNode = doc.CreateElement("Foreground");
-      XmlElement titleForegroundColorNode = doc.CreateElement("color");
-      titleForegroundColorNode.InnerText = Serialization.ColorToHexString(_titleForegroundColor);
+      var titleForegroundNode = doc.CreateElement("Foreground");
+      var titleForegroundColorNode = doc.CreateElement("color");
+      titleForegroundColorNode.InnerText = Serialization.ColorToHexString(this._titleForegroundColor);
       titleForegroundNode.AppendChild(titleForegroundColorNode);
-      XmlElement titleForegroundFontNode = doc.CreateElement("font");
-      titleForegroundFontNode.InnerText = _titleFont;
+      var titleForegroundFontNode = doc.CreateElement("font");
+      titleForegroundFontNode.InnerText = this._titleFont;
       titleForegroundNode.AppendChild(titleForegroundFontNode);
-      XmlElement titleForegroundFontSizeNode = doc.CreateElement("fontsize");
-      titleForegroundFontSizeNode.InnerText = _titleFontSize.ToString();
+      var titleForegroundFontSizeNode = doc.CreateElement("fontsize");
+      titleForegroundFontSizeNode.InnerText = this._titleFontSize.ToString();
       titleForegroundNode.AppendChild(titleForegroundFontSizeNode);
       titleNode.AppendChild(titleForegroundNode);
-      XmlElement titleBackgroundNode = doc.CreateElement("Background");
-      XmlElement titleBackgroundColorNode = doc.CreateElement("color");
-      titleBackgroundColorNode.InnerText = Serialization.ColorToHexString(_titleBackgroundColor);
+      var titleBackgroundNode = doc.CreateElement("Background");
+      var titleBackgroundColorNode = doc.CreateElement("color");
+      titleBackgroundColorNode.InnerText = Serialization.ColorToHexString(this._titleBackgroundColor);
       titleBackgroundNode.AppendChild(titleBackgroundColorNode);
       titleNode.AppendChild(titleBackgroundNode);
       styleNode.AppendChild(titleNode);
@@ -163,14 +163,14 @@ namespace Lyra2.LyraShell
     {
       try
       {
-        _storage.SaveStyle(this);
+          this._storage.SaveStyle(this);
       }
       catch (Exception)
       {
         return false;
       }
 
-      _isNew = false;
+        this._isNew = false;
       return true;
     }
 
@@ -178,7 +178,7 @@ namespace Lyra2.LyraShell
     {
       try
       {
-        _storage.DeleteStyle(this);
+          this._storage.DeleteStyle(this);
       }
       catch (Exception)
       {
@@ -190,61 +190,61 @@ namespace Lyra2.LyraShell
 
     public bool IsNew
     {
-      get { return _isNew; }
+      get { return this._isNew; }
     }
 
     public Guid ID
     {
-      get { return _id; }
+      get { return this._id; }
     }
 
     public Color? ForegroundColor
     {
-      get { return _foregroundColor; }
-      set { _foregroundColor = value; }
+      get { return this._foregroundColor; }
+      set { this._foregroundColor = value; }
     }
 
     public Color? BackgroundColor
     {
-      get { return _backgroundColor; }
-      set { _backgroundColor = value; }
+      get { return this._backgroundColor; }
+      set { this._backgroundColor = value; }
     }
 
     public string BackgroundImageUri
     {
-      get { return _backgroundImageUri; }
+      get { return this._backgroundImageUri; }
       set
       {
-        if (_backgroundImageUri == value)
+        if (this._backgroundImageUri == value)
         {
           return;
         }
 
         try
         {
-          _backgroundImage = Image.FromFile(value);
-          _backgroundImageUri = value;
+            this._backgroundImage = Image.FromFile(value);
+            this._backgroundImageUri = value;
         }
         catch (Exception)
         {
-          _backgroundImage = null;
-          _backgroundImageUri = string.Empty;
+            this._backgroundImage = null;
+            this._backgroundImageUri = string.Empty;
         }
       }
     }
 
     public bool HasBackgroundImage
     {
-      get { return _backgroundImage != null; }
+      get { return this._backgroundImage != null; }
     }
 
     public Image GetBackgroundImage(Size bounds, bool keepRatio = true)
     {
-      if (!HasBackgroundImage) return null;
+      if (!this.HasBackgroundImage) return null;
 
       try
       {
-        return Util.handlePic(Scale, _backgroundImage, bounds, keepRatio, Transparency);
+        return Util.handlePic(this.Scale, this._backgroundImage, bounds, keepRatio, this.Transparency);
       }
       catch (Exception)
       {
@@ -254,45 +254,45 @@ namespace Lyra2.LyraShell
 
     public int Transparency
     {
-      get { return _transparency; }
-      set { _transparency = value; }
+      get { return this._transparency; }
+      set { this._transparency = value; }
     }
 
     public bool Scale
     {
-      get { return _scale; }
-      set { _scale = value; }
+      get { return this._scale; }
+      set { this._scale = value; }
     }
 
     public bool IsDefault
     {
-      get { return _isDefault; }
-      set { _isDefault = value; }
+      get { return this._isDefault; }
+      set { this._isDefault = value; }
     }
 
     public string Name
     {
-      get { return _name; }
-      set { _name = value; }
+      get { return this._name; }
+      set { this._name = value; }
     }
 
     public string Font
     {
-      get { return _font; }
-      set { _font = value; }
+      get { return this._font; }
+      set { this._font = value; }
     }
 
     public int FontSize
     {
-      get { return _fontSize; }
-      set { _fontSize = value; }
+      get { return this._fontSize; }
+      set { this._fontSize = value; }
     }
 
     public Font GetFont()
     {
       try
       {
-        return new Font(_font, _fontSize, FontStyle.Regular, GraphicsUnit.Point);
+        return new Font(this._font, this._fontSize, FontStyle.Regular, GraphicsUnit.Point);
       }
       catch (Exception)
       {
@@ -302,39 +302,39 @@ namespace Lyra2.LyraShell
 
     public TitleMode TitleMode
     {
-      get { return _titleMode; }
-      set { _titleMode = value; }
+      get { return this._titleMode; }
+      set { this._titleMode = value; }
     }
 
     public Color? TitleBackgroundColor
     {
-      get { return _titleBackgroundColor; }
-      set { _titleBackgroundColor = value; }
+      get { return this._titleBackgroundColor; }
+      set { this._titleBackgroundColor = value; }
     }
 
     public Color? TitleForegroundColor
     {
-      get { return _titleForegroundColor; }
-      set { _titleForegroundColor = value; }
+      get { return this._titleForegroundColor; }
+      set { this._titleForegroundColor = value; }
     }
 
     public string TitleFont
     {
-      get { return _titleFont; }
-      set { _titleFont = value; }
+      get { return this._titleFont; }
+      set { this._titleFont = value; }
     }
 
     public int TitleFontSize
     {
-      get { return _titleFontSize; }
-      set { _titleFontSize = value; }
+      get { return this._titleFontSize; }
+      set { this._titleFontSize = value; }
     }
 
     public Font GetTitleFont()
     {
       try
       {
-        return new Font(_titleFont, _titleFontSize, FontStyle.Regular, GraphicsUnit.Point);
+        return new Font(this._titleFont, this._titleFontSize, FontStyle.Regular, GraphicsUnit.Point);
       }
       catch (Exception)
       {
@@ -344,15 +344,15 @@ namespace Lyra2.LyraShell
 
     public override string ToString()
     {
-      return _name + (IsDefault ? " [Standard]" : "");
+      return this._name + (this.IsDefault ? " [Standard]" : "");
     }
 
     #region    Factory
 
     private Style(IPhysicalStorage storage)
     {
-      _id = Guid.NewGuid();
-      _storage = storage;
+        this._id = Guid.NewGuid();
+        this._storage = storage;
     }
 
     public static Style CreateNewStyle(IPhysicalStorage storage, string name)

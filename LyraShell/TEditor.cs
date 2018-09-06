@@ -57,7 +57,7 @@ namespace Lyra2.LyraShell
             //
             // Erforderlich für die Windows Form-Designerunterstützung
             //
-            InitializeComponent();
+            this.InitializeComponent();
             this.AcceptButton = this.button1;
             this.song = song;
             this.trans = trans;
@@ -88,9 +88,9 @@ namespace Lyra2.LyraShell
         {
             if (disposing)
             {
-                if (components != null)
+                if (this.components != null)
                 {
-                    components.Dispose();
+                    this.components.Dispose();
                 }
             }
             TEditorOpen = false;
@@ -463,7 +463,7 @@ namespace Lyra2.LyraShell
         private void TEditor_Load(object sender, EventArgs e)
         {
             this.comboBox2.Items.Clear();
-            for (int i = 0; i < Util.LangNR; i++)
+            for (var i = 0; i < Util.LangNR; i++)
             {
                 this.comboBox2.Items.Add(Util.getLanguageString(i, false));
             }
@@ -478,8 +478,8 @@ namespace Lyra2.LyraShell
         // clean Formats
         private string cleanFormat(string toclean)
         {
-            string clean = "";
-            for (int i = 0; i < toclean.Length; i++)
+            var clean = "";
+            for (var i = 0; i < toclean.Length; i++)
             {
                 if (toclean[i] == '<')
                 {
@@ -530,7 +530,7 @@ namespace Lyra2.LyraShell
         // tab
         private void button9_Click(object sender, EventArgs e)
         {
-            int pos = this.richTextBox1.SelectionStart;
+            var pos = this.richTextBox1.SelectionStart;
             this.richTextBox1.Text = this.richTextBox1.Text.Insert(pos, '\t'.ToString());
             this.richTextBox1.Focus();
             this.richTextBox1.Select(pos + 1, 0);
@@ -557,8 +557,8 @@ namespace Lyra2.LyraShell
             this.button4.Enabled = true;
             this.button4.BackColor = Color.LightSteelBlue;
             this.undo = this.richTextBox1.Rtf;
-            int left = this.richTextBox1.SelectionStart;
-            int right = this.richTextBox1.SelectionLength + left + tag.Length + 2;
+            var left = this.richTextBox1.SelectionStart;
+            var right = this.richTextBox1.SelectionLength + left + tag.Length + 2;
             this.richTextBox1.Text = this.richTextBox1.Text.Insert(left, "<" + tag + ">");
             this.richTextBox1.Text = this.richTextBox1.Text.Insert(right, "</" + tag + ">");
             if (nl)

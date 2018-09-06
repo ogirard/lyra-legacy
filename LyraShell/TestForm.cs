@@ -9,24 +9,24 @@ namespace Lyra2.LyraShell
 	/// <summary>
 	/// Summary description for TestForm.
 	/// </summary>
-	public class TestForm : System.Windows.Forms.Form
+	public class TestForm : Form
 	{
 		private ExtendedListBoxControl listBox1;
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		private System.ComponentModel.Container components = null;
+		private Container components = null;
 
 		public TestForm()
 		{
 			//
 			// Required for Windows Form Designer support
 			//
-			InitializeComponent();
+		    this.InitializeComponent();
 			this.listBox1.BeginUpdate();
-			for(int i = 0; i < 50; i++)
+			for(var i = 0; i < 50; i++)
 			{
-				ExtendedListBoxItem item = new ExtendedListBoxItem();
+				var item = new ExtendedListBoxItem();
 				item.MaxString = "Das ist ein Liedtext, resp. eine tolle Vorschau...";
 				item.MinString = (i+1) + " Liedtitel";
 				this.listBox1.AddItem(item);
@@ -41,9 +41,9 @@ namespace Lyra2.LyraShell
 		{
 			if( disposing )
 			{
-				if(components != null)
+				if(this.components != null)
 				{
-					components.Dispose();
+				    this.components.Dispose();
 				}
 			}
 			base.Dispose( disposing );

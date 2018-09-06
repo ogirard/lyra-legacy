@@ -1,10 +1,10 @@
+using Lyra2.UtilShared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using Lyra2.UtilShared;
 
 namespace Lyra2.LyraShell
 {
@@ -14,7 +14,9 @@ namespace Lyra2.LyraShell
     public class History : Form
     {
         private SongListBox historyListBox;
+#pragma warning disable 649
         private IContainer components;
+#pragma warning restore 649
         private readonly GUI owner;
         private SplitContainer historySplitter;
         private SongPreview historySongPreview;
@@ -56,11 +58,11 @@ namespace Lyra2.LyraShell
             //
             // Required for Windows Form Designer support
             //
-            InitializeComponent();
+            this.InitializeComponent();
             this.StartPosition = FormStartPosition.Manual;
-            this.changedHandler = View_HistoryChanged;
+            this.changedHandler = this.View_HistoryChanged;
             View.HistoryChanged += this.changedHandler;
-            this.Closing += History_Closing;
+            this.Closing += this.History_Closing;
             this.owner = owner;
             this.loadHistory();
         }
@@ -72,9 +74,9 @@ namespace Lyra2.LyraShell
         {
             if (disposing)
             {
-                if (components != null)
+                if (this.components != null)
                 {
-                    components.Dispose();
+                    this.components.Dispose();
                 }
             }
             base.Dispose(disposing);
@@ -146,7 +148,7 @@ namespace Lyra2.LyraShell
             // bottomPanel
             // 
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
-            
+
             appearance1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             appearance1.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(241)))), ((int)(((byte)(241)))));
             appearance1.BackGradientStyle = Infragistics.Win.GradientStyle.GlassTop50;
@@ -225,7 +227,7 @@ namespace Lyra2.LyraShell
         private void History_Closing(object sender, CancelEventArgs e)
         {
             View.HistoryChanged -= this.changedHandler;
-            StorePersonalizationSettings(owner.Personalizer, false);
+            StorePersonalizationSettings(this.owner.Personalizer, false);
             _this = null;
         }
 
@@ -240,7 +242,7 @@ namespace Lyra2.LyraShell
                     this.historyListBox.Items.Insert(0, s);
                 }
             }
-            
+
             if (this.historyListBox.Items.Count == 0)
             {
                 this.historyListBox.Items.Add("Es sind noch keine Lieder geöffnet worden!");
@@ -263,7 +265,7 @@ namespace Lyra2.LyraShell
 
         private void listBox3_SelectedValueChanged(object sender, EventArgs e)
         {
-            ISong s = this.historyListBox.SelectedItem as ISong;
+            var s = this.historyListBox.SelectedItem as ISong;
             if (s != null)
             {
                 this.historySongPreview.ShowSong(s);
@@ -331,15 +333,15 @@ namespace Lyra2.LyraShell
             if (_this != null)
             {
                 personalizer.Load();
-                int top = personalizer.GetIntValue(PersonalizationItemNames.HistoryTop);
+                var top = personalizer.GetIntValue(PersonalizationItemNames.HistoryTop);
                 if (top > 0) _this.Top = top;
-                int left = personalizer.GetIntValue(PersonalizationItemNames.HistoryLeft);
+                var left = personalizer.GetIntValue(PersonalizationItemNames.HistoryLeft);
                 if (left > 0) _this.Left = left;
-                int width = personalizer.GetIntValue(PersonalizationItemNames.HistoryWidth);
+                var width = personalizer.GetIntValue(PersonalizationItemNames.HistoryWidth);
                 if (width > 0) _this.Width = width;
-                int height = personalizer.GetIntValue(PersonalizationItemNames.HistoryHeight);
+                var height = personalizer.GetIntValue(PersonalizationItemNames.HistoryHeight);
                 if (height > 0) _this.Height = height;
-                int split = personalizer.GetIntValue(PersonalizationItemNames.HistorySplit);
+                var split = personalizer.GetIntValue(PersonalizationItemNames.HistorySplit);
                 if (split > 0) _this.historySplitter.SplitterDistance = split;
 
                 personalizer[PersonalizationItemNames.HistoryIsShown] = "1";
@@ -350,21 +352,21 @@ namespace Lyra2.LyraShell
         private void SaveAsListButtonClickHandler(object sender, EventArgs e)
         {
 
-            List<string> songs = new List<string>();
-            foreach (object song in this.historyListBox.Items)
+            var songs = new List<string>();
+            foreach (var song in this.historyListBox.Items)
             {
-                if(song is ISong)
+                if (song is ISong)
                 {
                     songs.Add(((ISong)song).ID);
                 }
-                
+
             }
             NewList.ShowNewList(this.owner, "History vom " + DateTime.Now.ToString("dddd, dd.MM.yyyy"), songs.ToArray());
         }
 
         private void SaveHistoryAsTextFile(object sender, EventArgs e)
         {
-            SaveFileDialog fd = new SaveFileDialog();
+            var fd = new SaveFileDialog();
             fd.Title = "Bitte Text Datei angeben";
             fd.AddExtension = true;
             fd.DefaultExt = ".txt";
@@ -372,20 +374,20 @@ namespace Lyra2.LyraShell
             fd.RestoreDirectory = true;
             fd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             fd.FileName = DateTime.Now.ToString("yyyy-MM-dd") + "_history.txt";
-            if(fd.ShowDialog(this.owner) == DialogResult.OK)
+            if (fd.ShowDialog(this.owner) == DialogResult.OK)
             {
-                using(StreamWriter sw = new StreamWriter(fd.FileName, false, Encoding.UTF8))
+                using (var sw = new StreamWriter(fd.FileName, false, Encoding.UTF8))
                 {
                     sw.WriteLine("History vom " + DateTime.Now.ToString("dddd, dd.MM.yyyy"));
                     sw.WriteLine();
-                    foreach (object item in this.historyListBox.Items)
+                    foreach (var item in this.historyListBox.Items)
                     {
-                        if(item is ISong)
+                        if (item is ISong)
                         {
-                            ISong s = (ISong) item;
+                            var s = (ISong)item;
                             sw.WriteLine(s.Number.ToString().PadLeft(5, ' ') + " : " + s.Title);
                         }
-                    }   
+                    }
                 }
             }
         }

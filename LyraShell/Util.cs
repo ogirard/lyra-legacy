@@ -1,4 +1,3 @@
-using log4net;
 using Lyra2.UtilShared;
 using System;
 using System.Drawing;
@@ -7,6 +6,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
+using log4net;
 
 namespace Lyra2.LyraShell
 {
@@ -133,7 +133,7 @@ namespace Lyra2.LyraShell
 
         public static void MBoxError(string umsg, Exception ex)
         {
-            string msg = "Es ist ein Fehler aufgetreten!" + NL + umsg + NL;
+            var msg = "Es ist ein Fehler aufgetreten!" + NL + umsg + NL;
             Debug(umsg, ex);
             MessageBox.Show(msg, "lyra error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             if (ex != null)
@@ -153,14 +153,14 @@ namespace Lyra2.LyraShell
             try
             {
                 stream = new FileStream(file.FullName, FileMode.Open);
-                MD5 md5 = MD5.Create();
+                var md5 = MD5.Create();
 
-                byte[] hash = md5.ComputeHash(stream);
-                StringBuilder sBuilder = new StringBuilder();
+                var hash = md5.ComputeHash(stream);
+                var sBuilder = new StringBuilder();
 
                 // Loop through each byte of the hashed data 
                 // and format each one as a hexadecimal string.
-                for (int i = 0; i < hash.Length; i++)
+                for (var i = 0; i < hash.Length; i++)
                 {
                     sBuilder.Append(hash[i].ToString("x2"));
                 }
@@ -182,10 +182,10 @@ namespace Lyra2.LyraShell
 
         public static string GetDate()
         {
-            string date = "";
+            var date = "";
             date += DateTime.Now.Year + "/";
-            string month = (DateTime.Now.Month < 10) ? ("0" + DateTime.Now.Month) : DateTime.Now.Month.ToString();
-            string day = (DateTime.Now.Day < 10) ? ("0" + DateTime.Now.Day) : DateTime.Now.Day.ToString();
+            var month = (DateTime.Now.Month < 10) ? ("0" + DateTime.Now.Month) : DateTime.Now.Month.ToString();
+            var day = (DateTime.Now.Day < 10) ? ("0" + DateTime.Now.Day) : DateTime.Now.Day.ToString();
             date += month + "/" + day;
             return date;
         }
@@ -194,8 +194,8 @@ namespace Lyra2.LyraShell
         {
             if (nr == 0) return "0000";
 
-            string zeros = "";
-            string nrstr = nr.ToString();
+            var zeros = "";
+            var nrstr = nr.ToString();
             while ((nr *= 10) < 10000)
             {
                 zeros += "0";
@@ -205,8 +205,8 @@ namespace Lyra2.LyraShell
 
         public static string toVertical(string hor)
         {
-            string vert = "";
-            for (int i = 0; i < hor.Length - 1; i++)
+            var vert = "";
+            for (var i = 0; i < hor.Length - 1; i++)
             {
                 vert += hor[i] + NL;
             }
@@ -218,7 +218,7 @@ namespace Lyra2.LyraShell
             fn = fn.ToLower();
             if (COPYPICS && !fn.StartsWith(PICTSSYM) && isPict(fn))
             {
-                string converted = fn.Replace('\\', '_').Replace(":", "");
+                var converted = fn.Replace('\\', '_').Replace(":", "");
                 if (!File.Exists(PICTDIR + converted))
                 {
                     File.Copy(fn, PICTDIR + converted);
@@ -235,10 +235,10 @@ namespace Lyra2.LyraShell
 
         public static string CleanText(string text)
         {
-            string cleanedString = "";
+            var cleanedString = "";
             text = text.Replace("\r", "");
-            bool skip = false;
-            foreach (char c in text)
+            var skip = false;
+            foreach (var c in text)
             {
                 if (c == '<')
                 {
@@ -297,12 +297,12 @@ namespace Lyra2.LyraShell
             {
                 if (img.Width / bounds.Width > img.Height / bounds.Height)
                 {
-                    int h = img.Height * bounds.Width / img.Width;
+                    var h = img.Height * bounds.Width / img.Width;
                     ret = new Bitmap(img, new Size(bounds.Width, h));
                 }
                 else
                 {
-                    int w = img.Width * bounds.Height / img.Height;
+                    var w = img.Width * bounds.Height / img.Height;
                     ret = new Bitmap(img, new Size(w, bounds.Height));
                 }
             }
@@ -327,20 +327,20 @@ namespace Lyra2.LyraShell
                 {
                     if (img.Width / bounds.Width > img.Height / bounds.Height)
                     {
-                        int h = img.Height * bounds.Width / img.Width;
+                        var h = img.Height * bounds.Width / img.Width;
                         ret = new Bitmap(img, new Size(bounds.Width, h));
                     }
                     else
                     {
-                        int w = img.Width * bounds.Height / img.Height;
+                        var w = img.Width * bounds.Height / img.Height;
                         ret = new Bitmap(img, new Size(w, bounds.Height));
                     }
                 }
             }
             else
             {
-                Bitmap centered = new Bitmap(bounds.Width, bounds.Height);
-                Graphics g = Graphics.FromImage(centered);
+                var centered = new Bitmap(bounds.Width, bounds.Height);
+                var g = Graphics.FromImage(centered);
                 g.FillRectangle(Brushes.White, 0, 0, bounds.Width, bounds.Height);
                 g.DrawImage(img, (bounds.Width - img.Width) / 2, (bounds.Height - img.Height) / 2, img.Width, img.Height);
                 ret = centered;
@@ -373,10 +373,10 @@ namespace Lyra2.LyraShell
 
         public static Bitmap GenerateMagicImage(Bitmap bFront, int transparency)
         {
-            float opacity = (100 - transparency) / 100f;
-            Bitmap bHidden = new Bitmap(bFront.Width, bFront.Height);
+            var opacity = (100 - transparency) / 100f;
+            var bHidden = new Bitmap(bFront.Width, bFront.Height);
             // the following code draws the front image over the hidden image using the alpha blending effect
-            Graphics g = Graphics.FromImage(bHidden);
+            var g = Graphics.FromImage(bHidden);
             g.FillRectangle(Brushes.White, 0, 0, bFront.Width, bFront.Height);
             float[][] ptsArray = {
                              new float[] {1, 0, 0, 0, 0},
@@ -385,8 +385,8 @@ namespace Lyra2.LyraShell
                              new[] {0, 0, 0, opacity, 0},
                              new float[] {0, 0, 0, 0, 1}
                            };
-            ColorMatrix clrMatrix = new ColorMatrix(ptsArray);
-            ImageAttributes imgAttributes = new ImageAttributes();
+            var clrMatrix = new ColorMatrix(ptsArray);
+            var imgAttributes = new ImageAttributes();
             imgAttributes.SetColorMatrix(clrMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
             g.DrawImage(bFront, new Rectangle(0, 0, bFront.Width, bFront.Height), 0, 0, bFront.Width, bFront.Height,
                         GraphicsUnit.Pixel, imgAttributes);
@@ -455,9 +455,9 @@ namespace Lyra2.LyraShell
 
         private static Font GetFont(string key)
         {
-            string[] str = key.Split(';');
-            int nr = Int32.Parse(str[1]);
-            FontStyle style = FontStyle.Regular;
+            var str = key.Split(';');
+            var nr = Int32.Parse(str[1]);
+            var style = FontStyle.Regular;
             if (str[2] == "b")
                 style = FontStyle.Bold;
             else if (str[2] == "i")
@@ -469,7 +469,7 @@ namespace Lyra2.LyraShell
 
         private static Color GetColor(string key)
         {
-            string[] nrs = key.Split(';');
+            var nrs = key.Split(';');
             return Color.FromArgb(Int32.Parse(nrs[0]),
                                   Int32.Parse(nrs[1]),
                                   Int32.Parse(nrs[2]));
@@ -477,7 +477,7 @@ namespace Lyra2.LyraShell
 
         public static string hexValue(int i)
         {
-            string res = Convert.ToString(i, 16);
+            var res = Convert.ToString(i, 16);
             if (res.Length == 1) res = "0" + res;
             return res;
         }
@@ -491,7 +491,7 @@ namespace Lyra2.LyraShell
 
         private static string FontToString(Font font)
         {
-            string res = "";
+            var res = "";
             res += font.Name + ";" + ((int)font.Size) + ";";
 
             if (font.Style == FontStyle.Regular)
@@ -508,7 +508,7 @@ namespace Lyra2.LyraShell
         {
             try
             {
-                ConfigFile configFile = new ConfigFile(CONFIGPATH);
+                var configFile = new ConfigFile(CONFIGPATH);
 
                 configFile["1"] = SHOWBUILDNEWS ? "yes" : "no";
                 configFile["ger"] = SHOWGER ? "yes" : "no";
@@ -534,7 +534,7 @@ namespace Lyra2.LyraShell
                 configFile["presentation.picuri"] = picturi;
                 configFile["presentation.cascade"] = CASCADEPIC ? "yes" : "no";
 
-                for (int i = 0; i < FX.Length; i++)
+                for (var i = 0; i < FX.Length; i++)
                 {
                     configFile["FX.f" + (i + 1)] = FX[i];
                 }
@@ -551,7 +551,7 @@ namespace Lyra2.LyraShell
         {
             try
             {
-                ConfigFile configFile = new ConfigFile(CONFIGPATH);
+                var configFile = new ConfigFile(CONFIGPATH);
 
                 HLPURL = configFile["help"];
                 //Util.URL = configFile["url"];
@@ -603,7 +603,7 @@ namespace Lyra2.LyraShell
                 PICTURI = configFile["presentation.picuri"];
                 CASCADEPIC = configFile["presentation.cascade"].Equals("yes");
 
-                for (int i = 0; i < FX.Length; i++)
+                for (var i = 0; i < FX.Length; i++)
                 {
                     FX[i] = configFile["FX.f" + (i + 1)];
                 }
@@ -647,14 +647,14 @@ namespace Lyra2.LyraShell
 
         public static string getUseTime()
         {
-            long ms = (TOTALUSE + DateTime.Now.Ticks - startticks) / TimeSpan.TicksPerMillisecond;
-            long s = (long)Math.Floor((double)ms / 1000);
+            var ms = (TOTALUSE + DateTime.Now.Ticks - startticks) / TimeSpan.TicksPerMillisecond;
+            var s = (long)Math.Floor((double)ms / 1000);
             // ms = ms - s * 1000;
-            long min = (long)Math.Floor((double)s / 60);
+            var min = (long)Math.Floor((double)s / 60);
             s = s - 60 * min;
-            long h = (long)Math.Floor((double)min / 60);
+            var h = (long)Math.Floor((double)min / 60);
             min = min - 60 * h;
-            long d = (long)Math.Floor((double)h / 24);
+            var d = (long)Math.Floor((double)h / 24);
             h = h - 24 * d;
             return Convert.ToString(d) + "d " + Convert.ToString(h) + "h " + Convert.ToString(min) + "min " +
                    Convert.ToString(s) + "s ";
@@ -664,7 +664,7 @@ namespace Lyra2.LyraShell
         {
             try
             {
-                ConfigFile configFile = new ConfigFile(CONFIGPATH);
+                var configFile = new ConfigFile(CONFIGPATH);
                 configFile["stats.TLD"] = TOTALLOAD.ToString();
                 configFile["stats.NRUSE"] = NRUSE.ToString();
                 configFile["stats.TSRC"] = TOTALSEARCH.ToString();
@@ -683,7 +683,7 @@ namespace Lyra2.LyraShell
         {
             try
             {
-                ConfigFile configFile = new ConfigFile(CONFIGPATH);
+                var configFile = new ConfigFile(CONFIGPATH);
                 TOTALLOAD = Convert.ToInt64(configFile["stats.TLD"]);
                 NRUSE = Convert.ToInt32(configFile["stats.NRUSE"]);
                 TOTALSEARCH = Convert.ToInt64(configFile["stats.TSRC"]);
@@ -705,7 +705,7 @@ namespace Lyra2.LyraShell
             }
             if (id == 1)
             {
-                Screen secScr = Screen.AllScreens[0];
+                var secScr = Screen.AllScreens[0];
                 if (secScr == Screen.PrimaryScreen && Screen.AllScreens.Length == 2)
                 {
                     secScr = Screen.AllScreens[1];
@@ -725,8 +725,8 @@ namespace Lyra2.LyraShell
 
             #endregion Precondition
 
-            Keys allmatches = matches[0];
-            for (int i = 1; i < matches.Length; i++)
+            var allmatches = matches[0];
+            for (var i = 1; i < matches.Length; i++)
             {
                 allmatches |= matches[i];
             }

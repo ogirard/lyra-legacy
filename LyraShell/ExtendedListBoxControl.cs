@@ -41,7 +41,7 @@ namespace Lyra2.LyraShell
 		public ExtendedListBoxControl()
 		{
 			// This call is required by the Windows.Forms Form Designer.
-			InitializeComponent();
+		    this.InitializeComponent();
 		}
 
 		#region Initialization code
@@ -70,7 +70,7 @@ namespace Lyra2.LyraShell
 		/// <param name="xlbi">ExtendedListBoxItem to be added</param>
 		public void AddItem(ExtendedListBoxItem xlbi)
 		{
-			itemCache.Add(xlbi);
+		    this.itemCache.Add(xlbi);
 			//NOTE Adding a dummy as a placeholder here for the object I'm
 			//	going to draw!
 			this.Items.Add(" ");
@@ -78,15 +78,15 @@ namespace Lyra2.LyraShell
 
         public void RemoveItem()
         {
-            if ((_currentIndex < 0) || (_currentIndex >= itemCache.Count))
+            if ((this._currentIndex < 0) || (this._currentIndex >= this.itemCache.Count))
                 return;
 
-            itemCache.RemoveAt(_currentIndex);
+            this.itemCache.RemoveAt(this._currentIndex);
             //NOTE We have to remove item at correct index!
-            this.Items.RemoveAt(_currentIndex);
+            this.Items.RemoveAt(this._currentIndex);
 
             //Now set the List as not having a selected item.
-            _currentIndex = -1;
+            this._currentIndex = -1;
         }
 
 		#endregion
@@ -102,10 +102,10 @@ namespace Lyra2.LyraShell
 			base.OnDrawItem(e);
 
             //If not a valid index just ignore
-			if ((e.Index < 0) || (e.Index >= itemCache.Count))
+			if ((e.Index < 0) || (e.Index >= this.itemCache.Count))
 				return;
 
-			ExtendedListBoxItem xlbi = (ExtendedListBoxItem) itemCache[e.Index];
+			var xlbi = (ExtendedListBoxItem) this.itemCache[e.Index];
 
             //Smooth drawing shapes!  Without this shapes are drawn with ragged edges,
             //  especially arcs.
@@ -113,7 +113,7 @@ namespace Lyra2.LyraShell
 
 			//If its the current selection and not collapsed
 			//	draw the item as required;
-			if ((e.Index == _currentIndex) && !isCollapsed)
+			if ((e.Index == this._currentIndex) && !this.isCollapsed)
 				xlbi.DrawExpanded(e);
 			else
 				xlbi.DrawCollapsed(e);
@@ -129,13 +129,13 @@ namespace Lyra2.LyraShell
 		{
 			base.OnMeasureItem(e);
 	
-			if ((e.Index < 0) || (e.Index >= itemCache.Count))
+			if ((e.Index < 0) || (e.Index >= this.itemCache.Count))
 				return;
 
-			ExtendedListBoxItem xlbi = (ExtendedListBoxItem) itemCache[e.Index];
+			var xlbi = (ExtendedListBoxItem) this.itemCache[e.Index];
 			//If its the current selection and not collapsed
 			//	set height appropriately
-			if ((e.Index == _currentIndex) && !isCollapsed)
+			if ((e.Index == this._currentIndex) && !this.isCollapsed)
 				e.ItemHeight = xlbi.MaxSize;
 			else
 				e.ItemHeight = xlbi.MinSize;
@@ -159,34 +159,33 @@ namespace Lyra2.LyraShell
 		{
 			base.OnMouseDown(e);
 
-            bool hit = false;
+            var hit = false;
 
-			_previousIndex = _currentIndex;
-			_currentIndex = this.SelectedIndex;
+		    this._previousIndex = this._currentIndex;
+		    this._currentIndex = this.SelectedIndex;
 
-            if ((_currentIndex >= 0) && (_currentIndex < itemCache.Count))
-                hit = ((ExtendedListBoxItem)itemCache[_currentIndex]).HitCheck(new Point(e.X, e.Y));
+            if ((this._currentIndex >= 0) && (this._currentIndex < this.itemCache.Count))
+                hit = ((ExtendedListBoxItem) this.itemCache[this._currentIndex]).HitCheck(new Point(e.X, e.Y));
 
             //If current index is selected toggle state
 			//	else just expand
-			if (_previousIndex == _currentIndex)
-				isCollapsed = !isCollapsed;
+			if (this._previousIndex == this._currentIndex)
+			    this.isCollapsed = !this.isCollapsed;
 			else
 			{
-				if ((_currentIndex >= 0) && (_currentIndex < itemCache.Count))
-					isCollapsed = false;
-				else 
-					isCollapsed = true;
+				if ((this._currentIndex >= 0) && (this._currentIndex < this.itemCache.Count))
+				    this.isCollapsed = false;
+				else
+				    this.isCollapsed = true;
 			}
 
 			//Update previous selection
-            InvalidateItem(_previousIndex);
+		    this.InvalidateItem(this._previousIndex);
 					
 			//Update current selection
-            InvalidateItem(_currentIndex);
+		    this.InvalidateItem(this._currentIndex);
 
-            if ((ListItemClick != null) && (_currentIndex >= 0))
-                 ListItemClick(this, new XLBIEventArgs((ExtendedListBoxItem)itemCache[_currentIndex], hit));
+            if ((this.ListItemClick != null) && (this._currentIndex >= 0)) this.ListItemClick(this, new XLBIEventArgs((ExtendedListBoxItem) this.itemCache[this._currentIndex], hit));
 		}
 
         /// <summary>
@@ -195,7 +194,7 @@ namespace Lyra2.LyraShell
         /// <param name="index"></param>
         public void InvalidateItem(int index)
         {
-            if ((index < 0) || (index >= itemCache.Count))
+            if ((index < 0) || (index >= this.itemCache.Count))
                 return;
 
             //All we need to do here is make sure we get the correct item index
@@ -219,8 +218,8 @@ namespace Lyra2.LyraShell
 
         public XLBIEventArgs(ExtendedListBoxItem obj, bool hit)
         {
-            entry = obj;
-            ctrlHit = hit;
+            this.entry = obj;
+            this.ctrlHit = hit;
         }
     }
 }

@@ -14,22 +14,22 @@ namespace Lyra2.LyraShell
 
         public IList<JumpMark> Jumpmarks
         {
-            get { return jumpmarks; }
+            get { return this.jumpmarks; }
         }
 
         public ISong DisplayedSong
         {
-            get { return song; }
+            get { return this.song; }
         }
 
         public ISong NextSong
         {
-            get { return next; }
+            get { return this.next; }
         }
 
         public ISong PreviousSong
         {
-            get { return previous; }
+            get { return this.previous; }
         }
 
         public SongDisplayedEventArgs(ISong song, ISong next, ISong previous)

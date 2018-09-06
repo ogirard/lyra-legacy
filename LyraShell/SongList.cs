@@ -10,17 +10,17 @@ namespace Lyra2.LyraShell
 	{
 		public void ClearSongs()
 		{
-			base.Items.Clear();
+			this.Items.Clear();
 		}
 		
 		public void AddSong(Song song)
 		{
 			this.BeginUpdate();
-			ListViewItem lvi = new ListViewItem();
+			var lvi = new ListViewItem();
 			lvi.Tag = song;
 			lvi.Text = song.Number.ToString();
 			lvi.SubItems.Add(song.Title);
-			base.Items.Add(lvi);
+			this.Items.Add(lvi);
 			this.EndUpdate();
 		}
 		
@@ -29,11 +29,11 @@ namespace Lyra2.LyraShell
 			this.BeginUpdate();
 			foreach(Song song in songs)
 			{
-				ListViewItem lvi = new ListViewItem();
+				var lvi = new ListViewItem();
 				lvi.Tag = song;
 				lvi.Text = song.Number.ToString();
 				lvi.SubItems.Add(song.Title);
-				base.Items.Add(lvi);
+				this.Items.Add(lvi);
 			}
 			this.EndUpdate();
 		}
@@ -42,9 +42,9 @@ namespace Lyra2.LyraShell
 		{
 			get
 			{
-				if(base.SelectedItems.Count == 1)
+				if(this.SelectedItems.Count == 1)
 				{
-					return (Song)base.SelectedItems[0].Tag;
+					return (Song)this.SelectedItems[0].Tag;
 				}
 				else
 				{
@@ -55,8 +55,8 @@ namespace Lyra2.LyraShell
 		
 		public ICollection GetSongs()
 		{
-			ArrayList songs = new ArrayList();
-			foreach(ListViewItem lvi in base.Items)
+			var songs = new ArrayList();
+			foreach(ListViewItem lvi in this.Items)
 			{
 				songs.Add(lvi.Tag);
 			}
@@ -65,20 +65,20 @@ namespace Lyra2.LyraShell
 		
 		public SongList()
 		{
-			base.FullRowSelect = true;
-			base.GridLines = true;
-			base.HeaderStyle = ColumnHeaderStyle.Clickable;
-			base.LabelWrap = true;
-			base.MultiSelect = false;
-			base.AllowColumnReorder = false;
-			ColumnHeader nrCol = new ColumnHeader();
+			this.FullRowSelect = true;
+			this.GridLines = true;
+			this.HeaderStyle = ColumnHeaderStyle.Clickable;
+			this.LabelWrap = true;
+			this.MultiSelect = false;
+			this.AllowColumnReorder = false;
+			var nrCol = new ColumnHeader();
 			nrCol.Text = "Nummer";
 			nrCol.Width = 36;
-			base.Columns.Add(nrCol);
-			ColumnHeader titleCol = new ColumnHeader();
+			this.Columns.Add(nrCol);
+			var titleCol = new ColumnHeader();
 			titleCol.Text = "Titel";
-			titleCol.Width = base.Width - 48;
-			base.Columns.Add(titleCol);
+			titleCol.Width = this.Width - 48;
+			this.Columns.Add(titleCol);
 		}
 	}
 }

@@ -55,7 +55,7 @@ namespace Lyra2.LyraShell
 
         public IList<Style> Styles
         {
-            get { return styles; }
+            get { return this.styles; }
         }
 
         public void SaveStyle(Style style)
@@ -80,7 +80,7 @@ namespace Lyra2.LyraShell
                 return;
             }
 
-            foreach (Style s in this.Styles)
+            foreach (var s in this.Styles)
             {
                 if (s.IsDefault)
                 {
@@ -98,12 +98,12 @@ namespace Lyra2.LyraShell
         {
             #region    Precondition
 
-            if (string.IsNullOrEmpty(currentStylePath) || !File.Exists(currentStylePath)) return;
+            if (string.IsNullOrEmpty(this.currentStylePath) || !File.Exists(this.currentStylePath)) return;
 
             #endregion Precondition
 
             var stylesDoc = new XmlDocument();
-            stylesDoc.Load(currentStylePath);
+            stylesDoc.Load(this.currentStylePath);
             var stylesNode = stylesDoc.SelectSingleNode("//Styles");
             if (stylesNode != null)
             {
@@ -114,12 +114,12 @@ namespace Lyra2.LyraShell
                 stylesNode = stylesDoc.DocumentElement.AppendChild(stylesDoc.CreateElement("Styles"));
             }
 
-            foreach (var style in Styles)
+            foreach (var style in this.Styles)
             {
                 stylesNode.AppendChild(style.Serialize(stylesDoc));
             }
 
-            using (XmlTextWriter xtw = new XmlTextWriter(currentStylePath, Encoding.UTF8))
+            using (var xtw = new XmlTextWriter(this.currentStylePath, Encoding.UTF8))
             {
                 xtw.Formatting = Formatting.Indented;
                 stylesDoc.WriteContentTo(xtw);
@@ -132,23 +132,23 @@ namespace Lyra2.LyraShell
         /// <returns>SortedList containing all songs, null on error</returns>
         public SortedList GetSongs(SortedList songs, string url, bool imp)
         {
-            long start = Util.getCurrentTicks();
+            var start = Util.getCurrentTicks();
             try
             {
                 this.doc.Load(url);
                 this.InitStyles(url);
-                XmlNodeList nodes = this.doc.GetElementsByTagName("Song");
-                for (int i = 0; i < nodes.Count; i++)
+                var nodes = this.doc.GetElementsByTagName("Song");
+                for (var i = 0; i < nodes.Count; i++)
                 {
-                    XmlNode songNode = nodes[i];
+                    var songNode = nodes[i];
 
                     int nr;
                     string title;
                     string text;
 
-                    string id = songNode.Attributes["id"].Value;
-                    string desc = songNode.Attributes["zus"].Value;
-                    string translations = songNode.Attributes["trans"].Value;
+                    var id = songNode.Attributes["id"].Value;
+                    var desc = songNode.Attributes["zus"].Value;
+                    var translations = songNode.Attributes["trans"].Value;
 
                     if (songNode["Number"] != null &&
                         songNode["Title"] != null &&
@@ -164,18 +164,18 @@ namespace Lyra2.LyraShell
                         throw new NotValidException();
                     }
 
-                    Song newSong = new Song(nr, title, text, id, desc, imp);
+                    var newSong = new Song(nr, title, text, id, desc, imp);
 
                     if (songNode.Attributes["style"] != null && !string.IsNullOrEmpty(songNode.Attributes["style"].InnerText))
                     {
-                        Guid styleId = Guid.Parse(songNode.Attributes["style"].InnerText);
-                        newSong.Style = Styles.FirstOrDefault(s => s.ID == styleId);
+                        var styleId = Guid.Parse(songNode.Attributes["style"].InnerText);
+                        newSong.Style = this.Styles.FirstOrDefault(s => s.ID == styleId);
                         newSong.UseDefaultStyle = false;
                     }
                     else
                     {
                         // use default style for this song
-                        newSong.Style = Styles.FirstOrDefault(s => s.IsDefault);
+                        newSong.Style = this.Styles.FirstOrDefault(s => s.IsDefault);
                         newSong.UseDefaultStyle = true;
                     }
 
@@ -188,9 +188,9 @@ namespace Lyra2.LyraShell
                     }
                     catch (ArgumentException)
                     {
-                        string msg = "Wollen Sie Lied Nr." + nr + " ersetzen?\n";
+                        var msg = "Wollen Sie Lied Nr." + nr + " ersetzen?\n";
                         msg += "(drücken Sie \"abbrechen\", wenn Sie das Lied überspringen wollen.)";
-                        DialogResult dr = MessageBox.Show(msg, "lyra import",
+                        var dr = MessageBox.Show(msg, "lyra import",
                                                           MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                         if (dr == DialogResult.Yes)
                         {
@@ -233,27 +233,28 @@ namespace Lyra2.LyraShell
             this.styles = new List<Style>();
             var stylesDoc = new XmlDocument();
 
-            string stylesRef = doc["lyra"].Attributes["stylesref"] != null ? doc["lyra"].Attributes["stylesref"].InnerText : "lyrastyles.xml";
+            var stylesRef = this.doc["lyra"].Attributes["stylesref"] != null ? this.doc["lyra"].Attributes["stylesref"].InnerText : "lyrastyles.xml";
             if (string.IsNullOrEmpty(stylesRef))
             {
                 stylesRef = "lyrastyles.xml";
             }
-            currentStylePath = Path.GetDirectoryName(url) + "\\" + stylesRef;
-            if (!File.Exists(currentStylePath))
+
+            this.currentStylePath = Path.GetDirectoryName(url) + "\\" + stylesRef;
+            if (!File.Exists(this.currentStylePath))
             {
-                File.WriteAllText(currentStylePath,
+                File.WriteAllText(this.currentStylePath,
                                   "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + Environment.NewLine + "<lyra>" + Environment.NewLine + "  <Styles />" +
                                   Environment.NewLine + "</lyra>" + Environment.NewLine);
             }
-            stylesDoc.Load(currentStylePath);
+            stylesDoc.Load(this.currentStylePath);
             foreach (XmlNode styleNode in stylesDoc.SelectNodes("//Styles/Style"))
             {
-                styles.Add(new Style(styleNode, this));
+                this.styles.Add(new Style(styleNode, this));
             }
 
-            if (styles.Count == 0)
+            if (this.styles.Count == 0)
             {
-                Style defaultStyle = Style.CreateNewStyle(this, "Standard");
+                var defaultStyle = Style.CreateNewStyle(this, "Standard");
                 defaultStyle.BackgroundColor = Util.BGCOLOR;
                 defaultStyle.ForegroundColor = Util.COLOR;
                 defaultStyle.FontSize = (int)Util.FONT.SizeInPoints;
@@ -261,10 +262,10 @@ namespace Lyra2.LyraShell
                 defaultStyle.IsDefault = true;
                 defaultStyle.Save();
             }
-            else if (!styles.Any(s => s.IsDefault))
+            else if (!this.styles.Any(s => s.IsDefault))
             {
-                styles.First().IsDefault = true;
-                styles.First().Save();
+                this.styles.First().IsDefault = true;
+                this.styles.First().Save();
             }
 
         }
@@ -274,17 +275,17 @@ namespace Lyra2.LyraShell
         {
             if (translations == "")
                 return;
-            string[] trs = translations.Split(',');
+            var trs = translations.Split(',');
             XmlNode curt;
-            for (int i = 0; i < trs.Length; i++)
+            for (var i = 0; i < trs.Length; i++)
             {
                 if ((curt = this.doc.GetElementById(trs[i])) != null)
                 {
-                    XmlNodeList transchildren = curt.ChildNodes;
+                    var transchildren = curt.ChildNodes;
 
-                    int lang = Util.getLanguageInt(curt.Attributes["lang"].Value);
-                    string id = curt.Attributes["id"].Value;
-                    bool uf = curt.Attributes["unform"].Value.Equals("yes");
+                    var lang = Util.getLanguageInt(curt.Attributes["lang"].Value);
+                    var id = curt.Attributes["id"].Value;
+                    var uf = curt.Attributes["unform"].Value.Equals("yes");
                     string text;
                     string title;
                     if ((transchildren[0].Name == "Title") &&
@@ -297,7 +298,7 @@ namespace Lyra2.LyraShell
                     {
                         throw new NotValidException();
                     }
-                    string newid = HighestTrID;
+                    var newid = HighestTrID;
                     song.AddTranslation(
                         new Translation(title, text, lang, uf, "t" + Util.toFour(highestTrID), imp || (newid != id)));
                 }
@@ -321,12 +322,12 @@ namespace Lyra2.LyraShell
                 XmlNode curNode, newNode, nr, title, text;
                 XmlAttribute transattr, idattr, descattr;
 
-                XmlNode songs = this.doc.GetElementsByTagName("Songs")[0];
+                var songs = this.doc.GetElementsByTagName("Songs")[0];
 
                 // remove all, if songs have been replaced!
                 if (Util.DELALL)
                 {
-                    XmlNode translations = this.doc.GetElementsByTagName("Translations")[0];
+                    var translations = this.doc.GetElementsByTagName("Translations")[0];
                     songs.RemoveAll();
                     translations.RemoveAll();
                 }
@@ -334,9 +335,9 @@ namespace Lyra2.LyraShell
                 Song curSong;
 
                 // Delete
-                int j = 0;
-                int top = internList.Count;
-                for (int i = 0; i < top; i++)
+                var j = 0;
+                var top = internList.Count;
+                for (var i = 0; i < top; i++)
                 {
                     curSong = (Song)internList.GetByIndex(j);
                     if (curSong.Deleted)
@@ -352,7 +353,7 @@ namespace Lyra2.LyraShell
                     j++;
                 }
 
-                IDictionaryEnumerator en = internList.GetEnumerator();
+                var en = internList.GetEnumerator();
                 en.Reset();
 
 
@@ -366,7 +367,7 @@ namespace Lyra2.LyraShell
                         if ((curNode = this.doc.GetElementById(curSong.ID)) != null)
                         {
                             // update node
-                            XmlNodeList children = curNode.ChildNodes;
+                            var children = curNode.ChildNodes;
                             if ((children[0].Name == "Number") &&
                                 (children[1].Name == "Title") &&
                                 (children[2].Name == "Text"))
@@ -382,7 +383,7 @@ namespace Lyra2.LyraShell
 
                             if (curNode.Attributes["style"] == null)
                             {
-                                XmlAttribute styleAttr = this.doc.CreateAttribute("style");
+                                var styleAttr = this.doc.CreateAttribute("style");
                                 curNode.Attributes.Append(styleAttr);
                             }
                             curNode.Attributes["style"].InnerText = curSong.UseDefaultStyle ? "" : curSong.Style.ID.ToString().Trim('{', '}');
@@ -423,7 +424,7 @@ namespace Lyra2.LyraShell
                         }
 
                         // translations
-                        string transList = curSong.UpdateTranslations(this);
+                        var transList = curSong.UpdateTranslations(this);
                         curNode.Attributes["trans"].Value = transList;
                         curNode.Attributes["id"].Value = curSong.ID;
                         curNode.Attributes["zus"].Value = curSong.Desc;
@@ -443,8 +444,8 @@ namespace Lyra2.LyraShell
         public string CommitTranslations(SortedList trans)
         // throws NotValidException, XmlException
         {
-            string list = "";
-            XmlNode translations = this.doc.GetElementsByTagName("Translations")[0];
+            var list = "";
+            var translations = this.doc.GetElementsByTagName("Translations")[0];
 
             Translation curTrans;
             XmlNode transNode;
@@ -452,9 +453,9 @@ namespace Lyra2.LyraShell
             XmlAttribute lang, id, uf;
 
             // Delete
-            int j = 0;
-            int top = trans.Count;
-            for (int i = 0; i < top; i++)
+            var j = 0;
+            var top = trans.Count;
+            for (var i = 0; i < top; i++)
             {
                 curTrans = (Translation)trans.GetByIndex(j);
                 if (curTrans.Deleted)
@@ -469,7 +470,7 @@ namespace Lyra2.LyraShell
                 j++;
             }
 
-            IDictionaryEnumerator en = trans.GetEnumerator();
+            var en = trans.GetEnumerator();
             en.Reset();
             while (en.MoveNext())
             {
@@ -479,7 +480,7 @@ namespace Lyra2.LyraShell
                 {
                     if ((transNode = this.doc.GetElementById(curTrans.ID)) != null)
                     {
-                        XmlNodeList transChildren = transNode.ChildNodes;
+                        var transChildren = transNode.ChildNodes;
                         if ((transChildren[0].Name == "Title") &&
                             (transChildren[1].Name == "Text"))
                         {
@@ -521,7 +522,7 @@ namespace Lyra2.LyraShell
                     }
                 }
             }
-            int len = list.Length - 1 < 0 ? 0 : list.Length - 1;
+            var len = list.Length - 1 < 0 ? 0 : list.Length - 1;
             return list.Substring(0, len);
         }
     }

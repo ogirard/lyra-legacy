@@ -43,8 +43,8 @@ namespace Lyra2.LyraShell
         return;
       }
 
-      if (isUpdating) return;
-      isUpdating = true;
+      if (this.isUpdating) return;
+        this.isUpdating = true;
 
       this.styleName.Text = this.SelectedStyle.Name;
       this.fontName.Value = this.SelectedStyle.Font;
@@ -56,28 +56,28 @@ namespace Lyra2.LyraShell
       this.transPreviewImage.Image = Util.handlePic(false, Resources.TransparencyPreview, new Size(32, 32), true, this.transparency.Value);
       this.transLabel.Text = (this.transparency.MaxValue - this.transparency.Value) + @"%";
       this.scale.Checked = this.SelectedStyle.Scale;
-      this.titleMode.Value = (int)SelectedStyle.TitleMode;
+      this.titleMode.Value = (int) this.SelectedStyle.TitleMode;
       this.titleForegroundColor.Color = this.SelectedStyle.TitleForegroundColor ?? Util.TITLECOLOR;
       this.titleBackgroundColor.Color = this.SelectedStyle.TitleBackgroundColor ?? Util.TITLEBGCOLOR;
       this.titleFont.Value = this.SelectedStyle.TitleFont;
       this.titleFontSize.Value = this.SelectedStyle.TitleFontSize;
 
       this.UpdatePreviewPanel();
-      isUpdating = false;
+        this.isUpdating = false;
     }
 
     public StyleEditor()
     {
-      InitializeComponent();
+        this.InitializeComponent();
     }
 
     public StyleEditor(IStorage storage)
       : this()
     {
-      _storage = storage;
-      this._styles = _storage.Styles;
+        this._storage = storage;
+      this._styles = this._storage.Styles;
       this.stylesList.BeginUpdate();
-      foreach (Style style in this._styles)
+      foreach (var style in this._styles)
       {
         this.stylesList.Items.Add(style);
       }
@@ -111,7 +111,7 @@ namespace Lyra2.LyraShell
 
     private void OnStyleValueChanged(object sender, EventArgs e)
     {
-      if (isUpdating) return;
+      if (this.isUpdating) return;
 
       this.stylesListPanel.Enabled = false;
       this.saveCancelPanel.Visible = true;
@@ -168,7 +168,7 @@ namespace Lyra2.LyraShell
 
         this.stylesList.BeginUpdate();
         var style = this.SelectedStyle;
-        var idx = stylesList.SelectedIndex;
+        var idx = this.stylesList.SelectedIndex;
         this.stylesList.Items.Remove(style);
         this.stylesList.Items.Insert(idx, style);
         this.stylesList.SelectedIndex = idx;
@@ -207,7 +207,7 @@ namespace Lyra2.LyraShell
         newStyle.ForegroundColor = this.SelectedStyle.ForegroundColor;
         newStyle.Scale = this.SelectedStyle.Scale;
         newStyle.Transparency = this.SelectedStyle.Transparency;
-        newStyle.TitleMode = SelectedStyle.TitleMode;
+        newStyle.TitleMode = this.SelectedStyle.TitleMode;
         newStyle.TitleForegroundColor = this.SelectedStyle.TitleForegroundColor;
         newStyle.TitleBackgroundColor = this.SelectedStyle.TitleBackgroundColor;
         newStyle.TitleFont = this.SelectedStyle.TitleFont;
@@ -269,9 +269,9 @@ namespace Lyra2.LyraShell
                         };
 
 
-      Bitmap previewBitmap = new Bitmap(400, this.previewPanel.ClientArea.Height);
-      Graphics g = Graphics.FromImage(previewBitmap);
-      Rectangle clip = new Rectangle(0, 0, previewBitmap.Width, previewBitmap.Height);
+      var previewBitmap = new Bitmap(400, this.previewPanel.ClientArea.Height);
+      var g = Graphics.FromImage(previewBitmap);
+      var clip = new Rectangle(0, 0, previewBitmap.Width, previewBitmap.Height);
       if (tempStyle.HasBackgroundImage)
       {
         g.DrawImage(tempStyle.GetBackgroundImage(new Size(clip.Width, clip.Height)), 0, 0);
@@ -290,7 +290,7 @@ namespace Lyra2.LyraShell
       this.viewTitle.TitleForegroundColor = tempStyle.TitleForegroundColor ?? Util.TITLECOLOR;
       this.viewTitle.Mode = tempStyle.TitleMode;
 
-      exampleSongText.Top = viewTitle.Mode == TitleMode.None ? 10 : (viewTitle.Bottom + 10);
+        this.exampleSongText.Top = this.viewTitle.Mode == TitleMode.None ? 10 : (this.viewTitle.Bottom + 10);
     }
 
     private void SetAsDefaultBtnClickHandler(object sender, EventArgs e)
@@ -299,7 +299,7 @@ namespace Lyra2.LyraShell
       this.stylesList.BeginUpdate();
       var style = this.SelectedStyle;
       this.stylesList.Items.Clear();
-      foreach (Style s in this._storage.Styles)
+      foreach (var s in this._storage.Styles)
       {
         this.stylesList.Items.Add(s);
       }

@@ -92,7 +92,7 @@ namespace Lyra2.LyraShell
     /// </summary>
     public SortedList Translations
     {
-      get { return translations; }
+      get { return this.translations; }
     }
 
     public IDictionaryEnumerator GetTransEnum()
@@ -136,7 +136,7 @@ namespace Lyra2.LyraShell
     public void ShowTranslations(ListBox box)
     {
       box.Items.Clear();
-      IDictionaryEnumerator en = this.translations.GetEnumerator();
+      var en = this.translations.GetEnumerator();
       en.Reset();
       while (en.MoveNext())
       {
@@ -151,7 +151,7 @@ namespace Lyra2.LyraShell
 
     public bool UseDefaultStyle
     {
-      get { return useDefaultStyle; }
+      get { return this.useDefaultStyle; }
       set { this.useDefaultStyle = value; }
     }
 
@@ -204,7 +204,7 @@ namespace Lyra2.LyraShell
     public void Delete()
     {
       // remove translations
-      IDictionaryEnumerator en = this.translations.GetEnumerator();
+      var en = this.translations.GetEnumerator();
       en.Reset();
       while (en.MoveNext())
       {
@@ -241,15 +241,15 @@ namespace Lyra2.LyraShell
 
     private MenuItem getTransMenuItem()
     {
-      IDictionaryEnumerator en = this.translations.GetEnumerator();
+      var en = this.translations.GetEnumerator();
       en.Reset();
-      MenuItem menu = new MenuItem();
+      var menu = new MenuItem();
       menu.Text = "Überse&tzungen";
       while (en.MoveNext())
       {
         if (!((Translation)en.Value).Deleted)
         {
-          MenuItem newItem = new MenuItem(((Translation)en.Value).ToString());
+          var newItem = new MenuItem(((Translation)en.Value).ToString());
           newItem.Click += new EventHandler(this.handleTransClick);
           menu.MenuItems.Add(newItem);
         }
@@ -281,7 +281,7 @@ namespace Lyra2.LyraShell
     {
       if (!((MenuItem)sender).Checked)
       {
-        int i = 0;
+        var i = 0;
         this.uncheck();
         while ((MenuItem)sender != this.transMenu.MenuItems[i]) i++;
         this.transMenu.MenuItems[i].Checked = true;
@@ -323,7 +323,7 @@ namespace Lyra2.LyraShell
     {
       if (obj is Song)
       {
-        Song s = (Song)obj;
+        var s = (Song)obj;
         return this.ToString().CompareTo(s.ToString());
       }
       return 0;
@@ -341,7 +341,7 @@ namespace Lyra2.LyraShell
       get
       {
         // renew each time ("fresh" data required for correct indexing)
-        Dictionary<string, string> searchableText = new Dictionary<string, string>
+        var searchableText = new Dictionary<string, string>
                                                               {
                                                                 {TitleField, this.Title},
                                                                 {TextField, RemoveTags(this.Text)},
@@ -353,9 +353,9 @@ namespace Lyra2.LyraShell
 
     private static string RemoveTags(string text)
     {
-      string cleanText = "";
-      bool skip = false;
-      foreach (char c in text)
+      var cleanText = "";
+      var skip = false;
+      foreach (var c in text)
       {
         if (c == '<')
         {
@@ -410,7 +410,7 @@ namespace Lyra2.LyraShell
       if (ReferenceEquals(null, obj)) return false;
       if (ReferenceEquals(this, obj)) return true;
       if (obj.GetType() != typeof(Song)) return false;
-      return Equals((Song)obj);
+      return this.Equals((Song)obj);
     }
 
     public override int GetHashCode()

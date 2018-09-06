@@ -10,25 +10,25 @@ namespace Lyra2.LyraShell
 	/// <summary>
 	/// Summary description for LyraUpdateView.
 	/// </summary>
-	public class LyraUpdateView : System.Windows.Forms.Form
+	public class LyraUpdateView : Form
 	{
 		private LyraButtonControl button2;
 		private LyraButtonControl button1;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.CheckedListBox checkedListBox1;
-		private System.Windows.Forms.ComboBox comboBox1;
-		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.Label label5;
+		private Label label2;
+		private Label label1;
+		private Label label3;
+		private CheckedListBox checkedListBox1;
+		private ComboBox comboBox1;
+		private Label label4;
+		private Label label5;
 
 		public static string CURTEXT = Util.BASEURL + "\\" + Util.URL;
-		public static string TMPFILE = LyraUpdateView.CURTEXT + ".tmp";
-		public static string BACKUP = LyraUpdateView.CURTEXT + ".bac";
+		public static string TMPFILE = CURTEXT + ".tmp";
+		public static string BACKUP = CURTEXT + ".bac";
 
 		public static string LISTFILE = Util.BASEURL + "\\" + Util.LISTURL;
-		public static string TMPLIST = LyraUpdateView.LISTFILE + ".tmp";
-		public static string BACKUPLIST = LyraUpdateView.LISTFILE + ".bac";
+		public static string TMPLIST = LISTFILE + ".tmp";
+		public static string BACKUPLIST = LISTFILE + ".bac";
 
 		private bool backup;
 
@@ -38,17 +38,17 @@ namespace Lyra2.LyraShell
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
-		private System.Windows.Forms.Panel panel1;
+		private Panel panel1;
 
 		private static LyraUpdateView update = null;
 
 		private LyraUpdateView(string url, string desc, UpdateFileURL[] versions, bool backup)
 		{
-			InitializeComponent();
+		    this.InitializeComponent();
 
 			this.label4.Text = url;
 			this.label5.Text = desc;
-			foreach (UpdateFileURL v in versions)
+			foreach (var v in versions)
 			{
 				this.comboBox1.Items.Add(v);
 			}
@@ -59,11 +59,11 @@ namespace Lyra2.LyraShell
 		public static DialogResult ShowUpdateView(GUI owner, string url, string desc,
 		                                          UpdateFileURL[] versions, bool backup)
 		{
-			if (LyraUpdateView.update == null)
+			if (update == null)
 			{
-				LyraUpdateView.update = new LyraUpdateView(url, desc, versions, backup);
+				update = new LyraUpdateView(url, desc, versions, backup);
 			}
-			return LyraUpdateView.update.ShowDialog(owner);
+			return update.ShowDialog(owner);
 		}
 
 		/// <summary>
@@ -73,13 +73,13 @@ namespace Lyra2.LyraShell
 		{
 			if (disposing)
 			{
-				if (components != null)
+				if (this.components != null)
 				{
-					components.Dispose();
+				    this.components.Dispose();
 				}
 			}
 			base.Dispose(disposing);
-			LyraUpdateView.update = null;
+			update = null;
 		}
 
 		#region Windows Form Designer generated code
@@ -234,8 +234,8 @@ namespace Lyra2.LyraShell
 		// make a backup of the curtext.xml-file
 		private void backupCurtext()
 		{
-			File.Copy(LyraUpdateView.CURTEXT, LyraUpdateView.BACKUP, true);
-			File.Copy(LyraUpdateView.LISTFILE, LyraUpdateView.BACKUPLIST, true);
+			File.Copy(CURTEXT, BACKUP, true);
+			File.Copy(LISTFILE, BACKUPLIST, true);
 		}
 
 		// download the last version of the songs
@@ -243,8 +243,8 @@ namespace Lyra2.LyraShell
 		{
 			try
 			{
-				WebClient client = new WebClient();
-				client.DownloadFile(url, LyraUpdateView.TMPFILE);
+				var client = new WebClient();
+				client.DownloadFile(url, TMPFILE);
 			}
 			catch (Exception exp)
 			{
@@ -254,7 +254,7 @@ namespace Lyra2.LyraShell
 		}
 
 		// do update!
-		private void button1_Click(object sender, System.EventArgs e)
+		private void button1_Click(object sender, EventArgs e)
 		{
 			this.downloadCurtext(((UpdateFileURL) this.comboBox1.SelectedItem).URL);
 			if (this.backup)
@@ -262,9 +262,9 @@ namespace Lyra2.LyraShell
 				this.backupCurtext();
 			}
 
-			XmlDocument doc = new XmlDocument();
-			doc.Load(LyraUpdateView.LISTFILE);
-			XmlNode listroot = doc.GetElementsByTagName("lists")[0];
+			var doc = new XmlDocument();
+			doc.Load(LISTFILE);
+			var listroot = doc.GetElementsByTagName("lists")[0];
 			foreach (XMLWrapperObject xmlobj in this.checkedListBox1.CheckedItems)
 			{
 				try
@@ -276,20 +276,20 @@ namespace Lyra2.LyraShell
 					Util.MBoxError(ex.ToString() + Util.NL + ex.Message);
 				}
 			}
-			doc.Save(LyraUpdateView.TMPLIST);
+			doc.Save(TMPLIST);
 
-			File.Copy(LyraUpdateView.TMPFILE, LyraUpdateView.CURTEXT, true);
-			File.Delete(LyraUpdateView.TMPFILE);
-			File.Copy(LyraUpdateView.TMPLIST, LyraUpdateView.LISTFILE, true);
-			File.Delete(LyraUpdateView.TMPLIST);
+			File.Copy(TMPFILE, CURTEXT, true);
+			File.Delete(TMPFILE);
+			File.Copy(TMPLIST, LISTFILE, true);
+			File.Delete(TMPLIST);
 
-			LyraUpdateView.update.Dispose();
+			update.Dispose();
 		}
 
 		// cancel
-		private void button2_Click(object sender, System.EventArgs e)
+		private void button2_Click(object sender, EventArgs e)
 		{
-			LyraUpdateView.update.Dispose();
+			update.Dispose();
 		}
 
 		// change list-content
@@ -298,18 +298,18 @@ namespace Lyra2.LyraShell
 			this.checkedListBox1.Items.Clear();
 			if (ver.List != "")
 			{
-				XmlDocument doc = new XmlDocument();
+				var doc = new XmlDocument();
 				try
 				{
-					WebRequest request = WebRequest.Create(ver.List);
-					HttpWebResponse response = (HttpWebResponse) request.GetResponse();
-					Stream stream = response.GetResponseStream();
+					var request = WebRequest.Create(ver.List);
+					var response = (HttpWebResponse) request.GetResponse();
+					var stream = response.GetResponseStream();
 					doc.Load(stream);
 
-					XmlNodeList lists = doc.GetElementsByTagName("List");
+					var lists = doc.GetElementsByTagName("List");
 					foreach (XmlNode curList in lists)
 					{
-						string name = curList.ChildNodes[0].InnerText + "  [" +
+						var name = curList.ChildNodes[0].InnerText + "  [" +
 							curList.ChildNodes[2].InnerText + "]";
 						this.checkedListBox1.Items.Add(new XMLWrapperObject(curList, name));
 					}
@@ -324,7 +324,7 @@ namespace Lyra2.LyraShell
 		}
 
 		// selected Index changed
-		private void comboBox1_SelectedIndexChanged(object sender, System.EventArgs e)
+		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			this.selectVersion((UpdateFileURL) this.comboBox1.SelectedItem);
 		}

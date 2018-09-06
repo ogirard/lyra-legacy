@@ -9,20 +9,20 @@ namespace Lyra2.LyraShell
   {
     public Color TitleBackgroundColor
     {
-      get { return headerBackground.Appearance.BackColor; }
-      set { headerBackground.Appearance.BackColor = value; }
+      get { return this.headerBackground.Appearance.BackColor; }
+      set { this.headerBackground.Appearance.BackColor = value; }
     }
 
     private Color _titleForegroundColor;
 
     public Color TitleForegroundColor
     {
-      get { return _titleForegroundColor; }
+      get { return this._titleForegroundColor; }
       set
       {
-        _titleForegroundColor = value;
-        number.Appearance.ForeColor = value;
-        title.Appearance.ForeColor = value;
+          this._titleForegroundColor = value;
+          this.number.Appearance.ForeColor = value;
+          this.title.Appearance.ForeColor = value;
       }
     }
 
@@ -30,25 +30,25 @@ namespace Lyra2.LyraShell
 
     public Font TitleFont
     {
-      get { return _titleFont; }
+      get { return this._titleFont; }
       set
       {
-        _titleFont = value;
+          this._titleFont = value;
         if (value == null)
         {
-          number.Appearance.ResetFontData();
-          title.Appearance.ResetFontData();
+            this.number.Appearance.ResetFontData();
+            this.title.Appearance.ResetFontData();
         }
         else
         {
-          number.Appearance.FontData.Name = value.Name;
-          title.Appearance.FontData.Name = value.Name;
+            this.number.Appearance.FontData.Name = value.Name;
+            this.title.Appearance.FontData.Name = value.Name;
 
-          number.Appearance.FontData.SizeInPoints = value.SizeInPoints;
-          title.Appearance.FontData.SizeInPoints = value.SizeInPoints;
+            this.number.Appearance.FontData.SizeInPoints = value.SizeInPoints;
+            this.title.Appearance.FontData.SizeInPoints = value.SizeInPoints;
         }
-        
-        UpdateSize();
+
+          this.UpdateSize();
       }
     }
 
@@ -56,21 +56,21 @@ namespace Lyra2.LyraShell
 
     public TitleMode Mode
     {
-      get { return _mode; }
+      get { return this._mode; }
       set
       {
-        _mode = value;
-        switch (Mode)
+          this._mode = value;
+        switch (this.Mode)
         {
           case TitleMode.NumberAndTitle:
           default:
-            number.Visible = true;
-            title.Visible = true;
+              this.number.Visible = true;
+              this.title.Visible = true;
             this.Visible = true;
             break;
           case TitleMode.TitleOnly:
-            number.Visible = false;
-            title.Visible = true;
+              this.number.Visible = false;
+              this.title.Visible = true;
             this.Visible = true;
             break;
           case TitleMode.None:
@@ -82,37 +82,37 @@ namespace Lyra2.LyraShell
 
     public string Title
     {
-      get { return title.Text; }
+      get { return this.title.Text; }
       set
       {
-        title.Text = value;
-        UpdateSize();
+          this.title.Text = value;
+          this.UpdateSize();
       }
     }
 
     public string Number
     {
-      get { return number.Text; }
+      get { return this.number.Text; }
       set
       {
-        number.Text = value;
-        UpdateSize();
+          this.number.Text = value;
+          this.UpdateSize();
       }
     }
 
     private void UpdateSize()
     {
-      using (var graphics = CreateGraphics())
+      using (var graphics = this.CreateGraphics())
       {
         var height = 8;
-        if (!string.IsNullOrEmpty(Number) && _titleFont != null)
+        if (!string.IsNullOrEmpty(this.Number) && this._titleFont != null)
         {
-          height = Math.Max((int)graphics.MeasureString(Number, _titleFont).Height, height);  
+          height = Math.Max((int)graphics.MeasureString(this.Number, this._titleFont).Height, height);  
         }
 
-        if (!string.IsNullOrEmpty(Title) && _titleFont != null)
+        if (!string.IsNullOrEmpty(this.Title) && this._titleFont != null)
         {
-          height = Math.Max((int)graphics.MeasureString(Title, _titleFont).Height, height);
+          height = Math.Max((int)graphics.MeasureString(this.Title, this._titleFont).Height, height);
         }
 
         this.Height = height + 8;
@@ -121,8 +121,8 @@ namespace Lyra2.LyraShell
 
     public ViewTitle()
     {
-      InitializeComponent();
-      headerBackground.Padding = new Padding(5);
+        this.InitializeComponent();
+        this.headerBackground.Padding = new Padding(5);
     }
   }
 }

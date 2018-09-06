@@ -25,7 +25,7 @@ namespace Lyra2.LyraShell
 
 		public static void openFile(string filename)
 		{
-			Process myProcess = new Process();
+			var myProcess = new Process();
 
 			try
 			{
@@ -34,11 +34,11 @@ namespace Lyra2.LyraShell
 			}
 			catch (Win32Exception e)
 			{
-				if (e.NativeErrorCode == FileLauncher.ERROR_FILE_NOT_FOUND)
+				if (e.NativeErrorCode == ERROR_FILE_NOT_FOUND)
 				{
 					Util.MBoxError("Datei wurde nicht gefunden!");
 				}
-				else if (e.NativeErrorCode == FileLauncher.ERROR_ACCESS_DENIED)
+				else if (e.NativeErrorCode == ERROR_ACCESS_DENIED)
 				{
 					Util.MBoxError("Datei-Zugriff wurde verweigert!");
 				}
@@ -70,18 +70,18 @@ namespace Lyra2.LyraShell
 				if (Extension[0] != '.') Extension = '.' + Extension;
 
 				//search registry for the file extension
-				RegistryKey Root = Registry.ClassesRoot;
-				RegistryKey ExtensionKey = Root.OpenSubKey(Extension);
+				var Root = Registry.ClassesRoot;
+				var ExtensionKey = Root.OpenSubKey(Extension);
 				ExtensionKey.GetValueNames();
-				RegistryKey appKey = Root.OpenSubKey(ExtensionKey.GetValue("").ToString());
+				var appKey = Root.OpenSubKey(ExtensionKey.GetValue("").ToString());
 
 				//gets the name of the file that has the icon.
-				string IconLocation = appKey.OpenSubKey("DefaultIcon").GetValue("").ToString();
-				string[] IconPath = IconLocation.Split(',');
+				var IconLocation = appKey.OpenSubKey("DefaultIcon").GetValue("").ToString();
+				var IconPath = IconLocation.Split(',');
 
 				if (IconPath[1] == null) IconPath[1] = "0";
-				IntPtr[] Large = new IntPtr[1];
-				IntPtr[] Small = new IntPtr[1];
+				var Large = new IntPtr[1];
+				var Small = new IntPtr[1];
 
 				//extracts the icon from the file.
 				ExtractIconEx(IconPath[0], Convert.ToInt16(IconPath[1]), Large, Small, 1);

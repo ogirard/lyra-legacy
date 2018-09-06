@@ -8,10 +8,10 @@ namespace Lyra2.LyraShell
 	/// <summary>
 	/// Zusammendfassende Beschreibung für pswd.
 	/// </summary>
-	public class Pswd : System.Windows.Forms.Form
+	public class Pswd : Form
 	{
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TextBox textBox1;
+		private Label label1;
+		private TextBox textBox1;
 		private LyraButtonControl button1;
 
 		/// <summary>
@@ -20,18 +20,18 @@ namespace Lyra2.LyraShell
 		private System.ComponentModel.Container components = null;
 
 		private LyraButtonControl button2;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.TextBox textBox2;
-		private System.Windows.Forms.LinkLabel linkLabel1;
-		private System.Windows.Forms.TextBox textBox3;
-		private System.Windows.Forms.Label label3;
+		private Label label2;
+		private TextBox textBox2;
+		private LinkLabel linkLabel1;
+		private TextBox textBox3;
+		private Label label3;
 		private LyraButtonControl button3;
 		private static Pswd password = null;
 
 
 		private Pswd()
 		{
-			InitializeComponent();
+		    this.InitializeComponent();
 			this.Height = 104;
 			this.AcceptButton = this.button1;
 		}
@@ -43,13 +43,13 @@ namespace Lyra2.LyraShell
 		{
 			if (disposing)
 			{
-				if (components != null)
+				if (this.components != null)
 				{
-					components.Dispose();
+				    this.components.Dispose();
 				}
 			}
 			base.Dispose(disposing);
-			Pswd.password = null;
+			password = null;
 		}
 
 		#region Windows Form Designer generated code
@@ -199,27 +199,27 @@ namespace Lyra2.LyraShell
 
 		public static void showAdminPassword(Options options)
 		{
-			if (Pswd.password == null)
+			if (password == null)
 			{
-				Pswd.password = new Pswd();
+				password = new Pswd();
 			}
-			Pswd.password.options = options;
-			Pswd.password.Show();
+			password.options = options;
+			password.Show();
 		}
 
 		private static bool ok = false;
 
 		public static bool OK
 		{
-			get { return Pswd.ok; }
+			get { return ok; }
 		}
 
 		private bool checkPsw()
 		{
 			try
 			{
-				ConfigFile configFile = new ConfigFile(Util.CONFIGPATH);
-				string pw = configFile["pw"];
+				var configFile = new ConfigFile(Util.CONFIGPATH);
+				var pw = configFile["pw"];
 				return pw.Equals(this.textBox1.Text);
 			}
 			catch (Exception e)
@@ -230,46 +230,46 @@ namespace Lyra2.LyraShell
 
 		}
 
-		private void button1_Click(object sender, System.EventArgs e)
+		private void button1_Click(object sender, EventArgs e)
 		{
 			if (this.checkPsw())
 			{
 				this.options.enableChanges();
-				Pswd.ok = true;
+				ok = true;
 				this.options.Focus();
 				this.Close();
 			}
 			else
 			{
 				Util.MBoxError("Falsches Passwort!");
-				Pswd.ok = false;
+				ok = false;
 				this.textBox1.Text = "";
 				this.textBox1.Select();
 			}
 		}
 
 		// Abbrechen
-		private void button2_Click(object sender, System.EventArgs e)
+		private void button2_Click(object sender, EventArgs e)
 		{
 			this.options.Focus();
 			this.Close();
 		}
 
 		// ändern
-		private void linkLabel1_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			this.button1.Enabled = false;
 			this.Height = 160;
 		}
 
 		// psw setzen
-		private void button3_Click(object sender, System.EventArgs e)
+		private void button3_Click(object sender, EventArgs e)
 		{
 			if (this.checkPsw() &&
 				this.textBox2.Text == this.textBox3.Text &&
 				this.textBox2.Text != "")
 			{
-				ConfigFile configFile = new ConfigFile(Util.CONFIGPATH);
+				var configFile = new ConfigFile(Util.CONFIGPATH);
 				configFile["pw"] = this.textBox2.Text;
 				configFile.Save(Util.CONFIGPATH);
 

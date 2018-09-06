@@ -64,7 +64,7 @@ namespace Lyra2.LyraShell
             //
             // Erforderlich für die Windows Form-Designerunterstützung
             //
-            InitializeComponent();
+            this.InitializeComponent();
 
             this.owner = owner;
             this.box = box;
@@ -77,7 +77,7 @@ namespace Lyra2.LyraShell
         {
             this.textBox4.Text = this.project;
             this.textBox1.Text = url;
-            string sep = url.EndsWith("\\") ? "" : "\\";
+            var sep = url.EndsWith("\\") ? "" : "\\";
             this.textBox2.Text = url + sep + this.project + "\\lyra.html";
             this.textBox3.Text = url + sep + this.project + "\\data";
         }
@@ -89,9 +89,9 @@ namespace Lyra2.LyraShell
         {
             if (disposing)
             {
-                if (components != null)
+                if (this.components != null)
                 {
-                    components.Dispose();
+                    this.components.Dispose();
                 }
             }
             myHTML = null;
@@ -372,7 +372,7 @@ namespace Lyra2.LyraShell
         {
             if (Directory.Exists(this.textBox3.Text) || File.Exists(this.textBox2.Text))
             {
-                DialogResult dr =
+                var dr =
                     MessageBox.Show(this, "Achtung! Sie überschreiben möglicherweise eine bereits erstellte HTML-Datei!",
                                     "lyra Hinweis", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 if (dr == DialogResult.Cancel)
@@ -426,9 +426,9 @@ namespace Lyra2.LyraShell
         // durchsuchen...
         private void button4_Click(object sender, EventArgs e)
         {
-            FolderBrowser fb = new FolderBrowser();
+            var fb = new FolderBrowser();
             fb.Flags = BrowseFlags.BIF_STATUSTEXT | BrowseFlags.BIF_EDITBOX | BrowseFlags.BIF_NEWDIALOGSTYLE;
-            DialogResult dr = fb.ShowDialog();
+            var dr = fb.ShowDialog();
 
             if (dr == DialogResult.OK)
             {
@@ -438,7 +438,7 @@ namespace Lyra2.LyraShell
 
         private void textBox4_LostFocus(object sender, EventArgs args)
         {
-            this.project = textBox4.Text;
+            this.project = this.textBox4.Text;
             this.updateFields(this.textBox1.Text);
         }
 
@@ -483,7 +483,7 @@ namespace Lyra2.LyraShell
 
         private string createSongTable(ISong song)
         {
-            string table = "<ul><table cellspacing=\"1\" cellpadding=\"2\" bgcolor=\"#aaaaaa\" width=\"800\">\n\t\t" +
+            var table = "<ul><table cellspacing=\"1\" cellpadding=\"2\" bgcolor=\"#aaaaaa\" width=\"800\">\n\t\t" +
                            "<tr>\n\t\t\t<td width=\"50\" bgcolor=\"dddddd\">\n\t\t\t\t<b>" + song.Number +
                            "</b>\n\t\t\t</td>\n\t\t\t<td width=\"710\" bgcolor=\"#dddddd\">" +
                            this.cleanText(song.Title, false) +
@@ -503,10 +503,10 @@ namespace Lyra2.LyraShell
         private string createTransTable(IDictionaryEnumerator translist)
         {
             translist.Reset();
-            string res = "";
+            var res = "";
             while (translist.MoveNext())
             {
-                ITranslation trans = (ITranslation) translist.Value;
+                var trans = (ITranslation) translist.Value;
                 res += "<tr>\n\t\t\t<td></td><td colspan=\"3\" bgcolor=\"dddddd\">" + trans + "</td></tr>\n\t\t";
                 res += "<tr>\n\t\t\t<td colspan=\"4\" style=\"padding:10px;\" bgcolor=\"#f4f4f4\">" +
                        this.cleanText(trans.Text, this.checkBox1.Checked) + "</td></tr>\n\t\t";
@@ -528,9 +528,9 @@ namespace Lyra2.LyraShell
         // Clean Text
         private string cleanText(string text, bool format)
         {
-            string clean = "";
-            bool intag = false;
-            for (int i = 0; i < text.Length; i++)
+            var clean = "";
+            var intag = false;
+            for (var i = 0; i < text.Length; i++)
             {
                 if (!intag)
                 {
@@ -580,13 +580,13 @@ namespace Lyra2.LyraShell
                 }
                 else
                 {
-                    int j = i;
+                    var j = i;
                     while (text[j] != '>') j++;
                     if (format)
                     {
-                        int taglength = j - i;
-                        bool closing = false;
-                        string tag = text.Substring(i, taglength);
+                        var taglength = j - i;
+                        var closing = false;
+                        var tag = text.Substring(i, taglength);
                         if (tag[0] == '/')
                         {
                             closing = true;
@@ -630,8 +630,8 @@ namespace Lyra2.LyraShell
 
         private string cleanXML(string text)
         {
-            string clean = "";
-            for (int i = 0; i < text.Length; i++)
+            var clean = "";
+            for (var i = 0; i < text.Length; i++)
             {
                 if (text[i] == '<')
                 {
@@ -682,15 +682,15 @@ namespace Lyra2.LyraShell
 
         private void XSLFile()
         {
-            StreamWriter writer = File.CreateText(this.textBox3.Text + "\\lyraxsl.xsl");
+            var writer = File.CreateText(this.textBox3.Text + "\\lyraxsl.xsl");
             writer.Write(this.XSL_1 + this.cleanXML(this.idtext) + this.XSL_2);
             writer.Close();
         }
 
         private void HTMLFile()
         {
-            StreamWriter writer = File.CreateText(this.textBox2.Text);
-            string html = "<html>\n\t" +
+            var writer = File.CreateText(this.textBox2.Text);
+            var html = "<html>\n\t" +
                           "<body>\n\t<script type=\"text/javascript\">// Load XML\n\t\t" +
                           "var xml = new ActiveXObject(\"Microsoft.XMLDOM\")\n\t\t" +
                           "xml.async = false\n\t\txml.load(\"data/lyradata.xml\")\n\n\t\t" +
@@ -709,22 +709,22 @@ namespace Lyra2.LyraShell
             Directory.CreateDirectory(this.textBox3.Text);
 
             // Create XML-File
-            StreamWriter writer = File.CreateText(this.textBox3.Text + "\\lyradata.xml");
+            var writer = File.CreateText(this.textBox3.Text + "\\lyradata.xml");
             writer.Write(this.DTD);
             writer.Close();
 
-            XmlDocument doc = new XmlDocument();
+            var doc = new XmlDocument();
             doc.Load(this.textBox3.Text + "\\lyradata.xml");
             XmlNode mainNode, curNode, nr, title, text, trans;
             XmlAttribute idattr;
             // create main node
             mainNode = doc.GetElementsByTagName("lyra")[0];
 
-            IEnumerator en = box.Items.GetEnumerator();
+            var en = box.Items.GetEnumerator();
             en.Reset();
             while (en.MoveNext())
             {
-                ISong song = (ISong) en.Current;
+                var song = (ISong) en.Current;
                 curNode = doc.CreateNode(XmlNodeType.Element, "Song", doc.NamespaceURI);
 
                 idattr = doc.CreateAttribute("id", doc.NamespaceURI);
@@ -743,13 +743,13 @@ namespace Lyra2.LyraShell
                 curNode.AppendChild(title);
                 curNode.AppendChild(text);
 
-                IDictionaryEnumerator transen = song.GetTransEnum();
+                var transen = song.GetTransEnum();
                 transen.Reset();
 
                 XmlNode transmain, transtitle, transtext;
                 while (transen.MoveNext())
                 {
-                    ITranslation curtrans = (ITranslation) transen.Value;
+                    var curtrans = (ITranslation) transen.Value;
                     transmain = doc.CreateNode(XmlNodeType.Element, "Translation", doc.NamespaceURI);
                     transtitle = doc.CreateNode(XmlNodeType.Element, "Title", doc.NamespaceURI);
                     transtext = doc.CreateNode(XmlNodeType.Element, "Text", doc.NamespaceURI);
@@ -775,14 +775,14 @@ namespace Lyra2.LyraShell
         // next
         private string getNext(ListBox box, ISong song)
         {
-            int i = (box.Items.IndexOf(song) + 1)%box.Items.Count;
+            var i = (box.Items.IndexOf(song) + 1)%box.Items.Count;
             return ((ISong) box.Items[i]).ID + ".html";
         }
 
         // back
         private string getBack(ListBox box, ISong song)
         {
-            int i = (box.Items.IndexOf(song) + box.Items.Count - 1)%box.Items.Count;
+            var i = (box.Items.IndexOf(song) + box.Items.Count - 1)%box.Items.Count;
             return ((ISong) box.Items[i]).ID + ".html";
         }
 
@@ -796,14 +796,14 @@ namespace Lyra2.LyraShell
                 Directory.CreateDirectory(this.textBox3.Text);
 
                 // Create Frame -> lyra.html
-                StreamWriter writer = File.CreateText(this.textBox2.Text);
+                var writer = File.CreateText(this.textBox2.Text);
                 writer.Write(this.HTMLHEADER + this.CLOSEHEADER + this.frame);
                 writer.Close();
 
                 // logo-image
                 File.Copy(Util.BASEURL + "\\doc\\logo.jpg", this.textBox3.Text + "\\logo.jpg", true);
                 // Create Links
-                StreamWriter links = File.CreateText(this.textBox3.Text + "\\inhalt.html");
+                var links = File.CreateText(this.textBox3.Text + "\\inhalt.html");
                 links.Write(this.HTMLHEADER);
                 links.Write("\tspan.smallgr\n\t\t\t{\n\t\t\t\tfont-size:8pt;\n\t\t\t\tcolor:#666666;\n\t\t\t}\n\n\t\t");
                 links.Write("\ttd.over\n\t\t\t{\n\t\t\t\tcursor:pointer;\n\t\t\t\tbackground-color:#c3dff5;\n\t\t\t\t" +
@@ -822,10 +822,10 @@ namespace Lyra2.LyraShell
                 links.Write("<table>\n\t\t");
 
                 // Create Inhalt
-                StreamWriter front = File.CreateText(this.textBox3.Text + "\\front.html");
+                var front = File.CreateText(this.textBox3.Text + "\\front.html");
                 front.Write(this.HTMLHEADER + this.CLOSEHEADER);
                 front.Write("<body>\n\n\t<h2>lyra Liedtexte (HTML)</h2>\n\t<br />\n\t<br />\n\t");
-                string fronttxt = "HTML Dateien, generiert von lyra " + Util.VER + Util.HTMLNL;
+                var fronttxt = "HTML Dateien, generiert von lyra " + Util.VER + Util.HTMLNL;
                 fronttxt += "Datum: " + Util.GetDate() + Util.HTMLNL + Util.HTMLNL + Util.HTMLNL;
                 fronttxt += "Generiert aus:" + Util.HTMLNL + "<b>" + this.idtext + "</b>" + Util.HTMLNL + Util.HTMLNL +
                             "Beinhaltet ";
@@ -847,22 +847,22 @@ namespace Lyra2.LyraShell
                 front.Write("</body>\n</html>");
 
                 // all Songs
-                IEnumerator en = box.Items.GetEnumerator();
+                var en = box.Items.GetEnumerator();
                 en.Reset();
                 while (en.MoveNext())
                 {
-                    ISong song = (ISong) en.Current;
+                    var song = (ISong) en.Current;
                     if (song != null)
                     {
-                        StreamWriter songhtml = File.CreateText(this.textBox3.Text + "\\" + song.ID + ".html");
+                        var songhtml = File.CreateText(this.textBox3.Text + "\\" + song.ID + ".html");
                         songhtml.Write(this.HTMLHEADER);
-                        songhtml.Write(songstyle);
+                        songhtml.Write(this.songstyle);
 
-                        string refcolor = Util.hexValue(Util.REFCOLOR.R) +
+                        var refcolor = Util.hexValue(Util.REFCOLOR.R) +
                                           Util.hexValue(Util.REFCOLOR.G) +
                                           Util.hexValue(Util.REFCOLOR.B);
 
-                        string refstyle = "span.refrain\n\t\t\t{\n\t\t\t\tcolor:#" + refcolor + ";\n\t\t\t\t";
+                        var refstyle = "span.refrain\n\t\t\t{\n\t\t\t\tcolor:#" + refcolor + ";\n\t\t\t\t";
                         if (!Util.refmode) refstyle += "font-weight:bold;\n\t\t\t";
                         refstyle += "\n\t\t\t}\n\n\t\t\t";
 

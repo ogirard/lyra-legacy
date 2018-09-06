@@ -21,7 +21,7 @@ namespace Lyra2.LyraShell
 
 		private DebugConsole()
 		{
-			InitializeComponent();
+		    this.InitializeComponent();
 			this.Clear();
 		}
 
@@ -32,13 +32,13 @@ namespace Lyra2.LyraShell
 		{
 			if (disposing)
 			{
-				if (components != null)
+				if (this.components != null)
 				{
-					components.Dispose();
+				    this.components.Dispose();
 				}
 			}
 			base.Dispose(disposing);
-			DebugConsole.cons = null;
+			cons = null;
 		}
 
 		#region Windows Form Designer generated code
@@ -127,17 +127,17 @@ namespace Lyra2.LyraShell
 
 		public static void ShowDebugConsole(GUI owner)
 		{
-			if (DebugConsole.cons == null)
+			if (cons == null)
 			{
-				DebugConsole.cons = new DebugConsole();
+				cons = new DebugConsole();
 			}
-			DebugConsole.cons.adaptSize(owner, null);
-			DebugConsole.cons.label2.Text = Util.NAME + " v" + Util.VER + "   " + Util.BUILD;
-			DebugConsole.cons.Show();
-			DebugConsole.cons.Focus();
+			cons.adaptSize(owner, null);
+			cons.label2.Text = Util.NAME + " v" + Util.VER + "   " + Util.BUILD;
+			cons.Show();
+			cons.Focus();
 		}
 
-		private void adaptSize(object sender, System.EventArgs args)
+		private void adaptSize(object sender, EventArgs args)
 		{
 			this.textBox1.Left = 0;
 			this.textBox1.Top = 50;
@@ -155,11 +155,11 @@ namespace Lyra2.LyraShell
 		{
 			if (msg != "")
 			{
-				DebugConsole.cons.textBox1.AppendText(DebugConsole.ReplaceESC(msg) + Util.NL + Util.NL);
+				cons.textBox1.AppendText(ReplaceESC(msg) + Util.NL + Util.NL);
 			}
 			if (ex != null)
 			{
-				DebugConsole.cons.textBox1.AppendText(ex + Util.NL + ">> source: " +
+				cons.textBox1.AppendText(ex + Util.NL + ">> source: " +
 					ex.Source + Util.NL + "Stack:" + Util.NL +
 					ex.StackTrace + Util.NL + Util.NL);
 			}
@@ -167,9 +167,9 @@ namespace Lyra2.LyraShell
 
 		private static string ReplaceESC(string msg)
 		{
-			string res = "";
-			bool last = false;
-			foreach (char c in msg)
+			var res = "";
+			var last = false;
+			foreach (var c in msg)
 			{
 				if (c == '\r')
 				{
@@ -189,7 +189,7 @@ namespace Lyra2.LyraShell
 		}
 
 		// clear console
-		private void button1_Click(object sender, System.EventArgs e)
+		private void button1_Click(object sender, EventArgs e)
 		{
 			this.Clear();
 		}

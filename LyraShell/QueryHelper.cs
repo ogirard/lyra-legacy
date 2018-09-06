@@ -19,13 +19,13 @@ namespace Lyra2.LyraShell
         return new List<string>();
       }
 
-      List<string> wordsOrPhrases = new List<string>();
+      var wordsOrPhrases = new List<string>();
       IList<string> parsedWords =
         query.Split(new[] { SpaceChar }, StringSplitOptions.RemoveEmptyEntries).Select(
           w => IsPhrase(w) ? w.Trim(QuoteChar) : w).ToList();
 
       string phrase = null;
-      foreach (string word in parsedWords)
+      foreach (var word in parsedWords)
       {
         if (word.StartsWith(Quote) && phrase == null)
         {

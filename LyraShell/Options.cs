@@ -8,13 +8,13 @@ namespace Lyra2.LyraShell
 	/// <summary>
 	/// Zusammendfassende Beschreibung für Options.
 	/// </summary>
-	public class Options : System.Windows.Forms.Form
+	public class Options : Form
 	{
 	    private readonly IStorage storage;
-	    private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TabControl tabControl1;
-		private System.Windows.Forms.TabPage tabPage1;
-		private System.Windows.Forms.TabPage tabPage2;
+	    private Label label1;
+		private TabControl tabControl1;
+		private TabPage tabPage1;
+		private TabPage tabPage2;
 		private LyraButtonControl button1;
 		private LyraButtonControl button2;
 		private LyraButtonControl button3;
@@ -25,100 +25,100 @@ namespace Lyra2.LyraShell
 		private System.ComponentModel.Container components = null;
 
 		private static Options options = null;
-		private System.Windows.Forms.RichTextBox richTextBox1;
-		private System.Windows.Forms.RichTextBox richTextBox2;
+		private RichTextBox richTextBox1;
+		private RichTextBox richTextBox2;
 		private LyraButtonControl button4;
 		private LyraButtonControl button5;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label label3;
+		private Label label2;
+		private Label label3;
 		private LyraButtonControl button6;
-		private System.Windows.Forms.RadioButton radioButton1;
-		private System.Windows.Forms.RadioButton radioButton2;
-		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.CheckBox checkBox1;
-		private System.Windows.Forms.CheckBox checkBox2;
-		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.CheckBox checkBox3;
+		private RadioButton radioButton1;
+		private RadioButton radioButton2;
+		private Panel panel1;
+		private CheckBox checkBox1;
+		private CheckBox checkBox2;
+		private Label label4;
+		private CheckBox checkBox3;
 		private LyraButtonControl button7;
-		private System.Windows.Forms.CheckBox checkBox4;
-		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.LinkLabel linkLabel1;
+		private CheckBox checkBox4;
+		private Label label5;
+		private Label label6;
+		private Label label7;
+		private LinkLabel linkLabel1;
 		private LyraButtonControl button8;
-		private System.Windows.Forms.RichTextBox richTextBox3;
-		private System.Windows.Forms.CheckBox checkBox5;
-		private System.Windows.Forms.NumericUpDown numericUpDown1;
-		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.TabPage tabPage3;
-		private System.Windows.Forms.RadioButton radioButton3;
-		private System.Windows.Forms.Button button9;
-		private System.Windows.Forms.Panel panel2;
+		private RichTextBox richTextBox3;
+		private CheckBox checkBox5;
+		private NumericUpDown numericUpDown1;
+		private Label label8;
+		private TabPage tabPage3;
+		private RadioButton radioButton3;
+		private Button button9;
+		private Panel panel2;
 		private LyraButtonControl button10;
-		private System.Windows.Forms.Panel panel3;
+		private Panel panel3;
 		private LyraButtonControl button11;
-		private System.Windows.Forms.Panel panel4;
-		private System.Windows.Forms.RadioButton radioButton4;
-		private System.Windows.Forms.RadioButton radioButton5;
+		private Panel panel4;
+		private RadioButton radioButton4;
+		private RadioButton radioButton5;
 		private LyraButtonControl button12;
-		private System.Windows.Forms.Panel panel5;
-		private System.Windows.Forms.RadioButton radioButton6;
+		private Panel panel5;
+		private RadioButton radioButton6;
 		private LyraButtonControl button13;
-		private System.Windows.Forms.PictureBox pictureBox1;
-		private System.Windows.Forms.Label label9;
-		private System.Windows.Forms.TabPage tabPage4;
-		private System.Windows.Forms.CheckBox checkBox6;
+		private PictureBox pictureBox1;
+		private Label label9;
+		private TabPage tabPage4;
+		private CheckBox checkBox6;
 		private bool changed = false;
-		private System.Windows.Forms.Button button14;
-		private System.Windows.Forms.Button button15;
-		private System.Windows.Forms.Button button16;
-		private System.Windows.Forms.Button button17;
-		private System.Windows.Forms.Button button18;
-		private System.Windows.Forms.Button button19;
-		private System.Windows.Forms.Label label10;
-		private System.Windows.Forms.Label label11;
-		private System.Windows.Forms.Label label12;
-		private System.Windows.Forms.Label label13;
-		private System.Windows.Forms.Label label14;
-		private System.Windows.Forms.Label label15;
-		private System.Windows.Forms.Label label16;
-		private System.Windows.Forms.Label label17;
-		private System.Windows.Forms.PictureBox pictureBox2;
-		private System.Windows.Forms.PictureBox pictureBox3;
-		private System.Windows.Forms.PictureBox pictureBox4;
-		private System.Windows.Forms.PictureBox pictureBox5;
-		private System.Windows.Forms.PictureBox pictureBox6;
-		private System.Windows.Forms.PictureBox pictureBox7;
-		private System.Windows.Forms.Panel panel6;
-		private System.Windows.Forms.Panel panel7;
-		private System.Windows.Forms.Panel panel8;
-		private System.Windows.Forms.Panel panel9;
-		private System.Windows.Forms.Panel panel10;
-		private System.Windows.Forms.Panel panel11;
-		private System.Windows.Forms.PictureBox pictureBox8;
+		private Button button14;
+		private Button button15;
+		private Button button16;
+		private Button button17;
+		private Button button18;
+		private Button button19;
+		private Label label10;
+		private Label label11;
+		private Label label12;
+		private Label label13;
+		private Label label14;
+		private Label label15;
+		private Label label16;
+		private Label label17;
+		private PictureBox pictureBox2;
+		private PictureBox pictureBox3;
+		private PictureBox pictureBox4;
+		private PictureBox pictureBox5;
+		private PictureBox pictureBox6;
+		private PictureBox pictureBox7;
+		private Panel panel6;
+		private Panel panel7;
+		private Panel panel8;
+		private Panel panel9;
+		private Panel panel10;
+		private Panel panel11;
+		private PictureBox pictureBox8;
         private Label label18;
         private ComboBox comboStyle;
 		private static int REMOPENTAB = 0;
 
 		public static void ShowOptions(IStorage storage)
 		{
-			if (Options.options == null)
+			if (options == null)
 			{
-                Options.options = new Options(storage);
-				Options.options.button2.Enabled = false;
-				Options.options.checkBox1.Enabled = false;
-				Options.options.Show();
+                options = new Options(storage);
+				options.button2.Enabled = false;
+				options.checkBox1.Enabled = false;
+				options.Show();
 			}
 			else
 			{
-				Options.options.Focus();
+				options.Focus();
 			}
 		}
 
         private Options(IStorage storage)
 		{
             this.storage = storage;
-            InitializeComponent();
+		    this.InitializeComponent();
 			this.richTextBox1.Font = Util.FONT;
 			this.richTextBox2.Font = Util.SPECFONT;
 			this.richTextBox3.Font = Util.TRANSFONT;
@@ -142,7 +142,7 @@ namespace Lyra2.LyraShell
 			this.checkBox1.Enabled = Pswd.OK;
 
             this.comboStyle.BeginUpdate();
-            foreach (Style style in this.storage.Styles)
+            foreach (var style in this.storage.Styles)
             {
                 this.comboStyle.Items.Add(style);
                 if (style.IsDefault)
@@ -180,7 +180,7 @@ namespace Lyra2.LyraShell
 					break;
 			}
 			this.checkBox6.Checked = Util.CASCADEPIC;
-			this.tabControl1.SelectedIndex = Options.REMOPENTAB;
+			this.tabControl1.SelectedIndex = REMOPENTAB;
 			// FX
 			this.setFilename(Util.FX[0], this.label12, this.pictureBox2);
 			this.setFilename(Util.FX[1], this.label13, this.pictureBox3);
@@ -196,14 +196,14 @@ namespace Lyra2.LyraShell
 		/// </summary>
 		protected override void Dispose(bool disposing)
 		{
-			Options.REMOPENTAB = this.tabControl1.SelectedIndex;
-			Options.options = null;
+			REMOPENTAB = this.tabControl1.SelectedIndex;
+			options = null;
 
 			if (disposing)
 			{
-				if (components != null)
+				if (this.components != null)
 				{
-					components.Dispose();
+				    this.components.Dispose();
 				}
 			}
 			base.Dispose(disposing);
@@ -1249,7 +1249,7 @@ namespace Lyra2.LyraShell
 			this.panel1.Top = this.button6.Top;
 			this.radioButton2.Top = this.panel1.Top - 5;
 			this.radioButton1.Top = this.radioButton2.Top + this.radioButton2.Height + 5;
-			int h = this.radioButton1.Top + this.radioButton1.Height + 35;
+			var h = this.radioButton1.Top + this.radioButton1.Height + 35;
 			this.tabControl1.Height = h > 310 ? h : 310;
 			this.button1.Top = this.tabControl1.Top + this.tabControl1.Height + 15;
 			this.button2.Top = this.button1.Top;
@@ -1282,7 +1282,7 @@ namespace Lyra2.LyraShell
 				Util.updateRegSettings();
 				this.changed = false;
 
-			    Style selectedStyle = this.comboStyle.SelectedItem as Style;
+			    var selectedStyle = this.comboStyle.SelectedItem as Style;
                 if (selectedStyle != null && !selectedStyle.IsDefault)
                 {
                     this.storage.SetStyleAsDefault(selectedStyle);
@@ -1292,48 +1292,48 @@ namespace Lyra2.LyraShell
 
 
 		// abbrechen
-		private void button3_Click(object sender, System.EventArgs e)
+		private void button3_Click(object sender, EventArgs e)
 		{
 			this.Close();
 		}
 
 		// ok
-		private void button1_Click(object sender, System.EventArgs e)
+		private void button1_Click(object sender, EventArgs e)
 		{
 			this.commit();
 			this.Close();
 		}
 
 		// übernehmen
-		private void button2_Click(object sender, System.EventArgs e)
+		private void button2_Click(object sender, EventArgs e)
 		{
 			this.commit();
 			this.button2.Enabled = false;
 		}
 
 		// Standardschriftart ändern
-		private void button4_Click(object sender, System.EventArgs e)
+		private void button4_Click(object sender, EventArgs e)
 		{
 			this.richTextBox1.Font = this.showFontDialog(this.richTextBox1.Font);
 			this.refresh();
 		}
 
 		// Spezial-Schriftart ändern
-		private void button5_Click(object sender, System.EventArgs e)
+		private void button5_Click(object sender, EventArgs e)
 		{
 			this.richTextBox2.Font = this.showFontDialog(this.richTextBox2.Font);
 			this.refresh();
 		}
 
 		// Translation-Schriftart ändern
-		private void button8_Click(object sender, System.EventArgs e)
+		private void button8_Click(object sender, EventArgs e)
 		{
 			this.richTextBox3.Font = this.showFontDialog(this.richTextBox3.Font);
 			this.refresh();
 		}
 
 		// Farbe wählen
-		private void button6_Click(object sender, System.EventArgs e)
+		private void button6_Click(object sender, EventArgs e)
 		{
 			this.panel1.BackColor = this.showColorDialog(this.panel1.BackColor);
 		}
@@ -1344,12 +1344,12 @@ namespace Lyra2.LyraShell
 		private Font showFontDialog(Font curFont)
 		{
 			this.fd.Font = curFont;
-			DialogResult dr = this.fd.ShowDialog(this);
+			var dr = this.fd.ShowDialog(this);
 			if (dr == DialogResult.OK)
 			{
 				this.changed = true;
 				this.button2.Enabled = true;
-				return fd.Font;
+				return this.fd.Font;
 			}
 			return curFont;
 		}
@@ -1360,18 +1360,18 @@ namespace Lyra2.LyraShell
 		private Color showColorDialog(Color curColor)
 		{
 			this.cd.Color = curColor;
-			DialogResult dr = this.cd.ShowDialog(this);
+			var dr = this.cd.ShowDialog(this);
 			if (dr == DialogResult.OK)
 			{
 				this.changed = true;
 				this.button2.Enabled = true;
-				return cd.Color;
+				return this.cd.Color;
 			}
 			return curColor;
 		}
 
 		// refrain normal
-		private void radioButton2_CheckedChanged(object sender, System.EventArgs e)
+		private void radioButton2_CheckedChanged(object sender, EventArgs e)
 		{
 			this.changed = true;
 			this.button2.Enabled = true;
@@ -1379,7 +1379,7 @@ namespace Lyra2.LyraShell
 		}
 
 		// refrain fett
-		private void radioButton1_CheckedChanged(object sender, System.EventArgs e)
+		private void radioButton1_CheckedChanged(object sender, EventArgs e)
 		{
 			this.changed = true;
 			this.button2.Enabled = true;
@@ -1387,42 +1387,42 @@ namespace Lyra2.LyraShell
 		}
 
 		// buildnews
-		private void checkBox2_Click(object sender, System.EventArgs e)
+		private void checkBox2_Click(object sender, EventArgs e)
 		{
 			this.changed = true;
 			this.button2.Enabled = true;
 		}
 
 		// time to show the nr at startup
-		private void numericUpDown1_ValueChanged(object sender, System.EventArgs e)
+		private void numericUpDown1_ValueChanged(object sender, EventArgs e)
 		{
 			this.changed = true;
 			this.button2.Enabled = true;
 		}
 
 		// AllowCommit
-		private void checkBox1_Click(object sender, System.EventArgs e)
+		private void checkBox1_Click(object sender, EventArgs e)
 		{
 			this.changed = true;
 			this.button2.Enabled = true;
 		}
 
 		// show right window
-		private void checkBox3_Click(object sender, System.EventArgs e)
+		private void checkBox3_Click(object sender, EventArgs e)
 		{
 			this.changed = true;
 			this.button2.Enabled = true;
 		}
 
 		// show german title
-		private void checkBox4_Click(object sender, System.EventArgs e)
+		private void checkBox4_Click(object sender, EventArgs e)
 		{
 			this.changed = true;
 			this.button2.Enabled = true;
 		}
 
 		// show nr at view-startup
-		private void checkBox5_CheckedChanged(object sender, System.EventArgs e)
+		private void checkBox5_CheckedChanged(object sender, EventArgs e)
 		{
 			this.changed = true;
 			this.button2.Enabled = true;
@@ -1442,18 +1442,18 @@ namespace Lyra2.LyraShell
 			this.button7.Enabled = false;
 		}
 
-		private void button7_Click(object sender, System.EventArgs e)
+		private void button7_Click(object sender, EventArgs e)
 		{
 			Pswd.showAdminPassword(this);
 		}
 
-		private void linkLabel1_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			Frst.ShowInfo();
 		}
 
 		// unicolor
-		private void button10_Click(object sender, System.EventArgs e)
+		private void button10_Click(object sender, EventArgs e)
 		{
 			this.radioButton4.Checked = true;
 			this.radioButton5.Checked = false;
@@ -1462,7 +1462,7 @@ namespace Lyra2.LyraShell
 		}
 
 		// grad1
-		private void button12_Click(object sender, System.EventArgs e)
+		private void button12_Click(object sender, EventArgs e)
 		{
 			this.radioButton4.Checked = false;
 			this.radioButton5.Checked = true;
@@ -1471,7 +1471,7 @@ namespace Lyra2.LyraShell
 		}
 
 		// grad2
-		private void button11_Click(object sender, System.EventArgs e)
+		private void button11_Click(object sender, EventArgs e)
 		{
 			this.radioButton4.Checked = false;
 			this.radioButton5.Checked = true;
@@ -1482,14 +1482,14 @@ namespace Lyra2.LyraShell
 		// picture chooser
 		private string picturi = Util.PICTURI;
 
-		private void button13_Click(object sender, System.EventArgs e)
+		private void button13_Click(object sender, EventArgs e)
 		{
 			this.radioButton4.Checked = false;
 			this.radioButton5.Checked = false;
 			this.radioButton6.Checked = true;
 			this.changed = true;
 			this.button2.Enabled = true;
-			OpenFileDialog fd = new OpenFileDialog();
+			var fd = new OpenFileDialog();
 			fd.CheckPathExists = true;
 			fd.CheckFileExists = true;
 			fd.Filter = "Bilddateien (*.jpg;*.gif;*.png;*.bmp)|*.jpg;*.gif;*.png;*.bmp|Alle Dateien (*.*)|*.*";
@@ -1499,7 +1499,7 @@ namespace Lyra2.LyraShell
 			}
 			try
 			{
-				Image img = Image.FromFile(this.picturi);
+				var img = Image.FromFile(this.picturi);
 				this.pictureBox1.Image = Util.stretchProportional(img, this.pictureBox1.Size);
 			}
 			catch (Exception)
@@ -1521,13 +1521,13 @@ namespace Lyra2.LyraShell
 		// FX
 		private string[] FX = (string[]) Util.FX.Clone();
 
-		private void getFile(System.Windows.Forms.Label label, System.Windows.Forms.PictureBox pictBox, int fnr)
+		private void getFile(Label label, PictureBox pictBox, int fnr)
 		{
-			FX.FXResult fxr = LyraShell.FX.ShowFX(this);
+			var fxr = LyraShell.FX.ShowFX(this);
 			if (fxr == LyraShell.FX.FXResult.NewFile)
 			{
-				string filename = "";
-				OpenFileDialog fd = new OpenFileDialog();
+				var filename = "";
+				var fd = new OpenFileDialog();
 				fd.CheckPathExists = true;
 				fd.CheckFileExists = true;
 				fd.Filter = "Alle Dateien (*.*)|*.*";
@@ -1550,8 +1550,8 @@ namespace Lyra2.LyraShell
 			}
 			else if (fxr == LyraShell.FX.FXResult.PictChoice)
 			{
-				string filename = "";
-				FolderBrowserDialog fbd = new FolderBrowserDialog();
+				var filename = "";
+				var fbd = new FolderBrowserDialog();
 				fbd.Description = "Wählen Sie den Ordner mit Ihren Bildern aus!" + Util.NL;
 				fbd.Description += "(Bilder aus Unterverzeichnissen werden NICHT angezeigt)";
 				fbd.ShowNewFolderButton = false;
@@ -1568,16 +1568,16 @@ namespace Lyra2.LyraShell
 		}
 
 		// format label
-		private void setFilename(string filename, System.Windows.Forms.Label label, System.Windows.Forms.PictureBox pictBox)
+		private void setFilename(string filename, Label label, PictureBox pictBox)
 		{
-			string[] fsplit = filename.Split('\\');
-			string filelabel = fsplit[fsplit.Length - 1];
+			var fsplit = filename.Split('\\');
+			var filelabel = fsplit[fsplit.Length - 1];
 			if (filelabel.Length > 80) filelabel = filelabel.Substring(0, 80) + "...";
 			if (filename.StartsWith("pict://")) filelabel += " (Bilder)";
 			label.Text = filelabel;
 			fsplit = filename.Split('.');
-			string ext = fsplit[fsplit.Length - 1];
-			Icon icon = FileLauncher.IconFromExtension(ext, FileLauncher.IconSize.Large);
+			var ext = fsplit[fsplit.Length - 1];
+			var icon = FileLauncher.IconFromExtension(ext, FileLauncher.IconSize.Large);
 			Bitmap iconBmp;
 			if (icon != null)
 			{
@@ -1585,44 +1585,44 @@ namespace Lyra2.LyraShell
 			}
 			else
 			{
-				System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof (Options));
-				iconBmp = new Bitmap((System.Drawing.Image) resources.GetObject("pictureBox2.Image"));
+				var resources = new System.Resources.ResourceManager(typeof (Options));
+				iconBmp = new Bitmap((Image) resources.GetObject("pictureBox2.Image"));
 			}
 			pictBox.Image = iconBmp;
 		}
 
 		// F1
-		private void button14_Click(object sender, System.EventArgs e)
+		private void button14_Click(object sender, EventArgs e)
 		{
 			this.getFile(this.label12, this.pictureBox2, 0);
 		}
 
 		// F2
-		private void button15_Click(object sender, System.EventArgs e)
+		private void button15_Click(object sender, EventArgs e)
 		{
 			this.getFile(this.label13, this.pictureBox3, 1);
 		}
 
 		// F3
-		private void button16_Click(object sender, System.EventArgs e)
+		private void button16_Click(object sender, EventArgs e)
 		{
 			this.getFile(this.label14, this.pictureBox4, 2);
 		}
 
 		// F4
-		private void button17_Click(object sender, System.EventArgs e)
+		private void button17_Click(object sender, EventArgs e)
 		{
 			this.getFile(this.label15, this.pictureBox5, 3);
 		}
 
 		// F5
-		private void button18_Click(object sender, System.EventArgs e)
+		private void button18_Click(object sender, EventArgs e)
 		{
 			this.getFile(this.label16, this.pictureBox6, 4);
 		}
 
 		// F6
-		private void button19_Click(object sender, System.EventArgs e)
+		private void button19_Click(object sender, EventArgs e)
 		{
 			this.getFile(this.label17, this.pictureBox7, 5);
 		}

@@ -16,37 +16,37 @@ namespace Lyra2.LyraShell
 			set
 			{
 				this.defaultText = value;
-				if(base.Text == "")
+				if(this.Text == "")
 				{
-					base.Text = value;
-					base.ForeColor = Color.DimGray;
+					this.Text = value;
+					this.ForeColor = Color.DimGray;
 				}
 			}
 		}
 		
 		public SearchTextBox()
 		{
-			this.Enter += new EventHandler(SearchTextBox_Enter);
-			this.Leave += new EventHandler(SearchTextBox_Leave);
-			base.Text = this.defaultText;
-			base.ForeColor = Color.DimGray;
+			this.Enter += new EventHandler(this.SearchTextBox_Enter);
+			this.Leave += new EventHandler(this.SearchTextBox_Leave);
+			this.Text = this.defaultText;
+			this.ForeColor = Color.DimGray;
 		}
 
 		private void SearchTextBox_Enter(object sender, EventArgs e)
 		{
-			if(base.Text == this.defaultText)
+			if(this.Text == this.defaultText)
 			{
-				base.ForeColor = Color.Black;
-				base.Text = "";
+				this.ForeColor = Color.Black;
+				this.Text = "";
 			}
 		}
 
 		private void SearchTextBox_Leave(object sender, EventArgs e)
 		{
-			if(base.Text == "")
+			if(this.Text == "")
 			{
-				base.ForeColor = Color.DimGray;
-				base.Text = this.defaultText;
+				this.ForeColor = Color.DimGray;
+				this.Text = this.defaultText;
 			}
 
 		}

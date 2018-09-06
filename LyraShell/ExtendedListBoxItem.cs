@@ -24,14 +24,14 @@ namespace Lyra2.LyraShell
         [Browsable(false)]
         public Icon UserPhoto
         {
-            set { _photo = value; }
+            set { this._photo = value; }
         }
 
         protected Icon _exitIcon = null;
         [Browsable(false)]
         public Icon ExitIcon
         {
-            set { _exitIcon = value; }
+            set { this._exitIcon = value; }
         }
 
         #region General Properties
@@ -43,8 +43,8 @@ namespace Lyra2.LyraShell
         [Description("Choose to either have no border, or a border with square or rounded edges")]
         public BorderTypes BorderType
         {
-            get { return _borderType; }
-            set { _borderType = value; }
+            get { return this._borderType; }
+            set { this._borderType = value; }
         }
 
         protected int _minSize = 16;
@@ -52,8 +52,8 @@ namespace Lyra2.LyraShell
         [Description("Item size when collapsed...Does not take effect until item reselected")]
         public int MinSize
         {
-            get { return _minSize; }
-            set { _minSize = value; }
+            get { return this._minSize; }
+            set { this._minSize = value; }
         }
 
         protected int _maxSize = 100;
@@ -61,8 +61,8 @@ namespace Lyra2.LyraShell
         [Description("Item size when extended...Does not take effect until item reselected")]
         public int MaxSize
         {
-            get { return _maxSize; }
-            set { _maxSize = value; }
+            get { return this._maxSize; }
+            set { this._maxSize = value; }
         }
 
         #endregion
@@ -74,8 +74,8 @@ namespace Lyra2.LyraShell
         [Description("String displayed when minimied")]
         public string MinString
         {
-            get { return _minString; }
-            set { _minString = value; }
+            get { return this._minString; }
+            set { this._minString = value; }
         }
 
         protected Color _backColor1_C = Color.Gainsboro;
@@ -83,8 +83,8 @@ namespace Lyra2.LyraShell
         [Description("Linear Gradient Color one")]
         public Color BackColor1_C
         {
-            get { return _backColor1_C; }
-            set { _backColor1_C = value; }
+            get { return this._backColor1_C; }
+            set { this._backColor1_C = value; }
         }
 
         protected Color _backColor2_C = Color.LightSlateGray;
@@ -92,8 +92,8 @@ namespace Lyra2.LyraShell
         [Description("Linear Gradient Color two")]
         public Color BackColor2_C
         {
-            get { return _backColor2_C; }
-            set { _backColor2_C = value; }
+            get { return this._backColor2_C; }
+            set { this._backColor2_C = value; }
         }
 
         protected float _focusAngle_C = 90f;
@@ -101,8 +101,8 @@ namespace Lyra2.LyraShell
         [Description("(MSDN) \"The angle, measured in degrees clockwise from the x-axis, of the gradient's orientation line. \"")]
         public float FocusAngle_C
         {
-            get { return _focusAngle_C; }
-            set { _focusAngle_C = value; }
+            get { return this._focusAngle_C; }
+            set { this._focusAngle_C = value; }
         }
 
         protected bool _useGlow = true;
@@ -110,8 +110,8 @@ namespace Lyra2.LyraShell
         [Description("Choose to add glow to item")]
         public bool AddGlow
         {
-            get { return _useGlow; }
-            set { _useGlow = value; }
+            get { return this._useGlow; }
+            set { this._useGlow = value; }
         }
 
         protected int _glowBegin = 150;
@@ -120,13 +120,13 @@ namespace Lyra2.LyraShell
         [DefaultValue(150)]
         public int BeginGlowValue
         {
-            get { return _glowBegin; }
+            get { return this._glowBegin; }
             set
             {
                 if ((value < 0) || (value > 255))
                     throw new ArgumentException("Value must be between 0 and 255, 0 being transparent and 255 opaque");
                 else
-                    _glowBegin = value;
+                    this._glowBegin = value;
             }
         }
 
@@ -136,13 +136,13 @@ namespace Lyra2.LyraShell
         [DefaultValue(0)]
         public int EndGlowValue
         {
-            get { return _glowEnd; }
+            get { return this._glowEnd; }
             set
             {
                 if ((value < 0) || (value > 255))
                     throw new ArgumentException("Value must be between 0 and 255");
                 else
-                    _glowEnd = value;
+                    this._glowEnd = value;
             }
         }
 
@@ -152,8 +152,8 @@ namespace Lyra2.LyraShell
         [DefaultValue(typeof(Color), "White")]
         public Color TransparencyColor
         {
-            get { return _transparencyColor; }
-            set { _transparencyColor = value; }
+            get { return this._transparencyColor; }
+            set { this._transparencyColor = value; }
         }
 
         
@@ -166,8 +166,8 @@ namespace Lyra2.LyraShell
         [Description("String displayed when item is extended")]
         public string MaxString
         {
-            get { return _maxString; }
-            set { _maxString = value; }
+            get { return this._maxString; }
+            set { this._maxString = value; }
         }
 
         protected Color _backColor1_E = Color.Gainsboro;
@@ -175,8 +175,8 @@ namespace Lyra2.LyraShell
         [Description("Linear Gradient Color one")]
         public Color BackColor1_E
         {
-            get { return _backColor1_E; }
-            set { _backColor1_E = value; }
+            get { return this._backColor1_E; }
+            set { this._backColor1_E = value; }
         }
 
         protected Color _backColor2_E = Color.LightSlateGray;
@@ -184,8 +184,8 @@ namespace Lyra2.LyraShell
         [Description("Linear Gradient Color two")]
         public Color BackColor2_E
         {
-            get { return _backColor2_E; }
-            set { _backColor2_E = value; }
+            get { return this._backColor2_E; }
+            set { this._backColor2_E = value; }
         }
 
         protected float _focusAngle_E = 65f;
@@ -193,8 +193,8 @@ namespace Lyra2.LyraShell
         [Description("(MSDN) \"The angle, measured in degrees clockwise from the x-axis, of the gradient's orientation line. \"")]
         public float FocusAngle
         {
-            get { return _focusAngle_E; }
-            set { _focusAngle_E = value; }
+            get { return this._focusAngle_E; }
+            set { this._focusAngle_E = value; }
         }
 
         #endregion
@@ -207,13 +207,13 @@ namespace Lyra2.LyraShell
 
 		public ExtendedListBoxItem(int mns, int mxs, string ms, Color c1, Color c2)
 		{
-			_minSize = mns;
-			_maxSize = mxs;
-			_minString = ms;
-            _backColor1_E = c1;
-            _backColor2_E = c2;
-            _backColor1_C = c1;
-            _backColor2_C = c2;
+		    this._minSize = mns;
+		    this._maxSize = mxs;
+		    this._minString = ms;
+		    this._backColor1_E = c1;
+		    this._backColor2_E = c2;
+		    this._backColor1_C = c1;
+		    this._backColor2_C = c2;
         }
 
         /// <summary>
@@ -222,40 +222,36 @@ namespace Lyra2.LyraShell
         /// <param name="e"></param>
 		public virtual void DrawCollapsed(DrawItemEventArgs e)
 		{
-			Font fnt = new Font("Arial", 8);
-			SolidBrush br = new SolidBrush(Color.Black);
+			var fnt = new Font("Arial", 8);
+			var br = new SolidBrush(Color.Black);
 
             //Center text vertically in collapsed space
-            SizeF strSize = e.Graphics.MeasureString(_minString, fnt);
-            Rectangle textRct = new Rectangle(
+            var strSize = e.Graphics.MeasureString(this._minString, fnt);
+            var textRct = new Rectangle(
                 e.Bounds.X + 5,
                 e.Bounds.Y + (int)(e.Bounds.Height - strSize.Height) / 2 ,
                 e.Bounds.Width - 10,
                 e.Bounds.Height - 4);
 
             //Gradient for background
-            LinearGradientBrush lgb = new LinearGradientBrush(
-                e.Bounds,
-                _backColor1_C,
-                _backColor2_C,
-                _focusAngle_C,
+            var lgb = new LinearGradientBrush(
+                e.Bounds, this._backColor1_C, this._backColor2_C, this._focusAngle_C,
                 true);
 
-            GraphicsPath gp = DrawBorder(e);
+            var gp = this.DrawBorder(e);
             e.Graphics.FillPath(lgb, gp);
             
             //Adds a glow to the item
-            if (_useGlow)
-                DrawGlow(e, gp);
+            if (this._useGlow) this.DrawGlow(e, gp);
 	
-            e.Graphics.DrawString(_minString, fnt, br, textRct);
+            e.Graphics.DrawString(this._minString, fnt, br, textRct);
 
             gp.Dispose();
             lgb.Dispose();
             fnt.Dispose();
 			br.Dispose();
 
-            isCollapsed = true;
+		    this.isCollapsed = true;
         }
 
         /// <summary>
@@ -265,13 +261,12 @@ namespace Lyra2.LyraShell
         /// <param name="gp"></param>
         private void DrawGlow(DrawItemEventArgs e, GraphicsPath gp)
         {
-            RectangleF rctf = gp.GetBounds();
+            var rctf = gp.GetBounds();
 
-            LinearGradientBrush lgBrush = new LinearGradientBrush(
+            var lgBrush = new LinearGradientBrush(
                 rctf,
-                Color.FromArgb(_glowBegin, _transparencyColor),
-                Color.FromArgb(_glowEnd, _transparencyColor),
-                _focusAngle_C,
+                Color.FromArgb(this._glowBegin, this._transparencyColor),
+                Color.FromArgb(this._glowEnd, this._transparencyColor), this._focusAngle_C,
                 true);
             e.Graphics.FillPath(lgBrush, gp); ;
 
@@ -286,56 +281,53 @@ namespace Lyra2.LyraShell
         /// <param name="e"></param>
         public virtual void DrawExpanded(DrawItemEventArgs e)
         {
-            Font fnt = new Font("Palatino Linotype", 10);
-            SolidBrush br = new SolidBrush(Color.Black);
-            SolidBrush br1 = new SolidBrush(Color.Red);
+            var fnt = new Font("Palatino Linotype", 10);
+            var br = new SolidBrush(Color.Black);
+            var br1 = new SolidBrush(Color.Red);
 
-            Rectangle nameRct = new Rectangle(
+            var nameRct = new Rectangle(
                 e.Bounds.X + 55,
                 e.Bounds.Y + 2,
                 e.Bounds.Width - 10,
                 20);
-            Rectangle textRct = new Rectangle(
+            var textRct = new Rectangle(
                 e.Bounds.X + 55,
                 e.Bounds.Y + 25,
                 e.Bounds.Width - 60,
                 e.Bounds.Height - 10);
-            Rectangle photoRct = new Rectangle(
+            var photoRct = new Rectangle(
                 e.Bounds.X + 7,
                 e.Bounds.Y + 5,
                 48,
                 48);
 
-            exitRct.X = e.Bounds.Width - 25;
-            exitRct.Y = e.Bounds.Y + 5;
+            this.exitRct.X = e.Bounds.Width - 25;
+            this.exitRct.Y = e.Bounds.Y + 5;
 
-            if (_photo == null)
+            if (this._photo == null)
             {
                 textRct.X = 5;
                 nameRct.X = 5;
                 nameRct.Width = e.Bounds.Width - 25;
             }
 
-            LinearGradientBrush lgb = new LinearGradientBrush(
-                e.Bounds, 
-                _backColor1_E, 
-                _backColor2_E, 
-                _focusAngle_E, 
+            var lgb = new LinearGradientBrush(
+                e.Bounds, this._backColor1_E, this._backColor2_E, this._focusAngle_E, 
                 true);
 
             //Draw border then fill its interior
-            GraphicsPath gp = DrawBorder(e);
+            var gp = this.DrawBorder(e);
             e.Graphics.FillPath(lgb, gp);
 
             //Draw photo image
-            if (_photo != null)
-                e.Graphics.DrawIcon(_photo, photoRct);
+            if (this._photo != null)
+                e.Graphics.DrawIcon(this._photo, photoRct);
 
-            if (_exitIcon != null)
-                e.Graphics.DrawIcon(_exitIcon, exitRct);
+            if (this._exitIcon != null)
+                e.Graphics.DrawIcon(this._exitIcon, this.exitRct);
 
-            e.Graphics.DrawString(_minString, fnt, br1, nameRct);
-            e.Graphics.DrawString(_maxString, fnt, br, textRct);
+            e.Graphics.DrawString(this._minString, fnt, br1, nameRct);
+            e.Graphics.DrawString(this._maxString, fnt, br, textRct);
 
             gp.Dispose();
             lgb.Dispose();
@@ -343,7 +335,7 @@ namespace Lyra2.LyraShell
             br.Dispose();
             br1.Dispose();
 
-            isCollapsed = false;
+            this.isCollapsed = false;
         }
 
         private const int ArcWidth = 10;
@@ -354,25 +346,25 @@ namespace Lyra2.LyraShell
         /// <returns></returns>
         protected GraphicsPath DrawBorder(DrawItemEventArgs e)
         {
-            Rectangle rct = e.Bounds;
-            GraphicsPath gp = new GraphicsPath();
+            var rct = e.Bounds;
+            var gp = new GraphicsPath();
 
             rct.Width -= 1;
 
-            if (_borderType == BorderTypes.none)
+            if (this._borderType == BorderTypes.none)
                 gp.AddRectangle(rct);
 
-            if (_borderType == BorderTypes.square)
+            if (this._borderType == BorderTypes.square)
             {
                 gp.AddRectangle(rct);
                 e.Graphics.DrawRectangle(new Pen(Color.Black, 1), rct);
             }
 
-            if (_borderType == BorderTypes.rounded)
+            if (this._borderType == BorderTypes.rounded)
             {
-                Rectangle arcRct = new Rectangle(rct.X, rct.Y, ArcWidth, ArcWidth);
-                Point pt1 = new Point(rct.X + ArcWidth, rct.Y);
-                Point pt2 = new Point(rct.X + rct.Width - ArcWidth, rct.Y);
+                var arcRct = new Rectangle(rct.X, rct.Y, ArcWidth, ArcWidth);
+                var pt1 = new Point(rct.X + ArcWidth, rct.Y);
+                var pt2 = new Point(rct.X + rct.Width - ArcWidth, rct.Y);
 
                 gp.AddArc(arcRct, 180, 90);
                 gp.AddLine(pt1, pt2);
@@ -403,10 +395,10 @@ namespace Lyra2.LyraShell
 
         public bool HitCheck(Point pt)
         {
-            if (isCollapsed)
+            if (this.isCollapsed)
                 return false;
             else
-                return exitRct.Contains(pt);
+                return this.exitRct.Contains(pt);
 
         }
     }

@@ -16,7 +16,7 @@ namespace Lyra2.LyraShell
         {
             // initialize hashmap
             stopWords = new Hashtable(1024);
-            using (StreamReader sr = new StreamReader(Application.StartupPath + "\\data\\stopwords.txt"))
+            using (var sr = new StreamReader(Application.StartupPath + "\\data\\stopwords.txt"))
             {
                 string line;
                 while ((line = sr.ReadLine()) != null)
@@ -69,16 +69,16 @@ namespace Lyra2.LyraShell
             IList<string> words = new List<string>();
             IList<int> numbers = new List<int>();
             lyraQuery = lyraQuery.Trim();
-            string[] wordParts = lyraQuery.Split(new[] { ' ' } , StringSplitOptions.RemoveEmptyEntries);
+            var wordParts = lyraQuery.Split(new[] { ' ' } , StringSplitOptions.RemoveEmptyEntries);
 
-            for (int i = 0; i < wordParts.Length; i++)
+            for (var i = 0; i < wordParts.Length; i++)
             {
                 if (!string.IsNullOrEmpty(wordParts[i]))
                 {
-                    string word = wordParts[i];
+                    var word = wordParts[i];
                     if (word.StartsWith("\""))
                     {
-                        string nextWord = word;
+                        var nextWord = word;
                         while (!wordParts[i].EndsWith("\"") && i < wordParts.Length - 1)
                         {
                             nextWord += " " + wordParts[++i];
@@ -87,7 +87,7 @@ namespace Lyra2.LyraShell
                     }
                     word = word.TrimStart('*', '?');
                     
-                    int nr = IsNumber(word);
+                    var nr = IsNumber(word);
                     if (nr != -1)
                     {
                         if(!numbers.Contains(nr)) numbers.Add(nr);
@@ -98,9 +98,9 @@ namespace Lyra2.LyraShell
                     }
                 }
             }
-            string query = "";
+            var query = "";
 
-            foreach (string word in words)
+            foreach (var word in words)
             {
                 if (exact || word.EndsWith("\"") || word.IndexOfAny(new[] { '*', '?' }) > 0)
                 {
@@ -119,7 +119,7 @@ namespace Lyra2.LyraShell
 
             Console.Out.WriteLine(lyraQuery + " --> " + query);
 
-            LyraQuery resultQuery = new LyraQuery(lyraQuery, query, numbers, exact);
+            var resultQuery = new LyraQuery(lyraQuery, query, numbers, exact);
             return resultQuery;
         }
     }

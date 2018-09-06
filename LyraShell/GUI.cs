@@ -186,7 +186,7 @@ namespace Lyra2.LyraShell
       this.InitializeLyraGUI();
       this.InitializeSearch();
 
-      BackgroundWorker bgWorker = new BackgroundWorker();
+      var bgWorker = new BackgroundWorker();
       bgWorker.DoWork += delegate { this.InitializeLyraData(); };
       this.start = new Start();
       this.start.StartPosition = FormStartPosition.CenterScreen;
@@ -217,21 +217,21 @@ namespace Lyra2.LyraShell
       if (!File.Exists(Util.BASEURL + "\\" + Util.URL))
       {
         // migrate older songs (schema 1.7-3 from curtext.xml)
-        string curtextPath = Util.BASEURL + "\\data\\curtext.xml";
+        var curtextPath = Util.BASEURL + "\\data\\curtext.xml";
         if (!File.Exists(curtextPath))
         {
           Util.MBoxError("Keine Songs gefunden!");
           return;
         }
 
-        XmlDocument curtextDoc = new XmlDocument();
+        var curtextDoc = new XmlDocument();
         curtextDoc.Load(curtextPath);
         var lyraNode = curtextDoc.SelectSingleNode("//lyra");
         var stylesRefAttr = curtextDoc.CreateAttribute("stylesref");
         stylesRefAttr.InnerText = "lyrastyles.xml";
         lyraNode.Attributes.Append(stylesRefAttr);
 
-        using (XmlTextWriter xtw = new XmlTextWriter(Util.BASEURL + "\\" + Util.URL, Encoding.UTF8))
+        using (var xtw = new XmlTextWriter(Util.BASEURL + "\\" + Util.URL, Encoding.UTF8))
         {
           xtw.Formatting = Formatting.Indented;
           curtextDoc.WriteContentTo(xtw);
@@ -262,7 +262,7 @@ namespace Lyra2.LyraShell
     private void InitializeLyraGUI()
     {
       Logger.Debug("Initialize GUI");
-      base.Text = Util.GUINAME;
+      this.Text = Util.GUINAME;
       this.menuItem41.Enabled = File.Exists(Util.BASEURL + "\\" + Util.URL + ".bac");
       this.WindowState = FormWindowState.Normal;
 
@@ -286,13 +286,13 @@ namespace Lyra2.LyraShell
 
       // init GUI size
       this.StartPosition = FormStartPosition.Manual;
-      int left = this.personalizeStore.GetIntValue(PersonalizationItemNames.GUILeft);
+      var left = this.personalizeStore.GetIntValue(PersonalizationItemNames.GUILeft);
       if (left >= 0) this.Left = left;
-      int top = this.personalizeStore.GetIntValue(PersonalizationItemNames.GUITop);
+      var top = this.personalizeStore.GetIntValue(PersonalizationItemNames.GUITop);
       if (top >= 0) this.Top = top;
-      int width = this.personalizeStore.GetIntValue(PersonalizationItemNames.GUIWidth);
+      var width = this.personalizeStore.GetIntValue(PersonalizationItemNames.GUIWidth);
       if (width >= 0) this.Width = width;
-      int height = this.personalizeStore.GetIntValue(PersonalizationItemNames.GUIHeight);
+      var height = this.personalizeStore.GetIntValue(PersonalizationItemNames.GUIHeight);
       if (height >= 0) this.Height = height;
     }
 
@@ -311,11 +311,11 @@ namespace Lyra2.LyraShell
       this.SizeSearchPane();
 
       // init splitters
-      int searchSplit = this.personalizeStore.GetIntValue(PersonalizationItemNames.SearchSplitPosition);
+      var searchSplit = this.personalizeStore.GetIntValue(PersonalizationItemNames.SearchSplitPosition);
       if (searchSplit >= 0) this.searchSplitter.SplitterDistance = searchSplit;
-      int allSongsSplit = this.personalizeStore.GetIntValue(PersonalizationItemNames.AllSplitPosition);
+      var allSongsSplit = this.personalizeStore.GetIntValue(PersonalizationItemNames.AllSplitPosition);
       if (allSongsSplit >= 0) this.allSongsSplitter.SplitterDistance = allSongsSplit;
-      int persListSplit = this.personalizeStore.GetIntValue(PersonalizationItemNames.ListSplitPosition);
+      var persListSplit = this.personalizeStore.GetIntValue(PersonalizationItemNames.ListSplitPosition);
       if (persListSplit >= 0) this.persListSplitter.SplitterDistance = persListSplit;
     }
 
@@ -323,7 +323,7 @@ namespace Lyra2.LyraShell
 
     private void SortMethodChanged(object sender, EventArgs e)
     {
-      SortMethod newSortMethod = (SortMethod)this.sortCombo.SelectedIndex;
+      var newSortMethod = (SortMethod)this.sortCombo.SelectedIndex;
       if (this.sortMethod != newSortMethod)
       {
         this.sortMethod = newSortMethod;
@@ -1981,7 +1981,7 @@ namespace Lyra2.LyraShell
     {
       try
       {
-        int nr = Int32.Parse(nrstr);
+        var nr = Int32.Parse(nrstr);
         return this.storage.GetSong(nr);
       }
       catch
@@ -1995,8 +1995,8 @@ namespace Lyra2.LyraShell
     {
       try
       {
-        int nr = Int32.Parse(this.textBox1.Text);
-        ISong toShow = this.storage.GetSong(nr);
+        var nr = Int32.Parse(this.textBox1.Text);
+        var toShow = this.storage.GetSong(nr);
         if (toShow != null)
         {
           try
@@ -2049,10 +2049,10 @@ namespace Lyra2.LyraShell
     //sicheres Beenden
     private bool CheckOnExit()
     {
-      bool cancel = true;
+      var cancel = true;
       if (this.storage.ToBeCommited)
       {
-        DialogResult res = MessageBox.Show(
+        var res = MessageBox.Show(
             "Vor dem Beenden Änderungen übernehmen?",
             "Beenden von lyra",
             MessageBoxButtons.YesNoCancel,
@@ -2144,11 +2144,11 @@ namespace Lyra2.LyraShell
     // exportieren
     private void menuItem18_Click(object sender, EventArgs e)
     {
-      SaveFileDialog sfd = new SaveFileDialog();
+      var sfd = new SaveFileDialog();
       sfd.Filter = "XML Dateien (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
       sfd.OverwritePrompt = true;
       sfd.Title = "In XML-Datei exportieren";
-      DialogResult dr = sfd.ShowDialog(this);
+      var dr = sfd.ShowDialog(this);
       if (dr == DialogResult.OK)
       {
         this.Status = this.storage.Export(sfd.FileName) ? "Export erfolgreich! :-)" : "Beim Exportieren ging leider etwas schief. :-(";
@@ -2158,16 +2158,16 @@ namespace Lyra2.LyraShell
     // import XML
     private void menuItem30_Click(object sender, EventArgs e)
     {
-      OpenFileDialog ofd = new OpenFileDialog();
+      var ofd = new OpenFileDialog();
       ofd.Filter = "XML Dateien (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
       ofd.CheckFileExists = true;
       ofd.Title = "XML-Datei importieren";
-      DialogResult dr = ofd.ShowDialog(this);
+      var dr = ofd.ShowDialog(this);
       if (dr == DialogResult.OK)
       {
-        string msg = "Sollen die Lieder der aktuellen Sammlung hinzugefügt werden?\n";
+        var msg = "Sollen die Lieder der aktuellen Sammlung hinzugefügt werden?\n";
         msg += "(drücken Sie \"Nein\", falls die aktuellen Liedtexte gelöscht werden sollen)";
-        DialogResult app = MessageBox.Show(this, msg,
+        var app = MessageBox.Show(this, msg,
                                            "lyra", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
         bool res;
         if (app == DialogResult.Yes)
@@ -2200,16 +2200,16 @@ namespace Lyra2.LyraShell
                             Util.NL +
                             "Mehr dazu finden Sie in der Hilfe (F1).",
                       "lyra", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-      OpenFileDialog ofd = new OpenFileDialog();
+      var ofd = new OpenFileDialog();
       ofd.Filter = "LTX Dateien (*.ltx)|*.ltx|Alle Dateien (*.*)|*.*";
       ofd.CheckFileExists = true;
       ofd.Title = "LTX-Datei importieren";
-      DialogResult dr = ofd.ShowDialog(this);
+      var dr = ofd.ShowDialog(this);
       if (dr == DialogResult.OK)
       {
-        string msg = "Sollen die Lieder der aktuellen Sammlung hinzugefügt werden?\n";
+        var msg = "Sollen die Lieder der aktuellen Sammlung hinzugefügt werden?\n";
         msg += "(drücken Sie \"Nein\", falls die aktuellen Liedtexte gelöscht werden sollen)";
-        DialogResult app = MessageBox.Show(this, msg,
+        var app = MessageBox.Show(this, msg,
                                            "lyra", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
         if (app == DialogResult.Yes)
         {
@@ -2230,18 +2230,18 @@ namespace Lyra2.LyraShell
         Util.DELALL = true;
       }
 
-      StreamReader reader = new StreamReader(url);
+      var reader = new StreamReader(url);
       try
       {
         string line;
-        int nr = 0;
-        bool intext = false;
+        var nr = 0;
+        var intext = false;
         while ((line = reader.ReadLine()) != null)
         {
-          string title = "";
+          var title = "";
           if (intext)
           {
-            string text = "";
+            var text = "";
             if (line.EndsWith("#END"))
             {
               text += line.Substring(0, line.Length - 4);
@@ -2254,9 +2254,9 @@ namespace Lyra2.LyraShell
               }
               catch (ArgumentException)
               {
-                string msg = "Wollen Sie Lied Nr." + nr + " ersetzen?\n";
+                var msg = "Wollen Sie Lied Nr." + nr + " ersetzen?\n";
                 msg += "(drücken Sie \"abbrechen\", wenn Sie das Lied überspringen wollen.)";
-                DialogResult dr =
+                var dr =
                     MessageBox.Show(this, msg,
                                     "lyra import", MessageBoxButtons.YesNoCancel,
                                     MessageBoxIcon.Question);
@@ -2285,7 +2285,7 @@ namespace Lyra2.LyraShell
           // first line of song
           else if (line != "")
           {
-            string[] words = line.Split(' ');
+            var words = line.Split(' ');
             title = line.Substring(words[0].Length + 1);
             nr = Int32.Parse(words[0]);
             intext = true;
@@ -2317,7 +2317,7 @@ namespace Lyra2.LyraShell
     {
       if (this.prback == null)
       {
-        int i = this.allSongsListBox.IndexFromPoint(e.X, e.Y);
+        var i = this.allSongsListBox.IndexFromPoint(e.X, e.Y);
         this.menuItem8.Visible = (this.persListCombo.Items.Count > 0);
 
         if (i != -1)
@@ -2349,7 +2349,7 @@ namespace Lyra2.LyraShell
     {
       if (this.persListCombo.Items.Count > 0 && this.prback == null)
       {
-        int i = this.searchListBox.IndexFromPoint(e.X, e.Y);
+        var i = this.searchListBox.IndexFromPoint(e.X, e.Y);
         if (e.Button == MouseButtons.Right && i != -1 &&
             this.searchListBox.Items[i].ToString().Substring(0, 4) != "Leid")
         {
@@ -2485,7 +2485,7 @@ namespace Lyra2.LyraShell
           Logger.Debug("Search for '" + this.mainSearchBox.Text + "' FAILED!", ex);
         }
       }
-      int res = this.searchListBox.Items.Count;
+      var res = this.searchListBox.Items.Count;
       switch (res)
       {
         case 0:
@@ -2571,7 +2571,7 @@ namespace Lyra2.LyraShell
         try
         {
           Util.CTRLSHOWNR = Util.SHOWNR;
-          int ind = (this.personalListsListBox.SelectedIndex > 0) ? this.personalListsListBox.SelectedIndex : 0;
+          var ind = (this.personalListsListBox.SelectedIndex > 0) ? this.personalListsListBox.SelectedIndex : 0;
           View.ShowSong((ISong)this.personalListsListBox.Items[ind], this, this.personalListsListBox);
         }
         catch (ToManyViews ex)
@@ -2586,7 +2586,7 @@ namespace Lyra2.LyraShell
     {
       if (this.personalListsListBox.SelectedItems.Count == 1)
       {
-        int i = this.persLists.MoveSongUp(this.personalListsListBox.SelectedIndex);
+        var i = this.persLists.MoveSongUp(this.personalListsListBox.SelectedIndex);
         this.persLists.Refresh(this.personalListsListBox);
         this.personalListsListBox.SelectedIndex = i;
       }
@@ -2597,7 +2597,7 @@ namespace Lyra2.LyraShell
     {
       if (this.personalListsListBox.SelectedItems.Count == 1)
       {
-        int i = this.persLists.MoveSongDown(this.personalListsListBox.SelectedIndex);
+        var i = this.persLists.MoveSongDown(this.personalListsListBox.SelectedIndex);
         this.persLists.Refresh(this.personalListsListBox);
         this.personalListsListBox.SelectedIndex = i;
       }
@@ -2686,7 +2686,7 @@ namespace Lyra2.LyraShell
 
     public void CreateNewList(string name, string author, string[] songs)
     {
-      string date = Util.GetDate();
+      var date = Util.GetDate();
       this.persLists.AddNewList(name, author, date, songs);
       this.persListCombo.SelectedIndex = this.persListCombo.Items.Count - 1;
       this.Status = "Neue Liste erstellt.";
@@ -2707,11 +2707,11 @@ namespace Lyra2.LyraShell
     // import Liste
     private void menuItem22_Click(object sender, EventArgs e)
     {
-      OpenFileDialog ofd = new OpenFileDialog();
+      var ofd = new OpenFileDialog();
       ofd.Filter = "LLS Dateien (*.lls)|*.lls|Alle Dateien (*.*)|*.*";
       ofd.CheckFileExists = true;
       ofd.Title = "LyraListen-Datei importieren";
-      DialogResult dr = ofd.ShowDialog(this);
+      var dr = ofd.ShowDialog(this);
       if (dr == DialogResult.OK)
       {
         this.importList(ofd.FileName);
@@ -2723,14 +2723,14 @@ namespace Lyra2.LyraShell
     {
       try
       {
-        StreamReader reader = new StreamReader(url);
-        string lls = reader.ReadLine();
+        var reader = new StreamReader(url);
+        var lls = reader.ReadLine();
         if (lls == "<LYRA LISTFILE>")
         {
-          string name = reader.ReadLine();
-          string author = reader.ReadLine();
-          string date = reader.ReadLine();
-          string[] songs = reader.ReadLine().Split(',');
+          var name = reader.ReadLine();
+          var author = reader.ReadLine();
+          var date = reader.ReadLine();
+          var songs = reader.ReadLine().Split(',');
           this.persLists.AddNewList(name, author, date, songs);
           this.persListCombo.SelectedIndex = this.persListCombo.Items.Count - 1;
         }
@@ -2751,16 +2751,16 @@ namespace Lyra2.LyraShell
     // export Liste
     private void menuItem12_Click(object sender, EventArgs e)
     {
-      SaveFileDialog sfd = new SaveFileDialog();
+      var sfd = new SaveFileDialog();
       sfd.Filter = "LLS Dateien (*.lls)|*.lls|Alle Dateien (*.*)|*.*";
       sfd.OverwritePrompt = true;
       sfd.Title = "In LyraListen-Datei exportieren";
-      DialogResult dr = sfd.ShowDialog(this);
+      var dr = sfd.ShowDialog(this);
       if (dr == DialogResult.OK)
       {
         try
         {
-          StreamWriter writer = new StreamWriter(sfd.FileName);
+          var writer = new StreamWriter(sfd.FileName);
           writer.WriteLine("<LYRA LISTFILE>");
           ((MyList)this.persListCombo.SelectedItem).exportMe(writer);
         }
@@ -2777,7 +2777,7 @@ namespace Lyra2.LyraShell
     private void menuItem21_Click(object sender, EventArgs e)
     {
       ListBox box = null;
-      string idtext = "";
+      var idtext = "";
       switch (this.tabControl1.SelectedIndex)
       {
         case 0:
@@ -2818,9 +2818,9 @@ namespace Lyra2.LyraShell
     {
       try
       {
-        int curpos = this.personalListsListBox.SelectedIndex;
-        int nr = Int32.Parse(this.textBox3.Text);
-        ISong addSong = this.storage.GetSong(nr);
+        var curpos = this.personalListsListBox.SelectedIndex;
+        var nr = Int32.Parse(this.textBox3.Text);
+        var addSong = this.storage.GetSong(nr);
         if (addSong != null)
         {
           this.persLists.AddSongToCurrent(addSong);
@@ -2879,12 +2879,12 @@ namespace Lyra2.LyraShell
     // Pocket PC
     private void menuItem34_Click(object sender, EventArgs e)
     {
-      SaveFileDialog sfd = new SaveFileDialog();
+      var sfd = new SaveFileDialog();
       sfd.Filter = "LPPC Datei (data.lppc)|*.lppc";
       sfd.FileName = "data.lppc";
       sfd.OverwritePrompt = true;
       sfd.Title = "Liste für Pocket PC generieren.";
-      DialogResult dr = sfd.ShowDialog(this);
+      var dr = sfd.ShowDialog(this);
       if (dr == DialogResult.OK)
       {
         if (this.storage.ExportPPC(sfd.FileName))
@@ -2921,7 +2921,7 @@ namespace Lyra2.LyraShell
 
     private void hideForPresentation(bool hide)
     {
-      bool visible = !hide;
+      var visible = !hide;
       this.menuItem37.Visible = hide;
       this.menuItem1.Visible = visible;
       this.menuItem19.Visible = visible;
@@ -3004,7 +3004,7 @@ namespace Lyra2.LyraShell
     private bool isFormat(string s)
     {
       s = s.TrimStart('/', ' ');
-      foreach (string f in this.formats)
+      foreach (var f in this.formats)
       {
         if (s.StartsWith(f))
         {
@@ -3016,20 +3016,20 @@ namespace Lyra2.LyraShell
 
     private void showUnformated(ISong s)
     {
-      SaveFileDialog sfd = new SaveFileDialog();
+      var sfd = new SaveFileDialog();
       sfd.Title = "Bitte geben Sie den Pfad für die Textdatei an!";
       sfd.Filter = "Textdatei|*.txt";
       sfd.FileName = "lyra_" + s.Number + ".txt";
       if (sfd.ShowDialog(this) == DialogResult.OK)
       {
-        StreamWriter sw = new StreamWriter(sfd.FileName, false);
-        string title = s.Number.ToString().PadRight(5, ' ') + ":  " + s.Title;
-        string line = "".PadRight(title.Length, '-');
+        var sw = new StreamWriter(sfd.FileName, false);
+        var title = s.Number.ToString().PadRight(5, ' ') + ":  " + s.Title;
+        var line = "".PadRight(title.Length, '-');
         sw.WriteLine(title);
         sw.WriteLine(line);
         sw.WriteLine();
-        string text = "";
-        for (int i = 0; i < s.Text.Length; i++)
+        var text = "";
+        for (var i = 0; i < s.Text.Length; i++)
         {
           if (s.Text[i] == '<')
           {
@@ -3059,7 +3059,7 @@ namespace Lyra2.LyraShell
         // search
         if (this.searchListBox.SelectedItem is ISong)
         {
-          ISong s = (ISong)this.searchListBox.SelectedItem;
+          var s = (ISong)this.searchListBox.SelectedItem;
           this.showUnformated(s);
           return;
         }
@@ -3069,7 +3069,7 @@ namespace Lyra2.LyraShell
         // selection
         if (this.allSongsListBox.SelectedItem is ISong)
         {
-          ISong s = (ISong)this.allSongsListBox.SelectedItem;
+          var s = (ISong)this.allSongsListBox.SelectedItem;
           this.showUnformated(s);
           return;
         }
@@ -3079,7 +3079,7 @@ namespace Lyra2.LyraShell
         // list selection
         if (this.personalListsListBox.SelectedItem is ISong)
         {
-          ISong s = (ISong)this.personalListsListBox.SelectedItem;
+          var s = (ISong)this.personalListsListBox.SelectedItem;
           this.showUnformated(s);
           return;
         }
@@ -3090,26 +3090,26 @@ namespace Lyra2.LyraShell
 
     private void menuItem53_Click(object sender, EventArgs e)
     {
-      SaveFileDialog sfd = new SaveFileDialog();
+      var sfd = new SaveFileDialog();
       sfd.Title = "Bitte geben Sie den Pfad für die Textdatei an!";
       sfd.Filter = "Textdatei|*.txt";
       sfd.FileName = DateTime.Now.ToString("yyyy-MM-dd") + "_lyra" + ".txt";
       if (sfd.ShowDialog(this) == DialogResult.OK)
       {
-        StreamWriter sw = new StreamWriter(sfd.FileName, false);
+        var sw = new StreamWriter(sfd.FileName, false);
 
         foreach (ISong s in this.allSongsListBox.Items)
         {
-          string title = s.Number.ToString().PadRight(5, ' ') + ":  " + s.Title;
-          string line = "".PadRight(title.Length, '-');
+          var title = s.Number.ToString().PadRight(5, ' ') + ":  " + s.Title;
+          var line = "".PadRight(title.Length, '-');
           sw.WriteLine(title);
           sw.WriteLine(line);
-          string text = "";
-          for (int i = 0; i < s.Text.Length; i++)
+          var text = "";
+          for (var i = 0; i < s.Text.Length; i++)
           {
             if (s.Text[i] == '<')
             {
-              if (isFormat(s.Text.Substring(i + 1)))
+              if (this.isFormat(s.Text.Substring(i + 1)))
               {
                 if (s.Text.Substring(i + 1).StartsWith("refrain"))
                 {
@@ -3212,7 +3212,7 @@ namespace Lyra2.LyraShell
 
     private void listBox3_SelectedValueChanged(object sender, EventArgs e)
     {
-      ISong s = this.searchListBox.SelectedItem as ISong;
+      var s = this.searchListBox.SelectedItem as ISong;
       if (s != null)
       {
         this.songPreview3.ShowSong(s);
@@ -3226,7 +3226,7 @@ namespace Lyra2.LyraShell
 
     private void listBox1_SelectedValueChanged(object sender, EventArgs e)
     {
-      ISong s = this.allSongsListBox.SelectedItem as ISong;
+      var s = this.allSongsListBox.SelectedItem as ISong;
       if (s != null)
       {
         this.songPreview1.ShowSong(s);
@@ -3240,7 +3240,7 @@ namespace Lyra2.LyraShell
 
     private void listBox2_SelectedValueChanged(object sender, EventArgs e)
     {
-      ISong s = this.personalListsListBox.SelectedItem as ISong;
+      var s = this.personalListsListBox.SelectedItem as ISong;
       if (s != null)
       {
         this.songPreview2.ShowSong(s);
@@ -3302,7 +3302,7 @@ namespace Lyra2.LyraShell
 
     private void menuItem70_Click(object sender, EventArgs e)
     {
-      using (StyleEditor se = new StyleEditor(this.storage))
+      using (var se = new StyleEditor(this.storage))
       {
         se.StartPosition = FormStartPosition.CenterParent;
         se.ShowDialog(this);
@@ -3398,20 +3398,20 @@ namespace Lyra2.LyraShell
 
     private void menuItem68_Click(object sender, EventArgs e)
     {
-      SaveFileDialog sfd = new SaveFileDialog();
+      var sfd = new SaveFileDialog();
       sfd.Title = "Bitte geben Sie den Pfad für die Titel-Index Datei an!";
       sfd.Filter = "Textdatei|*.txt";
       sfd.FileName = "lyra_titel_index_" + DateTime.Now.ToString("ddMMyyyy") + ".txt";
       if (sfd.ShowDialog(this) == DialogResult.OK)
       {
-        StreamWriter sw = new StreamWriter(sfd.FileName, false);
-        string fileTitle = "Lyra Titel-Index " + DateTime.Now.ToString("ddMMyyyy") + "  [" + this.allSongsListBox.Items.Count + " Songs]";
+        var sw = new StreamWriter(sfd.FileName, false);
+        var fileTitle = "Lyra Titel-Index " + DateTime.Now.ToString("ddMMyyyy") + "  [" + this.allSongsListBox.Items.Count + " Songs]";
         sw.WriteLine(fileTitle);
         sw.WriteLine("".PadRight(fileTitle.Length, '-'));
         sw.WriteLine();
         foreach (ISong s in this.allSongsListBox.Items)
         {
-          string title = s.Number.ToString().PadRight(5, ' ') + ":  " + s.Title;
+          var title = s.Number.ToString().PadRight(5, ' ') + ":  " + s.Title;
           sw.WriteLine(title);
         }
         sw.Close();
@@ -3422,7 +3422,7 @@ namespace Lyra2.LyraShell
 
     private void MoveUpDownPanelResizeHandler(object sender, EventArgs e)
     {
-      int middle = (this.moveUpDownPanel.Height - 30) / 2 + 30;
+      var middle = (this.moveUpDownPanel.Height - 30) / 2 + 30;
 
       this.moveListItemUpBtn.Top = middle - 5 - this.moveListItemUpBtn.Height;
       this.moveListItemDownBtn.Top = middle + 5;

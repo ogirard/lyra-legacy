@@ -27,7 +27,7 @@ namespace Lyra2.LyraShell
 			//
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
-			InitializeComponent();
+		    this.InitializeComponent();
 			this.AcceptButton = this.button1;
 			try
 			{
@@ -48,13 +48,13 @@ namespace Lyra2.LyraShell
 		{
 			if (disposing)
 			{
-				if (components != null)
+				if (this.components != null)
 				{
-					components.Dispose();
+				    this.components.Dispose();
 				}
 			}
 			base.Dispose(disposing);
-			Frst.info = null;
+			info = null;
 		}
 
 		#region Windows Form Designer generated code
@@ -169,21 +169,21 @@ namespace Lyra2.LyraShell
 
 		#endregion
 
-		private void Frst_Load(object sender, System.EventArgs e)
+		private void Frst_Load(object sender, EventArgs e)
 		{
 			this.label1.Text = "lyra v." + Util.VER + Util.NL;
 			this.label1.Text += "underlies GNU Public Licence";
 			this.checkBox1.Select();
 		}
 
-		private void button1_Click(object sender, System.EventArgs e)
+		private void button1_Click(object sender, EventArgs e)
 		{
-			if (!this.checkBox1.Checked && change)
+			if (!this.checkBox1.Checked && this.change)
 			{
 				try
 				{
 					Util.SHOWBUILDNEWS = false;
-					ConfigFile configFile = new ConfigFile(Util.CONFIGPATH);
+					var configFile = new ConfigFile(Util.CONFIGPATH);
 					configFile["1"] = "no";
 					configFile.Save(Util.CONFIGPATH);
 				}
@@ -192,11 +192,11 @@ namespace Lyra2.LyraShell
 					Util.MBoxError(ex.Message, ex);
 				}
 			}
-			Frst.shown = false;
+			shown = false;
 			this.Close();
 		}
 
-		private void Frst_LostFocus(object sender, System.EventArgs e)
+		private void Frst_LostFocus(object sender, EventArgs e)
 		{
 			this.Focus();
 		}
@@ -207,20 +207,20 @@ namespace Lyra2.LyraShell
 
 		public static void ShowInfo()
 		{
-			if (Frst.shown)
+			if (shown)
 			{
-				Frst.info.Focus();
+				info.Focus();
 			}
 			else
 			{
-				if (Frst.info == null)
+				if (info == null)
 				{
-					Frst.info = new Frst();
+					info = new Frst();
 				}
-				Frst.info.checkBox1.Visible = false;
-				Frst.info.change = false;
-				Frst.info.Show();
-				Frst.shown = true;
+				info.checkBox1.Visible = false;
+				info.change = false;
+				info.Show();
+				shown = true;
 			}
 		}
 	}

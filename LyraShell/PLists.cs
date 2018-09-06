@@ -25,8 +25,8 @@ namespace Lyra2.LyraShell
             this.doc = new XmlDocument();
             try
             {
-                doc.Load(Util.BASEURL + "\\" + Util.LISTURL);
-                XmlNodeList nodes = doc.GetElementsByTagName("List");
+                this.doc.Load(Util.BASEURL + "\\" + Util.LISTURL);
+                var nodes = this.doc.GetElementsByTagName("List");
                 foreach (XmlNode node in nodes)
                 {
                     myComboBox.Items.Add(new MyList(node, storage));
@@ -42,12 +42,12 @@ namespace Lyra2.LyraShell
         public void setCurrent(MyList list, ListBox show)
         {
             show.Items.Clear();
-            IDictionaryEnumerator en = list.GetEnumerator();
+            var en = list.GetEnumerator();
             en.Reset();
-            string check = "";
+            var check = "";
             while (en.MoveNext())
             {
-                ISong toshow = (ISong)en.Value;
+                var toshow = (ISong)en.Value;
                 if (!toshow.Deleted)
                 {
                     show.Items.Add(toshow);
@@ -60,8 +60,8 @@ namespace Lyra2.LyraShell
 
             if (check.Length > 0)
             {
-                string[] todel = (check.Substring(0, check.Length - 1)).Split(',');
-                foreach (string str in todel)
+                var todel = (check.Substring(0, check.Length - 1)).Split(',');
+                foreach (var str in todel)
                 {
                     list.Remove(Int32.Parse(str));
                 }
@@ -79,7 +79,7 @@ namespace Lyra2.LyraShell
         {
             if (pos >= 0)
             {
-                for (int i = this.currentList.Count - 1; i > pos; i--)
+                for (var i = this.currentList.Count - 1; i > pos; i--)
                 {
                     this.MoveSongUp(i);
                 }
@@ -94,14 +94,14 @@ namespace Lyra2.LyraShell
 
         public int MoveSongUp(int index)
         {
-            int i = this.currentList.Up(index);
+            var i = this.currentList.Up(index);
             this.update();
             return i;
         }
 
         public int MoveSongDown(int index)
         {
-            int i = this.currentList.Down(index);
+            var i = this.currentList.Down(index);
             this.update();
             return i;
         }
@@ -140,19 +140,19 @@ namespace Lyra2.LyraShell
         {
             try
             {
-                XmlNode lists = this.doc.GetElementsByTagName("lists")[0];
-                XmlNode list = this.doc.CreateNode(XmlNodeType.Element, "List", this.doc.NamespaceURI);
-                XmlNode namenode = this.doc.CreateNode(XmlNodeType.Element, "Title", this.doc.NamespaceURI);
+                var lists = this.doc.GetElementsByTagName("lists")[0];
+                var list = this.doc.CreateNode(XmlNodeType.Element, "List", this.doc.NamespaceURI);
+                var namenode = this.doc.CreateNode(XmlNodeType.Element, "Title", this.doc.NamespaceURI);
                 namenode.InnerText = name;
-                XmlNode authornode = this.doc.CreateNode(XmlNodeType.Element, "Author", this.doc.NamespaceURI);
+                var authornode = this.doc.CreateNode(XmlNodeType.Element, "Author", this.doc.NamespaceURI);
                 authornode.InnerText = author;
-                XmlNode datenode = this.doc.CreateNode(XmlNodeType.Element, "Date", this.doc.NamespaceURI);
+                var datenode = this.doc.CreateNode(XmlNodeType.Element, "Date", this.doc.NamespaceURI);
                 datenode.InnerText = date;
-                XmlNode songsnode = this.doc.CreateNode(XmlNodeType.Element, "Songs", this.doc.NamespaceURI);
-                string songsString = "";
+                var songsnode = this.doc.CreateNode(XmlNodeType.Element, "Songs", this.doc.NamespaceURI);
+                var songsString = "";
                 if (songs != null)
                 {
-                    foreach (string song in songs)
+                    foreach (var song in songs)
                     {
                         songsString += song + ",";
                     }
@@ -189,7 +189,7 @@ namespace Lyra2.LyraShell
             this.storage = storage;
             this.myNode = myNode;
 
-            XmlNodeList childnodes = myNode.ChildNodes;
+            var childnodes = myNode.ChildNodes;
             if ((childnodes[0].Name == "Title") &&
                 (childnodes[1].Name == "Author") &&
                 (childnodes[2].Name == "Date") &&
@@ -199,12 +199,12 @@ namespace Lyra2.LyraShell
                 this.author = childnodes[1].InnerText;
                 this.date = childnodes[2].InnerText;
 
-                string[] ids = childnodes[3].InnerText.Split(',');
-                bool notfound = false;
-                string songs = "";
-                foreach (string id in ids)
+                var ids = childnodes[3].InnerText.Split(',');
+                var notfound = false;
+                var songs = "";
+                foreach (var id in ids)
                 {
-                    ISong song = this.storage.getSongById(id);
+                    var song = this.storage.getSongById(id);
                     if (song != null && !song.Deleted)
                     {
                         this.Add(this.Count, this.storage.getSongById(id));
@@ -264,9 +264,9 @@ namespace Lyra2.LyraShell
 
         private string updateList()
         {
-            IDictionaryEnumerator en = this.GetEnumerator();
+            var en = this.GetEnumerator();
             en.Reset();
-            string list = "";
+            var list = "";
             while (en.MoveNext())
             {
                 list += ((ISong)en.Value).ID + ",";
@@ -279,7 +279,7 @@ namespace Lyra2.LyraShell
         {
             if (index > 0 && index < this.Count)
             {
-                object temp = this.GetByIndex(index);
+                var temp = this.GetByIndex(index);
                 this.SetByIndex(index, this.GetByIndex(index - 1));
                 this.SetByIndex(index - 1, temp);
                 this.myNode.ChildNodes[3].InnerText = this.updateList();
@@ -292,7 +292,7 @@ namespace Lyra2.LyraShell
         {
             if (index >= 0 && index < this.Count - 1)
             {
-                object temp = this.GetByIndex(index + 1);
+                var temp = this.GetByIndex(index + 1);
                 this.SetByIndex(index + 1, this.GetByIndex(index));
                 this.SetByIndex(index, temp);
                 this.myNode.ChildNodes[3].InnerText = this.updateList();

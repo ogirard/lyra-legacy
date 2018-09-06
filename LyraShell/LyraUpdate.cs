@@ -10,20 +10,20 @@ namespace Lyra2.LyraShell
 	/// <summary>
 	/// Summary description for GetLyraXML.
 	/// </summary>
-	public class LyraUpdate : System.Windows.Forms.Form
+	public class LyraUpdate : Form
 	{
 		private LyraButtonControl button1;
-		private System.Windows.Forms.Label label1;
+		private Label label1;
 		private LyraButtonControl button2;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Label label4;
+		private Label label2;
+		private Label label3;
+		private Label label4;
 
 		private static LyraUpdate lyraUpdate = null;
-		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.TextBox textBox1;
-		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.CheckBox checkBox1;
+		private Label label5;
+		private TextBox textBox1;
+		private Label label6;
+		private CheckBox checkBox1;
 
 
 		/// <summary>
@@ -33,18 +33,18 @@ namespace Lyra2.LyraShell
 
 		private LyraUpdate()
 		{
-			InitializeComponent();
+		    this.InitializeComponent();
 			this.textBox1.Text = Util.UPDATESERVER;
 			this.label5.Focus();
 		}
 
 		public static DialogResult ShowUpdate(GUI owner)
 		{
-			if (LyraUpdate.lyraUpdate == null)
+			if (lyraUpdate == null)
 			{
-				LyraUpdate.lyraUpdate = new LyraUpdate();
+				lyraUpdate = new LyraUpdate();
 			}
-			return LyraUpdate.lyraUpdate.ShowDialog(owner);
+			return lyraUpdate.ShowDialog(owner);
 		}
 
 		/// <summary>
@@ -52,12 +52,12 @@ namespace Lyra2.LyraShell
 		/// </summary>
 		protected override void Dispose(bool disposing)
 		{
-			LyraUpdate.lyraUpdate = null;
+			lyraUpdate = null;
 			if (disposing)
 			{
-				if (components != null)
+				if (this.components != null)
 				{
-					components.Dispose();
+				    this.components.Dispose();
 				}
 			}
 			base.Dispose(disposing);
@@ -216,13 +216,13 @@ namespace Lyra2.LyraShell
 		#endregion
 
 		// cancel
-		private void button2_Click(object sender, System.EventArgs e)
+		private void button2_Click(object sender, EventArgs e)
 		{
 			this.Dispose();
 		}
 
 		// execute update!
-		private void button1_Click(object sender, System.EventArgs e)
+		private void button1_Click(object sender, EventArgs e)
 		{
 			this.doUpdate();
 			this.Dispose();
@@ -231,20 +231,20 @@ namespace Lyra2.LyraShell
 		// get download-url
 		private void doUpdate()
 		{
-			XmlDocument doc = new XmlDocument();
+			var doc = new XmlDocument();
 			try
 			{
-				WebRequest request = WebRequest.Create(this.textBox1.Text + "/updatedesc.xml");
-				HttpWebResponse response = (HttpWebResponse) request.GetResponse();
-				Stream stream = response.GetResponseStream();
+				var request = WebRequest.Create(this.textBox1.Text + "/updatedesc.xml");
+				var response = (HttpWebResponse) request.GetResponse();
+				var stream = response.GetResponseStream();
 				doc.Load(stream);
 
-				XmlNodeList versions = doc.GetElementsByTagName("lyraXML");
-				UpdateFileURL[] ver = new UpdateFileURL[versions.Count];
-				int i = 0;
+				var versions = doc.GetElementsByTagName("lyraXML");
+				var ver = new UpdateFileURL[versions.Count];
+				var i = 0;
 				foreach (XmlNode curVers in versions)
 				{
-					string listurl = "";
+					var listurl = "";
 					if (curVers.ChildNodes.Count != 0)
 					{
 						listurl = curVers.ChildNodes[0].Attributes["url"].InnerText;
@@ -253,10 +253,10 @@ namespace Lyra2.LyraShell
 					                             curVers.Attributes["ver"].InnerText, listurl);
 				}
 
-				XmlNode server = doc.GetElementsByTagName("serverdetails")[0];
-				string desc = server.ChildNodes[0].InnerText + " [" +
+				var server = doc.GetElementsByTagName("serverdetails")[0];
+				var desc = server.ChildNodes[0].InnerText + " [" +
 					server.ChildNodes[1].InnerText + "]";
-				string serverurl = server.ChildNodes[2].InnerText;
+				var serverurl = server.ChildNodes[2].InnerText;
 
 				this.DialogResult = LyraUpdateView.ShowUpdateView((GUI) this.Owner,
 				                                                  serverurl, desc, ver, this.checkBox1.Checked);

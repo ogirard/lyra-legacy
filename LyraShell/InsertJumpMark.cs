@@ -8,7 +8,7 @@ namespace Lyra2.LyraShell
 	/// <summary>
 	/// Zusammendfassende Beschreibung für NewList.
 	/// </summary>
-	public class InsertJumpMark : System.Windows.Forms.Form
+	public class InsertJumpMark : Form
 	{
 		private Label label1;
         private Label label2;
@@ -26,7 +26,7 @@ namespace Lyra2.LyraShell
 			//
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
-			InitializeComponent();
+		    this.InitializeComponent();
 			this.AcceptButton = this.okBtn;
 		}
 
@@ -42,9 +42,9 @@ namespace Lyra2.LyraShell
 		{
 			if (disposing)
 			{
-				if (components != null)
+				if (this.components != null)
 				{
-					components.Dispose();
+				    this.components.Dispose();
 				}
 			}
 			base.Dispose(disposing);
@@ -135,7 +135,7 @@ namespace Lyra2.LyraShell
 
 		#endregion
 
-		private void button3_Click(object sender, System.EventArgs e)
+		private void button3_Click(object sender, EventArgs e)
 		{
 			this.Close();
 		}

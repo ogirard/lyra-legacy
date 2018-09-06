@@ -20,7 +20,7 @@ namespace Lyra2.LyraShell
             this.query = query;
             this.luceneQuery = luceneQuery;
             this.numbers = new List<int>();
-            foreach (int i in numbers)
+            foreach (var i in numbers)
             {
                 if (!this.numbers.Contains(i))
                 {
@@ -33,22 +33,22 @@ namespace Lyra2.LyraShell
 
         public string Query
         {
-            get { return query; }
+            get { return this.query; }
         }
 
         public string LuceneQuery
         {
-            get { return luceneQuery; }
+            get { return this.luceneQuery; }
         }
 
         public IList<int> Numbers
         {
-            get { return numbers; }
+            get { return this.numbers; }
         }
 
         public bool Exact
         {
-            get { return exact; }
+            get { return this.exact; }
         }
     }
 }

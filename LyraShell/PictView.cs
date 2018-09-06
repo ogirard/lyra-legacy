@@ -7,7 +7,7 @@ namespace Lyra2.LyraShell
 	/// <summary>
 	/// Summary description for PictView.
 	/// </summary>
-	public class PictView : System.Windows.Forms.Form
+	public class PictView : Form
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -15,22 +15,22 @@ namespace Lyra2.LyraShell
 		private System.ComponentModel.Container components = null;
 
 		private string[] files;
-		private System.Windows.Forms.PictureBox pictureBox1;
-		private System.Windows.Forms.Label label1;
+		private PictureBox pictureBox1;
+		private Label label1;
 		private static PictView pview = null;
 
 		public static void ShowPictView(string directory)
 		{
-			if (PictView.pview == null)
+			if (pview == null)
 			{
-				PictView.pview = new PictView(directory);
+				pview = new PictView(directory);
 			}
-			PictView.pview.Show();
+			pview.Show();
 		}
 
 		private PictView(string directory)
 		{
-			InitializeComponent();
+		    this.InitializeComponent();
 			this.Width = View.Display.Bounds.Width;
 			this.Height = View.Display.Bounds.Height;
 			this.Top = View.Display.Bounds.Top;
@@ -40,8 +40,8 @@ namespace Lyra2.LyraShell
 			this.pictureBox1.Top = 0;
 			this.pictureBox1.Left = 0;
 
-			this.KeyDown += new KeyEventHandler(PictView_KeyDown);
-			this.pictureBox1.MouseDown += new MouseEventHandler(pictureBox1_MouseDown);
+			this.KeyDown += new KeyEventHandler(this.PictView_KeyDown);
+			this.pictureBox1.MouseDown += new MouseEventHandler(this.pictureBox1_MouseDown);
 			this.label1.Visible = false;
 			this.files = Directory.GetFiles(directory);
 			this.nextImage();
@@ -72,7 +72,7 @@ namespace Lyra2.LyraShell
 			{
 				diff += this.files.Length;
 				this.current = (this.current + diff)%this.files.Length;
-				int count = 0;
+				var count = 0;
 				while (!(this.files[this.current].ToLower().EndsWith(".jpg")
 					|| this.files[this.current].ToLower().EndsWith(".gif")
 					|| this.files[this.current].ToLower().EndsWith(".png")
@@ -85,7 +85,7 @@ namespace Lyra2.LyraShell
 						return;
 					}
 				}
-				Image img = Image.FromFile(this.files[this.current]);
+				var img = Image.FromFile(this.files[this.current]);
 				this.pictureBox1.Image = Util.stretchProportional(img, new Size(this.Width, this.Height));
 			}
 		}
@@ -95,12 +95,12 @@ namespace Lyra2.LyraShell
 		/// </summary>
 		protected override void Dispose(bool disposing)
 		{
-			PictView.pview = null;
+			pview = null;
 			if (disposing)
 			{
-				if (components != null)
+				if (this.components != null)
 				{
-					components.Dispose();
+				    this.components.Dispose();
 				}
 			}
 			base.Dispose(disposing);

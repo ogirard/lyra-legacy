@@ -15,7 +15,7 @@ namespace Lyra2.LyraShell
 
     public Start()
     {
-      InitializeComponent();
+        this.InitializeComponent();
         this.label2.Text = Util.VER;
     }
 
@@ -26,9 +26,9 @@ namespace Lyra2.LyraShell
     {
       if (disposing)
       {
-        if (components != null)
+        if (this.components != null)
         {
-          components.Dispose();
+            this.components.Dispose();
         }
       }
       base.Dispose(disposing);

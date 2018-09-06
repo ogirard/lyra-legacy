@@ -6,11 +6,11 @@ namespace Lyra2.LyraShell
 	/// <summary>
 	/// Summary description for FX.
 	/// </summary>
-	public class FX : System.Windows.Forms.Form
+	public class FX : Form
 	{
-		private System.Windows.Forms.RadioButton radioButton1;
-		private System.Windows.Forms.RadioButton radioButton2;
-		private System.Windows.Forms.RadioButton radioButton3;
+		private RadioButton radioButton1;
+		private RadioButton radioButton2;
+		private RadioButton radioButton3;
 		private LyraButtonControl button1;
 		private LyraButtonControl button2;
 
@@ -33,13 +33,13 @@ namespace Lyra2.LyraShell
 
 		public static FXResult ShowFX(Options owner)
 		{
-			if (FX.fx == null)
+			if (fx == null)
 			{
-				FX.fx = new FX(owner);
+				fx = new FX(owner);
 			}
 			if (fx.ShowDialog(owner) == DialogResult.OK)
 			{
-				return FX.result;
+				return result;
 			}
 			else
 			{
@@ -53,7 +53,7 @@ namespace Lyra2.LyraShell
 			//
 			// Required for Windows Form Designer support
 			//
-			InitializeComponent();
+		    this.InitializeComponent();
 			this.owner = owner;
 			this.AcceptButton = this.button1;
 		}
@@ -65,9 +65,9 @@ namespace Lyra2.LyraShell
 		{
 			if (disposing)
 			{
-				if (components != null)
+				if (this.components != null)
 				{
-					components.Dispose();
+				    this.components.Dispose();
 				}
 			}
 			base.Dispose(disposing);
@@ -174,7 +174,7 @@ namespace Lyra2.LyraShell
 		// ok
 		private void button1_Click(object sender, System.EventArgs e)
 		{
-			FX.result = this.radioButton1.Checked ? FXResult.Delete : this.radioButton2.Checked ? FXResult.NewFile : FXResult.PictChoice;
+			result = this.radioButton1.Checked ? FXResult.Delete : this.radioButton2.Checked ? FXResult.NewFile : FXResult.PictChoice;
 			this.Close();
 		}
 	}

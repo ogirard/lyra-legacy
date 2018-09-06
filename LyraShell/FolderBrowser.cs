@@ -150,8 +150,8 @@ namespace Lyra2.LyraShell
 
 		public FolderBrowser()
 		{
-			m_Flags = BrowseFlags.BIF_DEFAULT;
-			m_strTitle = "";
+		    this.m_Flags = BrowseFlags.BIF_DEFAULT;
+		    this.m_strTitle = "";
 		}
 
 		/// <summary>
@@ -203,13 +203,13 @@ namespace Lyra2.LyraShell
 		public DialogResult ShowDialog()
 		{
 			// Create
-			BROWSEINFO bi = new BROWSEINFO();
+			var bi = new BROWSEINFO();
 			bi.pszDisplayName = IntPtr.Zero;
 			bi.lpfn = IntPtr.Zero;
 			bi.lParam = IntPtr.Zero;
 			bi.lpszTitle = "Pfad für das lyra HTML-Verzeichnis...";
-			IntPtr idListPtr = IntPtr.Zero;
-			IntPtr pszPath = IntPtr.Zero;
+			var idListPtr = IntPtr.Zero;
+			var pszPath = IntPtr.Zero;
 			try
 			{
 				if (this.m_strTitle.Length != 0)
@@ -230,7 +230,7 @@ namespace Lyra2.LyraShell
 				pszPath = Marshal.AllocHGlobal(256);
 				// Call SHGetPathFromIDList to get folder path.
 				// Convert the returned native poiner to string.
-				m_strDirectoryPath = Marshal.PtrToStringAuto(pszPath);
+			    this.m_strDirectoryPath = Marshal.PtrToStringAuto(pszPath);
 				this.m_strDisplayName = Marshal.PtrToStringAuto(bi.pszDisplayName);
 			}
 			catch (Exception ex)

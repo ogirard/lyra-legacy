@@ -8,13 +8,13 @@ namespace Lyra2.LyraShell
 	/// <summary>
 	/// Zusammendfassende Beschreibung für NewList.
 	/// </summary>
-	public class NewList : System.Windows.Forms.Form
+	public class NewList : Form
 	{
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TextBox nameTextBox;
-		private System.Windows.Forms.TextBox authorTextBox;
+		private Label label1;
+		private Label label2;
+		private Label label3;
+		private TextBox nameTextBox;
+		private TextBox authorTextBox;
 		private LyraButtonControl button3;
 		private LyraButtonControl button1;
 
@@ -33,19 +33,19 @@ namespace Lyra2.LyraShell
 
         public static void ShowNewList(GUI owner, string name, string[] songs)
         {
-            if (NewList.newList == null)
+            if (newList == null)
             {
-                NewList.newList = new NewList(owner);
+                newList = new NewList(owner);
             }
             newList.songs = songs;
             newList.nameTextBox.Text = name;
-            WindowsIdentity wi = WindowsIdentity.GetCurrent();
+            var wi = WindowsIdentity.GetCurrent();
             if (wi != null)
             {
-                string[] parts = wi.Name.Split('\\');
+                var parts = wi.Name.Split('\\');
                 if (parts.Length > 0) newList.authorTextBox.Text = parts[parts.Length - 1];
             }
-            NewList.newList.Show();
+            newList.Show();
         }
 
 		private NewList(GUI owner)
@@ -53,7 +53,7 @@ namespace Lyra2.LyraShell
 			//
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
-			InitializeComponent();
+		    this.InitializeComponent();
 			this.owner = owner;
 			this.AcceptButton = this.button1;
 		}
@@ -65,13 +65,13 @@ namespace Lyra2.LyraShell
 		{
 			if (disposing)
 			{
-				if (components != null)
+				if (this.components != null)
 				{
-					components.Dispose();
+				    this.components.Dispose();
 				}
 			}
 			base.Dispose(disposing);
-			NewList.newList = null;
+			newList = null;
 		}
 
 		#region Windows Form Designer generated code
@@ -179,15 +179,15 @@ namespace Lyra2.LyraShell
 
 		#endregion
 
-		private void button3_Click(object sender, System.EventArgs e)
+		private void button3_Click(object sender, EventArgs e)
 		{
 			this.Close();
 		}
 
 	    private string[] songs;
-		private void button1_Click(object sender, System.EventArgs e)
+		private void button1_Click(object sender, EventArgs e)
 		{
-			this.owner.CreateNewList(this.nameTextBox.Text, this.authorTextBox.Text, songs);
+			this.owner.CreateNewList(this.nameTextBox.Text, this.authorTextBox.Text, this.songs);
 			this.Close();
 		}
 

@@ -14,7 +14,9 @@ namespace Lyra2.LyraShell
         /// <summary>
         /// Required designer variable.
         /// </summary>
+#pragma warning disable 649
         private Container components;
+#pragma warning restore 649
         private readonly GUI owner;
         private SplitContainer favoritesSplitter;
         private SongPreview favoritesSongPreview;
@@ -52,9 +54,9 @@ namespace Lyra2.LyraShell
             //
             // Required for Windows Form Designer support
             //
-            InitializeComponent();
+            this.InitializeComponent();
             this.StartPosition = FormStartPosition.Manual;
-            this.Closing += Favorites_Closing;
+            this.Closing += this.Favorites_Closing;
             this.owner = owner;
         }
 
@@ -65,9 +67,9 @@ namespace Lyra2.LyraShell
         {
             if (disposing)
             {
-                if (components != null)
+                if (this.components != null)
                 {
-                    components.Dispose();
+                    this.components.Dispose();
                 }
             }
             base.Dispose(disposing);
@@ -203,7 +205,7 @@ namespace Lyra2.LyraShell
 
         private void Favorites_Closing(object sender, CancelEventArgs e)
         {
-            StorePersonalizationSettings(owner.Personalizer, false);
+            StorePersonalizationSettings(this.owner.Personalizer, false);
             _this = null;
         }
 
@@ -218,7 +220,7 @@ namespace Lyra2.LyraShell
 
         private void listBox3_SelectedValueChanged(object sender, EventArgs e)
         {
-            ISong s = this.favoritesListBox.SelectedItem as ISong;
+            var s = this.favoritesListBox.SelectedItem as ISong;
             if (s != null)
             {
                 this.favoritesSongPreview.ShowSong(s);
@@ -286,15 +288,15 @@ namespace Lyra2.LyraShell
             if (_this != null)
             {
                 personalizer.Load();
-                int top = personalizer.GetIntValue(PersonalizationItemNames.FavoritesTop);
+                var top = personalizer.GetIntValue(PersonalizationItemNames.FavoritesTop);
                 if (top > 0) _this.Top = top;
-                int left = personalizer.GetIntValue(PersonalizationItemNames.FavoritesLeft);
+                var left = personalizer.GetIntValue(PersonalizationItemNames.FavoritesLeft);
                 if (left > 0) _this.Left = left;
-                int width = personalizer.GetIntValue(PersonalizationItemNames.FavoritesWidth);
+                var width = personalizer.GetIntValue(PersonalizationItemNames.FavoritesWidth);
                 if (width > 0) _this.Width = width;
-                int height = personalizer.GetIntValue(PersonalizationItemNames.FavoritesHeight);
+                var height = personalizer.GetIntValue(PersonalizationItemNames.FavoritesHeight);
                 if (height > 0) _this.Height = height;
-                int split = personalizer.GetIntValue(PersonalizationItemNames.FavoritesSplit);
+                var split = personalizer.GetIntValue(PersonalizationItemNames.FavoritesSplit);
                 if (split > 0) _this.favoritesSplitter.SplitterDistance = split;
 
                 personalizer[PersonalizationItemNames.FavoritesIsShown] = "1";
