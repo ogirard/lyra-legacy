@@ -160,14 +160,4 @@ namespace Lyra2.LyraShell
 
     #endregion Scrolling
   }
-
-  public class ScrollDataEventArgs : EventArgs
-  {
-    public int DesiredHeight { get; set; }
-
-    public int DisplayHeight { get; set; }
-
-    public int ScrollPosition { get; set; }
-  }
-
 }

@@ -1,17 +1,11 @@
-﻿using System;
-using System.IO;
-using System.Text;
+﻿using log4net.Config;
+using System;
 using System.Windows.Forms;
-using System.Xml;
-using log4net.Config;
 
 namespace Lyra2.LyraShell
 {
     internal static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         private static void Main()
         {

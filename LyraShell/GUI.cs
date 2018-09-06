@@ -399,8 +399,8 @@ namespace Lyra2.LyraShell
     /// </summary>
     private void InitializeComponent()
     {
-      this.components = new System.ComponentModel.Container();
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GUI));
+      this.components = new Container();
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(GUI));
       Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
       Infragistics.Win.Appearance appearance15 = new Infragistics.Win.Appearance();
       Infragistics.Win.Appearance appearance10 = new Infragistics.Win.Appearance();
@@ -416,130 +416,130 @@ namespace Lyra2.LyraShell
       Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
       Infragistics.Win.Appearance appearance14 = new Infragistics.Win.Appearance();
       Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
-      this.tabControl1 = new System.Windows.Forms.TabControl();
-      this.tabPage2 = new System.Windows.Forms.TabPage();
-      this.searchSplitter = new System.Windows.Forms.SplitContainer();
-      this.searchListBox = new Lyra2.LyraShell.SongListBox();
-      this.label4 = new System.Windows.Forms.Label();
-      this.songPreview3 = new Lyra2.LyraShell.SongPreview();
-      this.panel4 = new System.Windows.Forms.Panel();
-      this.sortCombo = new System.Windows.Forms.ComboBox();
-      this.sortLabel = new System.Windows.Forms.Label();
-      this.searchPaneTop = new System.Windows.Forms.Panel();
-      this.pictureBox4 = new System.Windows.Forms.PictureBox();
-      this.label2 = new System.Windows.Forms.Label();
-      this.pictureBox1 = new System.Windows.Forms.PictureBox();
-      this.mainSearchBox = new Lyra2.LyraShell.SearchTextBox();
-      this.checkBox1 = new System.Windows.Forms.CheckBox();
-      this.resultsLabel = new System.Windows.Forms.Label();
-      this.panel1 = new Infragistics.Win.Misc.UltraPanel();
-      this.ultraLabel1 = new Infragistics.Win.Misc.UltraLabel();
-      this.textBox1 = new Lyra2.LyraShell.SearchTextBox();
-      this.button7 = new Lyra2.LyraShell.LyraButtonControl();
-      this.showSongBtn = new Lyra2.LyraShell.LyraButtonControl();
-      this.tabPage1 = new System.Windows.Forms.TabPage();
-      this.allSongsSplitter = new System.Windows.Forms.SplitContainer();
-      this.allSongsListBox = new Lyra2.LyraShell.SongListBox();
-      this.songPreview1 = new Lyra2.LyraShell.SongPreview();
-      this.controlPaneRight = new Infragistics.Win.Misc.UltraPanel();
-      this.songManagmentLabel = new Infragistics.Win.Misc.UltraLabel();
-      this.button3 = new Lyra2.LyraShell.LyraButtonControl();
-      this.button1 = new Lyra2.LyraShell.LyraButtonControl();
-      this.button2 = new Lyra2.LyraShell.LyraButtonControl();
-      this.button9 = new Lyra2.LyraShell.LyraButtonControl();
-      this.tabPage3 = new System.Windows.Forms.TabPage();
-      this.persListSplitter = new System.Windows.Forms.SplitContainer();
-      this.personalListsListBox = new Lyra2.LyraShell.SongListBox();
-      this.panel8 = new System.Windows.Forms.Panel();
-      this.persListCombo = new System.Windows.Forms.ComboBox();
-      this.button5 = new Lyra2.LyraShell.LyraButtonControl();
-      this.moveUpDownPanel = new System.Windows.Forms.Panel();
-      this.moveListItemDownBtn = new Infragistics.Win.Misc.UltraButton();
-      this.moveListItemUpBtn = new Infragistics.Win.Misc.UltraButton();
-      this.songPreview2 = new Lyra2.LyraShell.SongPreview();
-      this.panel7 = new Infragistics.Win.Misc.UltraPanel();
-      this.listManagementLabel = new Infragistics.Win.Misc.UltraLabel();
-      this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-      this.button6 = new Lyra2.LyraShell.LyraButtonControl();
-      this.button4 = new Lyra2.LyraShell.LyraButtonControl();
-      this.label3 = new System.Windows.Forms.Label();
-      this.textBox3 = new Lyra2.LyraShell.SearchTextBox();
-      this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
-      this.menuItem1 = new System.Windows.Forms.MenuItem();
-      this.menuItem13 = new System.Windows.Forms.MenuItem();
-      this.menuItem14 = new System.Windows.Forms.MenuItem();
-      this.menuItem15 = new System.Windows.Forms.MenuItem();
-      this.menuItem17 = new System.Windows.Forms.MenuItem();
-      this.menuItem30 = new System.Windows.Forms.MenuItem();
-      this.menuItem31 = new System.Windows.Forms.MenuItem();
-      this.menuItem18 = new System.Windows.Forms.MenuItem();
-      this.menuItem16 = new System.Windows.Forms.MenuItem();
-      this.menuItem2 = new System.Windows.Forms.MenuItem();
-      this.menuItem19 = new System.Windows.Forms.MenuItem();
-      this.menuItem35 = new System.Windows.Forms.MenuItem();
-      this.menuItem36 = new System.Windows.Forms.MenuItem();
-      this.menuItem20 = new System.Windows.Forms.MenuItem();
-      this.menuItem21 = new System.Windows.Forms.MenuItem();
-      this.menuItem51 = new System.Windows.Forms.MenuItem();
-      this.menuItem52 = new System.Windows.Forms.MenuItem();
-      this.menuItem69 = new System.Windows.Forms.MenuItem();
-      this.menuItem68 = new System.Windows.Forms.MenuItem();
-      this.menuItem53 = new System.Windows.Forms.MenuItem();
-      this.menuItem40 = new System.Windows.Forms.MenuItem();
-      this.menuItem63 = new System.Windows.Forms.MenuItem();
-      this.menuItem64 = new System.Windows.Forms.MenuItem();
-      this.menuItem38 = new System.Windows.Forms.MenuItem();
-      this.menuItem41 = new System.Windows.Forms.MenuItem();
-      this.menuItem45 = new System.Windows.Forms.MenuItem();
-      this.menuItem44 = new System.Windows.Forms.MenuItem();
-      this.menuItem49 = new System.Windows.Forms.MenuItem();
-      this.menuItem50 = new System.Windows.Forms.MenuItem();
-      this.menuItem43 = new System.Windows.Forms.MenuItem();
-      this.menuItem34 = new System.Windows.Forms.MenuItem();
-      this.menuItem46 = new System.Windows.Forms.MenuItem();
-      this.menuItem42 = new System.Windows.Forms.MenuItem();
-      this.menuItem47 = new System.Windows.Forms.MenuItem();
-      this.menuItem48 = new System.Windows.Forms.MenuItem();
-      this.menuItem24 = new System.Windows.Forms.MenuItem();
-      this.menuItem3 = new System.Windows.Forms.MenuItem();
-      this.menuItem57 = new System.Windows.Forms.MenuItem();
-      this.menuItem59 = new System.Windows.Forms.MenuItem();
-      this.menuItem65 = new System.Windows.Forms.MenuItem();
-      this.menuItem70 = new System.Windows.Forms.MenuItem();
-      this.menuItem58 = new System.Windows.Forms.MenuItem();
-      this.menuItem54 = new System.Windows.Forms.MenuItem();
-      this.menuItem55 = new System.Windows.Forms.MenuItem();
-      this.menuItem56 = new System.Windows.Forms.MenuItem();
-      this.menuItem61 = new System.Windows.Forms.MenuItem();
-      this.menuItem62 = new System.Windows.Forms.MenuItem();
-      this.menuItem10 = new System.Windows.Forms.MenuItem();
-      this.menuItem26 = new System.Windows.Forms.MenuItem();
-      this.menuItem23 = new System.Windows.Forms.MenuItem();
-      this.menuItem28 = new System.Windows.Forms.MenuItem();
-      this.menuItem27 = new System.Windows.Forms.MenuItem();
-      this.menuItem11 = new System.Windows.Forms.MenuItem();
-      this.menuItem22 = new System.Windows.Forms.MenuItem();
-      this.menuItem12 = new System.Windows.Forms.MenuItem();
-      this.menuItem4 = new System.Windows.Forms.MenuItem();
-      this.menuItem5 = new System.Windows.Forms.MenuItem();
-      this.menuItem33 = new System.Windows.Forms.MenuItem();
-      this.menuItem29 = new System.Windows.Forms.MenuItem();
-      this.menuItem32 = new System.Windows.Forms.MenuItem();
-      this.menuItem37 = new System.Windows.Forms.MenuItem();
-      this.statusBar1 = new System.Windows.Forms.StatusBar();
-      this.statusBarPanel1 = new System.Windows.Forms.StatusBarPanel();
-      this.statusBarPanel2 = new System.Windows.Forms.StatusBarPanel();
-      this.contextMenu1 = new System.Windows.Forms.ContextMenu();
-      this.menuItem6 = new System.Windows.Forms.MenuItem();
-      this.menuItem7 = new System.Windows.Forms.MenuItem();
-      this.menuItem39 = new System.Windows.Forms.MenuItem();
-      this.menuItem8 = new System.Windows.Forms.MenuItem();
-      this.menuItem25 = new System.Windows.Forms.MenuItem();
-      this.contextMenu2 = new System.Windows.Forms.ContextMenu();
-      this.menuItem60 = new System.Windows.Forms.MenuItem();
-      this.menuItem66 = new System.Windows.Forms.MenuItem();
-      this.menuItem67 = new System.Windows.Forms.MenuItem();
-      this.menuItem9 = new System.Windows.Forms.MenuItem();
+      this.tabControl1 = new TabControl();
+      this.tabPage2 = new TabPage();
+      this.searchSplitter = new SplitContainer();
+      this.searchListBox = new SongListBox();
+      this.label4 = new Label();
+      this.songPreview3 = new SongPreview();
+      this.panel4 = new Panel();
+      this.sortCombo = new ComboBox();
+      this.sortLabel = new Label();
+      this.searchPaneTop = new Panel();
+      this.pictureBox4 = new PictureBox();
+      this.label2 = new Label();
+      this.pictureBox1 = new PictureBox();
+      this.mainSearchBox = new SearchTextBox();
+      this.checkBox1 = new CheckBox();
+      this.resultsLabel = new Label();
+      this.panel1 = new UltraPanel();
+      this.ultraLabel1 = new UltraLabel();
+      this.textBox1 = new SearchTextBox();
+      this.button7 = new LyraButtonControl();
+      this.showSongBtn = new LyraButtonControl();
+      this.tabPage1 = new TabPage();
+      this.allSongsSplitter = new SplitContainer();
+      this.allSongsListBox = new SongListBox();
+      this.songPreview1 = new SongPreview();
+      this.controlPaneRight = new UltraPanel();
+      this.songManagmentLabel = new UltraLabel();
+      this.button3 = new LyraButtonControl();
+      this.button1 = new LyraButtonControl();
+      this.button2 = new LyraButtonControl();
+      this.button9 = new LyraButtonControl();
+      this.tabPage3 = new TabPage();
+      this.persListSplitter = new SplitContainer();
+      this.personalListsListBox = new SongListBox();
+      this.panel8 = new Panel();
+      this.persListCombo = new ComboBox();
+      this.button5 = new LyraButtonControl();
+      this.moveUpDownPanel = new Panel();
+      this.moveListItemDownBtn = new UltraButton();
+      this.moveListItemUpBtn = new UltraButton();
+      this.songPreview2 = new SongPreview();
+      this.panel7 = new UltraPanel();
+      this.listManagementLabel = new UltraLabel();
+      this.linkLabel1 = new LinkLabel();
+      this.button6 = new LyraButtonControl();
+      this.button4 = new LyraButtonControl();
+      this.label3 = new Label();
+      this.textBox3 = new SearchTextBox();
+      this.mainMenu1 = new MainMenu(this.components);
+      this.menuItem1 = new MenuItem();
+      this.menuItem13 = new MenuItem();
+      this.menuItem14 = new MenuItem();
+      this.menuItem15 = new MenuItem();
+      this.menuItem17 = new MenuItem();
+      this.menuItem30 = new MenuItem();
+      this.menuItem31 = new MenuItem();
+      this.menuItem18 = new MenuItem();
+      this.menuItem16 = new MenuItem();
+      this.menuItem2 = new MenuItem();
+      this.menuItem19 = new MenuItem();
+      this.menuItem35 = new MenuItem();
+      this.menuItem36 = new MenuItem();
+      this.menuItem20 = new MenuItem();
+      this.menuItem21 = new MenuItem();
+      this.menuItem51 = new MenuItem();
+      this.menuItem52 = new MenuItem();
+      this.menuItem69 = new MenuItem();
+      this.menuItem68 = new MenuItem();
+      this.menuItem53 = new MenuItem();
+      this.menuItem40 = new MenuItem();
+      this.menuItem63 = new MenuItem();
+      this.menuItem64 = new MenuItem();
+      this.menuItem38 = new MenuItem();
+      this.menuItem41 = new MenuItem();
+      this.menuItem45 = new MenuItem();
+      this.menuItem44 = new MenuItem();
+      this.menuItem49 = new MenuItem();
+      this.menuItem50 = new MenuItem();
+      this.menuItem43 = new MenuItem();
+      this.menuItem34 = new MenuItem();
+      this.menuItem46 = new MenuItem();
+      this.menuItem42 = new MenuItem();
+      this.menuItem47 = new MenuItem();
+      this.menuItem48 = new MenuItem();
+      this.menuItem24 = new MenuItem();
+      this.menuItem3 = new MenuItem();
+      this.menuItem57 = new MenuItem();
+      this.menuItem59 = new MenuItem();
+      this.menuItem65 = new MenuItem();
+      this.menuItem70 = new MenuItem();
+      this.menuItem58 = new MenuItem();
+      this.menuItem54 = new MenuItem();
+      this.menuItem55 = new MenuItem();
+      this.menuItem56 = new MenuItem();
+      this.menuItem61 = new MenuItem();
+      this.menuItem62 = new MenuItem();
+      this.menuItem10 = new MenuItem();
+      this.menuItem26 = new MenuItem();
+      this.menuItem23 = new MenuItem();
+      this.menuItem28 = new MenuItem();
+      this.menuItem27 = new MenuItem();
+      this.menuItem11 = new MenuItem();
+      this.menuItem22 = new MenuItem();
+      this.menuItem12 = new MenuItem();
+      this.menuItem4 = new MenuItem();
+      this.menuItem5 = new MenuItem();
+      this.menuItem33 = new MenuItem();
+      this.menuItem29 = new MenuItem();
+      this.menuItem32 = new MenuItem();
+      this.menuItem37 = new MenuItem();
+      this.statusBar1 = new StatusBar();
+      this.statusBarPanel1 = new StatusBarPanel();
+      this.statusBarPanel2 = new StatusBarPanel();
+      this.contextMenu1 = new ContextMenu();
+      this.menuItem6 = new MenuItem();
+      this.menuItem7 = new MenuItem();
+      this.menuItem39 = new MenuItem();
+      this.menuItem8 = new MenuItem();
+      this.menuItem25 = new MenuItem();
+      this.contextMenu2 = new ContextMenu();
+      this.menuItem60 = new MenuItem();
+      this.menuItem66 = new MenuItem();
+      this.menuItem67 = new MenuItem();
+      this.menuItem9 = new MenuItem();
       this.tabControl1.SuspendLayout();
       this.tabPage2.SuspendLayout();
       this.searchSplitter.Panel1.SuspendLayout();
@@ -547,8 +547,8 @@ namespace Lyra2.LyraShell
       this.searchSplitter.SuspendLayout();
       this.panel4.SuspendLayout();
       this.searchPaneTop.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+      ((ISupportInitialize)(this.pictureBox4)).BeginInit();
+      ((ISupportInitialize)(this.pictureBox1)).BeginInit();
       this.panel1.ClientArea.SuspendLayout();
       this.panel1.SuspendLayout();
       this.tabPage1.SuspendLayout();
@@ -565,8 +565,8 @@ namespace Lyra2.LyraShell
       this.moveUpDownPanel.SuspendLayout();
       this.panel7.ClientArea.SuspendLayout();
       this.panel7.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.statusBarPanel1)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.statusBarPanel2)).BeginInit();
+      ((ISupportInitialize)(this.statusBarPanel1)).BeginInit();
+      ((ISupportInitialize)(this.statusBarPanel2)).BeginInit();
       this.SuspendLayout();
       // 
       // tabControl1
@@ -574,33 +574,33 @@ namespace Lyra2.LyraShell
       this.tabControl1.Controls.Add(this.tabPage2);
       this.tabControl1.Controls.Add(this.tabPage1);
       this.tabControl1.Controls.Add(this.tabPage3);
-      this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.tabControl1.Location = new System.Drawing.Point(0, 0);
+      this.tabControl1.Dock = DockStyle.Fill;
+      this.tabControl1.Location = new Point(0, 0);
       this.tabControl1.Name = "tabControl1";
       this.tabControl1.SelectedIndex = 0;
-      this.tabControl1.Size = new System.Drawing.Size(950, 449);
+      this.tabControl1.Size = new Size(950, 449);
       this.tabControl1.TabIndex = 0;
       this.tabControl1.SelectedIndexChanged += this.tabControl1_SelectedIndexChanged;
       // 
       // tabPage2
       // 
-      this.tabPage2.BackColor = System.Drawing.Color.WhiteSmoke;
+      this.tabPage2.BackColor = Color.WhiteSmoke;
       this.tabPage2.Controls.Add(this.searchSplitter);
       this.tabPage2.Controls.Add(this.panel4);
       this.tabPage2.Controls.Add(this.panel1);
-      this.tabPage2.Location = new System.Drawing.Point(4, 22);
+      this.tabPage2.Location = new Point(4, 22);
       this.tabPage2.Name = "tabPage2";
-      this.tabPage2.Size = new System.Drawing.Size(942, 423);
+      this.tabPage2.Size = new Size(942, 423);
       this.tabPage2.TabIndex = 1;
       this.tabPage2.Text = "Suche";
       this.tabPage2.UseVisualStyleBackColor = true;
       // 
       // searchSplitter
       // 
-      this.searchSplitter.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.searchSplitter.Location = new System.Drawing.Point(0, 60);
+      this.searchSplitter.Dock = DockStyle.Fill;
+      this.searchSplitter.Location = new Point(0, 60);
       this.searchSplitter.Name = "searchSplitter";
-      this.searchSplitter.Orientation = System.Windows.Forms.Orientation.Horizontal;
+      this.searchSplitter.Orientation = Orientation.Horizontal;
       // 
       // searchSplitter.Panel1
       // 
@@ -612,19 +612,19 @@ namespace Lyra2.LyraShell
       // 
       this.searchSplitter.Panel2.Controls.Add(this.songPreview3);
       this.searchSplitter.Panel2MinSize = 50;
-      this.searchSplitter.Size = new System.Drawing.Size(830, 363);
+      this.searchSplitter.Size = new Size(830, 363);
       this.searchSplitter.SplitterDistance = 266;
       this.searchSplitter.TabIndex = 18;
       // 
       // searchListBox
       // 
-      this.searchListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.searchListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+      this.searchListBox.Dock = DockStyle.Fill;
+      this.searchListBox.DrawMode = DrawMode.OwnerDrawFixed;
       this.searchListBox.ItemHeight = 15;
-      this.searchListBox.Location = new System.Drawing.Point(0, 0);
+      this.searchListBox.Location = new Point(0, 0);
       this.searchListBox.Name = "searchListBox";
       this.searchListBox.NrOfNumberMatches = 0;
-      this.searchListBox.Size = new System.Drawing.Size(830, 244);
+      this.searchListBox.Size = new Size(830, 244);
       this.searchListBox.TabIndex = 5;
       this.searchListBox.SelectedIndexChanged += this.listBox3_SelectedIndexChanged;
       this.searchListBox.DoubleClick += this.listBox3_dblClick;
@@ -632,11 +632,11 @@ namespace Lyra2.LyraShell
       // 
       // label4
       // 
-      this.label4.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.label4.ForeColor = System.Drawing.Color.SaddleBrown;
-      this.label4.Location = new System.Drawing.Point(0, 251);
+      this.label4.Dock = DockStyle.Bottom;
+      this.label4.ForeColor = Color.SaddleBrown;
+      this.label4.Location = new Point(0, 251);
       this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(830, 15);
+      this.label4.Size = new Size(830, 15);
       this.label4.TabIndex = 14;
       this.label4.Text = "Suchergebnisse könnten fehlerhaft sein. Bitte Änderungen übernehmen!";
       this.label4.Visible = false;
@@ -644,10 +644,10 @@ namespace Lyra2.LyraShell
       // songPreview3
       // 
       this.songPreview3.AutoScroll = true;
-      this.songPreview3.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.songPreview3.Location = new System.Drawing.Point(0, 0);
+      this.songPreview3.Dock = DockStyle.Fill;
+      this.songPreview3.Location = new Point(0, 0);
       this.songPreview3.Name = "songPreview3";
-      this.songPreview3.Size = new System.Drawing.Size(830, 93);
+      this.songPreview3.Size = new Size(830, 93);
       this.songPreview3.TabIndex = 0;
       // 
       // panel4
@@ -658,17 +658,17 @@ namespace Lyra2.LyraShell
       this.panel4.Controls.Add(this.mainSearchBox);
       this.panel4.Controls.Add(this.checkBox1);
       this.panel4.Controls.Add(this.resultsLabel);
-      this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-      this.panel4.Location = new System.Drawing.Point(0, 0);
+      this.panel4.Dock = DockStyle.Top;
+      this.panel4.Location = new Point(0, 0);
       this.panel4.Name = "panel4";
-      this.panel4.Size = new System.Drawing.Size(830, 60);
+      this.panel4.Size = new Size(830, 60);
       this.panel4.TabIndex = 17;
       // 
       // sortCombo
       // 
-      this.sortCombo.BackColor = System.Drawing.Color.WhiteSmoke;
-      this.sortCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-      this.sortCombo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.sortCombo.BackColor = Color.WhiteSmoke;
+      this.sortCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+      this.sortCombo.FlatStyle = FlatStyle.Flat;
       this.sortCombo.FormattingEnabled = true;
       this.sortCombo.Items.AddRange(new object[]
                                               {
@@ -679,40 +679,40 @@ namespace Lyra2.LyraShell
                                                   "Titel (aufsteigend)",
                                                   "Titel (absteiged)"
                                               });
-      this.sortCombo.Location = new System.Drawing.Point(193, 32);
+      this.sortCombo.Location = new Point(193, 32);
       this.sortCombo.Name = "sortCombo";
-      this.sortCombo.Size = new System.Drawing.Size(164, 21);
+      this.sortCombo.Size = new Size(164, 21);
       this.sortCombo.TabIndex = 16;
       // 
       // sortLabel
       // 
       this.sortLabel.AutoSize = true;
-      this.sortLabel.ForeColor = System.Drawing.Color.DimGray;
-      this.sortLabel.Location = new System.Drawing.Point(111, 35);
+      this.sortLabel.ForeColor = Color.DimGray;
+      this.sortLabel.Location = new Point(111, 35);
       this.sortLabel.Name = "sortLabel";
-      this.sortLabel.Size = new System.Drawing.Size(76, 13);
+      this.sortLabel.Size = new Size(76, 13);
       this.sortLabel.TabIndex = 15;
       this.sortLabel.Text = "Sortierung :";
       // 
       // searchPaneTop
       // 
-      this.searchPaneTop.BackColor = System.Drawing.Color.WhiteSmoke;
+      this.searchPaneTop.BackColor = Color.WhiteSmoke;
       this.searchPaneTop.Controls.Add(this.pictureBox4);
       this.searchPaneTop.Controls.Add(this.label2);
       this.searchPaneTop.Controls.Add(this.pictureBox1);
-      this.searchPaneTop.Dock = System.Windows.Forms.DockStyle.Right;
-      this.searchPaneTop.Location = new System.Drawing.Point(630, 0);
+      this.searchPaneTop.Dock = DockStyle.Right;
+      this.searchPaneTop.Location = new Point(630, 0);
       this.searchPaneTop.Name = "searchPaneTop";
-      this.searchPaneTop.Size = new System.Drawing.Size(200, 60);
+      this.searchPaneTop.Size = new Size(200, 60);
       this.searchPaneTop.TabIndex = 2;
       // 
       // pictureBox4
       // 
-      this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
-      this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-      this.pictureBox4.Location = new System.Drawing.Point(3, 8);
+      this.pictureBox4.Cursor = Cursors.Hand;
+      this.pictureBox4.Image = ((Image)(resources.GetObject("pictureBox4.Image")));
+      this.pictureBox4.Location = new Point(3, 8);
       this.pictureBox4.Name = "pictureBox4";
-      this.pictureBox4.Size = new System.Drawing.Size(22, 22);
+      this.pictureBox4.Size = new Size(22, 22);
       this.pictureBox4.TabIndex = 12;
       this.pictureBox4.TabStop = false;
       this.pictureBox4.Click += this.button8_Click;
@@ -720,36 +720,36 @@ namespace Lyra2.LyraShell
       // label2
       // 
       this.label2.AutoSize = true;
-      this.label2.ForeColor = System.Drawing.Color.DimGray;
-      this.label2.Location = new System.Drawing.Point(67, 12);
+      this.label2.ForeColor = Color.DimGray;
+      this.label2.Location = new Point(67, 12);
       this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(121, 13);
+      this.label2.Size = new Size(121, 13);
       this.label2.TabIndex = 15;
       this.label2.Text = "Suche zurücksetzen";
       // 
       // pictureBox1
       // 
-      this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-      this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-      this.pictureBox1.Location = new System.Drawing.Point(43, 8);
+      this.pictureBox1.Cursor = Cursors.Hand;
+      this.pictureBox1.Image = ((Image)(resources.GetObject("pictureBox1.Image")));
+      this.pictureBox1.Location = new Point(43, 8);
       this.pictureBox1.Name = "pictureBox1";
-      this.pictureBox1.Size = new System.Drawing.Size(22, 22);
+      this.pictureBox1.Size = new Size(22, 22);
       this.pictureBox1.TabIndex = 14;
       this.pictureBox1.TabStop = false;
       this.pictureBox1.Click += this.pictureBox1_Click;
       // 
       // mainSearchBox
       // 
-      this.mainSearchBox.Anchor = ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                     | System.Windows.Forms.AnchorStyles.Right)));
-      this.mainSearchBox.BackColor = System.Drawing.Color.FromArgb(((((253)))), ((((253)))), ((((176)))));
+      this.mainSearchBox.Anchor = ((((AnchorStyles.Top | AnchorStyles.Left)
+                                     | AnchorStyles.Right)));
+      this.mainSearchBox.BackColor = Color.FromArgb(((((253)))), ((((253)))), ((((176)))));
       this.mainSearchBox.DefaultText = "Suchbegriffe";
-      this.mainSearchBox.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point,
+      this.mainSearchBox.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point,
                                                         ((0)));
-      this.mainSearchBox.ForeColor = System.Drawing.Color.DimGray;
-      this.mainSearchBox.Location = new System.Drawing.Point(8, 8);
+      this.mainSearchBox.ForeColor = Color.DimGray;
+      this.mainSearchBox.Location = new Point(8, 8);
       this.mainSearchBox.Name = "mainSearchBox";
-      this.mainSearchBox.Size = new System.Drawing.Size(616, 22);
+      this.mainSearchBox.Size = new Size(616, 22);
       this.mainSearchBox.TabIndex = 0;
       this.mainSearchBox.Text = "Suchbegriffe";
       this.mainSearchBox.TextChanged += this.textBox2_TextChanged;
@@ -757,29 +757,29 @@ namespace Lyra2.LyraShell
       // 
       // checkBox1
       // 
-      this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-      this.checkBox1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((0)));
-      this.checkBox1.ForeColor = System.Drawing.Color.DimGray;
-      this.checkBox1.Location = new System.Drawing.Point(8, 34);
+      this.checkBox1.CheckAlign = ContentAlignment.MiddleRight;
+      this.checkBox1.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((0)));
+      this.checkBox1.ForeColor = Color.DimGray;
+      this.checkBox1.Location = new Point(8, 34);
       this.checkBox1.Name = "checkBox1";
-      this.checkBox1.Size = new System.Drawing.Size(88, 18);
+      this.checkBox1.Size = new Size(88, 18);
       this.checkBox1.TabIndex = 7;
       this.checkBox1.Text = "Nur Titel :";
       this.checkBox1.CheckedChanged += this.checkBox3_CheckedChanged;
       // 
       // resultsLabel
       // 
-      this.resultsLabel.BackColor = System.Drawing.Color.Transparent;
-      this.resultsLabel.ForeColor = System.Drawing.Color.DimGray;
-      this.resultsLabel.Location = new System.Drawing.Point(504, 32);
+      this.resultsLabel.BackColor = Color.Transparent;
+      this.resultsLabel.ForeColor = Color.DimGray;
+      this.resultsLabel.Location = new Point(504, 32);
       this.resultsLabel.Name = "resultsLabel";
-      this.resultsLabel.Size = new System.Drawing.Size(100, 23);
+      this.resultsLabel.Size = new Size(100, 23);
       this.resultsLabel.TabIndex = 13;
-      this.resultsLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      this.resultsLabel.TextAlign = ContentAlignment.TopRight;
       // 
       // panel1
       // 
-      appearance1.ImageBackground = global::Lyra2.LyraShell.Properties.Resources.right_pane_bg;
+      appearance1.ImageBackground = Properties.Resources.right_pane_bg;
       appearance1.ImageBackgroundStretchMargins = new Infragistics.Win.ImageBackgroundStretchMargins(110, 100, 1, 350);
       appearance1.ImageBackgroundStyle = Infragistics.Win.ImageBackgroundStyle.Stretched;
       this.panel1.Appearance = appearance1;
@@ -790,36 +790,36 @@ namespace Lyra2.LyraShell
       this.panel1.ClientArea.Controls.Add(this.textBox1);
       this.panel1.ClientArea.Controls.Add(this.button7);
       this.panel1.ClientArea.Controls.Add(this.showSongBtn);
-      this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-      this.panel1.Location = new System.Drawing.Point(830, 0);
+      this.panel1.Dock = DockStyle.Right;
+      this.panel1.Location = new Point(830, 0);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(112, 423);
+      this.panel1.Size = new Size(112, 423);
       this.panel1.TabIndex = 15;
       // 
       // ultraLabel1
       // 
-      appearance15.BackColor = System.Drawing.Color.Transparent;
-      appearance15.BackColor2 = System.Drawing.Color.FromArgb(((((255)))), ((((255)))), ((((192)))));
+      appearance15.BackColor = Color.Transparent;
+      appearance15.BackColor2 = Color.FromArgb(((((255)))), ((((255)))), ((((192)))));
       appearance15.BackColorAlpha = Infragistics.Win.Alpha.Opaque;
       appearance15.BackGradientStyle = Infragistics.Win.GradientStyle.ForwardDiagonal;
       appearance15.FontData.ItalicAsString = "True";
-      appearance15.ForeColor = System.Drawing.Color.DimGray;
+      appearance15.ForeColor = Color.DimGray;
       appearance15.TextHAlignAsString = "Left";
       this.ultraLabel1.Appearance = appearance15;
-      this.ultraLabel1.Location = new System.Drawing.Point(12, 87);
+      this.ultraLabel1.Location = new Point(12, 87);
       this.ultraLabel1.Name = "ultraLabel1";
-      this.ultraLabel1.Padding = new System.Drawing.Size(10, 0);
-      this.ultraLabel1.Size = new System.Drawing.Size(96, 26);
+      this.ultraLabel1.Padding = new Size(10, 0);
+      this.ultraLabel1.Size = new Size(96, 26);
       this.ultraLabel1.TabIndex = 7;
       this.ultraLabel1.Text = "Quick\r\n   View";
       // 
       // textBox1
       // 
       this.textBox1.DefaultText = "Nummer";
-      this.textBox1.ForeColor = System.Drawing.Color.DimGray;
-      this.textBox1.Location = new System.Drawing.Point(12, 119);
+      this.textBox1.ForeColor = Color.DimGray;
+      this.textBox1.Location = new Point(12, 119);
       this.textBox1.Name = "textBox1";
-      this.textBox1.Size = new System.Drawing.Size(96, 21);
+      this.textBox1.Size = new Size(96, 21);
       this.textBox1.TabIndex = 0;
       this.textBox1.Text = "Nummer";
       this.textBox1.Click += this.textBox1_Click;
@@ -827,9 +827,9 @@ namespace Lyra2.LyraShell
       // 
       // button7
       // 
-      this.button7.Location = new System.Drawing.Point(28, 144);
+      this.button7.Location = new Point(28, 144);
       this.button7.Name = "button7";
-      this.button7.Size = new System.Drawing.Size(80, 22);
+      this.button7.Size = new Size(80, 22);
       this.button7.TabIndex = 1;
       this.button7.Text = "Anzeigen";
       this.button7.Click += this.button7_Click;
@@ -838,34 +838,34 @@ namespace Lyra2.LyraShell
       // 
       appearance10.FontData.BoldAsString = "False";
       appearance10.FontData.SizeInPoints = 11F;
-      appearance10.ForeColor = System.Drawing.Color.FromArgb(((((0)))), ((((85)))), ((((170)))));
+      appearance10.ForeColor = Color.FromArgb(((((0)))), ((((85)))), ((((170)))));
       this.showSongBtn.Appearance = appearance10;
-      this.showSongBtn.ForeColor = System.Drawing.Color.Brown;
-      this.showSongBtn.Location = new System.Drawing.Point(12, 8);
+      this.showSongBtn.ForeColor = Color.Brown;
+      this.showSongBtn.Location = new Point(12, 8);
       this.showSongBtn.Name = "showSongBtn";
-      this.showSongBtn.Size = new System.Drawing.Size(96, 46);
+      this.showSongBtn.Size = new Size(96, 46);
       this.showSongBtn.TabIndex = 4;
       this.showSongBtn.Text = "Anzeigen!";
       this.showSongBtn.Click += this.listBox3_dblClick;
       // 
       // tabPage1
       // 
-      this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+      this.tabPage1.BackColor = Color.WhiteSmoke;
       this.tabPage1.Controls.Add(this.allSongsSplitter);
       this.tabPage1.Controls.Add(this.controlPaneRight);
-      this.tabPage1.Location = new System.Drawing.Point(4, 22);
+      this.tabPage1.Location = new Point(4, 22);
       this.tabPage1.Name = "tabPage1";
-      this.tabPage1.Size = new System.Drawing.Size(942, 423);
+      this.tabPage1.Size = new Size(942, 423);
       this.tabPage1.TabIndex = 0;
-      this.tabPage1.Text = "Songliste";
+      this.tabPage1.Text = "Alle Songs";
       this.tabPage1.UseVisualStyleBackColor = true;
       // 
       // allSongsSplitter
       // 
-      this.allSongsSplitter.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.allSongsSplitter.Location = new System.Drawing.Point(0, 0);
+      this.allSongsSplitter.Dock = DockStyle.Fill;
+      this.allSongsSplitter.Location = new Point(0, 0);
       this.allSongsSplitter.Name = "allSongsSplitter";
-      this.allSongsSplitter.Orientation = System.Windows.Forms.Orientation.Horizontal;
+      this.allSongsSplitter.Orientation = Orientation.Horizontal;
       // 
       // allSongsSplitter.Panel1
       // 
@@ -876,20 +876,20 @@ namespace Lyra2.LyraShell
       // 
       this.allSongsSplitter.Panel2.Controls.Add(this.songPreview1);
       this.allSongsSplitter.Panel2MinSize = 50;
-      this.allSongsSplitter.Size = new System.Drawing.Size(830, 423);
+      this.allSongsSplitter.Size = new Size(830, 423);
       this.allSongsSplitter.SplitterDistance = 292;
       this.allSongsSplitter.TabIndex = 8;
       // 
       // allSongsListBox
       // 
-      this.allSongsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.allSongsListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+      this.allSongsListBox.Dock = DockStyle.Fill;
+      this.allSongsListBox.DrawMode = DrawMode.OwnerDrawFixed;
       this.allSongsListBox.ItemHeight = 15;
-      this.allSongsListBox.Location = new System.Drawing.Point(0, 0);
+      this.allSongsListBox.Location = new Point(0, 0);
       this.allSongsListBox.Name = "allSongsListBox";
       this.allSongsListBox.NrOfNumberMatches = 0;
-      this.allSongsListBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-      this.allSongsListBox.Size = new System.Drawing.Size(830, 289);
+      this.allSongsListBox.RightToLeft = RightToLeft.No;
+      this.allSongsListBox.Size = new Size(830, 289);
       this.allSongsListBox.Sorted = true;
       this.allSongsListBox.TabIndex = 0;
       this.allSongsListBox.SelectedIndexChanged += this.listBox1_SelectedIndexChanged;
@@ -899,15 +899,15 @@ namespace Lyra2.LyraShell
       // songPreview1
       // 
       this.songPreview1.AutoScroll = true;
-      this.songPreview1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.songPreview1.Location = new System.Drawing.Point(0, 0);
+      this.songPreview1.Dock = DockStyle.Fill;
+      this.songPreview1.Location = new Point(0, 0);
       this.songPreview1.Name = "songPreview1";
-      this.songPreview1.Size = new System.Drawing.Size(830, 127);
+      this.songPreview1.Size = new Size(830, 127);
       this.songPreview1.TabIndex = 0;
       // 
       // controlPaneRight
       // 
-      appearance2.ImageBackground = global::Lyra2.LyraShell.Properties.Resources.right_pane_bg;
+      appearance2.ImageBackground = Properties.Resources.right_pane_bg;
       appearance2.ImageBackgroundStretchMargins = new Infragistics.Win.ImageBackgroundStretchMargins(110, 100, 1, 350);
       appearance2.ImageBackgroundStyle = Infragistics.Win.ImageBackgroundStyle.Stretched;
       this.controlPaneRight.Appearance = appearance2;
@@ -919,26 +919,26 @@ namespace Lyra2.LyraShell
       this.controlPaneRight.ClientArea.Controls.Add(this.button1);
       this.controlPaneRight.ClientArea.Controls.Add(this.button2);
       this.controlPaneRight.ClientArea.Controls.Add(this.button9);
-      this.controlPaneRight.Dock = System.Windows.Forms.DockStyle.Right;
-      this.controlPaneRight.Location = new System.Drawing.Point(830, 0);
+      this.controlPaneRight.Dock = DockStyle.Right;
+      this.controlPaneRight.Location = new Point(830, 0);
       this.controlPaneRight.Name = "controlPaneRight";
-      this.controlPaneRight.Size = new System.Drawing.Size(112, 423);
+      this.controlPaneRight.Size = new Size(112, 423);
       this.controlPaneRight.TabIndex = 7;
       // 
       // songManagmentLabel
       // 
-      appearance13.BackColor = System.Drawing.Color.Transparent;
-      appearance13.BackColor2 = System.Drawing.Color.FromArgb(((((255)))), ((((255)))), ((((192)))));
+      appearance13.BackColor = Color.Transparent;
+      appearance13.BackColor2 = Color.FromArgb(((((255)))), ((((255)))), ((((192)))));
       appearance13.BackColorAlpha = Infragistics.Win.Alpha.Opaque;
       appearance13.BackGradientStyle = Infragistics.Win.GradientStyle.ForwardDiagonal;
       appearance13.FontData.ItalicAsString = "True";
-      appearance13.ForeColor = System.Drawing.Color.DimGray;
+      appearance13.ForeColor = Color.DimGray;
       appearance13.TextHAlignAsString = "Left";
       this.songManagmentLabel.Appearance = appearance13;
-      this.songManagmentLabel.Location = new System.Drawing.Point(12, 87);
+      this.songManagmentLabel.Location = new Point(12, 87);
       this.songManagmentLabel.Name = "songManagmentLabel";
-      this.songManagmentLabel.Padding = new System.Drawing.Size(10, 0);
-      this.songManagmentLabel.Size = new System.Drawing.Size(96, 26);
+      this.songManagmentLabel.Padding = new Size(10, 0);
+      this.songManagmentLabel.Size = new Size(96, 26);
       this.songManagmentLabel.TabIndex = 6;
       this.songManagmentLabel.Text = "Lieder\r\n   verwalten";
       // 
@@ -946,61 +946,61 @@ namespace Lyra2.LyraShell
       // 
       appearance12.FontData.BoldAsString = "False";
       appearance12.FontData.SizeInPoints = 11F;
-      appearance12.ForeColor = System.Drawing.Color.FromArgb(((((0)))), ((((85)))), ((((170)))));
+      appearance12.ForeColor = Color.FromArgb(((((0)))), ((((85)))), ((((170)))));
       this.button3.Appearance = appearance12;
-      this.button3.ForeColor = System.Drawing.Color.Brown;
-      this.button3.Location = new System.Drawing.Point(12, 8);
+      this.button3.ForeColor = Color.Brown;
+      this.button3.Location = new Point(12, 8);
       this.button3.Name = "button3";
-      this.button3.Size = new System.Drawing.Size(96, 46);
+      this.button3.Size = new Size(96, 46);
       this.button3.TabIndex = 3;
       this.button3.Text = "Anzeigen!";
       this.button3.Click += this.button3_Click;
       // 
       // button1
       // 
-      this.button1.Location = new System.Drawing.Point(12, 119);
+      this.button1.Location = new Point(12, 119);
       this.button1.Name = "button1";
-      this.button1.Size = new System.Drawing.Size(96, 28);
+      this.button1.Size = new Size(96, 28);
       this.button1.TabIndex = 1;
       this.button1.Text = "Neues Lied…";
       this.button1.Click += this.button1_Click;
       // 
       // button2
       // 
-      this.button2.Location = new System.Drawing.Point(12, 153);
+      this.button2.Location = new Point(12, 153);
       this.button2.Name = "button2";
-      this.button2.Size = new System.Drawing.Size(96, 28);
+      this.button2.Size = new Size(96, 28);
       this.button2.TabIndex = 2;
       this.button2.Text = "Editieren…";
       this.button2.Click += this.button2_Click;
       // 
       // button9
       // 
-      this.button9.Location = new System.Drawing.Point(12, 187);
+      this.button9.Location = new Point(12, 187);
       this.button9.Name = "button9";
-      this.button9.Size = new System.Drawing.Size(96, 28);
+      this.button9.Size = new Size(96, 28);
       this.button9.TabIndex = 5;
       this.button9.Text = "Löschen";
       this.button9.Click += this.button9_Click;
       // 
       // tabPage3
       // 
-      this.tabPage3.BackColor = System.Drawing.Color.WhiteSmoke;
+      this.tabPage3.BackColor = Color.WhiteSmoke;
       this.tabPage3.Controls.Add(this.persListSplitter);
       this.tabPage3.Controls.Add(this.panel7);
-      this.tabPage3.Location = new System.Drawing.Point(4, 22);
+      this.tabPage3.Location = new Point(4, 22);
       this.tabPage3.Name = "tabPage3";
-      this.tabPage3.Size = new System.Drawing.Size(942, 423);
+      this.tabPage3.Size = new Size(942, 423);
       this.tabPage3.TabIndex = 2;
       this.tabPage3.Text = "Listen";
       this.tabPage3.UseVisualStyleBackColor = true;
       // 
       // persListSplitter
       // 
-      this.persListSplitter.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.persListSplitter.Location = new System.Drawing.Point(0, 0);
+      this.persListSplitter.Dock = DockStyle.Fill;
+      this.persListSplitter.Location = new Point(0, 0);
       this.persListSplitter.Name = "persListSplitter";
-      this.persListSplitter.Orientation = System.Windows.Forms.Orientation.Horizontal;
+      this.persListSplitter.Orientation = Orientation.Horizontal;
       // 
       // persListSplitter.Panel1
       // 
@@ -1013,19 +1013,19 @@ namespace Lyra2.LyraShell
       // 
       this.persListSplitter.Panel2.Controls.Add(this.songPreview2);
       this.persListSplitter.Panel2MinSize = 50;
-      this.persListSplitter.Size = new System.Drawing.Size(830, 423);
+      this.persListSplitter.Size = new Size(830, 423);
       this.persListSplitter.SplitterDistance = 292;
       this.persListSplitter.TabIndex = 17;
       // 
       // personalListsListBox
       // 
-      this.personalListsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.personalListsListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+      this.personalListsListBox.Dock = DockStyle.Fill;
+      this.personalListsListBox.DrawMode = DrawMode.OwnerDrawFixed;
       this.personalListsListBox.ItemHeight = 15;
-      this.personalListsListBox.Location = new System.Drawing.Point(24, 30);
+      this.personalListsListBox.Location = new Point(24, 30);
       this.personalListsListBox.Name = "personalListsListBox";
       this.personalListsListBox.NrOfNumberMatches = 0;
-      this.personalListsListBox.Size = new System.Drawing.Size(806, 259);
+      this.personalListsListBox.Size = new Size(806, 259);
       this.personalListsListBox.TabIndex = 0;
       this.personalListsListBox.SelectedIndexChanged += this.listBox2_SelectedIndexChanged;
       this.personalListsListBox.DoubleClick += this.listBox2_DoubleClick;
@@ -1035,26 +1035,26 @@ namespace Lyra2.LyraShell
       // 
       this.panel8.Controls.Add(this.persListCombo);
       this.panel8.Controls.Add(this.button5);
-      this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-      this.panel8.Location = new System.Drawing.Point(24, 0);
+      this.panel8.Dock = DockStyle.Top;
+      this.panel8.Location = new Point(24, 0);
       this.panel8.Name = "panel8";
-      this.panel8.Size = new System.Drawing.Size(806, 30);
+      this.panel8.Size = new Size(806, 30);
       this.panel8.TabIndex = 15;
       // 
       // persListCombo
       // 
-      this.persListCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-      this.persListCombo.Location = new System.Drawing.Point(1, 4);
+      this.persListCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+      this.persListCombo.Location = new Point(1, 4);
       this.persListCombo.Name = "persListCombo";
-      this.persListCombo.Size = new System.Drawing.Size(448, 21);
+      this.persListCombo.Size = new Size(448, 21);
       this.persListCombo.TabIndex = 4;
       this.persListCombo.SelectedIndexChanged += this.comboBox1_SelectedIndexChanged;
       // 
       // button5
       // 
-      this.button5.Location = new System.Drawing.Point(455, 4);
+      this.button5.Location = new Point(455, 4);
       this.button5.Name = "button5";
-      this.button5.Size = new System.Drawing.Size(96, 21);
+      this.button5.Size = new Size(96, 21);
       this.button5.TabIndex = 2;
       this.button5.Text = "Neue Liste…";
       this.button5.Click += this.button5_Click;
@@ -1063,10 +1063,10 @@ namespace Lyra2.LyraShell
       // 
       this.moveUpDownPanel.Controls.Add(this.moveListItemDownBtn);
       this.moveUpDownPanel.Controls.Add(this.moveListItemUpBtn);
-      this.moveUpDownPanel.Dock = System.Windows.Forms.DockStyle.Left;
-      this.moveUpDownPanel.Location = new System.Drawing.Point(0, 0);
+      this.moveUpDownPanel.Dock = DockStyle.Left;
+      this.moveUpDownPanel.Location = new Point(0, 0);
       this.moveUpDownPanel.Name = "moveUpDownPanel";
-      this.moveUpDownPanel.Size = new System.Drawing.Size(24, 292);
+      this.moveUpDownPanel.Size = new Size(24, 292);
       this.moveUpDownPanel.TabIndex = 16;
       this.moveUpDownPanel.Resize += this.MoveUpDownPanelResizeHandler;
       // 
@@ -1075,20 +1075,20 @@ namespace Lyra2.LyraShell
       appearance7.BorderAlpha = Infragistics.Win.Alpha.Transparent;
       appearance7.ForegroundAlpha = Infragistics.Win.Alpha.Transparent;
       appearance7.ImageAlpha = Infragistics.Win.Alpha.Transparent;
-      appearance7.ImageBackground = global::Lyra2.LyraShell.Properties.Resources.arrow_down;
+      appearance7.ImageBackground = Properties.Resources.arrow_down;
       this.moveListItemDownBtn.Appearance = appearance7;
-      this.moveListItemDownBtn.BackgroundImage = global::Lyra2.LyraShell.Properties.Resources.pfeilDown;
-      this.moveListItemDownBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+      this.moveListItemDownBtn.BackgroundImage = Properties.Resources.pfeilDown;
+      this.moveListItemDownBtn.BackgroundImageLayout = ImageLayout.Center;
       this.moveListItemDownBtn.ButtonStyle = Infragistics.Win.UIElementButtonStyle.FlatBorderless;
-      appearance6.ImageBackground = global::Lyra2.LyraShell.Properties.Resources.arrow_down_over;
+      appearance6.ImageBackground = Properties.Resources.arrow_down_over;
       this.moveListItemDownBtn.HotTrackAppearance = appearance6;
-      this.moveListItemDownBtn.Location = new System.Drawing.Point(5, 136);
+      this.moveListItemDownBtn.Location = new Point(5, 136);
       this.moveListItemDownBtn.Name = "moveListItemDownBtn";
-      appearance9.ImageBackground = global::Lyra2.LyraShell.Properties.Resources.arrow_down_down;
+      appearance9.ImageBackground = Properties.Resources.arrow_down_down;
       this.moveListItemDownBtn.PressedAppearance = appearance9;
       this.moveListItemDownBtn.ShowFocusRect = false;
       this.moveListItemDownBtn.ShowOutline = false;
-      this.moveListItemDownBtn.Size = new System.Drawing.Size(13, 37);
+      this.moveListItemDownBtn.Size = new Size(13, 37);
       this.moveListItemDownBtn.TabIndex = 7;
       this.moveListItemDownBtn.UseFlatMode = Infragistics.Win.DefaultableBoolean.True;
       this.moveListItemDownBtn.UseHotTracking = Infragistics.Win.DefaultableBoolean.True;
@@ -1100,21 +1100,21 @@ namespace Lyra2.LyraShell
       appearance4.BorderAlpha = Infragistics.Win.Alpha.Transparent;
       appearance4.ForegroundAlpha = Infragistics.Win.Alpha.Transparent;
       appearance4.ImageAlpha = Infragistics.Win.Alpha.Transparent;
-      appearance4.ImageBackground = global::Lyra2.LyraShell.Properties.Resources.arrow_up;
+      appearance4.ImageBackground = Properties.Resources.arrow_up;
       appearance4.ImageBackgroundStyle = Infragistics.Win.ImageBackgroundStyle.Stretched;
       this.moveListItemUpBtn.Appearance = appearance4;
-      this.moveListItemUpBtn.BackgroundImage = global::Lyra2.LyraShell.Properties.Resources.pfeilUp;
-      this.moveListItemUpBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+      this.moveListItemUpBtn.BackgroundImage = Properties.Resources.pfeilUp;
+      this.moveListItemUpBtn.BackgroundImageLayout = ImageLayout.Center;
       this.moveListItemUpBtn.ButtonStyle = Infragistics.Win.UIElementButtonStyle.FlatBorderless;
-      appearance5.ImageBackground = global::Lyra2.LyraShell.Properties.Resources.arrow_up_over;
+      appearance5.ImageBackground = Properties.Resources.arrow_up_over;
       this.moveListItemUpBtn.HotTrackAppearance = appearance5;
-      this.moveListItemUpBtn.Location = new System.Drawing.Point(5, 88);
+      this.moveListItemUpBtn.Location = new Point(5, 88);
       this.moveListItemUpBtn.Name = "moveListItemUpBtn";
-      appearance8.ImageBackground = global::Lyra2.LyraShell.Properties.Resources.arrow_up_down;
+      appearance8.ImageBackground = Properties.Resources.arrow_up_down;
       this.moveListItemUpBtn.PressedAppearance = appearance8;
       this.moveListItemUpBtn.ShowFocusRect = false;
       this.moveListItemUpBtn.ShowOutline = false;
-      this.moveListItemUpBtn.Size = new System.Drawing.Size(13, 37);
+      this.moveListItemUpBtn.Size = new Size(13, 37);
       this.moveListItemUpBtn.TabIndex = 8;
       this.moveListItemUpBtn.UseFlatMode = Infragistics.Win.DefaultableBoolean.True;
       this.moveListItemUpBtn.UseHotTracking = Infragistics.Win.DefaultableBoolean.True;
@@ -1124,15 +1124,15 @@ namespace Lyra2.LyraShell
       // songPreview2
       // 
       this.songPreview2.AutoScroll = true;
-      this.songPreview2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.songPreview2.Location = new System.Drawing.Point(0, 0);
+      this.songPreview2.Dock = DockStyle.Fill;
+      this.songPreview2.Location = new Point(0, 0);
       this.songPreview2.Name = "songPreview2";
-      this.songPreview2.Size = new System.Drawing.Size(830, 127);
+      this.songPreview2.Size = new Size(830, 127);
       this.songPreview2.TabIndex = 0;
       // 
       // panel7
       // 
-      appearance3.ImageBackground = global::Lyra2.LyraShell.Properties.Resources.right_pane_bg;
+      appearance3.ImageBackground = Properties.Resources.right_pane_bg;
       appearance3.ImageBackgroundStretchMargins = new Infragistics.Win.ImageBackgroundStretchMargins(110, 100, 1, 350);
       appearance3.ImageBackgroundStyle = Infragistics.Win.ImageBackgroundStyle.Stretched;
       this.panel7.Appearance = appearance3;
@@ -1145,50 +1145,50 @@ namespace Lyra2.LyraShell
       this.panel7.ClientArea.Controls.Add(this.button4);
       this.panel7.ClientArea.Controls.Add(this.label3);
       this.panel7.ClientArea.Controls.Add(this.textBox3);
-      this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
-      this.panel7.Location = new System.Drawing.Point(830, 0);
+      this.panel7.Dock = DockStyle.Right;
+      this.panel7.Location = new Point(830, 0);
       this.panel7.Name = "panel7";
-      this.panel7.Size = new System.Drawing.Size(112, 423);
+      this.panel7.Size = new Size(112, 423);
       this.panel7.TabIndex = 14;
       // 
       // listManagementLabel
       // 
-      appearance14.BackColor = System.Drawing.Color.Transparent;
-      appearance14.BackColor2 = System.Drawing.Color.FromArgb(((((255)))), ((((255)))), ((((192)))));
+      appearance14.BackColor = Color.Transparent;
+      appearance14.BackColor2 = Color.FromArgb(((((255)))), ((((255)))), ((((192)))));
       appearance14.BackColorAlpha = Infragistics.Win.Alpha.Opaque;
       appearance14.BackGradientStyle = Infragistics.Win.GradientStyle.ForwardDiagonal;
       appearance14.FontData.ItalicAsString = "True";
-      appearance14.ForeColor = System.Drawing.Color.DimGray;
+      appearance14.ForeColor = Color.DimGray;
       appearance14.TextHAlignAsString = "Left";
       this.listManagementLabel.Appearance = appearance14;
-      this.listManagementLabel.Location = new System.Drawing.Point(12, 87);
+      this.listManagementLabel.Location = new Point(12, 87);
       this.listManagementLabel.Name = "listManagementLabel";
-      this.listManagementLabel.Padding = new System.Drawing.Size(10, 0);
-      this.listManagementLabel.Size = new System.Drawing.Size(96, 26);
+      this.listManagementLabel.Padding = new Size(10, 0);
+      this.listManagementLabel.Size = new Size(96, 26);
       this.listManagementLabel.TabIndex = 15;
       this.listManagementLabel.Text = "Listen\r\n   verwalten";
       // 
       // linkLabel1
       // 
-      this.linkLabel1.ActiveLinkColor = System.Drawing.Color.Orange;
+      this.linkLabel1.ActiveLinkColor = Color.Orange;
       this.linkLabel1.AutoSize = true;
-      this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
-      this.linkLabel1.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((0)));
-      this.linkLabel1.LinkColor = System.Drawing.Color.FromArgb(((((64)))), ((((64)))), ((((64)))));
-      this.linkLabel1.Location = new System.Drawing.Point(12, 169);
+      this.linkLabel1.BackColor = Color.Transparent;
+      this.linkLabel1.Font = new Font("Consolas", 11.25F, FontStyle.Bold, GraphicsUnit.Point, ((0)));
+      this.linkLabel1.LinkColor = Color.FromArgb(((((64)))), ((((64)))), ((((64)))));
+      this.linkLabel1.Location = new Point(12, 169);
       this.linkLabel1.Name = "linkLabel1";
-      this.linkLabel1.Size = new System.Drawing.Size(24, 18);
+      this.linkLabel1.Size = new Size(24, 18);
       this.linkLabel1.TabIndex = 13;
       this.linkLabel1.TabStop = true;
       this.linkLabel1.Text = "<<";
-      this.linkLabel1.VisitedLinkColor = System.Drawing.Color.FromArgb(((((64)))), ((((64)))), ((((64)))));
+      this.linkLabel1.VisitedLinkColor = Color.FromArgb(((((64)))), ((((64)))), ((((64)))));
       this.linkLabel1.Click += this.button10_Click;
       // 
       // button6
       // 
-      this.button6.Location = new System.Drawing.Point(12, 119);
+      this.button6.Location = new Point(12, 119);
       this.button6.Name = "button6";
-      this.button6.Size = new System.Drawing.Size(96, 27);
+      this.button6.Size = new Size(96, 27);
       this.button6.TabIndex = 3;
       this.button6.Text = "Lied entfernen";
       this.button6.Click += this.button6_Click;
@@ -1196,32 +1196,32 @@ namespace Lyra2.LyraShell
       // button4
       // 
       appearance11.FontData.SizeInPoints = 11F;
-      appearance11.ForeColor = System.Drawing.Color.FromArgb(((((0)))), ((((85)))), ((((170)))));
+      appearance11.ForeColor = Color.FromArgb(((((0)))), ((((85)))), ((((170)))));
       this.button4.Appearance = appearance11;
-      this.button4.Location = new System.Drawing.Point(12, 8);
+      this.button4.Location = new Point(12, 8);
       this.button4.Name = "button4";
-      this.button4.Size = new System.Drawing.Size(96, 46);
+      this.button4.Size = new Size(96, 46);
       this.button4.TabIndex = 1;
       this.button4.Text = "Anzeigen!";
       this.button4.Click += this.button4_Click;
       // 
       // label3
       // 
-      this.label3.BackColor = System.Drawing.Color.Transparent;
-      this.label3.ForeColor = System.Drawing.Color.DimGray;
-      this.label3.Location = new System.Drawing.Point(12, 153);
+      this.label3.BackColor = Color.Transparent;
+      this.label3.ForeColor = Color.DimGray;
+      this.label3.Location = new Point(12, 153);
       this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(96, 13);
+      this.label3.Size = new Size(96, 13);
       this.label3.TabIndex = 12;
       this.label3.Text = "Lied hinzufügen";
       // 
       // textBox3
       // 
       this.textBox3.DefaultText = "Nummer";
-      this.textBox3.ForeColor = System.Drawing.Color.DimGray;
-      this.textBox3.Location = new System.Drawing.Point(36, 169);
+      this.textBox3.ForeColor = Color.DimGray;
+      this.textBox3.Location = new Point(36, 169);
       this.textBox3.Name = "textBox3";
-      this.textBox3.Size = new System.Drawing.Size(72, 21);
+      this.textBox3.Size = new Size(72, 21);
       this.textBox3.TabIndex = 9;
       this.textBox3.Text = "Nummer";
       this.textBox3.Click += this.textBox3_Click;
@@ -1257,7 +1257,7 @@ namespace Lyra2.LyraShell
       // 
       this.menuItem13.Enabled = false;
       this.menuItem13.Index = 0;
-      this.menuItem13.Shortcut = System.Windows.Forms.Shortcut.CtrlS;
+      this.menuItem13.Shortcut = Shortcut.CtrlS;
       this.menuItem13.Text = "Ü&bernehmen!";
       this.menuItem13.Click += this.CommitMenuItemClickHandler;
       // 
@@ -1290,7 +1290,7 @@ namespace Lyra2.LyraShell
       // menuItem30
       // 
       this.menuItem30.Index = 0;
-      this.menuItem30.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftI;
+      this.menuItem30.Shortcut = Shortcut.CtrlShiftI;
       this.menuItem30.Text = "&XML";
       this.menuItem30.Click += this.menuItem30_Click;
       // 
@@ -1303,7 +1303,7 @@ namespace Lyra2.LyraShell
       // menuItem18
       // 
       this.menuItem18.Index = 3;
-      this.menuItem18.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftE;
+      this.menuItem18.Shortcut = Shortcut.CtrlShiftE;
       this.menuItem18.Text = "Ex&portieren…";
       this.menuItem18.Click += this.menuItem18_Click;
       // 
@@ -1337,7 +1337,7 @@ namespace Lyra2.LyraShell
       // menuItem35
       // 
       this.menuItem35.Index = 0;
-      this.menuItem35.Shortcut = System.Windows.Forms.Shortcut.F12;
+      this.menuItem35.Shortcut = Shortcut.F12;
       this.menuItem35.Text = "&Präsentationsmodus";
       this.menuItem35.Click += this.menuItem35_Click;
       // 
@@ -1539,21 +1539,21 @@ namespace Lyra2.LyraShell
       // menuItem59
       // 
       this.menuItem59.Index = 0;
-      this.menuItem59.Shortcut = System.Windows.Forms.Shortcut.CtrlH;
+      this.menuItem59.Shortcut = Shortcut.CtrlH;
       this.menuItem59.Text = "History";
       this.menuItem59.Click += this.menuItem59_Click;
       // 
       // menuItem65
       // 
       this.menuItem65.Index = 1;
-      this.menuItem65.Shortcut = System.Windows.Forms.Shortcut.CtrlR;
+      this.menuItem65.Shortcut = Shortcut.CtrlR;
       this.menuItem65.Text = "Fernsteuerung";
       this.menuItem65.Click += this.menuItem65_Click;
       // 
       // menuItem70
       // 
       this.menuItem70.Index = 2;
-      this.menuItem70.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftS;
+      this.menuItem70.Shortcut = Shortcut.CtrlShiftS;
       this.menuItem70.Text = "Style Editor";
       this.menuItem70.Click += this.menuItem70_Click;
       // 
@@ -1587,14 +1587,14 @@ namespace Lyra2.LyraShell
       // menuItem61
       // 
       this.menuItem61.Index = 5;
-      this.menuItem61.Shortcut = System.Windows.Forms.Shortcut.CtrlB;
+      this.menuItem61.Shortcut = Shortcut.CtrlB;
       this.menuItem61.Text = "Anzeige aus&blenden";
       this.menuItem61.Click += this.menuItem61_Click;
       // 
       // menuItem62
       // 
       this.menuItem62.Index = 6;
-      this.menuItem62.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftB;
+      this.menuItem62.Shortcut = Shortcut.CtrlShiftB;
       this.menuItem62.Text = "Anzeige &schliessen";
       this.menuItem62.Click += this.menuItem62_Click;
       // 
@@ -1672,7 +1672,7 @@ namespace Lyra2.LyraShell
       // menuItem5
       // 
       this.menuItem5.Index = 0;
-      this.menuItem5.Shortcut = System.Windows.Forms.Shortcut.F1;
+      this.menuItem5.Shortcut = Shortcut.F1;
       this.menuItem5.Text = "&Inhalt";
       this.menuItem5.Click += this.menuItem5_Click;
       // 
@@ -1691,7 +1691,7 @@ namespace Lyra2.LyraShell
       // menuItem32
       // 
       this.menuItem32.Index = 3;
-      this.menuItem32.Shortcut = System.Windows.Forms.Shortcut.CtrlD;
+      this.menuItem32.Shortcut = Shortcut.CtrlD;
       this.menuItem32.Text = "&Debug Console";
       this.menuItem32.Visible = false;
       this.menuItem32.Click += this.menuItem32_Click;
@@ -1699,14 +1699,14 @@ namespace Lyra2.LyraShell
       // menuItem37
       // 
       this.menuItem37.Index = 5;
-      this.menuItem37.Shortcut = System.Windows.Forms.Shortcut.F12;
+      this.menuItem37.Shortcut = Shortcut.F12;
       this.menuItem37.Text = "Präsentation b&eenden";
       this.menuItem37.Visible = false;
       this.menuItem37.Click += this.menuItem35_Click;
       // 
       // statusBar1
       // 
-      this.statusBar1.Location = new System.Drawing.Point(0, 449);
+      this.statusBar1.Location = new Point(0, 449);
       this.statusBar1.Name = "statusBar1";
       this.statusBar1.Panels.AddRange(new[]
                                                 {
@@ -1714,7 +1714,7 @@ namespace Lyra2.LyraShell
                                                     this.statusBarPanel2
                                                 });
       this.statusBar1.ShowPanels = true;
-      this.statusBar1.Size = new System.Drawing.Size(950, 18);
+      this.statusBar1.Size = new Size(950, 18);
       this.statusBar1.TabIndex = 1;
       this.statusBar1.Text = "d";
       // 
@@ -1806,19 +1806,18 @@ namespace Lyra2.LyraShell
       // 
       // GUI
       // 
-      this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
-      this.BackColor = System.Drawing.Color.WhiteSmoke;
-      this.ClientSize = new System.Drawing.Size(950, 467);
+      this.AutoScaleBaseSize = new Size(6, 14);
+      this.BackColor = Color.WhiteSmoke;
+      this.ClientSize = new Size(950, 467);
       this.Controls.Add(this.tabControl1);
       this.Controls.Add(this.statusBar1);
-      this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((0)));
-      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-      this.MaximizeBox = false;
+      this.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((0)));
+      this.Icon = ((Icon)(resources.GetObject("$this.Icon")));
       this.Menu = this.mainMenu1;
-      this.MinimumSize = new System.Drawing.Size(500, 300);
+      this.MinimumSize = new Size(500, 300);
       this.Name = "GUI";
       this.Text = "lyra";
-      this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+      this.WindowState = FormWindowState.Minimized;
       this.Activated += this.MeGotFocus;
       this.Closing += this.Exit;
       this.tabControl1.ResumeLayout(false);
@@ -1830,8 +1829,8 @@ namespace Lyra2.LyraShell
       this.panel4.PerformLayout();
       this.searchPaneTop.ResumeLayout(false);
       this.searchPaneTop.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+      ((ISupportInitialize)(this.pictureBox4)).EndInit();
+      ((ISupportInitialize)(this.pictureBox1)).EndInit();
       this.panel1.ClientArea.ResumeLayout(false);
       this.panel1.ClientArea.PerformLayout();
       this.panel1.ResumeLayout(false);
@@ -1850,8 +1849,8 @@ namespace Lyra2.LyraShell
       this.panel7.ClientArea.ResumeLayout(false);
       this.panel7.ClientArea.PerformLayout();
       this.panel7.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.statusBarPanel1)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.statusBarPanel2)).EndInit();
+      ((ISupportInitialize)(this.statusBarPanel1)).EndInit();
+      ((ISupportInitialize)(this.statusBarPanel2)).EndInit();
       this.ResumeLayout(false);
     }
 

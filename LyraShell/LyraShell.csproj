@@ -191,7 +191,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditorTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="QueryHelper.cs" />
+    <Compile Include="ScrollDataEventArgs.cs" />
     <Compile Include="ScrollVisualPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -248,14 +252,14 @@
     <Content Include="doc\lyrahelp.chm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="licence.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="lyra.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="lyra.ico" />
     <Content Include="Resources\splash2018.png" />
+    <Content Include="data\Licence.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Resources\InfoBackgroundImage.png" />
     <None Include="Resources\splash2012.png" />

@@ -1,87 +1,93 @@
 using System;
+using System.Diagnostics;
 
 namespace Lyra2.LyraShell
 {
-  /// <summary>
-  /// Summary description for Info.
-  /// </summary>
-  public class Info : System.Windows.Forms.Form
-  {
     /// <summary>
-    /// Required designer variable.
+    /// Summary description for Info.
     /// </summary>
-    private System.ComponentModel.Container components = null;
-
-    private System.Windows.Forms.Label label1;
-    private System.Windows.Forms.Label label2;
-    private System.Windows.Forms.Label label3;
-    private System.Windows.Forms.Label label4;
-    private System.Windows.Forms.Label label5;
-    private System.Windows.Forms.Label label6;
-    private System.Windows.Forms.Label label7;
-    private System.Windows.Forms.Label label8;
-    private System.Windows.Forms.Label label9;
-    private System.Windows.Forms.Label label24;
-    private System.Windows.Forms.Label label21;
-    private System.Windows.Forms.Label label29;
-    private System.Windows.Forms.Label label28;
-    private System.Windows.Forms.Label label27;
-    private System.Windows.Forms.Label label26;
-    private System.Windows.Forms.Label label22;
-    private System.Windows.Forms.Label label25;
-    private System.Windows.Forms.Label label23;
-
-    private static Info info = null;
-
-    public static void showInfo(GUI owner)
+    public class Info : System.Windows.Forms.Form
     {
-      if (info == null) info = new Info(owner);
-      info.Show();
-      owner.Enabled = false;
-    }
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.Container components = null;
 
-    private GUI owner;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.LinkLabel licenceLink;
+        private static Info info = null;
 
-    private Info(GUI owner)
-    {
-      this.owner = owner;
-        this.InitializeComponent();
-      this.label21.Text = Util.VER;
-      this.label22.Text = Util.BUILD;
-      this.label23.Text = GUI.DEBUG ? "ja" : "nein";
-      this.label24.Text = ".NET Framework " + Util.DOTNET;
-      this.label25.Text = Util.NRSONGS.ToString();
-      this.label26.Text = Util.NRUSE != 0 ? Convert.ToString(Util.TOTALLOAD / Util.NRUSE / TimeSpan.TicksPerMillisecond) + " ms" : "0 ms";
-      this.label27.Text = Util.NRSEARCH != 0 ? Convert.ToString(Util.TOTALSEARCH / Util.NRSEARCH / TimeSpan.TicksPerMillisecond) + " ms" : "0 ms";
-      this.label28.Text = Util.getUseTime();
-
-    }
-
-    /// <summary>
-    /// Clean up any resources being used.
-    /// </summary>
-    protected override void Dispose(bool disposing)
-    {
-      this.owner.Enabled = true;
-      info = null;
-      if (disposing)
-      {
-        if (this.components != null)
+        public static void showInfo(GUI owner)
         {
-            this.components.Dispose();
+            if (info == null) info = new Info(owner);
+            info.Show();
+            owner.Enabled = false;
         }
-      }
-      base.Dispose(disposing);
-    }
 
-    #region Windows Form Designer generated code
+        private void OpenLicenceClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("data\\Licence.txt");
+        }
 
-    /// <summary>
-    /// Required method for Designer support - do not modify
-    /// the contents of this method with the code editor.
-    /// </summary>
-    private void InitializeComponent()
-    {
+        private GUI owner;
+
+        private Info(GUI owner)
+        {
+            this.owner = owner;
+            this.InitializeComponent();
+            this.label21.Text = Util.VER;
+            this.label22.Text = Util.BUILD;
+            this.label23.Text = GUI.DEBUG ? "ja" : "nein";
+            this.label24.Text = ".NET Framework " + Util.DOTNET;
+            this.label25.Text = Util.NRSONGS.ToString();
+            this.label26.Text = Util.NRUSE != 0 ? Convert.ToString(Util.TOTALLOAD / Util.NRUSE / TimeSpan.TicksPerMillisecond) + " ms" : "0 ms";
+            this.label27.Text = Util.NRSEARCH != 0 ? Convert.ToString(Util.TOTALSEARCH / Util.NRSEARCH / TimeSpan.TicksPerMillisecond) + " ms" : "0 ms";
+            this.label28.Text = Util.getUseTime();
+
+        }
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        protected override void Dispose(bool disposing)
+        {
+            this.owner.Enabled = true;
+            info = null;
+            if (disposing)
+            {
+                if (this.components != null)
+                {
+                    this.components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -100,6 +106,7 @@ namespace Lyra2.LyraShell
             this.label22 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
+            this.licenceLink = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // label1
@@ -327,11 +334,29 @@ namespace Lyra2.LyraShell
             this.label23.TabIndex = 0;
             this.label23.Text = "label1";
             // 
+            // licenceLink
+            // 
+            this.licenceLink.ActiveLinkColor = System.Drawing.Color.White;
+            this.licenceLink.AutoSize = true;
+            this.licenceLink.BackColor = System.Drawing.Color.Transparent;
+            this.licenceLink.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.licenceLink.ForeColor = System.Drawing.Color.White;
+            this.licenceLink.LinkColor = System.Drawing.Color.White;
+            this.licenceLink.Location = new System.Drawing.Point(409, 466);
+            this.licenceLink.Name = "licenceLink";
+            this.licenceLink.Size = new System.Drawing.Size(59, 17);
+            this.licenceLink.TabIndex = 1;
+            this.licenceLink.TabStop = true;
+            this.licenceLink.Text = "Lizenzen";
+            this.licenceLink.VisitedLinkColor = System.Drawing.Color.White;
+            this.licenceLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpenLicenceClicked);
+            // 
             // Info
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.BackgroundImage = global::Lyra2.LyraShell.Properties.Resources.InfoBackgroundImage;
             this.ClientSize = new System.Drawing.Size(476, 500);
+            this.Controls.Add(this.licenceLink);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
@@ -361,8 +386,9 @@ namespace Lyra2.LyraShell
             this.ResumeLayout(false);
             this.PerformLayout();
 
-    }
+        }
 
-    #endregion
-  }
+        #endregion
+
+    }
 }
