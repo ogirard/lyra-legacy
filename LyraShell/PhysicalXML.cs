@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -43,7 +42,7 @@ namespace Lyra2.LyraShell
 
         public PhysicalXml(string url)
         {
-            gitStore = new GitStore(Path.GetDirectoryName(url));
+            this.gitStore = new GitStore(Path.GetDirectoryName(url));
             this.xmlurl = url;
             this.doc = new XmlDocument();
         }
@@ -122,10 +121,13 @@ namespace Lyra2.LyraShell
                 stylesNode.AppendChild(style.Serialize(stylesDoc));
             }
 
-            using (var xtw = new XmlTextWriter(this.currentStylePath, Encoding.UTF8))
+            using (var stringWriter = new StringWriter())
+            using (var xmlTextWriter = XmlWriter.Create(stringWriter, new XmlWriterSettings { Indent = true }))
             {
-                xtw.Formatting = Formatting.Indented;
-                stylesDoc.WriteContentTo(xtw);
+                stylesDoc.WriteTo(xmlTextWriter);
+                xmlTextWriter.Flush();
+                var xml = stringWriter.GetStringBuilder().ToString();
+                this.gitStore.CommitFile(this.currentStylePath, xml);
             }
         }
 

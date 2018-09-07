@@ -38,8 +38,8 @@ namespace Lyra2.UtilShared
                     if (repo.Index.All(s => s.Path != ".gitignore"))
                     {
                         repo.Index.Add(".gitignore");
-                        Commands.Stage(repo, ".gitignore");
                     }
+                    Commands.Stage(repo, ".gitignore");
                 }
 
                 File.WriteAllText(file, content);

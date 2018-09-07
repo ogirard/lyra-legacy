@@ -17,11 +17,13 @@ namespace Lyra2.LyraShell
         private XmlDocument doc;
         private IStorage storage;
         private MyList currentList = null;
+        private GitStore gitStore;
 
         public PLists(ComboBox myComboBox, IStorage storage)
         {
             this.myComboBox = myComboBox;
             this.storage = storage;
+            this.gitStore = new GitStore(Path.GetDirectoryName(Util.BASEURL + "\\" + Util.LISTURL));
             this.doc = new XmlDocument();
             try
             {
@@ -128,7 +130,14 @@ namespace Lyra2.LyraShell
         {
             try
             {
-                this.doc.Save(Util.BASEURL + "\\" + Util.LISTURL);
+                using (var stringWriter = new StringWriter())
+                using (var xmlTextWriter = XmlWriter.Create(stringWriter))
+                {
+                    this.doc.WriteTo(xmlTextWriter);
+                    xmlTextWriter.Flush();
+                    var xml = stringWriter.GetStringBuilder().ToString();
+                    this.gitStore.CommitFile(Util.LISTURL, xml);
+                }
             }
             catch (IOException ioe)
             {
