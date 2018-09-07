@@ -1,11 +1,12 @@
+using Lyra2.UtilShared;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
-using System.Collections.Generic;
 
 namespace Lyra2.LyraShell
 {
@@ -42,6 +43,7 @@ namespace Lyra2.LyraShell
 
         public PhysicalXml(string url)
         {
+            gitStore = new GitStore(Path.GetDirectoryName(url));
             this.xmlurl = url;
             this.doc = new XmlDocument();
         }
@@ -52,6 +54,7 @@ namespace Lyra2.LyraShell
         }
 
         private IList<Style> styles;
+        private GitStore gitStore;
 
         public IList<Style> Styles
         {
@@ -430,7 +433,18 @@ namespace Lyra2.LyraShell
                         curNode.Attributes["zus"].Value = curSong.Desc;
                     }
                 }
-                this.doc.Save(Util.BASEURL + "\\" + Util.URL);
+
+                var dataFile = Util.BASEURL + "\\" + Util.URL;
+                using (var stringWriter = new StringWriter())
+                using (var xmlTextWriter = XmlWriter.Create(stringWriter))
+                {
+                    this.doc.WriteTo(xmlTextWriter);
+                    xmlTextWriter.Flush();
+                    var xml = stringWriter.GetStringBuilder().ToString();
+                    this.gitStore.CommitFile(dataFile, xml);
+                }
+
+
                 return true;
             }
             // on any error: return false => not commited!
