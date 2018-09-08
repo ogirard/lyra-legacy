@@ -50,8 +50,14 @@ namespace Lyra2.UtilShared
 
                 Commands.Stage(repo, fileName);
                 var author = new Signature("Lyra", $"{Environment.UserName}@lyra", DateTime.Now);
-
-                repo.Commit($"Lyra V{repo.Commits.Count() + 1}", author, author);
+                try
+                {
+                    repo.Commit($"Lyra V{repo.Commits.Count() + 1} - Update {fileName}", author, author);
+                }
+                catch (EmptyCommitException)
+                {
+                    // ignore, that's not important
+                }
             }
         }
     }

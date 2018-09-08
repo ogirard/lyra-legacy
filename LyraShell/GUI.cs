@@ -180,9 +180,7 @@ namespace Lyra2.LyraShell
       this.Enabled = false;
       this.personalizeStore = new Personalizer(Application.StartupPath + @"\laststate.dat");
       Logger.DebugFormat("Personalizer loaded from '{0}'", Application.StartupPath + @"\laststate.dat");
-
-      this.MigrateIfNeeded();
-
+            
       this.InitializeLyraGUI();
       this.InitializeSearch();
 
@@ -209,34 +207,6 @@ namespace Lyra2.LyraShell
         {
           this.menuItem56.Checked = true;
         }
-      }
-    }
-
-    private void MigrateIfNeeded()
-    {
-      if (!File.Exists(Util.BASEURL + "\\" + Util.URL))
-      {
-        // migrate older songs (schema 1.7-3 from curtext.xml)
-        var curtextPath = Util.BASEURL + "\\data\\curtext.xml";
-        if (!File.Exists(curtextPath))
-        {
-          Util.MBoxError("Keine Songs gefunden!");
-          return;
-        }
-
-        var curtextDoc = new XmlDocument();
-        curtextDoc.Load(curtextPath);
-        var lyraNode = curtextDoc.SelectSingleNode("//lyra");
-        var stylesRefAttr = curtextDoc.CreateAttribute("stylesref");
-        stylesRefAttr.InnerText = "lyrastyles.xml";
-        lyraNode.Attributes.Append(stylesRefAttr);
-
-        using (var xtw = new XmlTextWriter(Util.BASEURL + "\\" + Util.URL, Encoding.UTF8))
-        {
-          xtw.Formatting = Formatting.Indented;
-          curtextDoc.WriteContentTo(xtw);
-        }
-        Logger.DebugFormat("Migrated from {0} to {1}!", curtextPath, Util.BASEURL + "\\" + Util.URL);
       }
     }
 

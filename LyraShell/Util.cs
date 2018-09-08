@@ -35,13 +35,14 @@ namespace Lyra2.LyraShell
         public const int MAXOPEN = 5;
         public const int WAIT = 1000; //ms
         public static bool DELALL;
-        public static string URL = "data\\lyrasongs.xml";
+        public static string URL = "store\\lyrasongs.xml";
         public static string HLPURL = "doc\\lyrahelp.chm";
         public static string NEWSURL = "doc\\buildnews.txt";
         public static string INFORTF = "doc\\info.rtf";
-        public static string LISTURL = "data\\lists.xml";
-        public static string IMAGECACHE = "data\\cache";
+        public static string LISTURL = "store\\lists.xml";
+        public static string IMAGECACHE = "store\\cache";
         public static string BASEURL = Application.StartupPath;
+        public static string TESTDATA = "data\\testdata";
         public static bool PREVIEW_BOTTOM_MODE = true;
 
         // format
@@ -66,7 +67,7 @@ namespace Lyra2.LyraShell
 
 
         // pictures
-        public static string PICTDIR = Application.StartupPath + "\\data\\pictures\\";
+        public static string PICTDIR = Application.StartupPath + "\\store\\pictures\\";
         public static bool COPYPICS = true;
         public const string PICTSSYM = "{pics}\\";
         public static bool KEEPRATIO;
@@ -555,7 +556,7 @@ namespace Lyra2.LyraShell
 
                 HLPURL = configFile["help"];
                 //Util.URL = configFile["url"];
-                LISTURL = configFile["lists"];
+                //LISTURL = configFile["lists"];
                 SHOWBUILDNEWS = configFile["1"].Equals("yes");
                 SHOWRIGHT = configFile["right"].Equals("yes");
                 NOCOMMIT = configFile["ac"].Equals("yes");
