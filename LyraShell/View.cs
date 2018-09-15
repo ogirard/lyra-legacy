@@ -819,7 +819,7 @@ namespace Lyra2.LyraShell
             this._lyraBtn.TabIndex = 13;
             this._lyraBtn.UseAppStyling = false;
             this._lyraBtn.UseOsThemes = Infragistics.Win.DefaultableBoolean.False;
-            this._lyraBtn.ClickClient += new System.EventHandler(this.LyraButtonClickHandler);
+            this._lyraBtn.MouseClickClient += this.LyraButtonClickHandler;
             this._lyraBtn.MouseEnterClient += new System.EventHandler(this.LyraButtonMouseEnterHandler);
             this._lyraBtn.MouseLeaveClient += new System.EventHandler(this.LyraButtonMouseLeaveHandler);
             // 
@@ -975,9 +975,9 @@ namespace Lyra2.LyraShell
             this.Invoke(hideNr);
         }
 
-        private void LyraButtonClickHandler(object sender, EventArgs e)
+        private void LyraButtonClickHandler(object sender, MouseEventArgs e)
         {
-            this._contextMenu1.Show(this._lyraBtn, this._lyraBtn.PointToScreen(new Point(0, 0)));
+            this._contextMenu1.Show(this, this.PointToClient(this._lyraBtn.PointToScreen(new Point(0, 0))));
         }
 
         private void menuItem2_Click(object sender, EventArgs e)
