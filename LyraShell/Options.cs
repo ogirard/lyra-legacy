@@ -1082,8 +1082,9 @@ namespace Lyra2.LyraShell
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(8, 368);
+            this.button3.Location = new System.Drawing.Point(8, -12);
             this.button3.Name = "button3";
+		    this.button3.Margin = new Padding(0, 0, 0, 16);
             this.button3.Size = new System.Drawing.Size(80, 24);
             this.button3.TabIndex = 9;
             this.button3.Text = "Abbrechen";
@@ -1092,8 +1093,9 @@ namespace Lyra2.LyraShell
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(216, 368);
+            this.button2.Location = new System.Drawing.Point(216, -12);
             this.button2.Name = "button2";
+		    this.button2.Margin = new Padding(0, 0, 0, 16);
             this.button2.Size = new System.Drawing.Size(88, 24);
             this.button2.TabIndex = 8;
             this.button2.Text = "Übernehmen";
@@ -1101,9 +1103,10 @@ namespace Lyra2.LyraShell
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(312, 368);
+            this.button1.Location = new System.Drawing.Point(312, -12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(64, 24);
+		    this.button1.Margin = new Padding(0, 0, 0, 16);
             this.button1.TabIndex = 7;
             this.button1.Text = "Ok";
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -1192,7 +1195,7 @@ namespace Lyra2.LyraShell
             // Options
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.ClientSize = new System.Drawing.Size(386, 396);
+            this.ClientSize = new System.Drawing.Size(394, 424);
             this.ControlBox = false;
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -1251,10 +1254,10 @@ namespace Lyra2.LyraShell
 			this.radioButton1.Top = this.radioButton2.Top + this.radioButton2.Height + 5;
 			var h = this.radioButton1.Top + this.radioButton1.Height + 35;
 			this.tabControl1.Height = h > 310 ? h : 310;
-			this.button1.Top = this.tabControl1.Top + this.tabControl1.Height + 15;
+			this.button1.Top = this.tabControl1.Top + this.tabControl1.Height + 8;
 			this.button2.Top = this.button1.Top;
 			this.button3.Top = this.button1.Top;
-			this.Height = this.button3.Top + this.button3.Height + 35;
+			this.Height = this.button3.Top + this.button3.Height + 44;
 		}
 
 		// Commit!

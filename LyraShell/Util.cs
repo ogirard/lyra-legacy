@@ -22,15 +22,17 @@ namespace Lyra2.LyraShell
         #endregion Log4Net Logger
 
         public static string CONFIGPATH = Application.StartupPath + "\\lyra.config";
+
         // info & build 
         public const string NAME = "Lyra";
         public const string BUILDNR = "54";
-        public const string VER = "2.4.1"; // with PocketPC
+        public const string VER = "2.4.1";
         public static string BUILD = VER + "." + "20180916." + BUILDNR;
-        public static string GUINAME = NAME; // + " v" + Util.VER + "   " + Util.BUILD;
+        public static string GUINAME = NAME;
 
         // lyra update
         public const string UPDATESERVER = "http://cgi.ethz.ch/~ogirard/lyraupdate";
+
         // status / paths
         public const int MAXOPEN = 5;
         public const int WAIT = 1000; //ms
