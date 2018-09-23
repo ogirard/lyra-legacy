@@ -103,6 +103,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArgumentsExtensions.cs" />
     <Compile Include="ConfigFile.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="DelayedTaskRunner.cs" />

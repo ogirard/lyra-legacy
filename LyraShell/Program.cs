@@ -14,22 +14,29 @@ namespace Lyra2.LyraShell
         private static ILog logger;
 
         [STAThread]
-        private static void Main()
+        private static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             XmlConfigurator.Configure();
             logger = LogManager.GetLogger(typeof(Program));
-            MigrateData();
+            MigrateData(args.IsSwitchSet("clean"));
             Application.Run(new GUI());
         }
 
-        private static void MigrateData()
+        private static void MigrateData(bool clean)
         {
             var lyrasongs = Util.BASEURL + "\\" + Util.URL;
             var lyrastyles = Util.BASEURL + "\\store\\lyrastyles.xml";
             var lists = Util.BASEURL + "\\" + Util.LISTURL;
             var pictures = Util.PICTDIR;
+
+            if (clean)
+            {
+                var xml = File.ReadAllText(lyrasongs);
+                xml = xml.Replace("&#xC;", string.Empty);
+                File.WriteAllText(lyrasongs, xml);
+            }
 
             if (!File.Exists(lyrasongs))
             {

@@ -25,9 +25,9 @@ namespace Lyra2.LyraShell
 
         // info & build 
         public const string NAME = "Lyra";
-        public const string BUILDNR = "54";
-        public const string VER = "2.4.1";
-        public static string BUILD = VER + "." + "20180916." + BUILDNR;
+        public const string BUILDNR = "55";
+        public const string VER = "2.4.2";
+        public static string BUILD = VER + "." + "20180923." + BUILDNR;
         public static string GUINAME = NAME;
 
         // lyra update
