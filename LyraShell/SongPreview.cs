@@ -19,6 +19,7 @@ namespace Lyra2.LyraShell
         private Label titlePreview;
         private Label nrPreview;
         private Panel flowPanel;
+        private ISong song;
 
         /// <summary> 
         /// Required designer variable.
@@ -43,10 +44,11 @@ namespace Lyra2.LyraShell
 
         public void ShowSong(ISong song)
         {
+            this.song = song;
             this.nrPreview.Text = song.Number.ToString();
-            this.titlePreview.Text = song.Title;
+            this.titlePreview.Text = $"{song.Title} - {this.Name} - {this.Height}";
 
-            var text = Util.CleanText(song.Text);
+            var text = Util.CleanText(song.Text).TrimEnd('\n');
             this.flowPanel.Controls.Clear();
             var height = this.flowPanel.Height - this.flowPanel.Padding.Vertical;
             var width = this.flowPanel.Width - this.flowPanel.Padding.Horizontal;
@@ -88,6 +90,15 @@ namespace Lyra2.LyraShell
 
             this.flowPanel.Controls.AddRange(controls.ToArray());
             this.flowPanel.AutoScrollMinSize = new Size(0, columnHeight);
+        }
+
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+            if (song != null)
+            {
+                ShowSong(song);
+            }
         }
 
         /// <summary> 

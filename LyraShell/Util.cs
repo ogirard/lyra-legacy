@@ -239,7 +239,7 @@ namespace Lyra2.LyraShell
         public static string CleanText(string text)
         {
             var cleanedString = "";
-            text = text.Replace("\r", "");
+            text = text.Replace("\r", string.Empty);
             var skip = false;
             foreach (var c in text)
             {
