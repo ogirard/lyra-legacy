@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE lyralists [
+  <!ELEMENT lists (List)>
+  <!ELEMENT List (Title,Author,Date,Songs) >
+  <!ELEMENT Title (CDATA) >
+  <!ELEMENT Author (CDATA) >
+  <!ELEMENT Date (CDATA) >
+  <!ELEMENT Songs (CDATA) >]><lists><List><Title>Standard</Title><Author>AJ</Author><Date>2019/05/18</Date><Songs></Songs></List><List><Title>History vom Sonntag, 09.02.2020</Title><Author>AJ</Author><Date>2020/02/09</Date><Songs>s3098,s3015,s3023,s2106,s0378,s3019,s5055,s0140,s2094,s3133,s6082,s5078</Songs></List></lists>

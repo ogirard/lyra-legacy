@@ -261,6 +261,17 @@
     <Content Include="data\Licence.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="store\lists.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="store\lyrasongs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="store\lyrastyles.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="store\pictures\sample.jpg" />
+    <Content Include="store\pictures\sample2.jpg" />
     <None Include="packages.config" />
     <None Include="Resources\InfoBackgroundImage.png" />
     <None Include="Resources\splash2012.png" />

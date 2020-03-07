@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<lyra>
+  <Styles>
+    <Style id="2cc46803-e29f-4286-a1d9-3c036d908deb" name="Schwarz auf Weiss" isdefault="no">
+      <Foreground>
+        <color>#000000</color>
+        <font>Microsoft New Tai Lue</font>
+        <fontsize>28</fontsize>
+      </Foreground>
+      <Background>
+        <color>#ffffff</color>
+        <image>
+          <uri>
+          </uri>
+          <cache>
+          </cache>
+          <transparency>0</transparency>
+          <scale>no</scale>
+        </image>
+      </Background>
+      <Title mode="None">
+        <Foreground>
+          <color>#4682b4</color>
+          <font>
+          </font>
+          <fontsize>0</fontsize>
+        </Foreground>
+        <Background>
+          <color>#ffffff</color>
+        </Background>
+      </Title>
+    </Style>
+    <Style id="5dc011bc-cab3-46ee-91c6-a7ec7d50c43f" name="Weiss auf Schwarz" isdefault="yes">
+      <Foreground>
+        <color>#ffffff</color>
+        <font>Verdana</font>
+        <fontsize>34</fontsize>
+      </Foreground>
+      <Background>
+        <color>#000000</color>
+        <image>
+          <uri>
+          </uri>
+          <cache>
+          </cache>
+          <transparency>0</transparency>
+          <scale>no</scale>
+        </image>
+      </Background>
+      <Title mode="None">
+        <Foreground>
+          <color>#4682b4</color>
+          <font>
+          </font>
+          <fontsize>0</fontsize>
+        </Foreground>
+        <Background>
+          <color>#ffffff</color>
+        </Background>
+      </Title>
+    </Style>
+    <Style id="ff5b6ba8-6bcf-49eb-9f09-81325e344503" name="Test mit Hintergrundbild" isdefault="no">
+      <Foreground>
+        <color>#ffffff</color>
+        <font>Cambria</font>
+        <fontsize>22</fontsize>
+      </Foreground>
+      <Background>
+        <color>#646464</color>
+        <image>
+          <uri>C:\Users\gol\Pictures\01897_colorsofparis_1440x900.jpg</uri>
+          <cache>
+          </cache>
+          <transparency>15</transparency>
+          <scale>no</scale>
+        </image>
+      </Background>
+      <Title mode="NumberAndTitle">
+        <Foreground>
+          <color>
+          </color>
+          <font>
+          </font>
+          <fontsize>0</fontsize>
+        </Foreground>
+        <Background>
+          <color>
+          </color>
+        </Background>
+      </Title>
+    </Style>
+    <Style id="0b563032-a0a3-462f-b9f9-61ef50609b95" name="Lyra 2012" isdefault="no">
+      <Foreground>
+        <color>#404040</color>
+        <font>Segoe UI</font>
+        <fontsize>22</fontsize>
+      </Foreground>
+      <Background>
+        <color>#ffffff</color>
+        <image>
+          <uri>
+          </uri>
+          <cache>
+          </cache>
+          <transparency>0</transparency>
+          <scale>no</scale>
+        </image>
+      </Background>
+      <Title mode="TitleOnly">
+        <Foreground>
+          <color>#ffffff</color>
+          <font>Segoe UI</font>
+          <fontsize>28</fontsize>
+        </Foreground>
+        <Background>
+          <color>#4595d2</color>
+        </Background>
+      </Title>
+    </Style>
+  </Styles>
+</lyra>
