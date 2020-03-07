@@ -52,7 +52,7 @@ namespace Lyra2.LyraShell.Search
             this._name = name;
             this._items = new Dictionary<Guid, TElement>();
             this._indexedItems = new List<Guid>();
-            this._stdAnalyzer = new StandardAnalyzer(Version.LUCENE_29);
+            this._stdAnalyzer = new StandardAnalyzer(Version.LUCENE_30);
             this._indexDirectory = new RAMDirectory();
             this.ClearIndex();
 
@@ -384,7 +384,7 @@ namespace Lyra2.LyraShell.Search
                         }
 
                         var queryParser =
-                            new MultiFieldQueryParser(Version.LUCENE_29, fields.ToArray(), this._stdAnalyzer);
+                            new MultiFieldQueryParser(Version.LUCENE_30, fields.ToArray(), this._stdAnalyzer);
                         var hitCollector = TopScoreDocCollector.Create(this._items.Count, true);
                         var preparedQuery = this.PrepareLuceneQuery(query);
                         var luceneQuery = queryParser.Parse(preparedQuery);
