@@ -44,9 +44,14 @@ namespace Lyra2.LyraShell
 
         public void ShowSong(ISong song)
         {
+            if (song == null)
+            {
+                return;
+            }
+
             this.song = song;
             this.nrPreview.Text = song.Number.ToString();
-            this.titlePreview.Text = $"{song.Title} - {this.Name} - {this.Height}";
+            this.titlePreview.Text = song.Title;
 
             var text = Util.CleanText(song.Text).TrimEnd('\n');
             this.flowPanel.Controls.Clear();
@@ -95,10 +100,7 @@ namespace Lyra2.LyraShell
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
-            if (song != null)
-            {
-                ShowSong(song);
-            }
+            ShowSong(song);
         }
 
         /// <summary> 
