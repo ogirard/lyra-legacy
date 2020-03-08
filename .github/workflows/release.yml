@@ -2,7 +2,8 @@ name: CI-Lyra-Release
 
 on:
   push:
-    branches: [tag]
+    tags:
+    - 'v*' 
 
 jobs:
   build:
