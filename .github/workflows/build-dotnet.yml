@@ -22,7 +22,7 @@ jobs:
     - name: Build with MSBuild
       run: msbuild Lyra2.sln -p:Configuration=Release
     - name: Create archive
-      run: .\Create-Releasel.ps1
+      run: .\Create-Release.ps1
       shell: powershell
     - name: Create Release
       id: create_release
