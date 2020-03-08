@@ -26,9 +26,9 @@ namespace Lyra2.LyraShell
         // info & build 
         public const string NAME = "Lyra";
         private const string Version = "LocalBuild";
-        public const string VER = $"{Version}";
-        private const string BuildDate = DateTime.Now.ToString("yyyyMMdd");
-        public static string BUILD = $"{VER}.{BuildDate}";
+        public static readonly string VER = $"{Version}";
+        private static readonly string BuildDate = DateTime.Now.ToString("yyyyMMdd");
+        public static readonly string BUILD = $"{VER}.{BuildDate}";
         public static string GUINAME = NAME;
 
         // lyra update
