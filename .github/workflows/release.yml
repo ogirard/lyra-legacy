@@ -1,10 +1,8 @@
-name: CI-Lyra
+name: CI-Lyra-Release
 
 on:
   push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+    branches: [tag]
 
 jobs:
   build:
@@ -31,6 +29,7 @@ jobs:
         run: .\Create-Release.ps1 -ReleaseName Lyra-Release-${{ steps.gitversion.outputs.semVer }}.zip
         shell: powershell
       - name: Create Release
+        if: contains(github.ref, "tag")
         id: create_release
         uses: actions/create-release@v1
         env:
@@ -41,6 +40,7 @@ jobs:
           draft: false
           prerelease: false
       - name: Upload Release Asset
+        if: contains(github.ref, "tag")
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
         env:
