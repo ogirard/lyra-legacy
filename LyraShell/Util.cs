@@ -25,9 +25,10 @@ namespace Lyra2.LyraShell
 
         // info & build 
         public const string NAME = "Lyra";
-        public const string BUILDNR = "55";
-        public const string VER = "2.4.2";
-        public static string BUILD = VER + "." + "20180923." + BUILDNR;
+        private const string Version = "LocalBuild";
+        public const string VER = $"{Version}";
+        private const string BuildDate = DateTime.Now.ToString("yyyyMMdd");
+        public static string BUILD = $"{VER}.{BuildDate}";
         public static string GUINAME = NAME;
 
         // lyra update
@@ -429,17 +430,17 @@ namespace Lyra2.LyraShell
                 case (int)Lang.EN:
                     return "english";
                 case (int)Lang.FR:
-                    return "français";
+                    return "franï¿½ais";
                 case (int)Lang.IT:
                     return "italiano";
                 case (int)Lang.ES:
-                    return "español";
+                    return "espaï¿½ol";
                 case (int)Lang.DT:
                     return "deutsch";
                 case (int)Lang.LT:
                     return "lateinisch";
                 case (int)Lang.HB:
-                    return "hebräisch";
+                    return "hebrï¿½isch";
                 default:
                     return "unknown";
             }

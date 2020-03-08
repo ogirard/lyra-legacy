@@ -3,7 +3,7 @@ name: CI-Lyra-Release
 on:
   push:
     tags:
-    - 'v*' 
+      - "v*"
 
 jobs:
   build:
@@ -20,13 +20,16 @@ jobs:
       - name: Use GitVersion
         id: gitversion # step id used as reference for output values
         uses: gittools/actions/gitversion/execute@v0.9
+      - name: Prepare Version Info
+        run: .\Prepare-VersionInfo.ps1 -Version ${{ steps.gitversion.outputs.semVer }}
+        shell: powershell
       - name: Restore packages
         run: nuget restore Lyra2.sln
       - name: Setup MSBuild.exe
         uses: warrenbuckley/Setup-MSBuild@v1
       - name: Build with MSBuild
         run: msbuild Lyra2.sln -p:Configuration=Release
-      - name: Create archive
+      - name: Create Archive
         run: .\Create-Release.ps1 -ReleaseName Lyra-Release-${{ steps.gitversion.outputs.semVer }}.zip
         shell: powershell
       - name: Create Release
