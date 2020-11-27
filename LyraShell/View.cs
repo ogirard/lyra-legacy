@@ -428,6 +428,7 @@ namespace Lyra2.LyraShell
 
             this._richTextBox1.ScrollToTop();
             this._richTextBox2.ScrollToTop();
+            this.SetCurrentSongInfo();
             OnSongDisplayed(currentSongInfo);
             this.Focus();
         }
@@ -449,11 +450,12 @@ namespace Lyra2.LyraShell
 
         private void SetCurrentSongInfo()
         {
+            var currentSongPosition = this.navigate.Items.IndexOf(this._song);
             currentSongInfo = new SongDisplayedEventArgs(this._song,
                                                          (ISong) this.navigate.Items[
-                                                           (this.pos + this.navigate.Items.Count + 1) % this.navigate.Items.Count],
+                                                           (currentSongPosition + 1) % this.navigate.Items.Count],
                                                          (ISong) this.navigate.Items[
-                                                           (this.pos + this.navigate.Items.Count - 1) % this.navigate.Items.Count]);
+                                                           (currentSongPosition - 1) % this.navigate.Items.Count]);
         }
 
         private void formatall(RichTextBox rtb)

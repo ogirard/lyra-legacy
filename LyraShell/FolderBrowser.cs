@@ -109,8 +109,8 @@ namespace Lyra2.LyraShell
 		BIF_RETURNONLYFSDIRS = 0x0001,
 		/// <summary>
 		///   Version 5.0. The browse dialog box can display shareable resources on
-		///   remote systems. It is intended for applications that want to expose
-		///   remote shares on a local system. The BIF_USENEWUI flag must also be set.
+		///   Remote systems. It is intended for applications that want to expose
+		///   Remote shares on a local system. The BIF_USENEWUI flag must also be set.
 		/// </summary>
 		BIF_SHAREABLE = 0x8000,
 		/// <summary>

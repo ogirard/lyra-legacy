@@ -49,6 +49,7 @@ namespace Lyra2.LyraShell
         private ComboBox persListCombo;
         private SearchTextBox textBox1;
         private LyraButtonControl button7;
+        private RemoteControlUserControl remoteControl;
         private SearchTextBox mainSearchBox;
         private SongListBox searchListBox;
         private CheckBox checkBox1;
@@ -404,6 +405,7 @@ namespace Lyra2.LyraShell
             this.ultraLabel1 = new UltraLabel();
             this.textBox1 = new SearchTextBox();
             this.button7 = new LyraButtonControl();
+            this.remoteControl = new RemoteControlUserControl(this);
             this.showSongBtn = new LyraButtonControl();
             this.tabPage1 = new TabPage();
             this.allSongsSplitter = new SplitContainer();
@@ -801,6 +803,14 @@ namespace Lyra2.LyraShell
             this.button7.TabIndex = 1;
             this.button7.Text = "Anzeigen";
             this.button7.Click += this.button7_Click;
+            // 
+            // remoteControl
+            // 
+            this.remoteControl.Location = new Point(0, 0);
+            this.remoteControl.Name = "remoteControl";
+//            this.remoteControl.Size = new Size(0, 100);
+            this.remoteControl.TabIndex = 1;
+            this.remoteControl.Dock = DockStyle.Bottom;
             // 
             // showSongBtn
             // 
@@ -1746,6 +1756,7 @@ namespace Lyra2.LyraShell
             this.BackColor = Color.WhiteSmoke;
             this.ClientSize = new Size(950, 467);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.remoteControl);
             this.Controls.Add(this.statusBar1);
             this.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((0)));
             this.Icon = ((Icon)(resources.GetObject("$this.Icon")));
