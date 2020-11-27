@@ -74,7 +74,10 @@ namespace Lyra2.LyraShell
 
         public string Text
         {
-            get { return this.text?.TrimEnd('\r', '\n'); }
+            get
+            {
+                return this.text;
+            }
             set
             {
                 this.text = value;
