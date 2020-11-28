@@ -165,7 +165,7 @@ namespace Lyra2.LyraShell
             this.rightPane.Visible = true;
             this.titleLabel.Text = songInfo.DisplayedSong != null ? $"Lied: {songInfo.DisplayedSong.Number.ToString().PadLeft(4, '0')} {songInfo.DisplayedSong.Title}" : "";
             this.infoLabel.Text = $"{DateTime.Now:D}";
-            this.sourceLabel.Text = songInfo.DisplayedSong != null ? $"Playlist: {songInfo.Source}" : "";
+            this.sourceLabel.Text = songInfo.DisplayedSong != null ? $"Quelle: {songInfo.Source}" : "";
             this.nextBtn.Enabled = songInfo.NextSong != null;
             this.lastBtn.Enabled = songInfo.PreviousSong != null;
             this.nextLabel.Text = songInfo.NextSong != null ? songInfo.NextSong.Number.ToString().PadLeft(4, '0') : "";

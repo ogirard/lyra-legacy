@@ -835,7 +835,7 @@ namespace Lyra2.LyraShell
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Size = new Size(942, 423);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Alle Songs";
+            this.tabPage1.Text = "Alle Lieder";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // allSongsSplitter
