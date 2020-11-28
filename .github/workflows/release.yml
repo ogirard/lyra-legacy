@@ -12,21 +12,21 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Setup Nuget.exe
-        uses: warrenbuckley/Setup-Nuget@v1
+        uses: nuget/setup-nuget@v1
       - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v0.9
+        uses: gittools/actions/gitversion/setup@v0.9.7
         with:
-          versionSpec: "5.1.x"
+          versionSpec: '5.5.0'
       - name: Use GitVersion
         id: gitversion # step id used as reference for output values
-        uses: gittools/actions/gitversion/execute@v0.9
+        uses: gittools/actions/gitversion/execute@v0.9.7
       - name: Prepare Version Info
         run: .\Prepare-VersionInfo.ps1 -Version ${{ steps.gitversion.outputs.semVer }}
         shell: powershell
       - name: Restore packages
         run: nuget restore Lyra2.sln
       - name: Setup MSBuild.exe
-        uses: warrenbuckley/Setup-MSBuild@v1
+        uses: microsoft/setup-msbuild@v1.0.2
       - name: Build with MSBuild
         run: msbuild Lyra2.sln -p:Configuration=Release
       - name: Create Archive
