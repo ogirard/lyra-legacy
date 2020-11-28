@@ -1156,7 +1156,7 @@ namespace Lyra2.LyraShell
             previewSong.Style = this.comboStyle.SelectedItem as Style;
             var previewListBox = new ListBox();
             previewListBox.Items.Add(previewSong);
-            View.ShowSong(previewSong, this.owner, previewListBox);
+            View.ShowSong(previewSong, this.owner, previewListBox, "Vorschau aus Editor");
         }
 
         private void useDefaultStyleCheckBox_CheckedChanged(object sender, EventArgs e)

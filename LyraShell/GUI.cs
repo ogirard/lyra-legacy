@@ -808,7 +808,7 @@ namespace Lyra2.LyraShell
             // 
             this.remoteControl.Location = new Point(0, 0);
             this.remoteControl.Name = "remoteControl";
-//            this.remoteControl.Size = new Size(0, 100);
+            //            this.remoteControl.Size = new Size(0, 100);
             this.remoteControl.TabIndex = 1;
             this.remoteControl.Dock = DockStyle.Bottom;
             // 
@@ -1835,7 +1835,7 @@ namespace Lyra2.LyraShell
                 if (this.allSongsListBox.SelectedItems.Count == 1)
                 {
                     Util.CTRLSHOWNR = Util.SHOWNR;
-                    View.ShowSong((ISong)this.allSongsListBox.SelectedItem, this, this.allSongsListBox);
+                    View.ShowSong((ISong)this.allSongsListBox.SelectedItem, this, this.allSongsListBox, "Alle Lieder");
                 }
             }
             catch (ToManyViews ex)
@@ -1854,7 +1854,7 @@ namespace Lyra2.LyraShell
                     if (this.searchListBox.SelectedItems.Count == 1)
                     {
                         Util.CTRLSHOWNR = Util.SHOWNR;
-                        View.ShowSong((ISong)this.searchListBox.SelectedItem, this, this.searchListBox);
+                        View.ShowSong((ISong)this.searchListBox.SelectedItem, this, this.searchListBox, $"Suche nach '{this.mainSearchBox.Text}'");
                     }
                 }
                 catch (ToManyViews ex)
@@ -1914,7 +1914,7 @@ namespace Lyra2.LyraShell
                 if (this.allSongsListBox.SelectedItems.Count == 1)
                 {
                     Util.CTRLSHOWNR = Util.SHOWNR;
-                    View.ShowSong((ISong)this.allSongsListBox.SelectedItem, this, this.allSongsListBox);
+                    View.ShowSong((ISong)this.allSongsListBox.SelectedItem, this, this.allSongsListBox, "Alle Lieder");
                 }
             }
             catch (ToManyViews ex)
@@ -1953,7 +1953,7 @@ namespace Lyra2.LyraShell
                     {
                         Util.CTRLSHOWNR = Util.SHOWNR;
                     }
-                    View.ShowSong(toShow, this, this.allSongsListBox);
+                    View.ShowSong(toShow, this, this.allSongsListBox, $"Alle Lieder (Quickload für Nr. {nr.ToString().PadLeft(4, '0')})");
                 }
                 else
                 {
@@ -2319,7 +2319,7 @@ namespace Lyra2.LyraShell
                 if (this.searchListBox.SelectedItems.Count == 1)
                 {
                     Util.CTRLSHOWNR = Util.SHOWNR;
-                    View.ShowSong((ISong)this.searchListBox.SelectedItem, this, this.searchListBox);
+                    View.ShowSong((ISong)this.searchListBox.SelectedItem, this, this.searchListBox, $"Suche nach '{this.mainSearchBox.Text}'");
                 }
             }
             catch (ToManyViews ex)
@@ -2518,7 +2518,8 @@ namespace Lyra2.LyraShell
                 {
                     Util.CTRLSHOWNR = Util.SHOWNR;
                     var ind = (this.personalListsListBox.SelectedIndex > 0) ? this.personalListsListBox.SelectedIndex : 0;
-                    View.ShowSong((ISong)this.personalListsListBox.Items[ind], this, this.personalListsListBox);
+                    var currentList = (MyList)this.persListCombo.SelectedItem;
+                    View.ShowSong((ISong)this.personalListsListBox.Items[ind], this, this.personalListsListBox, $"Liste '{currentList}'");
                 }
                 catch (ToManyViews ex)
                 {

@@ -11,6 +11,7 @@ namespace Lyra2.LyraShell
         private readonly ISong next;
         private readonly ISong previous;
         private readonly IList<JumpMark> jumpmarks;
+        private readonly string source;
 
         public IList<JumpMark> Jumpmarks
         {
@@ -32,11 +33,19 @@ namespace Lyra2.LyraShell
             get { return this.previous; }
         }
 
-        public SongDisplayedEventArgs(ISong song, ISong next, ISong previous)
+        public string Source
+        {
+            get { return this.source; }
+        }
+
+
+
+        public SongDisplayedEventArgs(ISong song, ISong next, ISong previous, string source)
         {
             this.song = song;
             this.next = next;
             this.previous = previous;
+            this.source = source;
             this.jumpmarks = new List<JumpMark>();
         }
     }

@@ -214,7 +214,7 @@ namespace Lyra2.LyraShell
         {
             if (this.favoritesListBox.SelectedItem is Song)
             {
-                View.ShowSong((Song)this.favoritesListBox.SelectedItem, this.owner, this.favoritesListBox);
+                View.ShowSong((Song)this.favoritesListBox.SelectedItem, this.owner, this.favoritesListBox, "Favoriten");
             }
         }
 

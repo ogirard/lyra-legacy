@@ -291,7 +291,7 @@ namespace Lyra2.LyraShell
 
                 if (this.view == null)
                 {
-                    View.ShowSong(this, (Translation)this.translations.GetByIndex(i), owner, owner.StandardNavigate);
+                    View.ShowSong(this, (Translation)this.translations.GetByIndex(i), owner, owner.StandardNavigate, "Übersetzung");
                 }
                 else
                 {

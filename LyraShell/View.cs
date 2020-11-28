@@ -54,6 +54,7 @@ namespace Lyra2.LyraShell
         public static bool Black;
         private static int _countViews;
         private ISong _song;
+        private string _source;
         private ITranslation _trans;
         private ViewTitle _title;
 
@@ -215,7 +216,7 @@ namespace Lyra2.LyraShell
             _this._richTextBox1.ScrollToCaret();
         }
 
-        public static void ShowSong(ISong song, ITranslation trans, GUI owner, ListBox navigate)
+        public static void ShowSong(ISong song, ITranslation trans, GUI owner, ListBox navigate, string source)
         {
             if (_this == null)
             {
@@ -224,6 +225,7 @@ namespace Lyra2.LyraShell
             }
 
             _this._song = song;
+            _this._source = source;
             _this._menuItem1.Visible = false;
             _this._owner = owner;
             _this.navigate = navigate;
@@ -257,9 +259,9 @@ namespace Lyra2.LyraShell
             }
         }
 
-        public static void ShowSong(ISong song, GUI owner, ListBox navigate)
+        public static void ShowSong(ISong song, GUI owner, ListBox navigate, string source)
         {
-            ShowSong(song, null, owner, navigate);
+            ShowSong(song, null, owner, navigate, source);
             _this._menuItem1.Visible = true;
         }
 
@@ -453,9 +455,10 @@ namespace Lyra2.LyraShell
             var currentSongPosition = this.navigate.Items.IndexOf(this._song);
             currentSongInfo = new SongDisplayedEventArgs(this._song,
                                                          (ISong) this.navigate.Items[
-                                                           (currentSongPosition + 1) % this.navigate.Items.Count],
+                                                           (currentSongPosition + 1 + this.navigate.Items.Count) % this.navigate.Items.Count],
                                                          (ISong) this.navigate.Items[
-                                                           (currentSongPosition - 1) % this.navigate.Items.Count]);
+                                                           (currentSongPosition - 1 + this.navigate.Items.Count) % this.navigate.Items.Count], 
+                                                         this._source);
         }
 
         private void formatall(RichTextBox rtb)

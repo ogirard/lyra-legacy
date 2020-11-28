@@ -33,7 +33,7 @@ namespace Lyra2.LyraShell
         private Panel lineContainer;
         private UltraPanel line;
         private LyraButtonControl nextBtn;
-        private Label nrLabel;
+        private Label sourceLabel;
         private Label prevLabel;
         private Label nextLabel;
         private Panel mainPane;
@@ -147,13 +147,13 @@ namespace Lyra2.LyraShell
             {
                 this.titleLabel.Text = @"Es wird kein Lied präsentiert.";
                 this.infoLabel.Text = $"{DateTime.Now:D}";
-                this.nrLabel.Text = "*";
+                this.sourceLabel.Text = "*";
                 this.nextBtn.Enabled = false;
                 this.lastBtn.Enabled = false;
                 this.nextLabel.Text = "";
                 this.prevLabel.Text = "";
                 this.rightPane.Visible = false;
-                this.nrLabel.Visible = false;
+                this.sourceLabel.Visible = false;
                 this.jumpMarksListBox.Items.Clear();
                 this.scrollVisual.UpdateScrollData(null);
                 this.songDisplayStarted = null;
@@ -161,11 +161,11 @@ namespace Lyra2.LyraShell
             }
 
             this.songDisplayStarted = DateTime.Now;
-            this.nrLabel.Visible = true;
+            this.sourceLabel.Visible = true;
             this.rightPane.Visible = true;
-            this.titleLabel.Text = songInfo.DisplayedSong != null ? songInfo.DisplayedSong.Title : "";
+            this.titleLabel.Text = songInfo.DisplayedSong != null ? $"Lied: {songInfo.DisplayedSong.Number.ToString().PadLeft(4, '0')} {songInfo.DisplayedSong.Title}" : "";
             this.infoLabel.Text = $"{DateTime.Now:D}";
-            this.nrLabel.Text = songInfo.DisplayedSong != null ? songInfo.DisplayedSong.Number.ToString().PadLeft(4, '0') : "n/a";
+            this.sourceLabel.Text = songInfo.DisplayedSong != null ? $"Playlist: {songInfo.Source}" : "";
             this.nextBtn.Enabled = songInfo.NextSong != null;
             this.lastBtn.Enabled = songInfo.PreviousSong != null;
             this.nextLabel.Text = songInfo.NextSong != null ? songInfo.NextSong.Number.ToString().PadLeft(4, '0') : "";
@@ -233,7 +233,7 @@ namespace Lyra2.LyraShell
             this.bottomPanel = new Infragistics.Win.Misc.UltraPanel();
             this.titleLabel = new Infragistics.Win.Misc.UltraLabel();
             this.infoLabel = new Infragistics.Win.Misc.UltraLabel();
-            this.nrLabel = new System.Windows.Forms.Label();
+            this.sourceLabel = new System.Windows.Forms.Label();
             this.nextLabel = new System.Windows.Forms.Label();
             this.prevLabel = new System.Windows.Forms.Label();
             this.line = new Infragistics.Win.Misc.UltraPanel();
@@ -459,7 +459,7 @@ namespace Lyra2.LyraShell
             // 
             this.bottomPanel.ClientArea.Controls.Add(this.titleLabel);
             this.bottomPanel.ClientArea.Controls.Add(this.infoLabel);
-            this.bottomPanel.ClientArea.Controls.Add(this.nrLabel);
+            this.bottomPanel.ClientArea.Controls.Add(this.sourceLabel);
             this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.bottomPanel.Location = new System.Drawing.Point(0, 0);
             this.bottomPanel.Name = "bottomPanel";
@@ -503,25 +503,25 @@ namespace Lyra2.LyraShell
             infoAppearance.TextTrimming = Infragistics.Win.TextTrimming.EllipsisWord;
             infoAppearance.TextVAlignAsString = "Middle";
             this.infoLabel.Appearance = infoAppearance;
-            this.infoLabel.Location = new System.Drawing.Point(5, 85);
+            this.infoLabel.Location = new System.Drawing.Point(5, 100);
             this.infoLabel.Name = "infoLabel";
             this.infoLabel.AutoSize = true;
             this.infoLabel.TabIndex = 13;
             this.infoLabel.Text = "Info";
             this.infoLabel.WrapText = false;
             // 
-            // nrLabel
+            // sourceLabel
             // 
-            this.nrLabel.BackColor = System.Drawing.Color.Transparent;
-            this.nrLabel.Font = new System.Drawing.Font("Verdana", 12, System.Drawing.FontStyle.Bold,
+            this.sourceLabel.BackColor = System.Drawing.Color.Transparent;
+            this.sourceLabel.Font = new System.Drawing.Font("Verdana", 12, System.Drawing.FontStyle.Bold,
                                                         System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nrLabel.ForeColor = System.Drawing.Color.White;
-            this.nrLabel.Location = new System.Drawing.Point(5, 15);
-            this.nrLabel.Name = "nrLabel";
-            this.nrLabel.AutoSize = true;
-            this.nrLabel.TabIndex = 11;
-            this.nrLabel.Text = "0009";
-            this.nrLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.sourceLabel.ForeColor = System.Drawing.Color.White;
+            this.sourceLabel.Location = new System.Drawing.Point(5, 15);
+            this.sourceLabel.Name = "sourceLabel";
+            this.sourceLabel.AutoSize = true;
+            this.sourceLabel.TabIndex = 11;
+            this.sourceLabel.Text = "0009";
+            this.sourceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // nextLabel
             // 

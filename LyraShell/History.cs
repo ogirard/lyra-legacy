@@ -259,7 +259,7 @@ namespace Lyra2.LyraShell
         {
             if (this.historyListBox.SelectedItem is Song)
             {
-                View.ShowSong((Song)this.historyListBox.SelectedItem, this.owner, this.historyListBox);
+                View.ShowSong((Song)this.historyListBox.SelectedItem, this.owner, this.historyListBox, "History");
             }
         }
 
