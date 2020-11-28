@@ -267,6 +267,7 @@
     <Content Include="data\Licence.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\splash2020.png" />
     <Content Include="store\lists.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
