@@ -86,7 +86,7 @@ namespace Lyra2.LyraShell
             else
             {
                 var runningSince = (DateTime.Now - songDisplayStarted.Value).Humanize(culture: new CultureInfo("de-CH"), minUnit: TimeUnit.Minute);
-                this.infoLabel.Text = $"{DateTime.Now:D}{Environment.NewLine}{Environment.NewLine}Lied wird angezeigt seit {runningSince}";
+                this.infoLabel.Text = $"{DateTime.Now:D} - Lied wird angezeigt seit {runningSince}";
             }
         }
 
@@ -146,12 +146,15 @@ namespace Lyra2.LyraShell
             if (songInfo == null)
             {
                 this.titleLabel.Text = @"Es wird kein Lied präsentiert.";
+                this.titleLabel.Enabled = false;
                 this.infoLabel.Text = $"{DateTime.Now:D}";
                 this.sourceLabel.Text = "*";
                 this.nextBtn.Enabled = false;
                 this.lastBtn.Enabled = false;
-                this.nextLabel.Text = "";
-                this.prevLabel.Text = "";
+                this.nextLabel.Visible = false;
+                this.prevLabel.Visible = false;
+                this.nextBtn.Visible = false;
+                this.lastBtn.Visible = false;
                 this.rightPane.Visible = false;
                 this.sourceLabel.Visible = false;
                 this.jumpMarksListBox.Items.Clear();
@@ -163,13 +166,18 @@ namespace Lyra2.LyraShell
             this.songDisplayStarted = DateTime.Now;
             this.sourceLabel.Visible = true;
             this.rightPane.Visible = true;
-            this.titleLabel.Text = songInfo.DisplayedSong != null ? $"Lied: {songInfo.DisplayedSong.Number.ToString().PadLeft(4, '0')} {songInfo.DisplayedSong.Title}" : "";
+            this.titleLabel.Text = songInfo.DisplayedSong != null ? $"{songInfo.DisplayedSong.Number.ToString().PadLeft(4, '0')} {songInfo.DisplayedSong.Title}" : "";
+            this.titleLabel.Enabled = true;
             this.infoLabel.Text = $"{DateTime.Now:D}";
-            this.sourceLabel.Text = songInfo.DisplayedSong != null ? $"Quelle: {songInfo.Source}" : "";
+            this.sourceLabel.Text = songInfo.DisplayedSong != null ? $"Anzeigequelle [{songInfo.Source}]" : "";
+            this.nextLabel.Visible = true;
+            this.prevLabel.Visible = true;
+            this.nextBtn.Visible = true;
+            this.lastBtn.Visible = true;
             this.nextBtn.Enabled = songInfo.NextSong != null;
             this.lastBtn.Enabled = songInfo.PreviousSong != null;
-            this.nextLabel.Text = songInfo.NextSong != null ? songInfo.NextSong.Number.ToString().PadLeft(4, '0') : "";
-            this.prevLabel.Text = songInfo.PreviousSong != null ? songInfo.PreviousSong.Number.ToString().PadLeft(4, '0') : "";
+            this.nextLabel.Text = songInfo.NextSong != null ? $"{songInfo.NextSong.Number.ToString().PadLeft(4, '0')} {songInfo.NextSong.Title}" : "";
+            this.prevLabel.Text = songInfo.PreviousSong != null ? $"{songInfo.PreviousSong.Number.ToString().PadLeft(4, '0')} {songInfo.PreviousSong.Title}" : "";
             this.jumpMarksListBox.BeginUpdate();
             this.jumpMarksListBox.Items.Clear();
             foreach (var jumpMark in songInfo.Jumpmarks)
@@ -355,10 +363,6 @@ namespace Lyra2.LyraShell
             this.scrollPane.Controls.Add(this.scrollDownwardsBtn);
             this.scrollPane.Controls.Add(this.scrollUpwardsBtn);
             this.scrollPane.Controls.Add(this.jumpTopBtn);
-            this.scrollPane.Controls.Add(this.nextBtn);
-            this.scrollPane.Controls.Add(this.lastBtn);
-            this.scrollPane.Controls.Add(this.nextLabel);
-            this.scrollPane.Controls.Add(this.prevLabel);
             this.scrollPane.Dock = System.Windows.Forms.DockStyle.Left;
             this.scrollPane.Name = "scrollPane";
             this.scrollPane.Size = new System.Drawing.Size(140, 131);
@@ -368,7 +372,7 @@ namespace Lyra2.LyraShell
             // 
             // scrollVisual
             // 
-            this.scrollVisual.Location = new System.Drawing.Point(113, 42);
+            this.scrollVisual.Location = new System.Drawing.Point(113, 22);
             this.scrollVisual.Name = "scrollVisual";
             this.scrollVisual.Size = new System.Drawing.Size(9, 119);
             this.scrollVisual.TabIndex = 14;
@@ -384,7 +388,7 @@ namespace Lyra2.LyraShell
             // scrollBox.ClientArea
             // 
             this.scrollBox.ClientArea.Controls.Add(this.scrollImage);
-            this.scrollBox.Location = new System.Drawing.Point(40, 77);
+            this.scrollBox.Location = new System.Drawing.Point(53, 57);
             this.scrollBox.Name = "scrollBox";
             this.scrollBox.Size = new System.Drawing.Size(50, 50);
             this.scrollBox.TabIndex = 13;
@@ -403,7 +407,7 @@ namespace Lyra2.LyraShell
             appearance5.ImageHAlign = Infragistics.Win.HAlign.Center;
             appearance5.ImageVAlign = Infragistics.Win.VAlign.Middle;
             this.jumpEndBtn.Appearance = appearance5;
-            this.jumpEndBtn.Location = new System.Drawing.Point(0, 134);
+            this.jumpEndBtn.Location = new System.Drawing.Point(12, 114);
             this.jumpEndBtn.Name = "jumpEndBtn";
             this.jumpEndBtn.Size = new System.Drawing.Size(32, 27);
             this.jumpEndBtn.TabIndex = 12;
@@ -416,7 +420,7 @@ namespace Lyra2.LyraShell
             appearance4.ImageVAlign = Infragistics.Win.VAlign.Middle;
             this.scrollDownwardsBtn.Appearance = appearance4;
             this.scrollDownwardsBtn.AutoRepeat = true;
-            this.scrollDownwardsBtn.Location = new System.Drawing.Point(0, 105);
+            this.scrollDownwardsBtn.Location = new System.Drawing.Point(12, 85);
             this.scrollDownwardsBtn.Name = "scrollDownwardsBtn";
             this.scrollDownwardsBtn.Size = new System.Drawing.Size(32, 27);
             this.scrollDownwardsBtn.TabIndex = 12;
@@ -429,7 +433,7 @@ namespace Lyra2.LyraShell
             appearance3.ImageVAlign = Infragistics.Win.VAlign.Middle;
             this.scrollUpwardsBtn.Appearance = appearance3;
             this.scrollUpwardsBtn.AutoRepeat = true;
-            this.scrollUpwardsBtn.Location = new System.Drawing.Point(0, 71);
+            this.scrollUpwardsBtn.Location = new System.Drawing.Point(12, 51);
             this.scrollUpwardsBtn.Name = "scrollUpwardsBtn";
             this.scrollUpwardsBtn.Size = new System.Drawing.Size(32, 27);
             this.scrollUpwardsBtn.TabIndex = 12;
@@ -441,7 +445,7 @@ namespace Lyra2.LyraShell
             appearance2.ImageHAlign = Infragistics.Win.HAlign.Center;
             appearance2.ImageVAlign = Infragistics.Win.VAlign.Middle;
             this.jumpTopBtn.Appearance = appearance2;
-            this.jumpTopBtn.Location = new System.Drawing.Point(0, 42);
+            this.jumpTopBtn.Location = new System.Drawing.Point(12, 22);
             this.jumpTopBtn.Name = "jumpTopBtn";
             this.jumpTopBtn.Size = new System.Drawing.Size(32, 27);
             this.jumpTopBtn.TabIndex = 12;
@@ -460,6 +464,10 @@ namespace Lyra2.LyraShell
             this.bottomPanel.ClientArea.Controls.Add(this.titleLabel);
             this.bottomPanel.ClientArea.Controls.Add(this.infoLabel);
             this.bottomPanel.ClientArea.Controls.Add(this.sourceLabel);
+            this.bottomPanel.ClientArea.Controls.Add(this.nextBtn);
+            this.bottomPanel.ClientArea.Controls.Add(this.lastBtn);
+            this.bottomPanel.ClientArea.Controls.Add(this.nextLabel);
+            this.bottomPanel.ClientArea.Controls.Add(this.prevLabel);
             this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.bottomPanel.Location = new System.Drawing.Point(0, 0);
             this.bottomPanel.Name = "bottomPanel";
@@ -482,7 +490,7 @@ namespace Lyra2.LyraShell
             appearance23.TextTrimming = Infragistics.Win.TextTrimming.EllipsisWord;
             appearance23.TextVAlignAsString = "Middle";
             this.titleLabel.Appearance = appearance23;
-            this.titleLabel.Location = new System.Drawing.Point(5, 50);
+            this.titleLabel.Location = new System.Drawing.Point(5, 45);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.AutoSize = true;
             this.titleLabel.TabIndex = 13;
@@ -497,13 +505,13 @@ namespace Lyra2.LyraShell
                       | System.Windows.Forms.AnchorStyles.Right)));
             infoAppearance.BackColorAlpha = Infragistics.Win.Alpha.Transparent;
             infoAppearance.FontData.Name = "Verdana";
-            infoAppearance.FontData.SizeInPoints = 11;
-            infoAppearance.ForeColor = Color.DimGray;
+            infoAppearance.FontData.SizeInPoints = 9;
+            infoAppearance.ForeColor = Color.Gray;
             infoAppearance.TextHAlignAsString = "Left";
             infoAppearance.TextTrimming = Infragistics.Win.TextTrimming.EllipsisWord;
             infoAppearance.TextVAlignAsString = "Middle";
             this.infoLabel.Appearance = infoAppearance;
-            this.infoLabel.Location = new System.Drawing.Point(5, 100);
+            this.infoLabel.Location = new System.Drawing.Point(7, 150);
             this.infoLabel.Name = "infoLabel";
             this.infoLabel.AutoSize = true;
             this.infoLabel.TabIndex = 13;
@@ -513,7 +521,7 @@ namespace Lyra2.LyraShell
             // sourceLabel
             // 
             this.sourceLabel.BackColor = System.Drawing.Color.Transparent;
-            this.sourceLabel.Font = new System.Drawing.Font("Verdana", 12, System.Drawing.FontStyle.Bold,
+            this.sourceLabel.Font = new System.Drawing.Font("Verdana", 12, System.Drawing.FontStyle.Regular,
                                                         System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sourceLabel.ForeColor = System.Drawing.Color.White;
             this.sourceLabel.Location = new System.Drawing.Point(5, 15);
@@ -526,12 +534,13 @@ namespace Lyra2.LyraShell
             // nextLabel
             // 
             this.nextLabel.BackColor = System.Drawing.Color.Transparent;
-            this.nextLabel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular,
+            this.nextLabel.Font = new System.Drawing.Font("Verdana", 9, System.Drawing.FontStyle.Regular,
                                                           System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nextLabel.ForeColor = System.Drawing.Color.White;
-            this.nextLabel.Location = new System.Drawing.Point(52, 0);
+            this.nextLabel.ForeColor = System.Drawing.Color.Black;
+            this.nextLabel.Location = new System.Drawing.Point(75, 119);
             this.nextLabel.Name = "nextLabel";
             this.nextLabel.Size = new System.Drawing.Size(47, 24);
+            this.nextLabel.AutoSize = true;
             this.nextLabel.TabIndex = 11;
             this.nextLabel.Text = "next";
             this.nextLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -539,12 +548,13 @@ namespace Lyra2.LyraShell
             // prevLabel
             // 
             this.prevLabel.BackColor = System.Drawing.Color.Transparent;
-            this.prevLabel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular,
+            this.prevLabel.Font = new System.Drawing.Font("Verdana", 9, System.Drawing.FontStyle.Regular,
                                                           System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.prevLabel.ForeColor = System.Drawing.Color.White;
-            this.prevLabel.Location = new System.Drawing.Point(0, 0);
+            this.prevLabel.ForeColor = System.Drawing.Color.Black;
+            this.prevLabel.Location = new System.Drawing.Point(75, 84);
             this.prevLabel.Name = "prevLabel";
             this.prevLabel.Size = new System.Drawing.Size(47, 24);
+            this.prevLabel.AutoSize = true;
             this.prevLabel.TabIndex = 11;
             this.prevLabel.Text = "prev";
             this.prevLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -565,7 +575,7 @@ namespace Lyra2.LyraShell
             appearance7.Image = global::Lyra2.LyraShell.Properties.Resources.next;
             appearance7.ImageHAlign = Infragistics.Win.HAlign.Center;
             this.nextBtn.Appearance = appearance7;
-            this.nextBtn.Location = new System.Drawing.Point(52, 15);
+            this.nextBtn.Location = new System.Drawing.Point(22, 115);
             this.nextBtn.Name = "nextBtn";
             this.nextBtn.Size = new System.Drawing.Size(47, 24);
             this.nextBtn.TabIndex = 12;
@@ -576,7 +586,7 @@ namespace Lyra2.LyraShell
             appearance6.Image = global::Lyra2.LyraShell.Properties.Resources.prev;
             appearance6.ImageHAlign = Infragistics.Win.HAlign.Center;
             this.lastBtn.Appearance = appearance6;
-            this.lastBtn.Location = new System.Drawing.Point(0, 15);
+            this.lastBtn.Location = new System.Drawing.Point(22, 80);
             this.lastBtn.Name = "lastBtn";
             this.lastBtn.Size = new System.Drawing.Size(47, 24);
             this.lastBtn.TabIndex = 12;
