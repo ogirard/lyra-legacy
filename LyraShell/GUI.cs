@@ -252,17 +252,7 @@ namespace Lyra2.LyraShell
             this.searchListBox.Sort(this.sortMethod);
             this.searchListBox.EndUpdate();
             this.sortCombo.SelectedIndexChanged += this.SortMethodChanged;
-
-            // init GUI size
             this.StartPosition = FormStartPosition.Manual;
-            var left = this.personalizeStore.GetIntValue(PersonalizationItemNames.GUILeft);
-            if (left >= 0) this.Left = left;
-            var top = this.personalizeStore.GetIntValue(PersonalizationItemNames.GUITop);
-            if (top >= 0) this.Top = top;
-            var width = this.personalizeStore.GetIntValue(PersonalizationItemNames.GUIWidth);
-            if (width >= 0) this.Width = width;
-            var height = this.personalizeStore.GetIntValue(PersonalizationItemNames.GUIHeight);
-            if (height >= 0) this.Height = height;
         }
 
         protected override void OnShown(EventArgs e)
@@ -286,6 +276,16 @@ namespace Lyra2.LyraShell
             if (allSongsSplit >= 0) this.allSongsSplitter.SplitterDistance = allSongsSplit;
             var persListSplit = this.personalizeStore.GetIntValue(PersonalizationItemNames.ListSplitPosition);
             if (persListSplit >= 0) this.persListSplitter.SplitterDistance = persListSplit;
+
+            // init GUI size
+            var left = this.personalizeStore.GetIntValue(PersonalizationItemNames.GUILeft);
+            if (left >= 0) this.Left = left;
+            var top = this.personalizeStore.GetIntValue(PersonalizationItemNames.GUITop);
+            if (top >= 0) this.Top = top;
+            var width = this.personalizeStore.GetIntValue(PersonalizationItemNames.GUIWidth);
+            if (width >= 0) this.Width = width;
+            var height = this.personalizeStore.GetIntValue(PersonalizationItemNames.GUIHeight);
+            if (height >= 0) this.Height = height;
         }
 
         private SortMethod sortMethod;
