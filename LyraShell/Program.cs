@@ -1,11 +1,11 @@
-﻿using log4net;
-using log4net.Config;
-using Lyra2.UtilShared;
-using System;
+﻿using System;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+using log4net;
+using log4net.Config;
+using Lyra2.UtilShared;
 
 namespace Lyra2.LyraShell
 {
@@ -21,7 +21,32 @@ namespace Lyra2.LyraShell
             XmlConfigurator.Configure();
             logger = LogManager.GetLogger(typeof(Program));
             MigrateData(args.IsSwitchSet("clean"));
+            AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
             Application.Run(new GUI());
+        }
+
+        private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            var ex = e.ExceptionObject as Exception;
+            logger.Fatal($"Unhandled exception {ex?.GetType().FullName}!!", ex);
+            var lyraLog = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Lyra\\lyra.log";
+            var desktopLyraLog = $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\lyra-errorlog-{DateTime.UtcNow:yyyyMMddTHHmmss}.txt";
+
+            try
+            {
+                using (var fileStream = new FileStream(lyraLog, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                {
+                    using (var streamReader = new StreamReader(fileStream))
+                    {
+                        var currentLogs = streamReader.ReadToEnd();
+                        File.WriteAllText(desktopLyraLog, currentLogs);
+                    }
+                }
+            }
+            catch (Exception innerException)
+            {
+                logger.Error("Could not copy log file", innerException);
+            }
         }
 
         private static void MigrateData(bool clean)

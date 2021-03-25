@@ -1,10 +1,11 @@
-using Lyra2.UtilShared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using log4net;
+using Lyra2.UtilShared;
 
 namespace Lyra2.LyraShell
 {
@@ -13,6 +14,12 @@ namespace Lyra2.LyraShell
     /// </summary>
     public class SongPreview : UserControl
     {
+        #region    Log4Net Logger
+
+        protected static readonly ILog Logger = LogManager.GetLogger(typeof(SongPreview));
+
+        #endregion Log4Net Logger
+
         private Panel panel2;
         private Panel panel3;
         private Panel panel1;
@@ -61,6 +68,14 @@ namespace Lyra2.LyraShell
             var box = GraphicUtils.MeasureString(text, this.flowPanel.Font);
             var columnWidth = box.Width + 16;
             var columnCount = Math.Min((int)Math.Ceiling(box.Height / (decimal)height), (int)Math.Floor((decimal)width / columnWidth));
+
+            Logger.Debug($"ShowPreview.ShowSong(Song-{song.Number}) -> {{ height: {height}, width: {width}, columnWidth: {columnWidth}, columnCount: {columnCount}}}");
+            if (columnCount < 1)
+            {
+                Logger.Info($"ShowPreview.ShowSong(Song-{song.Number}) -> columnCount: {columnCount} < 1 => set to 1");
+                columnCount = 1;
+            }
+
             var lines = text.Split(new[] { '\n' }, StringSplitOptions.None);
             var batchSize = (int)Math.Floor(lines.Length / (decimal)columnCount);
 
