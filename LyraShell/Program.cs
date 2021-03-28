@@ -20,6 +20,12 @@ namespace Lyra2.LyraShell
             Application.SetCompatibleTextRenderingDefault(false);
             XmlConfigurator.Configure();
             logger = LogManager.GetLogger(typeof(Program));
+            logger.Info($"Windows: {Environment.OSVersion.Platform}/{Environment.OSVersion.VersionString}");
+            logger.Info($".NET: {AppDomain.CurrentDomain.SetupInformation.TargetFrameworkName}");
+            foreach (var screen in Screen.AllScreens)
+            {
+                logger.Info($"{(screen.Primary ? "Primary " : string.Empty)}Screen {screen.DeviceName}: {screen.WorkingArea.Width}x{screen.WorkingArea.Height}");
+            }
             MigrateData(args.IsSwitchSet("clean"));
             AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
             Application.Run(new GUI());

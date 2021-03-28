@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Runtime.Versioning;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
@@ -627,7 +628,7 @@ namespace Lyra2.LyraShell
         public static long TOTALSEARCH;
         public static int NRSEARCH = 1;
         private static long TOTALUSE;
-        public static string DOTNET = "4.7.2";
+        public static string DOTNET = new FrameworkName(AppDomain.CurrentDomain.SetupInformation.TargetFrameworkName).Version.ToString();
 
         public static long getCurrentTicks()
         {
