@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Resources = Lyra2.LyraShell.Properties.Resources;
@@ -83,7 +84,7 @@ namespace Lyra2.LyraShell
       }
       if (this._styles.Count > 0)
       {
-        this.stylesList.SelectedIndex = 0;
+        this.stylesList.SelectedIndex = this._styles.IndexOf(this._styles.First(s => s.IsDefault));
       }
       this.stylesList.EndUpdate();
     }
