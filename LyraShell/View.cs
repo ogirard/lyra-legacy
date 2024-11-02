@@ -38,6 +38,7 @@ namespace Lyra2.LyraShell
         private MenuItem _menuItem4;
         private ExtendedRichTextBox _richTextBox1;
         private ExtendedRichTextBox _richTextBox2;
+        private Panel _viewPanel;
         private MenuItem _menuItem5;
         private MenuItem _menuItem7;
         private MenuItem _menuItem6;
@@ -358,7 +359,7 @@ namespace Lyra2.LyraShell
                     myrtb = this._richTextBox2;
                     this._richTextBox2.Top = this._richTextBox1.Top;
                     this._richTextBox2.Height = this._richTextBox1.Height;
-                    this._richTextBox2.Width = (this.Width - 24) / 2 - 6;
+                    this._richTextBox2.Width = (this._richTextBox2.Parent.Width - 24) / 2 - 6;
                     this._richTextBox1.Width = this._richTextBox2.Width;
                     this._richTextBox2.Left = this._richTextBox1.Right + 12;
                     this._richTextBox2.Visible = true;
@@ -389,7 +390,7 @@ namespace Lyra2.LyraShell
                         this.haspgbr = true;
                         this._richTextBox2.Top = this._richTextBox1.Top;
                         this._richTextBox2.Height = this._richTextBox1.Height;
-                        this._richTextBox2.Width = (this.Width - 24) / 2 - 6;
+                        this._richTextBox2.Width = (this._richTextBox2.Parent.Width - 24) / 2 - 6;
                         this._richTextBox1.Width = this._richTextBox2.Width;
                         this._richTextBox2.Left = this._richTextBox1.Right + 12;
                     }
@@ -442,9 +443,9 @@ namespace Lyra2.LyraShell
             }
 
             this._richTextBox1.Left = 12;
-            this._richTextBox1.Width = this.Width - 24;
+            this._richTextBox1.Width = this._richTextBox1.Parent.Width - 24;
             this._richTextBox1.Top = this._title.Visible ? this._title.Bottom + 12 : 12;
-            this._richTextBox1.Height = this.Height - 12 - this._richTextBox1.Top;
+            this._richTextBox1.Height = this._richTextBox1.Parent.Height - 12 - this._richTextBox1.Top;
             this._scrollVisual.Top = this._richTextBox1.Top;
             this._scrollVisual.Height = this._richTextBox1.Height;
         }
@@ -453,12 +454,12 @@ namespace Lyra2.LyraShell
         {
             var currentSongPosition = this.navigate.Items.IndexOf(this._song);
             currentSongInfo = new SongDisplayedEventArgs(this._song,
-                                                         (ISong) this.navigate.Items[
+                                                         (ISong)this.navigate.Items[
                                                            (currentSongPosition + 1 + this.navigate.Items.Count) % this.navigate.Items.Count],
-                                                         (ISong) this.navigate.Items[
-                                                           (currentSongPosition - 1 + this.navigate.Items.Count) % this.navigate.Items.Count], 
+                                                         (ISong)this.navigate.Items[
+                                                           (currentSongPosition - 1 + this.navigate.Items.Count) % this.navigate.Items.Count],
                                                          this._source);
-            
+
         }
 
         private void formatall(RichTextBox rtb)
@@ -590,13 +591,32 @@ namespace Lyra2.LyraShell
             base.Dispose(disposing);
         }
 
+        private void UpdateViewPanel()
+        {
+            this._viewPanel.BackColor = Color.Transparent;
+            this._viewPanel.Top = 0;
+            this._viewPanel.Height = this._viewPanel.Parent.Height;
+            this._viewPanel.Width = Math.Min(this._viewPanel.Parent.Height * 4 / 3, this.Width);
+            this._viewPanel.Left = Math.Max((this._viewPanel.Parent.Width - this._viewPanel.Width) / 2, this.Left);
+        }
+
         private void InitializeSongPresenters()
         {
+            this._viewPanel = new Panel();
             this._richTextBox1 = new ExtendedRichTextBox();
             this._richTextBox2 = new ExtendedRichTextBox();
+
+            //
+            // viewPanel
+            //
+            this.Controls.Add(this._viewPanel);
+            this.UpdateViewPanel();
+
             // 
             // richTextBox1
             // 
+
+            this._viewPanel.Controls.Add(this._richTextBox1);
             this._richTextBox1.BackColor = Color.White;
             this._richTextBox1.BorderStyle = BorderStyle.None;
             this._richTextBox1.Cursor = Cursors.Arrow;
@@ -617,6 +637,7 @@ namespace Lyra2.LyraShell
             // 
             // richTextBox2
             // 
+            this._viewPanel.Controls.Add(this._richTextBox2);
             this._richTextBox2.BackColor = Color.White;
             this._richTextBox2.BorderStyle = BorderStyle.None;
             this._richTextBox2.Cursor = Cursors.Arrow;
@@ -633,9 +654,6 @@ namespace Lyra2.LyraShell
             this._richTextBox2.GotFocus += this.HandlePresenterFocus;
             this._richTextBox2.MouseEnter += this.PresenterMouseEnterHandler;
             this._richTextBox2.MouseLeave += this.PresenterMouseLeaveHandler;
-
-            this.Controls.Add(this._richTextBox1);
-            this.Controls.Add(this._richTextBox2);
         }
 
         private void PresenterMouseLeaveHandler(object sender, EventArgs e)
@@ -903,14 +921,11 @@ namespace Lyra2.LyraShell
             this.Top = Display.Bounds.Top;
             this.Left = Display.Bounds.Left;
 
-            this._label8.Top = this.Height - this._label8.Height;
-            this._label8.Left = this.Width - this._label8.Width;
+            this._label8.Top = this._label8.Parent.Height - this._label8.Height;
+            this._label8.Left = this._label8.Parent.Width - this._label8.Width;
 
-            // init TextBoxes
-            // this.richTextBox1.Left = 24;
-            // this.richTextBox1.Width = this.Width - 80;
-            // this.richTextBox1.Top = this.panel1.Top + this.panel1.Height + 20;
-            // this.richTextBox1.Height = this.Height - this.richTextBox1.Top - 10;
+            this.UpdateViewPanel();
+
             this._richTextBox2.Top = this._richTextBox1.Top;
             this._richTextBox2.Height = this._richTextBox1.Height;
             this._richTextBox2.Width = this._richTextBox1.Width / 2 - 5;
@@ -930,7 +945,7 @@ namespace Lyra2.LyraShell
             this._label5.Top = Display.Bounds.Height / 2 - this._label5.Height / 2;
             this._label9.Top = this._label5.Bottom + 2;
             this._label9.Left = this._label5.Left;
-            this._pictureBox1.Left = this.Width / 2 - this._pictureBox1.Width;
+            this._pictureBox1.Left = this._pictureBox1.Parent.Width / 2 - this._pictureBox1.Width;
             this._pictureBox1.Top = this._label5.Top;
             this._label5.Text = this._song.Number.ToString();
             this._label9.Text = this._song.Desc;
@@ -1011,7 +1026,7 @@ namespace Lyra2.LyraShell
                 Util.CTRLSHOWNR = Util.SHOWNR;
             }
 
-            this.RefreshSong((ISong) this.navigate.Items[this.NextPos]);
+            this.RefreshSong((ISong)this.navigate.Items[this.NextPos]);
         }
 
         // forward
@@ -1026,7 +1041,7 @@ namespace Lyra2.LyraShell
                 Util.CTRLSHOWNR = Util.SHOWNR;
             }
 
-            this.RefreshSong((ISong) this.navigate.Items[this.LastPos]);
+            this.RefreshSong((ISong)this.navigate.Items[this.LastPos]);
         }
 
         private int transCount;
@@ -1057,6 +1072,22 @@ namespace Lyra2.LyraShell
             {
                 this.MoveNext_Handler(sender, ke);
                 this.updatePreview();
+            }
+            else if(ke.KeyCode == Keys.Up)
+            {
+                ExecuteActionOnView(ViewActions.ScrollUp);
+            }
+            else if (ke.KeyCode == Keys.Down)
+            {
+                ExecuteActionOnView(ViewActions.ScrollDown);
+            }
+            else if (ke.KeyCode == Keys.Left || ke.KeyCode == Keys.Home)
+            {
+                ExecuteActionOnView(ViewActions.ScrollToTop);
+            }
+            else if (ke.KeyCode == Keys.Right || ke.KeyCode == Keys.End)
+            {
+                ExecuteActionOnView(ViewActions.ScrollToEnd);
             }
             else if (ke.KeyCode == Keys.F3)
             {
@@ -1128,10 +1159,10 @@ namespace Lyra2.LyraShell
         private void updatePreview()
         {
             var next =
-              ((ISong) this.navigate.Items[(this.pos + this.navigate.Items.Count + 1) % this.navigate.Items.Count]).
+              ((ISong)this.navigate.Items[(this.pos + this.navigate.Items.Count + 1) % this.navigate.Items.Count]).
                 Number.ToString(CultureInfo.InvariantCulture);
             var last =
-              ((ISong) this.navigate.Items[(this.pos + this.navigate.Items.Count - 1) % this.navigate.Items.Count]).
+              ((ISong)this.navigate.Items[(this.pos + this.navigate.Items.Count - 1) % this.navigate.Items.Count]).
                 Number.ToString(CultureInfo.InvariantCulture);
             this._label8.Text = "PgUp:" + next + Util.NL + "PgDn:" + last;
         }
