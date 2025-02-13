@@ -596,7 +596,7 @@ namespace Lyra2.LyraShell
             this._viewPanel.BackColor = Color.Transparent;
             this._viewPanel.Top = 0;
             this._viewPanel.Height = this._viewPanel.Parent.Height;
-            this._viewPanel.Width = Math.Min(this._viewPanel.Parent.Height * 4 / 3, this.Width);
+            this._viewPanel.Width = Math.Min(this._viewPanel.Parent.Height * 3 / 2, this.Width);
             this._viewPanel.Left = Math.Max((this._viewPanel.Parent.Width - this._viewPanel.Width) / 2, this.Left);
         }
 
