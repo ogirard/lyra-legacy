@@ -223,7 +223,7 @@ namespace Lyra2.LyraShell
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(85, 17);
             this.label9.TabIndex = 0;
-            this.label9.Text = "© 2004-2020";
+            this.label9.Text = "© 2004-2025";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label24
@@ -354,7 +354,7 @@ namespace Lyra2.LyraShell
             // Info
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.BackgroundImage = global::Lyra2.LyraShell.Properties.Resources.InfoBackgroundImage;
+            this.BackgroundImage = global::Lyra2.LyraShell.Properties.Resources.InfoBackgroundImage2025;
             this.ClientSize = new System.Drawing.Size(476, 500);
             this.Controls.Add(this.licenceLink);
             this.Controls.Add(this.label1);

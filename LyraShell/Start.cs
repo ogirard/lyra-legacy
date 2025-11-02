@@ -71,7 +71,7 @@ namespace Lyra2.LyraShell
             // Start
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
-            this.BackgroundImage = global::Lyra2.LyraShell.Properties.Resources.splash2020;
+            this.BackgroundImage = global::Lyra2.LyraShell.Properties.Resources.splash2025;
             this.ClientSize = new System.Drawing.Size(475, 327);
             this.ControlBox = false;
             this.Controls.Add(this.progressBar1);

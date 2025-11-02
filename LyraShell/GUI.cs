@@ -749,7 +749,7 @@ namespace Lyra2.LyraShell
             // 
             // panel1
             // 
-            appearance1.ImageBackground = Properties.Resources.right_pane_bg;
+            appearance1.ImageBackground = Properties.Resources.right_pane_bg2025;
             appearance1.ImageBackgroundStretchMargins = new Infragistics.Win.ImageBackgroundStretchMargins(110, 100, 1, 350);
             appearance1.ImageBackgroundStyle = Infragistics.Win.ImageBackgroundStyle.Stretched;
             this.panel1.Appearance = appearance1;
@@ -885,7 +885,7 @@ namespace Lyra2.LyraShell
             // 
             // controlPaneRight
             // 
-            appearance2.ImageBackground = Properties.Resources.right_pane_bg;
+            appearance2.ImageBackground = Properties.Resources.right_pane_bg2025;
             appearance2.ImageBackgroundStretchMargins = new Infragistics.Win.ImageBackgroundStretchMargins(110, 100, 1, 350);
             appearance2.ImageBackgroundStyle = Infragistics.Win.ImageBackgroundStyle.Stretched;
             this.controlPaneRight.Appearance = appearance2;
@@ -1110,7 +1110,7 @@ namespace Lyra2.LyraShell
             // 
             // panel7
             // 
-            appearance3.ImageBackground = Properties.Resources.right_pane_bg;
+            appearance3.ImageBackground = Properties.Resources.right_pane_bg2025;
             appearance3.ImageBackgroundStretchMargins = new Infragistics.Win.ImageBackgroundStretchMargins(110, 100, 1, 350);
             appearance3.ImageBackgroundStyle = Infragistics.Win.ImageBackgroundStyle.Stretched;
             this.panel7.Appearance = appearance3;

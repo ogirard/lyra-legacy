@@ -283,11 +283,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="lyra.ico" />
+    <None Include="Resources\InfoBackgroundImage2025.png" />
+    <None Include="Resources\lyra_menu2025.png" />
+    <None Include="Resources\right_pane_bg2025.png" />
     <Content Include="Resources\splash2018.png" />
     <Content Include="data\Licence.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\splash2020.png" />
+    <None Include="Resources\splash2025.png" />
     <Content Include="store\lists.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -523,6 +527,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Pswd.resx">
       <DependentUpon>Pswd.cs</DependentUpon>
