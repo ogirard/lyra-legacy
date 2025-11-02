@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <lyra>
   <Styles>
     <Style id="2cc46803-e29f-4286-a1d9-3c036d908deb" name="Schwarz auf Weiss" isdefault="no">
@@ -10,10 +10,8 @@
       <Background>
         <color>#ffffff</color>
         <image>
-          <uri>
-          </uri>
-          <cache>
-          </cache>
+          <uri></uri>
+          <cache></cache>
           <transparency>0</transparency>
           <scale>no</scale>
         </image>
@@ -21,8 +19,7 @@
       <Title mode="None">
         <Foreground>
           <color>#4682b4</color>
-          <font>
-          </font>
+          <font></font>
           <fontsize>0</fontsize>
         </Foreground>
         <Background>
@@ -30,7 +27,7 @@
         </Background>
       </Title>
     </Style>
-    <Style id="5dc011bc-cab3-46ee-91c6-a7ec7d50c43f" name="Weiss auf Schwarz" isdefault="yes">
+    <Style id="5dc011bc-cab3-46ee-91c6-a7ec7d50c43f" name="Weiss auf Schwarz" isdefault="no">
       <Foreground>
         <color>#ffffff</color>
         <font>Verdana</font>
@@ -39,10 +36,8 @@
       <Background>
         <color>#000000</color>
         <image>
-          <uri>
-          </uri>
-          <cache>
-          </cache>
+          <uri></uri>
+          <cache></cache>
           <transparency>0</transparency>
           <scale>no</scale>
         </image>
@@ -50,8 +45,7 @@
       <Title mode="None">
         <Foreground>
           <color>#4682b4</color>
-          <font>
-          </font>
+          <font></font>
           <fontsize>0</fontsize>
         </Foreground>
         <Background>
@@ -69,23 +63,19 @@
         <color>#646464</color>
         <image>
           <uri>C:\Users\gol\Pictures\01897_colorsofparis_1440x900.jpg</uri>
-          <cache>
-          </cache>
+          <cache></cache>
           <transparency>15</transparency>
           <scale>no</scale>
         </image>
       </Background>
       <Title mode="NumberAndTitle">
         <Foreground>
-          <color>
-          </color>
-          <font>
-          </font>
+          <color></color>
+          <font></font>
           <fontsize>0</fontsize>
         </Foreground>
         <Background>
-          <color>
-          </color>
+          <color></color>
         </Background>
       </Title>
     </Style>
@@ -98,10 +88,8 @@
       <Background>
         <color>#ffffff</color>
         <image>
-          <uri>
-          </uri>
-          <cache>
-          </cache>
+          <uri></uri>
+          <cache></cache>
           <transparency>0</transparency>
           <scale>no</scale>
         </image>
@@ -114,6 +102,84 @@
         </Foreground>
         <Background>
           <color>#4595d2</color>
+        </Background>
+      </Title>
+    </Style>
+    <Style id="f38926ef-ee89-4ea4-bae2-330260e1f4e0" name="Weiss auf Schwarz neu" isdefault="no">
+      <Foreground>
+        <color>#ffffff</color>
+        <font>Verdana</font>
+        <fontsize>24</fontsize>
+      </Foreground>
+      <Background>
+        <color>#000000</color>
+        <image>
+          <uri></uri>
+          <cache></cache>
+          <transparency>0</transparency>
+          <scale>no</scale>
+        </image>
+      </Background>
+      <Title mode="None">
+        <Foreground>
+          <color>#4682b4</color>
+          <font></font>
+          <fontsize>0</fontsize>
+        </Foreground>
+        <Background>
+          <color>#ffffff</color>
+        </Background>
+      </Title>
+    </Style>
+    <Style id="d8e0d012-f4f0-4a19-af6e-5949a102bd83" name="Weiss auf Schwarz gross 26.04.2025" isdefault="no">
+      <Foreground>
+        <color>#ffffff</color>
+        <font>Arial</font>
+        <fontsize>36</fontsize>
+      </Foreground>
+      <Background>
+        <color>#000000</color>
+        <image>
+          <uri></uri>
+          <cache></cache>
+          <transparency>0</transparency>
+          <scale>no</scale>
+        </image>
+      </Background>
+      <Title mode="None">
+        <Foreground>
+          <color>#4682b4</color>
+          <font></font>
+          <fontsize>0</fontsize>
+        </Foreground>
+        <Background>
+          <color>#ffffff</color>
+        </Background>
+      </Title>
+    </Style>
+    <Style id="c1d52674-7da4-4914-8c90-eda516abbe6b" name="Weiss auf Schwarz gross Mai 25" isdefault="yes">
+      <Foreground>
+        <color>#ffffff</color>
+        <font>Arial</font>
+        <fontsize>32</fontsize>
+      </Foreground>
+      <Background>
+        <color>#000000</color>
+        <image>
+          <uri></uri>
+          <cache></cache>
+          <transparency>0</transparency>
+          <scale>no</scale>
+        </image>
+      </Background>
+      <Title mode="None">
+        <Foreground>
+          <color>#4682b4</color>
+          <font></font>
+          <fontsize>0</fontsize>
+        </Foreground>
+        <Background>
+          <color>#ffffff</color>
         </Background>
       </Title>
     </Style>

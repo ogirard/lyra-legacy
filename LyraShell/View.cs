@@ -572,7 +572,17 @@ namespace Lyra2.LyraShell
                     tag = tag.Substring(0, 2);
                 }
                 var offset = Int32.Parse(tag.Substring(1, tag.Length - 1));
-                this.format(rtb, tag, this.ResolvedFont, this.ResolvedForegroundColor, offset, "", "");
+                
+                // Store the current formatting of the first character within the <p> block
+                var blockStart = rtb.Find("<" + Util.BLOCK + tag.Substring(1) + ">", start - 1, RichTextBoxFinds.MatchCase);
+                var blockTextStart = blockStart + Util.BLOCK.Length + tag.Length + 2;
+                rtb.Select(blockTextStart, 1);
+                
+                var preservedFont = rtb.SelectionFont ?? this.ResolvedFont;
+                var preservedColor = rtb.SelectionColor;
+                
+                // Now format the block with preserved font and color
+                this.format(rtb, tag, preservedFont, preservedColor, offset, "", "");
             }
         }
 
