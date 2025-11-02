@@ -71,44 +71,44 @@ namespace Lyra2.LyraShell
             //
             // Required for Windows Form Designer support
             //
-            this.InitializeComponent();
-            this.StartPosition = FormStartPosition.Manual;
+            InitializeComponent();
+            StartPosition = FormStartPosition.Manual;
             this.owner = owner;
-            this.Closing += this.RemoteControl_Closing;
-            View.SongDisplayed += this.ViewSongDisplayed;
-            View.ScrollDataChanged += this.ViewScrollDataChangedHandler;
-            this.Update(View.CurrentSongInfo);
-            this.bgw.DoWork += this.UnblinkWork;
-            this.bgw.WorkerSupportsCancellation = true;
-            foreach (Control control in this.Controls)
+            Closing += RemoteControl_Closing;
+            View.SongDisplayed += ViewSongDisplayed;
+            View.ScrollDataChanged += ViewScrollDataChangedHandler;
+            Update(View.CurrentSongInfo);
+            bgw.DoWork += UnblinkWork;
+            bgw.WorkerSupportsCancellation = true;
+            foreach (Control control in Controls)
             {
-                control.MouseWheel += this.MouseWheelHandler;
+                control.MouseWheel += MouseWheelHandler;
             }
 
-            this.scrollBox.MouseWheel += this.MouseWheelHandler;
-            this.MouseWheel += this.MouseWheelHandler;
-            this.jumpMarksListBox.MouseWheel += this.MouseWheelHandler;
+            scrollBox.MouseWheel += MouseWheelHandler;
+            MouseWheel += MouseWheelHandler;
+            jumpMarksListBox.MouseWheel += MouseWheelHandler;
         }
 
         private void MouseWheelHandler(object sender, MouseEventArgs e)
         {
             #region    Precondition
 
-            var mousePos = this.scrollBox.PointToClient(MousePosition);
-            if (!this.scrollBox.ClientRectangle.Contains(mousePos)) return;
+            var mousePos = scrollBox.PointToClient(MousePosition);
+            if (!scrollBox.ClientRectangle.Contains(mousePos)) return;
 
             #endregion Precondition
 
             if (e.Delta < 0)
             {
                 // down
-                this.scrollDownBtn_Click(this, e);
-                this.ScrollBoxBlink(true);
+                scrollDownBtn_Click(this, e);
+                ScrollBoxBlink(true);
             }
             else
             {
-                this.scrollUpBtn_Click(this, e);
-                this.ScrollBoxBlink(false);
+                scrollUpBtn_Click(this, e);
+                ScrollBoxBlink(false);
             }
         }
 
@@ -117,59 +117,59 @@ namespace Lyra2.LyraShell
             Thread.Sleep(100);
             if (!e.Cancel)
             {
-                this.Invoke(new MethodInvoker(() => this.scrollImage.Visible = false));
+                Invoke(new MethodInvoker(() => scrollImage.Visible = false));
             }
         }
 
         private void ScrollBoxBlink(bool down)
         {
-            this.scrollImage.Image = down ? Resources.scroll_down_bg : Resources.scroll_up_bg;
-            this.scrollImage.Visible = true;
-            if (!this.bgw.IsBusy)
+            scrollImage.Image = down ? Resources.scroll_down_bg : Resources.scroll_up_bg;
+            scrollImage.Visible = true;
+            if (!bgw.IsBusy)
             {
-                this.bgw.RunWorkerAsync(Color.DimGray);
+                bgw.RunWorkerAsync(Color.DimGray);
             }
         }
 
         private void ViewSongDisplayed(object sender, SongDisplayedEventArgs args)
         {
-            this.Update(args);
+            Update(args);
         }
 
         private void ViewScrollDataChangedHandler(object sender, ScrollDataEventArgs e)
         {
-            this.scrollVisual.UpdateScrollData(e);
+            scrollVisual.UpdateScrollData(e);
         }
 
         private void Update(SongDisplayedEventArgs songInfo)
         {
             if (songInfo == null)
             {
-                this.titleLabel.Text = "";
-                this.nrLabel.Text = "n/a";
-                this.nextBtn.Enabled = false;
-                this.lastBtn.Enabled = false;
-                this.nextLabel.Text = "";
-                this.prevLabel.Text = "";
-                this.jumpMarksListBox.Items.Clear();
-                this.scrollVisual.UpdateScrollData(null);
+                titleLabel.Text = "";
+                nrLabel.Text = "n/a";
+                nextBtn.Enabled = false;
+                lastBtn.Enabled = false;
+                nextLabel.Text = "";
+                prevLabel.Text = "";
+                jumpMarksListBox.Items.Clear();
+                scrollVisual.UpdateScrollData(null);
                 return;
             }
 
-            this.titleLabel.Text = songInfo.DisplayedSong != null ? songInfo.DisplayedSong.Title : "";
-            this.nrLabel.Text = songInfo.DisplayedSong != null ? songInfo.DisplayedSong.Number.ToString().PadLeft(4, '0') : "n/a";
-            this.nextBtn.Enabled = songInfo.NextSong != null;
-            this.lastBtn.Enabled = songInfo.PreviousSong != null;
-            this.nextLabel.Text = songInfo.NextSong != null ? songInfo.NextSong.Number.ToString().PadLeft(4, '0') : "";
-            this.prevLabel.Text = songInfo.PreviousSong != null ? songInfo.PreviousSong.Number.ToString().PadLeft(4, '0') : "";
-            this.jumpMarksListBox.BeginUpdate();
-            this.jumpMarksListBox.Items.Clear();
+            titleLabel.Text = songInfo.DisplayedSong != null ? songInfo.DisplayedSong.Title : "";
+            nrLabel.Text = songInfo.DisplayedSong != null ? songInfo.DisplayedSong.Number.ToString().PadLeft(4, '0') : "n/a";
+            nextBtn.Enabled = songInfo.NextSong != null;
+            lastBtn.Enabled = songInfo.PreviousSong != null;
+            nextLabel.Text = songInfo.NextSong != null ? songInfo.NextSong.Number.ToString().PadLeft(4, '0') : "";
+            prevLabel.Text = songInfo.PreviousSong != null ? songInfo.PreviousSong.Number.ToString().PadLeft(4, '0') : "";
+            jumpMarksListBox.BeginUpdate();
+            jumpMarksListBox.Items.Clear();
             foreach (var jumpMark in songInfo.Jumpmarks)
             {
-                this.jumpMarksListBox.Items.Add(jumpMark);
+                jumpMarksListBox.Items.Add(jumpMark);
             }
 
-            this.jumpMarksListBox.EndUpdate();
+            jumpMarksListBox.EndUpdate();
         }
 
         /// <summary>
@@ -179,12 +179,12 @@ namespace Lyra2.LyraShell
         {
             if (disposing)
             {
-                if (this.components != null)
+                if (components != null)
                 {
-                    this.components.Dispose();
+                    components.Dispose();
                 }
-                View.SongDisplayed -= this.ViewSongDisplayed;
-                View.ScrollDataChanged -= this.ViewScrollDataChangedHandler;
+                View.SongDisplayed -= ViewSongDisplayed;
+                View.ScrollDataChanged -= ViewScrollDataChangedHandler;
             }
             base.Dispose(disposing);
         }
@@ -554,7 +554,7 @@ namespace Lyra2.LyraShell
 
         private void RemoteControl_Closing(object sender, CancelEventArgs e)
         {
-            StorePersonalizationSettings(this.owner.Personalizer, false);
+            StorePersonalizationSettings(owner.Personalizer, false);
             _this = null;
         }
 
@@ -664,11 +664,11 @@ namespace Lyra2.LyraShell
         {
             #region    Precondition
 
-            if (this.jumpMarksListBox.SelectedItem == null) return;
+            if (jumpMarksListBox.SelectedItem == null) return;
 
             #endregion Precondition
 
-            var jumpMark = (JumpMark)this.jumpMarksListBox.SelectedItem;
+            var jumpMark = (JumpMark)jumpMarksListBox.SelectedItem;
             View.ScrollToPosition(jumpMark.Position);
         }
     }

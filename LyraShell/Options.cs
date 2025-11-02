@@ -118,76 +118,76 @@ namespace Lyra2.LyraShell
         private Options(IStorage storage)
 		{
             this.storage = storage;
-		    this.InitializeComponent();
-			this.richTextBox1.Font = Util.FONT;
-			this.richTextBox2.Font = Util.SPECFONT;
-			this.richTextBox3.Font = Util.TRANSFONT;
-			this.checkBox1.Checked = Util.NOCOMMIT;
-			this.checkBox2.Checked = Util.SHOWBUILDNEWS;
-			this.checkBox3.Checked = Util.SHOWRIGHT;
-			this.checkBox4.Checked = Util.SHOWGER;
-			this.checkBox5.Checked = Util.SHOWNR;
-			this.checkBox1.Enabled = false;
-			this.numericUpDown1.Value = Util.TIMER;
-			this.refresh();
-			this.fd = new FontDialog();
-			this.fd.FontMustExist = true;
-			this.fd.ShowEffects = false;
-			this.fd.ShowApply = false;
+		    InitializeComponent();
+			richTextBox1.Font = Util.FONT;
+			richTextBox2.Font = Util.SPECFONT;
+			richTextBox3.Font = Util.TRANSFONT;
+			checkBox1.Checked = Util.NOCOMMIT;
+			checkBox2.Checked = Util.SHOWBUILDNEWS;
+			checkBox3.Checked = Util.SHOWRIGHT;
+			checkBox4.Checked = Util.SHOWGER;
+			checkBox5.Checked = Util.SHOWNR;
+			checkBox1.Enabled = false;
+			numericUpDown1.Value = Util.TIMER;
+			refresh();
+			fd = new FontDialog();
+			fd.FontMustExist = true;
+			fd.ShowEffects = false;
+			fd.ShowApply = false;
 			
-			this.AcceptButton = this.button1;
+			AcceptButton = button1;
 
-			this.cd = new ColorDialog();
-			this.panel1.BackColor = Util.REFCOLOR;
-			this.checkBox1.Enabled = Pswd.OK;
+			cd = new ColorDialog();
+			panel1.BackColor = Util.REFCOLOR;
+			checkBox1.Enabled = Pswd.OK;
 
-            this.comboStyle.BeginUpdate();
+            comboStyle.BeginUpdate();
             foreach (var style in this.storage.Styles)
             {
-                this.comboStyle.Items.Add(style);
+                comboStyle.Items.Add(style);
                 if (style.IsDefault)
                 {
-                    this.comboStyle.SelectedItem = style;
+                    comboStyle.SelectedItem = style;
                 }
             }
-            this.comboStyle.EndUpdate();
+            comboStyle.EndUpdate();
 
 			if (Util.refmode)
-				this.radioButton2.Checked = true;
+				radioButton2.Checked = true;
 			else
-				this.radioButton1.Checked = true;
+				radioButton1.Checked = true;
 
-			this.panel3.BackColor = Util.UNICOLOR;
-			this.panel4.BackColor = Util.GRADCOL2;
-			this.panel5.BackColor = Util.GRADCOL1;
+			panel3.BackColor = Util.UNICOLOR;
+			panel4.BackColor = Util.GRADCOL2;
+			panel5.BackColor = Util.GRADCOL1;
 			if (Util.BGIMG != null)
 			{
-				this.pictureBox1.Image = Util.stretchProportional(Util.BGIMG, this.pictureBox1.Size);
+				pictureBox1.Image = Util.stretchProportional(Util.BGIMG, pictureBox1.Size);
 			}
-			this.radioButton4.Checked = false;
-			this.radioButton5.Checked = false;
-			this.radioButton6.Checked = false;
+			radioButton4.Checked = false;
+			radioButton5.Checked = false;
+			radioButton6.Checked = false;
 			switch (Util.PREMODE)
 			{
 				case 0:
-					this.radioButton4.Checked = true;
+					radioButton4.Checked = true;
 					break;
 				case 1:
-					this.radioButton5.Checked = true;
+					radioButton5.Checked = true;
 					break;
 				case 2:
-					this.radioButton6.Checked = true;
+					radioButton6.Checked = true;
 					break;
 			}
-			this.checkBox6.Checked = Util.CASCADEPIC;
-			this.tabControl1.SelectedIndex = REMOPENTAB;
+			checkBox6.Checked = Util.CASCADEPIC;
+			tabControl1.SelectedIndex = REMOPENTAB;
 			// FX
-			this.setFilename(Util.FX[0], this.label12, this.pictureBox2);
-			this.setFilename(Util.FX[1], this.label13, this.pictureBox3);
-			this.setFilename(Util.FX[2], this.label14, this.pictureBox4);
-			this.setFilename(Util.FX[3], this.label15, this.pictureBox5);
-			this.setFilename(Util.FX[4], this.label16, this.pictureBox6);
-			this.setFilename(Util.FX[5], this.label17, this.pictureBox7);
+			setFilename(Util.FX[0], label12, pictureBox2);
+			setFilename(Util.FX[1], label13, pictureBox3);
+			setFilename(Util.FX[2], label14, pictureBox4);
+			setFilename(Util.FX[3], label15, pictureBox5);
+			setFilename(Util.FX[4], label16, pictureBox6);
+			setFilename(Util.FX[5], label17, pictureBox7);
 
 		}
 
@@ -196,14 +196,14 @@ namespace Lyra2.LyraShell
 		/// </summary>
 		protected override void Dispose(bool disposing)
 		{
-			REMOPENTAB = this.tabControl1.SelectedIndex;
+			REMOPENTAB = tabControl1.SelectedIndex;
 			options = null;
 
 			if (disposing)
 			{
-				if (this.components != null)
+				if (components != null)
 				{
-				    this.components.Dispose();
+				    components.Dispose();
 				}
 			}
 			base.Dispose(disposing);
@@ -1238,57 +1238,57 @@ namespace Lyra2.LyraShell
 		// Refresh
 		private void refresh()
 		{
-			this.richTextBox1.Height = this.richTextBox1.Font.Height + 2;
-			this.richTextBox2.Height = this.richTextBox2.Font.Height + 2;
-			this.richTextBox3.Height = this.richTextBox3.Font.Height + 2;
+			richTextBox1.Height = richTextBox1.Font.Height + 2;
+			richTextBox2.Height = richTextBox2.Font.Height + 2;
+			richTextBox3.Height = richTextBox3.Font.Height + 2;
 
-			this.button4.Top = this.richTextBox1.Top;
-			this.richTextBox2.Top = this.richTextBox1.Top + this.richTextBox1.Height + 15;
-			this.button5.Top = this.richTextBox2.Top;
-			this.richTextBox3.Top = this.richTextBox2.Top + this.richTextBox2.Height + 15;
-			this.button8.Top = this.richTextBox3.Top;
-			this.label3.Top = this.richTextBox3.Top + this.richTextBox3.Height + 15;
-			this.button6.Top = this.label3.Top + this.label3.Height + 15;
-			this.panel1.Top = this.button6.Top;
-			this.radioButton2.Top = this.panel1.Top - 5;
-			this.radioButton1.Top = this.radioButton2.Top + this.radioButton2.Height + 5;
-			var h = this.radioButton1.Top + this.radioButton1.Height + 35;
-			this.tabControl1.Height = h > 310 ? h : 310;
-			this.button1.Top = this.tabControl1.Top + this.tabControl1.Height + 8;
-			this.button2.Top = this.button1.Top;
-			this.button3.Top = this.button1.Top;
-			this.Height = this.button3.Top + this.button3.Height + 44;
+			button4.Top = richTextBox1.Top;
+			richTextBox2.Top = richTextBox1.Top + richTextBox1.Height + 15;
+			button5.Top = richTextBox2.Top;
+			richTextBox3.Top = richTextBox2.Top + richTextBox2.Height + 15;
+			button8.Top = richTextBox3.Top;
+			label3.Top = richTextBox3.Top + richTextBox3.Height + 15;
+			button6.Top = label3.Top + label3.Height + 15;
+			panel1.Top = button6.Top;
+			radioButton2.Top = panel1.Top - 5;
+			radioButton1.Top = radioButton2.Top + radioButton2.Height + 5;
+			var h = radioButton1.Top + radioButton1.Height + 35;
+			tabControl1.Height = h > 310 ? h : 310;
+			button1.Top = tabControl1.Top + tabControl1.Height + 8;
+			button2.Top = button1.Top;
+			button3.Top = button1.Top;
+			Height = button3.Top + button3.Height + 44;
 		}
 
 		// Commit!
 		private void commit()
 		{
-			if (this.changed)
+			if (changed)
 			{
-				Util.FONT = this.richTextBox1.Font;
-				Util.SPECFONT = this.richTextBox2.Font;
-				Util.TRANSFONT = this.richTextBox3.Font;
-				Util.REFCOLOR = this.panel1.BackColor;
-				Util.NOCOMMIT = this.checkBox1.Checked;
-				Util.SHOWBUILDNEWS = this.checkBox2.Checked;
-				Util.SHOWRIGHT = this.checkBox3.Checked;
-				Util.SHOWGER = this.checkBox4.Checked;
-				Util.SHOWNR = this.checkBox5.Checked;
-				Util.TIMER = Int32.Parse(this.numericUpDown1.Value.ToString());
-				Util.UNICOLOR = this.panel3.BackColor;
-				Util.GRADCOL1 = this.panel5.BackColor;
-				Util.GRADCOL2 = this.panel4.BackColor;
-				Util.PREMODE = this.radioButton4.Checked ? 0 : this.radioButton5.Checked ? 1 : 2;
-				Util.PICTURI = this.picturi;
-				Util.CASCADEPIC = this.checkBox6.Checked;
-				Util.FX = (string[]) this.FX.Clone();
+				Util.FONT = richTextBox1.Font;
+				Util.SPECFONT = richTextBox2.Font;
+				Util.TRANSFONT = richTextBox3.Font;
+				Util.REFCOLOR = panel1.BackColor;
+				Util.NOCOMMIT = checkBox1.Checked;
+				Util.SHOWBUILDNEWS = checkBox2.Checked;
+				Util.SHOWRIGHT = checkBox3.Checked;
+				Util.SHOWGER = checkBox4.Checked;
+				Util.SHOWNR = checkBox5.Checked;
+				Util.TIMER = Int32.Parse(numericUpDown1.Value.ToString());
+				Util.UNICOLOR = panel3.BackColor;
+				Util.GRADCOL1 = panel5.BackColor;
+				Util.GRADCOL2 = panel4.BackColor;
+				Util.PREMODE = radioButton4.Checked ? 0 : radioButton5.Checked ? 1 : 2;
+				Util.PICTURI = picturi;
+				Util.CASCADEPIC = checkBox6.Checked;
+				Util.FX = (string[]) FX.Clone();
 				Util.updateRegSettings();
-				this.changed = false;
+				changed = false;
 
-			    var selectedStyle = this.comboStyle.SelectedItem as Style;
+			    var selectedStyle = comboStyle.SelectedItem as Style;
                 if (selectedStyle != null && !selectedStyle.IsDefault)
                 {
-                    this.storage.SetStyleAsDefault(selectedStyle);
+                    storage.SetStyleAsDefault(selectedStyle);
                 }
 			}
 		}
@@ -1297,48 +1297,48 @@ namespace Lyra2.LyraShell
 		// abbrechen
 		private void button3_Click(object sender, EventArgs e)
 		{
-			this.Close();
+			Close();
 		}
 
 		// ok
 		private void button1_Click(object sender, EventArgs e)
 		{
-			this.commit();
-			this.Close();
+			commit();
+			Close();
 		}
 
 		// übernehmen
 		private void button2_Click(object sender, EventArgs e)
 		{
-			this.commit();
-			this.button2.Enabled = false;
+			commit();
+			button2.Enabled = false;
 		}
 
 		// Standardschriftart ändern
 		private void button4_Click(object sender, EventArgs e)
 		{
-			this.richTextBox1.Font = this.showFontDialog(this.richTextBox1.Font);
-			this.refresh();
+			richTextBox1.Font = showFontDialog(richTextBox1.Font);
+			refresh();
 		}
 
 		// Spezial-Schriftart ändern
 		private void button5_Click(object sender, EventArgs e)
 		{
-			this.richTextBox2.Font = this.showFontDialog(this.richTextBox2.Font);
-			this.refresh();
+			richTextBox2.Font = showFontDialog(richTextBox2.Font);
+			refresh();
 		}
 
 		// Translation-Schriftart ändern
 		private void button8_Click(object sender, EventArgs e)
 		{
-			this.richTextBox3.Font = this.showFontDialog(this.richTextBox3.Font);
-			this.refresh();
+			richTextBox3.Font = showFontDialog(richTextBox3.Font);
+			refresh();
 		}
 
 		// Farbe wählen
 		private void button6_Click(object sender, EventArgs e)
 		{
-			this.panel1.BackColor = this.showColorDialog(this.panel1.BackColor);
+			panel1.BackColor = showColorDialog(panel1.BackColor);
 		}
 
 		// FontDialog
@@ -1346,13 +1346,13 @@ namespace Lyra2.LyraShell
 
 		private Font showFontDialog(Font curFont)
 		{
-			this.fd.Font = curFont;
-			var dr = this.fd.ShowDialog(this);
+			fd.Font = curFont;
+			var dr = fd.ShowDialog(this);
 			if (dr == DialogResult.OK)
 			{
-				this.changed = true;
-				this.button2.Enabled = true;
-				return this.fd.Font;
+				changed = true;
+				button2.Enabled = true;
+				return fd.Font;
 			}
 			return curFont;
 		}
@@ -1362,13 +1362,13 @@ namespace Lyra2.LyraShell
 
 		private Color showColorDialog(Color curColor)
 		{
-			this.cd.Color = curColor;
-			var dr = this.cd.ShowDialog(this);
+			cd.Color = curColor;
+			var dr = cd.ShowDialog(this);
 			if (dr == DialogResult.OK)
 			{
-				this.changed = true;
-				this.button2.Enabled = true;
-				return this.cd.Color;
+				changed = true;
+				button2.Enabled = true;
+				return cd.Color;
 			}
 			return curColor;
 		}
@@ -1376,73 +1376,73 @@ namespace Lyra2.LyraShell
 		// refrain normal
 		private void radioButton2_CheckedChanged(object sender, EventArgs e)
 		{
-			this.changed = true;
-			this.button2.Enabled = true;
+			changed = true;
+			button2.Enabled = true;
 			Util.refmode = true;
 		}
 
 		// refrain fett
 		private void radioButton1_CheckedChanged(object sender, EventArgs e)
 		{
-			this.changed = true;
-			this.button2.Enabled = true;
+			changed = true;
+			button2.Enabled = true;
 			Util.refmode = false;
 		}
 
 		// buildnews
 		private void checkBox2_Click(object sender, EventArgs e)
 		{
-			this.changed = true;
-			this.button2.Enabled = true;
+			changed = true;
+			button2.Enabled = true;
 		}
 
 		// time to show the nr at startup
 		private void numericUpDown1_ValueChanged(object sender, EventArgs e)
 		{
-			this.changed = true;
-			this.button2.Enabled = true;
+			changed = true;
+			button2.Enabled = true;
 		}
 
 		// AllowCommit
 		private void checkBox1_Click(object sender, EventArgs e)
 		{
-			this.changed = true;
-			this.button2.Enabled = true;
+			changed = true;
+			button2.Enabled = true;
 		}
 
 		// show right window
 		private void checkBox3_Click(object sender, EventArgs e)
 		{
-			this.changed = true;
-			this.button2.Enabled = true;
+			changed = true;
+			button2.Enabled = true;
 		}
 
 		// show german title
 		private void checkBox4_Click(object sender, EventArgs e)
 		{
-			this.changed = true;
-			this.button2.Enabled = true;
+			changed = true;
+			button2.Enabled = true;
 		}
 
 		// show nr at view-startup
 		private void checkBox5_CheckedChanged(object sender, EventArgs e)
 		{
-			this.changed = true;
-			this.button2.Enabled = true;
+			changed = true;
+			button2.Enabled = true;
 		}
 
 		// cascade bg pic
 		private void checkBox6_CheckedChanged(object sender, EventArgs e)
 		{
-			this.changed = true;
-			this.button2.Enabled = true;
+			changed = true;
+			button2.Enabled = true;
 		}
 
 		// enable admin settings
 		public void enableChanges()
 		{
-			this.checkBox1.Enabled = true;
-			this.button7.Enabled = false;
+			checkBox1.Enabled = true;
+			button7.Enabled = false;
 		}
 
 		private void button7_Click(object sender, EventArgs e)
@@ -1458,28 +1458,28 @@ namespace Lyra2.LyraShell
 		// unicolor
 		private void button10_Click(object sender, EventArgs e)
 		{
-			this.radioButton4.Checked = true;
-			this.radioButton5.Checked = false;
-			this.radioButton6.Checked = false;
-			this.panel3.BackColor = this.showColorDialog(this.panel3.BackColor);
+			radioButton4.Checked = true;
+			radioButton5.Checked = false;
+			radioButton6.Checked = false;
+			panel3.BackColor = showColorDialog(panel3.BackColor);
 		}
 
 		// grad1
 		private void button12_Click(object sender, EventArgs e)
 		{
-			this.radioButton4.Checked = false;
-			this.radioButton5.Checked = true;
-			this.radioButton6.Checked = false;
-			this.panel5.BackColor = this.showColorDialog(this.panel5.BackColor);
+			radioButton4.Checked = false;
+			radioButton5.Checked = true;
+			radioButton6.Checked = false;
+			panel5.BackColor = showColorDialog(panel5.BackColor);
 		}
 
 		// grad2
 		private void button11_Click(object sender, EventArgs e)
 		{
-			this.radioButton4.Checked = false;
-			this.radioButton5.Checked = true;
-			this.radioButton6.Checked = false;
-			this.panel4.BackColor = this.showColorDialog(this.panel4.BackColor);
+			radioButton4.Checked = false;
+			radioButton5.Checked = true;
+			radioButton6.Checked = false;
+			panel4.BackColor = showColorDialog(panel4.BackColor);
 		}
 
 		// picture chooser
@@ -1487,28 +1487,28 @@ namespace Lyra2.LyraShell
 
 		private void button13_Click(object sender, EventArgs e)
 		{
-			this.radioButton4.Checked = false;
-			this.radioButton5.Checked = false;
-			this.radioButton6.Checked = true;
-			this.changed = true;
-			this.button2.Enabled = true;
+			radioButton4.Checked = false;
+			radioButton5.Checked = false;
+			radioButton6.Checked = true;
+			changed = true;
+			button2.Enabled = true;
 			var fd = new OpenFileDialog();
 			fd.CheckPathExists = true;
 			fd.CheckFileExists = true;
 			fd.Filter = "Bilddateien (*.jpg;*.gif;*.png;*.bmp)|*.jpg;*.gif;*.png;*.bmp|Alle Dateien (*.*)|*.*";
 			if (fd.ShowDialog(this) == DialogResult.OK)
 			{
-				this.picturi = fd.FileName;
+				picturi = fd.FileName;
 			}
 			try
 			{
-				var img = Image.FromFile(this.picturi);
-				this.pictureBox1.Image = Util.stretchProportional(img, this.pictureBox1.Size);
+				var img = Image.FromFile(picturi);
+				pictureBox1.Image = Util.stretchProportional(img, pictureBox1.Size);
 			}
 			catch (Exception)
 			{
-				this.picturi = "";
-				this.pictureBox1.Image = null;
+				picturi = "";
+				pictureBox1.Image = null;
 			}
 		}
 
@@ -1516,8 +1516,8 @@ namespace Lyra2.LyraShell
 		// presenation mode changed
 		private void presMode_CheckedChanged(object sender, EventArgs e)
 		{
-			this.button2.Enabled = true;
-			this.changed = true;
+			button2.Enabled = true;
+			changed = true;
 		}
 
 		/*FX*/
@@ -1538,18 +1538,18 @@ namespace Lyra2.LyraShell
 				if (fd.ShowDialog(this) == DialogResult.OK)
 				{
 					filename = fd.FileName;
-					this.FX[fnr] = filename;
-					this.setFilename(filename, label, pictBox);
-					this.changed = true;
-					this.button2.Enabled = true;
+					FX[fnr] = filename;
+					setFilename(filename, label, pictBox);
+					changed = true;
+					button2.Enabled = true;
 				}
 			}
 			else if (fxr == LyraShell.FX.FXResult.Delete)
 			{
-				this.setFilename("-", label, pictBox);
-				this.FX[fnr] = "-";
-				this.changed = true;
-				this.button2.Enabled = true;
+				setFilename("-", label, pictBox);
+				FX[fnr] = "-";
+				changed = true;
+				button2.Enabled = true;
 			}
 			else if (fxr == LyraShell.FX.FXResult.PictChoice)
 			{
@@ -1562,10 +1562,10 @@ namespace Lyra2.LyraShell
 				{
 					filename = fbd.SelectedPath;
 					filename = "pict://" + filename;
-					this.FX[fnr] = filename;
-					this.setFilename(filename, label, pictBox);
-					this.changed = true;
-					this.button2.Enabled = true;
+					FX[fnr] = filename;
+					setFilename(filename, label, pictBox);
+					changed = true;
+					button2.Enabled = true;
 				}
 			}
 		}
@@ -1597,37 +1597,37 @@ namespace Lyra2.LyraShell
 		// F1
 		private void button14_Click(object sender, EventArgs e)
 		{
-			this.getFile(this.label12, this.pictureBox2, 0);
+			getFile(label12, pictureBox2, 0);
 		}
 
 		// F2
 		private void button15_Click(object sender, EventArgs e)
 		{
-			this.getFile(this.label13, this.pictureBox3, 1);
+			getFile(label13, pictureBox3, 1);
 		}
 
 		// F3
 		private void button16_Click(object sender, EventArgs e)
 		{
-			this.getFile(this.label14, this.pictureBox4, 2);
+			getFile(label14, pictureBox4, 2);
 		}
 
 		// F4
 		private void button17_Click(object sender, EventArgs e)
 		{
-			this.getFile(this.label15, this.pictureBox5, 3);
+			getFile(label15, pictureBox5, 3);
 		}
 
 		// F5
 		private void button18_Click(object sender, EventArgs e)
 		{
-			this.getFile(this.label16, this.pictureBox6, 4);
+			getFile(label16, pictureBox6, 4);
 		}
 
 		// F6
 		private void button19_Click(object sender, EventArgs e)
 		{
-			this.getFile(this.label17, this.pictureBox7, 5);
+			getFile(label17, pictureBox7, 5);
 		}
 	}
 }

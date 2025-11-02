@@ -162,12 +162,12 @@ namespace Lyra2.LyraShell
 
         public Personalizer Personalizer
         {
-            get { return this.personalizeStore; }
+            get { return personalizeStore; }
         }
 
         public ListBox StandardNavigate
         {
-            get { return this.allSongsListBox; }
+            get { return allSongsListBox; }
         }
 
         private readonly Start start;
@@ -175,143 +175,143 @@ namespace Lyra2.LyraShell
         public GUI()
         {
             Logger.Debug("Initialize Lyra");
-            this.InitializeComponent();
-            this.Enabled = false;
-            this.personalizeStore = new Personalizer(Application.StartupPath + @"\laststate.dat");
+            InitializeComponent();
+            Enabled = false;
+            personalizeStore = new Personalizer(Application.StartupPath + @"\laststate.dat");
             Logger.DebugFormat("Personalizer loaded from '{0}'", Application.StartupPath + @"\laststate.dat");
 
-            this.InitializeLyraGUI();
-            this.InitializeSearch();
+            InitializeLyraGUI();
+            InitializeSearch();
 
             var bgWorker = new BackgroundWorker();
-            bgWorker.DoWork += delegate { this.InitializeLyraData(); };
-            this.start = new Start();
-            this.start.StartPosition = FormStartPosition.CenterScreen;
+            bgWorker.DoWork += delegate { InitializeLyraData(); };
+            start = new Start();
+            start.StartPosition = FormStartPosition.CenterScreen;
 
-            this.start.Show(this);
-            bgWorker.RunWorkerCompleted += this.bgWorker_RunWorkerCompleted;
+            start.Show(this);
+            bgWorker.RunWorkerCompleted += bgWorker_RunWorkerCompleted;
             bgWorker.RunWorkerAsync();
 
             if (Screen.AllScreens.Length == 1)
             {
-                this.menuItem54.Enabled = false;
+                menuItem54.Enabled = false;
             }
             else
             {
                 if (Util.SCREEN_ID == 0)
                 {
-                    this.menuItem55.Checked = true;
+                    menuItem55.Checked = true;
                 }
                 else
                 {
-                    this.menuItem56.Checked = true;
+                    menuItem56.Checked = true;
                 }
             }
         }
 
         private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            this.Enabled = true;
-            this.storage.DisplaySongs(this.allSongsListBox);
+            Enabled = true;
+            storage.DisplaySongs(allSongsListBox);
             Song.owner = this;
-            this.persLists = new PLists(this.persListCombo, this.storage);
-            if (this.persListCombo.Items.Count > 0)
+            persLists = new PLists(persListCombo, storage);
+            if (persListCombo.Items.Count > 0)
             {
-                this.persListCombo.SelectedIndex = 0;
+                persListCombo.SelectedIndex = 0;
             }
             else
             {
-                this.menuItem7.Visible = false;
+                menuItem7.Visible = false;
             }
-            this.menuItem10.Visible = false;
-            this.Deactivate += this.DeactivateMe;
-            this.start.Hide();
+            menuItem10.Visible = false;
+            Deactivate += DeactivateMe;
+            start.Hide();
         }
 
         private void InitializeLyraGUI()
         {
             Logger.Debug("Initialize GUI");
-            this.Text = Util.GUINAME;
-            this.menuItem41.Enabled = File.Exists(Util.BASEURL + "\\" + Util.URL + ".bac");
-            this.WindowState = FormWindowState.Normal;
+            Text = Util.GUINAME;
+            menuItem41.Enabled = File.Exists(Util.BASEURL + "\\" + Util.URL + ".bac");
+            WindowState = FormWindowState.Normal;
 
-            this.allSongsListBox.MouseDown += this.listBox1_click;
-            this.searchListBox.MouseDown += this.listBox3_click;
-            this.allSongsListBox.KeyDown += this.listBox1_KeyDown;
-            this.personalListsListBox.KeyDown += this.listBox2_KeyDown;
-            this.searchListBox.KeyDown += this.listBox3_KeyDown;
-            this.checkBox1.CheckedChanged += this.checkBox1_CheckedChanged;
-            this.statusBar1.Visible = DEBUG;
-            this.statusBarPanel1.Text = "ok";
-            this.statusBarPanel2.Text = Util.URL;
-            this.Resize += delegate { this.SizeSearchPane(); };
-            this.personalizeStore.Load();
-            this.sortCombo.SelectedIndex = 2;
-            this.sortMethod = SortMethod.RatingDescending;
-            this.searchListBox.BeginUpdate();
-            this.searchListBox.Sort(this.sortMethod);
-            this.searchListBox.EndUpdate();
-            this.sortCombo.SelectedIndexChanged += this.SortMethodChanged;
-            this.StartPosition = FormStartPosition.Manual;
+            allSongsListBox.MouseDown += listBox1_click;
+            searchListBox.MouseDown += listBox3_click;
+            allSongsListBox.KeyDown += listBox1_KeyDown;
+            personalListsListBox.KeyDown += listBox2_KeyDown;
+            searchListBox.KeyDown += listBox3_KeyDown;
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
+            statusBar1.Visible = DEBUG;
+            statusBarPanel1.Text = "ok";
+            statusBarPanel2.Text = Util.URL;
+            Resize += delegate { SizeSearchPane(); };
+            personalizeStore.Load();
+            sortCombo.SelectedIndex = 2;
+            sortMethod = SortMethod.RatingDescending;
+            searchListBox.BeginUpdate();
+            searchListBox.Sort(sortMethod);
+            searchListBox.EndUpdate();
+            sortCombo.SelectedIndexChanged += SortMethodChanged;
+            StartPosition = FormStartPosition.Manual;
         }
 
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            if (this.personalizeStore.GetIntValue(PersonalizationItemNames.HistoryIsShown) > 0)
+            if (personalizeStore.GetIntValue(PersonalizationItemNames.HistoryIsShown) > 0)
             {
                 History.ShowHistory(this);
             }
-            if (this.personalizeStore.GetIntValue(PersonalizationItemNames.RemoteIsShown) > 0)
+            if (personalizeStore.GetIntValue(PersonalizationItemNames.RemoteIsShown) > 0)
             {
                 RemoteControl.ShowRemoteControl(this);
             }
 
-            this.SizeSearchPane();
+            SizeSearchPane();
 
             // init splitters
-            var searchSplit = this.personalizeStore.GetIntValue(PersonalizationItemNames.SearchSplitPosition);
-            if (searchSplit >= 0) this.searchSplitter.SplitterDistance = searchSplit;
-            var allSongsSplit = this.personalizeStore.GetIntValue(PersonalizationItemNames.AllSplitPosition);
-            if (allSongsSplit >= 0) this.allSongsSplitter.SplitterDistance = allSongsSplit;
-            var persListSplit = this.personalizeStore.GetIntValue(PersonalizationItemNames.ListSplitPosition);
-            if (persListSplit >= 0) this.persListSplitter.SplitterDistance = persListSplit;
+            var searchSplit = personalizeStore.GetIntValue(PersonalizationItemNames.SearchSplitPosition);
+            if (searchSplit >= 0) searchSplitter.SplitterDistance = searchSplit;
+            var allSongsSplit = personalizeStore.GetIntValue(PersonalizationItemNames.AllSplitPosition);
+            if (allSongsSplit >= 0) allSongsSplitter.SplitterDistance = allSongsSplit;
+            var persListSplit = personalizeStore.GetIntValue(PersonalizationItemNames.ListSplitPosition);
+            if (persListSplit >= 0) persListSplitter.SplitterDistance = persListSplit;
 
             // init GUI size
-            var left = this.personalizeStore.GetIntValue(PersonalizationItemNames.GUILeft);
-            if (left >= 0) this.Left = left;
-            var top = this.personalizeStore.GetIntValue(PersonalizationItemNames.GUITop);
-            if (top >= 0) this.Top = top;
-            var width = this.personalizeStore.GetIntValue(PersonalizationItemNames.GUIWidth);
-            if (width >= 0) this.Width = width;
-            var height = this.personalizeStore.GetIntValue(PersonalizationItemNames.GUIHeight);
-            if (height >= 0) this.Height = height;
+            var left = personalizeStore.GetIntValue(PersonalizationItemNames.GUILeft);
+            if (left >= 0) Left = left;
+            var top = personalizeStore.GetIntValue(PersonalizationItemNames.GUITop);
+            if (top >= 0) Top = top;
+            var width = personalizeStore.GetIntValue(PersonalizationItemNames.GUIWidth);
+            if (width >= 0) Width = width;
+            var height = personalizeStore.GetIntValue(PersonalizationItemNames.GUIHeight);
+            if (height >= 0) Height = height;
         }
 
         private SortMethod sortMethod;
 
         private void SortMethodChanged(object sender, EventArgs e)
         {
-            var newSortMethod = (SortMethod)this.sortCombo.SelectedIndex;
-            if (this.sortMethod != newSortMethod)
+            var newSortMethod = (SortMethod)sortCombo.SelectedIndex;
+            if (sortMethod != newSortMethod)
             {
-                this.sortMethod = newSortMethod;
-                this.searchListBox.BeginUpdate();
-                this.searchListBox.Sort(newSortMethod);
-                this.searchListBox.EndUpdate();
+                sortMethod = newSortMethod;
+                searchListBox.BeginUpdate();
+                searchListBox.Sort(newSortMethod);
+                searchListBox.EndUpdate();
             }
         }
 
         private void SizeSearchPane()
         {
-            this.mainSearchBox.Width = this.panel4.Width - this.searchPaneTop.Width - 10;
-            this.resultsLabel.Left = this.mainSearchBox.Right - this.resultsLabel.Width;
+            mainSearchBox.Width = panel4.Width - searchPaneTop.Width - 10;
+            resultsLabel.Left = mainSearchBox.Right - resultsLabel.Width;
         }
 
         private void InitializeLyraData()
         {
             Logger.Debug("Initialize Data from " + Util.BASEURL + "\\" + Util.URL);
-            this.storage = new Storage(Util.URL, this);
+            storage = new Storage(Util.URL, this);
             Thread.Sleep(3000);
         }
 
@@ -319,28 +319,28 @@ namespace Lyra2.LyraShell
 
         private void InitializeSearch()
         {
-            this.searchTask = new DelayedTaskRunner<EventArgs>(250);
-            InvokeSearch searchInvoker = this.ExecuteSearch;
-            this.searchTask.RunDelayedTask += (sender, args) => this.Invoke(searchInvoker);
+            searchTask = new DelayedTaskRunner<EventArgs>(250);
+            InvokeSearch searchInvoker = ExecuteSearch;
+            searchTask.RunDelayedTask += (sender, args) => Invoke(searchInvoker);
         }
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            History.StorePersonalizationSettings(this.Personalizer, true);
-            RemoteControl.StorePersonalizationSettings(this.Personalizer, true);
+            History.StorePersonalizationSettings(Personalizer, true);
+            RemoteControl.StorePersonalizationSettings(Personalizer, true);
             base.OnClosing(e);
         }
 
         protected override void OnClosed(EventArgs e)
         {
-            this.personalizeStore[PersonalizationItemNames.GUILeft] = this.Left.ToString();
-            this.personalizeStore[PersonalizationItemNames.GUITop] = this.Top.ToString();
-            this.personalizeStore[PersonalizationItemNames.GUIWidth] = this.Width.ToString();
-            this.personalizeStore[PersonalizationItemNames.GUIHeight] = this.Height.ToString();
-            this.personalizeStore[PersonalizationItemNames.SearchSplitPosition] = this.searchSplitter.SplitterDistance.ToString();
-            this.personalizeStore[PersonalizationItemNames.AllSplitPosition] = this.allSongsSplitter.SplitterDistance.ToString();
-            this.personalizeStore[PersonalizationItemNames.ListSplitPosition] = this.persListSplitter.SplitterDistance.ToString();
-            this.personalizeStore.Write();
+            personalizeStore[PersonalizationItemNames.GUILeft] = Left.ToString();
+            personalizeStore[PersonalizationItemNames.GUITop] = Top.ToString();
+            personalizeStore[PersonalizationItemNames.GUIWidth] = Width.ToString();
+            personalizeStore[PersonalizationItemNames.GUIHeight] = Height.ToString();
+            personalizeStore[PersonalizationItemNames.SearchSplitPosition] = searchSplitter.SplitterDistance.ToString();
+            personalizeStore[PersonalizationItemNames.AllSplitPosition] = allSongsSplitter.SplitterDistance.ToString();
+            personalizeStore[PersonalizationItemNames.ListSplitPosition] = persListSplitter.SplitterDistance.ToString();
+            personalizeStore.Write();
             base.OnClosed(e);
         }
 
@@ -352,9 +352,9 @@ namespace Lyra2.LyraShell
             Util.storeStats();
             if (disposing)
             {
-                if (this.components != null)
+                if (components != null)
                 {
-                    this.components.Dispose();
+                    components.Dispose();
                 }
             }
             base.Dispose(disposing);
@@ -1812,19 +1812,19 @@ namespace Lyra2.LyraShell
             {
                 Editor.editor.Focus();
             }
-            if (this.curItem != -1)
-                this.allSongsListBox.SelectedIndex = this.curItem;
-            if (this.tabControl1.SelectedIndex == 0)
+            if (curItem != -1)
+                allSongsListBox.SelectedIndex = curItem;
+            if (tabControl1.SelectedIndex == 0)
             {
-                this.mainSearchBox.Focus();
-                this.mainSearchBox.SelectAll();
+                mainSearchBox.Focus();
+                mainSearchBox.SelectAll();
             }
         }
 
         //deavtivated
         private void DeactivateMe(object sender, EventArgs e)
         {
-            this.curItem = this.allSongsListBox.SelectedIndex;
+            curItem = allSongsListBox.SelectedIndex;
         }
 
         // onDoubleClick on listElement
@@ -1832,10 +1832,10 @@ namespace Lyra2.LyraShell
         {
             try
             {
-                if (this.allSongsListBox.SelectedItems.Count == 1)
+                if (allSongsListBox.SelectedItems.Count == 1)
                 {
                     Util.CTRLSHOWNR = Util.SHOWNR;
-                    View.ShowSong((ISong)this.allSongsListBox.SelectedItem, this, this.allSongsListBox, "Alle Lieder");
+                    View.ShowSong((ISong)allSongsListBox.SelectedItem, this, allSongsListBox, "Alle Lieder");
                 }
             }
             catch (ToManyViews ex)
@@ -1847,14 +1847,14 @@ namespace Lyra2.LyraShell
         // Suche::onDoubleClick on listElement
         private void listBox3_dblClick(object sender, EventArgs e)
         {
-            if (this.searchListBox.SelectedItem is ISong)
+            if (searchListBox.SelectedItem is ISong)
             {
                 try
                 {
-                    if (this.searchListBox.SelectedItems.Count == 1)
+                    if (searchListBox.SelectedItems.Count == 1)
                     {
                         Util.CTRLSHOWNR = Util.SHOWNR;
-                        View.ShowSong((ISong)this.searchListBox.SelectedItem, this, this.searchListBox, $"Suche nach '{this.mainSearchBox.Text}'");
+                        View.ShowSong((ISong)searchListBox.SelectedItem, this, searchListBox, $"Suche nach '{mainSearchBox.Text}'");
                     }
                 }
                 catch (ToManyViews ex)
@@ -1872,21 +1872,21 @@ namespace Lyra2.LyraShell
         {
             if (!Editor.open)
             {
-                (new Editor(null, this, this.storage)).Show();
+                (new Editor(null, this, storage)).Show();
             }
             else
             {
                 Editor.editor.Focus();
             }
-            this.songPreview1.Reset();
+            songPreview1.Reset();
         }
 
         // edit
         private void button2_Click(object sender, EventArgs e)
         {
-            if (this.allSongsListBox.SelectedItems.Count == 1 && !Editor.open)
+            if (allSongsListBox.SelectedItems.Count == 1 && !Editor.open)
             {
-                (new Editor((ISong)this.allSongsListBox.SelectedItem, this, this.storage)).Show();
+                (new Editor((ISong)allSongsListBox.SelectedItem, this, storage)).Show();
             }
             else if (Editor.open)
             {
@@ -1897,12 +1897,12 @@ namespace Lyra2.LyraShell
         // del
         private void button9_Click(object sender, EventArgs e)
         {
-            if (this.allSongsListBox.SelectedItems.Count == 1)
+            if (allSongsListBox.SelectedItems.Count == 1)
             {
-                ((ISong)this.allSongsListBox.SelectedItem).Delete();
-                this.UpdateListBox();
-                this.ToUpdate(true);
-                this.songPreview1.Reset();
+                ((ISong)allSongsListBox.SelectedItem).Delete();
+                UpdateListBox();
+                ToUpdate(true);
+                songPreview1.Reset();
             }
         }
 
@@ -1911,10 +1911,10 @@ namespace Lyra2.LyraShell
         {
             try
             {
-                if (this.allSongsListBox.SelectedItems.Count == 1)
+                if (allSongsListBox.SelectedItems.Count == 1)
                 {
                     Util.CTRLSHOWNR = Util.SHOWNR;
-                    View.ShowSong((ISong)this.allSongsListBox.SelectedItem, this, this.allSongsListBox, "Alle Lieder");
+                    View.ShowSong((ISong)allSongsListBox.SelectedItem, this, allSongsListBox, "Alle Lieder");
                 }
             }
             catch (ToManyViews ex)
@@ -1928,7 +1928,7 @@ namespace Lyra2.LyraShell
             try
             {
                 var nr = Int32.Parse(nrstr);
-                return this.storage.GetSong(nr);
+                return storage.GetSong(nr);
             }
             catch
             {
@@ -1941,8 +1941,8 @@ namespace Lyra2.LyraShell
         {
             try
             {
-                var nr = Int32.Parse(this.textBox1.Text);
-                var toShow = this.storage.GetSong(nr);
+                var nr = Int32.Parse(textBox1.Text);
+                var toShow = storage.GetSong(nr);
                 if (toShow != null)
                 {
                     try
@@ -1953,7 +1953,7 @@ namespace Lyra2.LyraShell
                     {
                         Util.CTRLSHOWNR = Util.SHOWNR;
                     }
-                    View.ShowSong(toShow, this, this.allSongsListBox, $"Alle Lieder (Quickload für Nr. {nr.ToString().PadLeft(4, '0')})");
+                    View.ShowSong(toShow, this, allSongsListBox, $"Alle Lieder (Quickload für Nr. {nr.ToString().PadLeft(4, '0')})");
                 }
                 else
                 {
@@ -1979,7 +1979,7 @@ namespace Lyra2.LyraShell
         {
             if (ke.KeyCode == Keys.Enter)
             {
-                this.button7_Click(sender, ke);
+                button7_Click(sender, ke);
             }
         }
 
@@ -1996,7 +1996,7 @@ namespace Lyra2.LyraShell
         private bool CheckOnExit()
         {
             var cancel = true;
-            if (this.storage.ToBeCommited)
+            if (storage.ToBeCommited)
             {
                 var res = MessageBox.Show(
                     "Vor dem Beenden Änderungen übernehmen?",
@@ -2006,7 +2006,7 @@ namespace Lyra2.LyraShell
 
                 if (res == DialogResult.Yes)
                 {
-                    if (this.storage.Commit())
+                    if (storage.Commit())
                     {
                         cancel = false;
                     }
@@ -2026,13 +2026,13 @@ namespace Lyra2.LyraShell
         // x-Exit
         private void Exit(object sender, CancelEventArgs args)
         {
-            args.Cancel = this.CheckOnExit();
+            args.Cancel = CheckOnExit();
         }
 
         // beenden aus Menü
         private void menuItem2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
             Application.Exit();
         }
 
@@ -2043,20 +2043,20 @@ namespace Lyra2.LyraShell
             if (!Util.NOCOMMIT)
             {
                 Cursor.Current = Cursors.WaitCursor;
-                this.Enabled = false;
-                if (this.storage.Commit())
+                Enabled = false;
+                if (storage.Commit())
                 {
-                    this.ToUpdate(false);
-                    this.ResetSearch();
-                    this.Status = "Änderungen erfolgreich übernommen und Index neu kreiert...";
+                    ToUpdate(false);
+                    ResetSearch();
+                    Status = "Änderungen erfolgreich übernommen und Index neu kreiert...";
                     Util.DELALL = false;
                 }
                 else
                 {
                     Util.MBoxError("Fehler beim Übernehmen!");
-                    this.Status = "Fehler beim Übernehmen!";
+                    Status = "Fehler beim Übernehmen!";
                 }
-                this.Enabled = true;
+                Enabled = true;
                 Cursor.Current = Cursors.Default;
             }
             else
@@ -2064,27 +2064,27 @@ namespace Lyra2.LyraShell
                 Util.MBoxError("Sie haben keine Berechtigung, Änderungen vorzunehmen!\n" +
                                "Entfernen Sie unter Extras->Optionen..., Allgemein... den Schreibschutz\n" +
                                "oder wenden Sie sich an den Administrator.");
-                this.Status = "Fehler beim Übernehmen!";
+                Status = "Fehler beim Übernehmen!";
             }
         }
 
         private void ResetSearch()
         {
-            this.searchListBox.Items.Clear();
-            this.searchListBox.ResetSearchTags();
-            this.resultsLabel.Text = "";
-            this.mainSearchBox.Text = "Suchbegriffe";
-            this.mainSearchBox.ForeColor = Color.DimGray;
-            this.label4.Visible = false;
+            searchListBox.Items.Clear();
+            searchListBox.ResetSearchTags();
+            resultsLabel.Text = "";
+            mainSearchBox.Text = "Suchbegriffe";
+            mainSearchBox.ForeColor = Color.DimGray;
+            label4.Visible = false;
         }
 
         // Änderungen verwerfen -> ok
         private void menuItem15_Click(object sender, EventArgs e)
         {
-            this.storage.ResetToLast();
-            this.ResetSearch();
+            storage.ResetToLast();
+            ResetSearch();
             Util.DELALL = false;
-            this.Status = "Änderungen verworfen!";
+            Status = "Änderungen verworfen!";
         }
 
         // exportieren
@@ -2097,7 +2097,7 @@ namespace Lyra2.LyraShell
             var dr = sfd.ShowDialog(this);
             if (dr == DialogResult.OK)
             {
-                this.Status = this.storage.Export(sfd.FileName) ? "Export erfolgreich! :-)" : "Beim Exportieren ging leider etwas schief. :-(";
+                Status = storage.Export(sfd.FileName) ? "Export erfolgreich! :-)" : "Beim Exportieren ging leider etwas schief. :-(";
             }
         }
 
@@ -2118,22 +2118,22 @@ namespace Lyra2.LyraShell
                 bool res;
                 if (app == DialogResult.Yes)
                 {
-                    res = this.storage.Import(ofd.FileName, true);
+                    res = storage.Import(ofd.FileName, true);
                 }
                 else
                 {
                     Util.DELALL = true;
-                    res = this.storage.Import(ofd.FileName, false);
+                    res = storage.Import(ofd.FileName, false);
                 }
-                this.storage.DisplaySongs(this.allSongsListBox);
-                this.ToUpdate(true);
+                storage.DisplaySongs(allSongsListBox);
+                ToUpdate(true);
                 if (res)
                 {
-                    this.Status = "Importieren erfolgreich! :-)";
+                    Status = "Importieren erfolgreich! :-)";
                 }
                 else
                 {
-                    this.Status = "Beim Importieren ging leider etwas schief. :-(";
+                    Status = "Beim Importieren ging leider etwas schief. :-(";
                 }
             }
         }
@@ -2159,11 +2159,11 @@ namespace Lyra2.LyraShell
                                                    "lyra", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (app == DialogResult.Yes)
                 {
-                    this.ImportLTX(ofd.FileName, true);
+                    ImportLTX(ofd.FileName, true);
                 }
                 else
                 {
-                    this.ImportLTX(ofd.FileName, false);
+                    ImportLTX(ofd.FileName, false);
                 }
             }
         }
@@ -2172,7 +2172,7 @@ namespace Lyra2.LyraShell
         {
             if (!append)
             {
-                this.storage.Clear();
+                storage.Clear();
                 Util.DELALL = true;
             }
 
@@ -2196,7 +2196,7 @@ namespace Lyra2.LyraShell
                             intext = false;
                             try
                             {
-                                this.storage.AddSong(song);
+                                storage.AddSong(song);
                             }
                             catch (ArgumentException)
                             {
@@ -2208,13 +2208,13 @@ namespace Lyra2.LyraShell
                                                     MessageBoxIcon.Question);
                                 if (dr == DialogResult.Yes)
                                 {
-                                    this.storage.RemoveSong(song.ID);
-                                    this.storage.AddSong(song);
+                                    storage.RemoveSong(song.ID);
+                                    storage.AddSong(song);
                                 }
                                 else if (dr == DialogResult.No)
                                 {
                                     song.nextID();
-                                    this.storage.AddSong(song);
+                                    storage.AddSong(song);
                                 }
                                 else
                                 {
@@ -2237,21 +2237,21 @@ namespace Lyra2.LyraShell
                         intext = true;
                     }
                 }
-                this.storage.DisplaySongs(this.allSongsListBox);
-                this.ToUpdate(true);
-                this.Status = "LTX-Import erfolgreich! :-)";
+                storage.DisplaySongs(allSongsListBox);
+                ToUpdate(true);
+                Status = "LTX-Import erfolgreich! :-)";
             }
             catch (Exception ie)
             {
                 Util.MBoxError("Fehler beim Importieren.\n" + ie.Message, ie);
-                this.Status = "Beim LTX-Import ging leider etwas schief. :-(";
+                Status = "Beim LTX-Import ging leider etwas schief. :-(";
             }
         }
 
         // reload the curtext.xml-file
         public void ReloadCurText()
         {
-            this.storage.ResetToLast();
+            storage.ResetToLast();
         }
 
 
@@ -2261,31 +2261,31 @@ namespace Lyra2.LyraShell
         // Kontextmenü
         private void listBox1_click(object sender, MouseEventArgs e)
         {
-            if (this.prback == null)
+            if (prback == null)
             {
-                var i = this.allSongsListBox.IndexFromPoint(e.X, e.Y);
-                this.menuItem8.Visible = (this.persListCombo.Items.Count > 0);
+                var i = allSongsListBox.IndexFromPoint(e.X, e.Y);
+                menuItem8.Visible = (persListCombo.Items.Count > 0);
 
                 if (i != -1)
                 {
-                    this.allSongsListBox.SetSelected(i, true);
+                    allSongsListBox.SetSelected(i, true);
                     try
                     {
-                        if (this.contextMenu1.MenuItems.Count > 4)
+                        if (contextMenu1.MenuItems.Count > 4)
                         {
-                            this.contextMenu1.MenuItems.RemoveAt(4);
+                            contextMenu1.MenuItems.RemoveAt(4);
                         }
                     }
                     catch (Exception)
                     {
                     }
 
-                    if (((ISong)this.allSongsListBox.SelectedItem).TransMenu != null)
-                        this.contextMenu1.MenuItems.Add(((ISong)this.allSongsListBox.SelectedItem).TransMenu);
+                    if (((ISong)allSongsListBox.SelectedItem).TransMenu != null)
+                        contextMenu1.MenuItems.Add(((ISong)allSongsListBox.SelectedItem).TransMenu);
                 }
-                if (e.Button == MouseButtons.Right && this.allSongsListBox.SelectedItems.Count == 1)
+                if (e.Button == MouseButtons.Right && allSongsListBox.SelectedItems.Count == 1)
                 {
-                    this.contextMenu1.Show(this.allSongsListBox, new Point(e.X, e.Y));
+                    contextMenu1.Show(allSongsListBox, new Point(e.X, e.Y));
                 }
             }
         }
@@ -2293,14 +2293,14 @@ namespace Lyra2.LyraShell
         // Kontextmenü Suche
         private void listBox3_click(object sender, MouseEventArgs e)
         {
-            if (this.persListCombo.Items.Count > 0 && this.prback == null)
+            if (persListCombo.Items.Count > 0 && prback == null)
             {
-                var i = this.searchListBox.IndexFromPoint(e.X, e.Y);
+                var i = searchListBox.IndexFromPoint(e.X, e.Y);
                 if (e.Button == MouseButtons.Right && i != -1 &&
-                    this.searchListBox.Items[i].ToString().Substring(0, 4) != "Leid")
+                    searchListBox.Items[i].ToString().Substring(0, 4) != "Leid")
                 {
-                    this.searchListBox.SelectedIndex = i;
-                    this.contextMenu2.Show(this.searchListBox, new Point(e.X, e.Y));
+                    searchListBox.SelectedIndex = i;
+                    contextMenu2.Show(searchListBox, new Point(e.X, e.Y));
                 }
             }
         }
@@ -2316,10 +2316,10 @@ namespace Lyra2.LyraShell
         {
             try
             {
-                if (this.searchListBox.SelectedItems.Count == 1)
+                if (searchListBox.SelectedItems.Count == 1)
                 {
                     Util.CTRLSHOWNR = Util.SHOWNR;
-                    View.ShowSong((ISong)this.searchListBox.SelectedItem, this, this.searchListBox, $"Suche nach '{this.mainSearchBox.Text}'");
+                    View.ShowSong((ISong)searchListBox.SelectedItem, this, searchListBox, $"Suche nach '{mainSearchBox.Text}'");
                 }
             }
             catch (ToManyViews ex)
@@ -2336,7 +2336,7 @@ namespace Lyra2.LyraShell
         private void menuItem66_Click(object sender, EventArgs e)
         {
             if (!Editor.open)
-                (new Editor((ISong)this.searchListBox.SelectedItem, this, this.storage)).Show();
+                (new Editor((ISong)searchListBox.SelectedItem, this, storage)).Show();
             else
                 Editor.editor.Focus();
         }
@@ -2348,26 +2348,26 @@ namespace Lyra2.LyraShell
         /// <param name="e"></param>
         private void menuItem67_Click(object sender, EventArgs e)
         {
-            ((ISong)this.searchListBox.SelectedItem).Delete();
-            this.searchListBox.BeginUpdate();
-            this.searchListBox.Items.RemoveAt(this.searchListBox.SelectedIndex);
-            this.searchListBox.EndUpdate();
-            this.ToUpdate(true);
-            this.songPreview3.Reset();
+            ((ISong)searchListBox.SelectedItem).Delete();
+            searchListBox.BeginUpdate();
+            searchListBox.Items.RemoveAt(searchListBox.SelectedIndex);
+            searchListBox.EndUpdate();
+            ToUpdate(true);
+            songPreview3.Reset();
         }
 
         // anzeigen
         private void menuItem6_Click(object sender, EventArgs e)
         {
             Util.CTRLSHOWNR = Util.SHOWNR;
-            this.button3_Click(sender, e);
+            button3_Click(sender, e);
         }
 
         // edit
         private void menuItem7_Click(object sender, EventArgs e)
         {
             if (!Editor.open)
-                (new Editor((ISong)this.allSongsListBox.SelectedItem, this, this.storage)).Show();
+                (new Editor((ISong)allSongsListBox.SelectedItem, this, storage)).Show();
             else
                 Editor.editor.Focus();
         }
@@ -2375,10 +2375,10 @@ namespace Lyra2.LyraShell
         // del
         private void menuItem39_Click(object sender, EventArgs e)
         {
-            ((ISong)this.allSongsListBox.SelectedItem).Delete();
-            this.UpdateListBox();
-            this.ToUpdate(true);
-            this.songPreview1.Reset();
+            ((ISong)allSongsListBox.SelectedItem).Delete();
+            UpdateListBox();
+            ToUpdate(true);
+            songPreview1.Reset();
         }
 
 
@@ -2387,61 +2387,61 @@ namespace Lyra2.LyraShell
         /// </summary>
         public void AddSong(ISong song)
         {
-            this.storage.AddSong(song);
+            storage.AddSong(song);
         }
 
         public void UpdateListBox()
         {
-            this.storage.DisplaySongs(this.allSongsListBox);
-            this.persLists.Refresh(this.personalListsListBox);
-            this.songPreview1.Reset();
-            this.songPreview2.Reset();
+            storage.DisplaySongs(allSongsListBox);
+            persLists.Refresh(personalListsListBox);
+            songPreview1.Reset();
+            songPreview2.Reset();
         }
 
         public void ToUpdate(bool update)
         {
-            this.menuItem13.Enabled = update;
-            this.menuItem14.Enabled = update;
-            this.storage.ToBeCommited = update;
+            menuItem13.Enabled = update;
+            menuItem14.Enabled = update;
+            storage.ToBeCommited = update;
         }
 
         // Search
         private void button8_Click(object sender, EventArgs e)
         {
-            this.searchTask.CancelTask();
-            this.ExecuteSearch();
+            searchTask.CancelTask();
+            ExecuteSearch();
         }
 
         private void ExecuteSearch()
         {
-            if (this.mainSearchBox.Text != "" && this.mainSearchBox.Text != "Suchbegriffe")
+            if (mainSearchBox.Text != "" && mainSearchBox.Text != "Suchbegriffe")
             {
                 try
                 {
-                    Logger.DebugFormat("Search for '{0}'", this.mainSearchBox.Text);
-                    this.storage.Search(this.mainSearchBox.Text, this.searchListBox, !this.checkBox1.Checked,
-                                        false, false, false, this.sortMethod);
-                    this.label4.Visible = this.storage.ToBeCommited;
+                    Logger.DebugFormat("Search for '{0}'", mainSearchBox.Text);
+                    storage.Search(mainSearchBox.Text, searchListBox, !checkBox1.Checked,
+                                        false, false, false, sortMethod);
+                    label4.Visible = storage.ToBeCommited;
                 }
                 catch (Exception ex)
                 {
                     Util.MBoxError(
                         "Ihre Suchanfrage hat einen Fehler verursacht.\nIn der Hilfe (F1) finden Sie eine Anleitung.",
                         ex);
-                    Logger.Debug("Search for '" + this.mainSearchBox.Text + "' FAILED!", ex);
+                    Logger.Debug("Search for '" + mainSearchBox.Text + "' FAILED!", ex);
                 }
             }
-            var res = this.searchListBox.Items.Count;
+            var res = searchListBox.Items.Count;
             switch (res)
             {
                 case 0:
-                    this.resultsLabel.Text = "Keine Resultate!";
+                    resultsLabel.Text = "Keine Resultate!";
                     break;
                 case 1:
-                    this.resultsLabel.Text = "Ein Resultat";
+                    resultsLabel.Text = "Ein Resultat";
                     break;
                 default:
-                    this.resultsLabel.Text = res + " Resultate";
+                    resultsLabel.Text = res + " Resultate";
                     break;
             }
         }
@@ -2450,52 +2450,52 @@ namespace Lyra2.LyraShell
         {
             if (ke.KeyCode == Keys.Enter)
             {
-                this.searchTask.CancelTask();
-                this.ExecuteSearch();
+                searchTask.CancelTask();
+                ExecuteSearch();
             }
             else if (ke.KeyCode == Keys.Delete)
             {
-                if (this.mainSearchBox.SelectionStart + this.mainSearchBox.SelectionLength ==
-                    this.mainSearchBox.Text.Length)
+                if (mainSearchBox.SelectionStart + mainSearchBox.SelectionLength ==
+                    mainSearchBox.Text.Length)
                 {
-                    this.ResetQuery();
+                    ResetQuery();
                     ke.Handled = true;
                 }
             }
             else if (ke.KeyCode == Keys.Down)
             {
-                if (this.searchListBox.Items.Count > 0)
+                if (searchListBox.Items.Count > 0)
                 {
-                    this.searchListBox.Focus();
-                    this.searchListBox.SelectedIndex = 0;
+                    searchListBox.Focus();
+                    searchListBox.SelectedIndex = 0;
                 }
             }
         }
 
         private void ResetQuery()
         {
-            this.songPreview3.Reset();
-            this.searchListBox.ClearSongs();
-            this.mainSearchBox.Text = "";
-            this.searchListBox.Focus();
-            this.resultsLabel.Text = "";
+            songPreview3.Reset();
+            searchListBox.ClearSongs();
+            mainSearchBox.Text = "";
+            searchListBox.Focus();
+            resultsLabel.Text = "";
         }
 
         public string Status
         {
-            set { this.statusBarPanel1.Text = value; }
+            set { statusBarPanel1.Text = value; }
         }
 
 
         private void textBox1_Click(object sender, EventArgs e)
         {
-            this.textBox1.SelectAll();
+            textBox1.SelectAll();
         }
 
         // Optionen
         private void menuItem3_Click(object sender, EventArgs e)
         {
-            Options.ShowOptions(this.storage);
+            Options.ShowOptions(storage);
         }
 
         /**
@@ -2504,22 +2504,22 @@ namespace Lyra2.LyraShell
         // MyLists-Change
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.persLists.setCurrent((MyList)this.persListCombo.SelectedItem, this.personalListsListBox);
-            this.songPreview2.Reset();
-            this.Status = "";
+            persLists.setCurrent((MyList)persListCombo.SelectedItem, personalListsListBox);
+            songPreview2.Reset();
+            Status = "";
         }
 
         // anzeigen
         private void button4_Click(object sender, EventArgs e)
         {
-            if (this.personalListsListBox.Items.Count > 0)
+            if (personalListsListBox.Items.Count > 0)
             {
                 try
                 {
                     Util.CTRLSHOWNR = Util.SHOWNR;
-                    var ind = (this.personalListsListBox.SelectedIndex > 0) ? this.personalListsListBox.SelectedIndex : 0;
-                    var currentList = (MyList)this.persListCombo.SelectedItem;
-                    View.ShowSong((ISong)this.personalListsListBox.Items[ind], this, this.personalListsListBox, $"Liste '{currentList}'");
+                    var ind = (personalListsListBox.SelectedIndex > 0) ? personalListsListBox.SelectedIndex : 0;
+                    var currentList = (MyList)persListCombo.SelectedItem;
+                    View.ShowSong((ISong)personalListsListBox.Items[ind], this, personalListsListBox, $"Liste '{currentList}'");
                 }
                 catch (ToManyViews ex)
                 {
@@ -2531,77 +2531,77 @@ namespace Lyra2.LyraShell
         // up
         private void button13_Click(object sender, EventArgs e)
         {
-            if (this.personalListsListBox.SelectedItems.Count == 1)
+            if (personalListsListBox.SelectedItems.Count == 1)
             {
-                var i = this.persLists.MoveSongUp(this.personalListsListBox.SelectedIndex);
-                this.persLists.Refresh(this.personalListsListBox);
-                this.personalListsListBox.SelectedIndex = i;
+                var i = persLists.MoveSongUp(personalListsListBox.SelectedIndex);
+                persLists.Refresh(personalListsListBox);
+                personalListsListBox.SelectedIndex = i;
             }
         }
 
         // down
         private void button12_Click(object sender, EventArgs e)
         {
-            if (this.personalListsListBox.SelectedItems.Count == 1)
+            if (personalListsListBox.SelectedItems.Count == 1)
             {
-                var i = this.persLists.MoveSongDown(this.personalListsListBox.SelectedIndex);
-                this.persLists.Refresh(this.personalListsListBox);
-                this.personalListsListBox.SelectedIndex = i;
+                var i = persLists.MoveSongDown(personalListsListBox.SelectedIndex);
+                persLists.Refresh(personalListsListBox);
+                personalListsListBox.SelectedIndex = i;
             }
         }
 
         // hinzufügen (aus Liste)
         private void menuItem8_Click(object sender, EventArgs e)
         {
-            this.persLists.AddSongToCurrent((ISong)this.allSongsListBox.SelectedItem);
-            this.persLists.Refresh(this.personalListsListBox);
-            this.Status = "Song hinzugefügt.";
-            this.songPreview2.Reset();
+            persLists.AddSongToCurrent((ISong)allSongsListBox.SelectedItem);
+            persLists.Refresh(personalListsListBox);
+            Status = "Song hinzugefügt.";
+            songPreview2.Reset();
         }
 
         // hinzufügen (aus Suche)
         private void menuItem9_Click(object sender, EventArgs e)
         {
-            this.persLists.AddSongToCurrent((ISong)this.searchListBox.SelectedItem);
-            this.persLists.Refresh(this.personalListsListBox);
-            this.Status = "Song hinzugefügt.";
-            this.songPreview2.Reset();
+            persLists.AddSongToCurrent((ISong)searchListBox.SelectedItem);
+            persLists.Refresh(personalListsListBox);
+            Status = "Song hinzugefügt.";
+            songPreview2.Reset();
         }
 
         // entfernen
         private void button6_Click(object sender, EventArgs e)
         {
-            if (this.personalListsListBox.SelectedItems.Count == 1)
+            if (personalListsListBox.SelectedItems.Count == 1)
             {
-                this.persLists.RemoveSongFromCurrent(this.personalListsListBox.SelectedIndex);
-                this.persLists.Refresh(this.personalListsListBox);
-                this.Status = "Song entfernt.";
-                this.songPreview2.Reset();
+                persLists.RemoveSongFromCurrent(personalListsListBox.SelectedIndex);
+                persLists.Refresh(personalListsListBox);
+                Status = "Song entfernt.";
+                songPreview2.Reset();
             }
         }
 
         // Listen-Menü
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.menuItem10.Visible = (this.tabControl1.SelectedIndex == 2) && (this.prback == null);
-            if (this.tabControl1.SelectedIndex == 0)
+            menuItem10.Visible = (tabControl1.SelectedIndex == 2) && (prback == null);
+            if (tabControl1.SelectedIndex == 0)
             {
-                this.mainSearchBox.Focus();
-                this.mainSearchBox.SelectAll();
+                mainSearchBox.Focus();
+                mainSearchBox.SelectAll();
             }
-            this.label4.Visible = this.storage.ToBeCommited;
+            label4.Visible = storage.ToBeCommited;
         }
 
         // anzeigen! (Menü)
         private void menuItem26_Click(object sender, EventArgs e)
         {
-            this.button4_Click(sender, e);
+            button4_Click(sender, e);
         }
 
         // lösche Liste (Menü)
         private void menuItem28_Click(object sender, EventArgs e)
         {
-            if (this.persListCombo.Items.Count == 1)
+            if (persListCombo.Items.Count == 1)
             {
                 MessageBox.Show(this,
                                 "Liste kann nicht gelöscht werden!" + Util.NL +
@@ -2609,18 +2609,18 @@ namespace Lyra2.LyraShell
                                 "lyra Warnung",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else if (this.persListCombo.SelectedItem != null)
+            else if (persListCombo.SelectedItem != null)
             {
-                this.persLists.DeleteCurrent();
-                this.persListCombo.Items.RemoveAt(this.persListCombo.SelectedIndex);
-                if (this.persListCombo.Items.Count > 0)
+                persLists.DeleteCurrent();
+                persListCombo.Items.RemoveAt(persListCombo.SelectedIndex);
+                if (persListCombo.Items.Count > 0)
                 {
-                    this.persListCombo.SelectedIndex = 0;
+                    persListCombo.SelectedIndex = 0;
                 }
                 else
                 {
-                    this.personalListsListBox.Items.Clear();
-                    this.persListCombo.Text = "";
+                    personalListsListBox.Items.Clear();
+                    persListCombo.Text = "";
                 }
             }
         }
@@ -2628,27 +2628,27 @@ namespace Lyra2.LyraShell
         // neue Liste
         public void CreateNewList(string name, string author)
         {
-            this.CreateNewList(name, author, null);
+            CreateNewList(name, author, null);
         }
 
         public void CreateNewList(string name, string author, string[] songs)
         {
             var date = Util.GetDate();
-            this.persLists.AddNewList(name, author, date, songs);
-            this.persListCombo.SelectedIndex = this.persListCombo.Items.Count - 1;
-            this.Status = "Neue Liste erstellt.";
-            this.tabControl1.SelectedIndex = 2;
+            persLists.AddNewList(name, author, date, songs);
+            persListCombo.SelectedIndex = persListCombo.Items.Count - 1;
+            Status = "Neue Liste erstellt.";
+            tabControl1.SelectedIndex = 2;
         }
 
         private void menuItem11_Click(object sender, EventArgs e)
         {
             NewList.ShowNewList(this);
-            this.songPreview2.Reset();
+            songPreview2.Reset();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            this.menuItem11_Click(sender, e);
+            menuItem11_Click(sender, e);
         }
 
         // import Liste
@@ -2661,9 +2661,9 @@ namespace Lyra2.LyraShell
             var dr = ofd.ShowDialog(this);
             if (dr == DialogResult.OK)
             {
-                this.importList(ofd.FileName);
+                importList(ofd.FileName);
             }
-            this.Status = "Liste erfolgreich importiert. :-)";
+            Status = "Liste erfolgreich importiert. :-)";
         }
 
         private void importList(string url)
@@ -2678,19 +2678,19 @@ namespace Lyra2.LyraShell
                     var author = reader.ReadLine();
                     var date = reader.ReadLine();
                     var songs = reader.ReadLine().Split(',');
-                    this.persLists.AddNewList(name, author, date, songs);
-                    this.persListCombo.SelectedIndex = this.persListCombo.Items.Count - 1;
+                    persLists.AddNewList(name, author, date, songs);
+                    persListCombo.SelectedIndex = persListCombo.Items.Count - 1;
                 }
                 else
                 {
                     Util.MBoxError("Falsches File-Format.");
-                    this.Status = "Fehler beim Importieren der Liste. :-(";
+                    Status = "Fehler beim Importieren der Liste. :-(";
                 }
                 reader.Close();
             }
             catch (Exception ex)
             {
-                this.Status = "Fehler beim Importieren der Liste. :-(";
+                Status = "Fehler beim Importieren der Liste. :-(";
                 Util.MBoxError("Lyra-Listen-Datei nicht gefunden oder Format nicht korrekt!", ex);
             }
         }
@@ -2709,15 +2709,15 @@ namespace Lyra2.LyraShell
                 {
                     var writer = new StreamWriter(sfd.FileName);
                     writer.WriteLine("<LYRA LISTFILE>");
-                    ((MyList)this.persListCombo.SelectedItem).exportMe(writer);
+                    ((MyList)persListCombo.SelectedItem).exportMe(writer);
                 }
                 catch (Exception ex)
                 {
                     Util.MBoxError("File kann nicht erstellt werden.", ex);
-                    this.Status = "Fehler beim Exportieren!";
+                    Status = "Fehler beim Exportieren!";
                 }
             }
-            this.Status = "Liste erfolgreich exportiert. :-)";
+            Status = "Liste erfolgreich exportiert. :-)";
         }
 
         // HTML-Seite generieren...
@@ -2725,29 +2725,29 @@ namespace Lyra2.LyraShell
         {
             ListBox box = null;
             var idtext = "";
-            switch (this.tabControl1.SelectedIndex)
+            switch (tabControl1.SelectedIndex)
             {
                 case 0:
-                    box = this.searchListBox;
+                    box = searchListBox;
                     idtext = "Suchabfrage </b>[";
-                    if (this.mainSearchBox.Text.Equals("Suchbegriffe..."))
+                    if (mainSearchBox.Text.Equals("Suchbegriffe..."))
                     {
                         idtext += "leer]";
                     }
                     else
                     {
-                        if (this.checkBox1.Checked) idtext += "nur Titel,";
+                        if (checkBox1.Checked) idtext += "nur Titel,";
                         if (idtext[idtext.Length - 1] == ',') idtext = idtext.Substring(0, idtext.Length - 1);
-                        idtext += "]:" + Util.HTMLNL + "<b>\"" + this.mainSearchBox.Text + "\"";
+                        idtext += "]:" + Util.HTMLNL + "<b>\"" + mainSearchBox.Text + "\"";
                     }
                     break;
                 case 1:
-                    box = this.allSongsListBox;
+                    box = allSongsListBox;
                     idtext = "ganze Liste";
                     break;
                 case 2:
-                    box = this.personalListsListBox;
-                    idtext = "pers&ouml;nliche Liste:" + Util.HTMLNL + this.persListCombo.SelectedItem;
+                    box = personalListsListBox;
+                    idtext = "pers&ouml;nliche Liste:" + Util.HTMLNL + persListCombo.SelectedItem;
                     break;
             }
             HTML.showHTML(this, box, idtext);
@@ -2765,19 +2765,19 @@ namespace Lyra2.LyraShell
         {
             try
             {
-                var curpos = this.personalListsListBox.SelectedIndex;
-                var nr = Int32.Parse(this.textBox3.Text);
-                var addSong = this.storage.GetSong(nr);
+                var curpos = personalListsListBox.SelectedIndex;
+                var nr = Int32.Parse(textBox3.Text);
+                var addSong = storage.GetSong(nr);
                 if (addSong != null)
                 {
-                    this.persLists.AddSongToCurrent(addSong);
-                    this.persLists.MoveLast(curpos);
-                    this.persLists.Refresh(this.personalListsListBox);
-                    this.Status = "Song hinzugefügt.";
+                    persLists.AddSongToCurrent(addSong);
+                    persLists.MoveLast(curpos);
+                    persLists.Refresh(personalListsListBox);
+                    Status = "Song hinzugefügt.";
                 }
                 else
                 {
-                    this.Status = "Song nicht gefunden.";
+                    Status = "Song nicht gefunden.";
                     Util.MBoxError("Lied konnte nicht gefunden werden!");
                 }
             }
@@ -2785,9 +2785,9 @@ namespace Lyra2.LyraShell
             {
                 Util.MBoxError("Geben Sie bitte nur ganze, positive Zahlen ein!\n\n" +
                                fe.Message, fe);
-                this.textBox3.Text = "Liednr";
-                this.textBox3.SelectAll();
-                this.textBox3.Focus();
+                textBox3.Text = "Liednr";
+                textBox3.SelectAll();
+                textBox3.Focus();
             }
             catch (Exception ex)
             {
@@ -2799,21 +2799,21 @@ namespace Lyra2.LyraShell
         // Lists
         private void textBox3_Click(object sender, EventArgs e)
         {
-            this.textBox3.SelectAll();
+            textBox3.SelectAll();
         }
 
         private void listBox2_DoubleClick(object sender, EventArgs e)
         {
-            this.button4_Click(sender, e);
+            button4_Click(sender, e);
         }
 
         private void textBox3_KeyDown(object sender, KeyEventArgs ke)
         {
             if (ke.KeyCode == Keys.Enter)
             {
-                this.button10_Click(sender, ke);
-                this.textBox3.SelectAll();
-                this.textBox3.Focus();
+                button10_Click(sender, ke);
+                textBox3.SelectAll();
+                textBox3.Focus();
             }
         }
 
@@ -2834,13 +2834,13 @@ namespace Lyra2.LyraShell
             var dr = sfd.ShowDialog(this);
             if (dr == DialogResult.OK)
             {
-                if (this.storage.ExportPPC(sfd.FileName))
+                if (storage.ExportPPC(sfd.FileName))
                 {
-                    this.Status = "Export für Pocket PC erfolgreich! :-)";
+                    Status = "Export für Pocket PC erfolgreich! :-)";
                 }
                 else
                 {
-                    this.Status = "Beim Exportieren für Pocket PC ging leider etwas schief. :-(";
+                    Status = "Beim Exportieren für Pocket PC ging leider etwas schief. :-(";
                 }
             }
         }
@@ -2851,39 +2851,39 @@ namespace Lyra2.LyraShell
 
         private void menuItem35_Click(object sender, EventArgs e)
         {
-            if (this.prback != null)
+            if (prback != null)
             {
-                this.prback.Close();
-                this.prback = null;
-                this.hideForPresentation(false);
+                prback.Close();
+                prback = null;
+                hideForPresentation(false);
             }
             else
             {
-                this.prback = new PrBackground(this);
-                this.hideForPresentation(true);
-                this.prback.Show();
-                this.Focus();
+                prback = new PrBackground(this);
+                hideForPresentation(true);
+                prback.Show();
+                Focus();
             }
         }
 
         private void hideForPresentation(bool hide)
         {
             var visible = !hide;
-            this.menuItem37.Visible = hide;
-            this.menuItem1.Visible = visible;
-            this.menuItem19.Visible = visible;
-            this.menuItem4.Visible = visible;
-            this.menuItem10.Visible = visible & (this.tabControl1.SelectedIndex == 2);
-            this.listManagementLabel.Visible = visible;
-            this.songManagmentLabel.Visible = visible;
-            this.button1.Visible = visible;
-            this.button2.Visible = visible;
-            this.button9.Visible = visible;
-            this.button6.Visible = visible;
-            this.linkLabel1.Visible = visible;
-            this.button5.Visible = visible;
-            this.textBox3.Visible = visible;
-            this.label3.Visible = visible;
+            menuItem37.Visible = hide;
+            menuItem1.Visible = visible;
+            menuItem19.Visible = visible;
+            menuItem4.Visible = visible;
+            menuItem10.Visible = visible & (tabControl1.SelectedIndex == 2);
+            listManagementLabel.Visible = visible;
+            songManagmentLabel.Visible = visible;
+            button1.Visible = visible;
+            button2.Visible = visible;
+            button9.Visible = visible;
+            button6.Visible = visible;
+            linkLabel1.Visible = visible;
+            button5.Visible = visible;
+            textBox3.Visible = visible;
+            label3.Visible = visible;
         }
 
         #endregion
@@ -2895,7 +2895,7 @@ namespace Lyra2.LyraShell
             {
                 MessageBox.Show(this, "Update wurde durchgeführt!" + Util.NL + "lyra wird jetzt neu gestartet.",
                                 "lyra Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.restart();
+                restart();
             }
             // else cancelled
         }
@@ -2917,7 +2917,7 @@ namespace Lyra2.LyraShell
             }
             MessageBox.Show(this, "Update wurde rückgängig gemacht!" + Util.NL + "lyra wird jetzt neu gestartet.",
                             "lyra Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.restart();
+            restart();
         }
 
         // restart lyra
@@ -2932,7 +2932,7 @@ namespace Lyra2.LyraShell
         // restart lyra client
         private void menuItem48_Click(object sender, EventArgs e)
         {
-            this.restart();
+            restart();
         }
 
         // create new Server
@@ -2951,7 +2951,7 @@ namespace Lyra2.LyraShell
         private bool isFormat(string s)
         {
             s = s.TrimStart('/', ' ');
-            foreach (var f in this.formats)
+            foreach (var f in formats)
             {
                 if (s.StartsWith(f))
                 {
@@ -2980,7 +2980,7 @@ namespace Lyra2.LyraShell
                 {
                     if (s.Text[i] == '<')
                     {
-                        if (this.isFormat(s.Text.Substring(i + 1)))
+                        if (isFormat(s.Text.Substring(i + 1)))
                         {
                             if (s.Text.Substring(i + 1).StartsWith("refrain"))
                             {
@@ -3001,33 +3001,33 @@ namespace Lyra2.LyraShell
 
         private void menuItem52_Click(object sender, EventArgs e)
         {
-            if (this.tabControl1.SelectedIndex == 0)
+            if (tabControl1.SelectedIndex == 0)
             {
                 // search
-                if (this.searchListBox.SelectedItem is ISong)
+                if (searchListBox.SelectedItem is ISong)
                 {
-                    var s = (ISong)this.searchListBox.SelectedItem;
-                    this.showUnformated(s);
+                    var s = (ISong)searchListBox.SelectedItem;
+                    showUnformated(s);
                     return;
                 }
             }
-            else if (this.tabControl1.SelectedIndex == 1)
+            else if (tabControl1.SelectedIndex == 1)
             {
                 // selection
-                if (this.allSongsListBox.SelectedItem is ISong)
+                if (allSongsListBox.SelectedItem is ISong)
                 {
-                    var s = (ISong)this.allSongsListBox.SelectedItem;
-                    this.showUnformated(s);
+                    var s = (ISong)allSongsListBox.SelectedItem;
+                    showUnformated(s);
                     return;
                 }
             }
             else
             {
                 // list selection
-                if (this.personalListsListBox.SelectedItem is ISong)
+                if (personalListsListBox.SelectedItem is ISong)
                 {
-                    var s = (ISong)this.personalListsListBox.SelectedItem;
-                    this.showUnformated(s);
+                    var s = (ISong)personalListsListBox.SelectedItem;
+                    showUnformated(s);
                     return;
                 }
             }
@@ -3045,7 +3045,7 @@ namespace Lyra2.LyraShell
             {
                 var sw = new StreamWriter(sfd.FileName, false);
 
-                foreach (ISong s in this.allSongsListBox.Items)
+                foreach (ISong s in allSongsListBox.Items)
                 {
                     var title = s.Number.ToString().PadRight(5, ' ') + ":  " + s.Title;
                     var line = "".PadRight(title.Length, '-');
@@ -3056,7 +3056,7 @@ namespace Lyra2.LyraShell
                     {
                         if (s.Text[i] == '<')
                         {
-                            if (this.isFormat(s.Text.Substring(i + 1)))
+                            if (isFormat(s.Text.Substring(i + 1)))
                             {
                                 if (s.Text.Substring(i + 1).StartsWith("refrain"))
                                 {
@@ -3123,8 +3123,8 @@ namespace Lyra2.LyraShell
             Util.SCREEN_ID = 0;
             View.Display = Util.GetScreen(0);
             Util.updateRegSettings();
-            this.menuItem55.Checked = true;
-            this.menuItem56.Checked = false;
+            menuItem55.Checked = true;
+            menuItem56.Checked = false;
         }
 
         private void menuItem56_Click(object sender, EventArgs e)
@@ -3132,24 +3132,24 @@ namespace Lyra2.LyraShell
             Util.SCREEN_ID = 1;
             View.Display = Util.GetScreen(1);
             Util.updateRegSettings();
-            this.menuItem55.Checked = false;
-            this.menuItem56.Checked = true;
+            menuItem55.Checked = false;
+            menuItem56.Checked = true;
         }
 
         private void menuItem61_Click(object sender, EventArgs e)
         {
-            this.BlackScreen();
+            BlackScreen();
         }
 
         public void BlackScreen()
         {
-            this.menuItem61.Checked = !this.menuItem61.Checked;
-            View.BlackScreen(this.menuItem61.Checked);
+            menuItem61.Checked = !menuItem61.Checked;
+            View.BlackScreen(menuItem61.Checked);
         }
 
         private void menuItem57_Popup(object sender, EventArgs e)
         {
-            this.menuItem61.Checked = View.Black;
+            menuItem61.Checked = View.Black;
         }
 
         private void menuItem59_Click(object sender, EventArgs e)
@@ -3159,56 +3159,56 @@ namespace Lyra2.LyraShell
 
         private void listBox3_SelectedValueChanged(object sender, EventArgs e)
         {
-            var s = this.searchListBox.SelectedItem as ISong;
+            var s = searchListBox.SelectedItem as ISong;
             if (s != null)
             {
-                this.songPreview3.ShowSong(s);
-                this.searchListBox.Focus();
+                songPreview3.ShowSong(s);
+                searchListBox.Focus();
             }
             else
             {
-                this.songPreview3.Reset();
+                songPreview3.Reset();
             }
         }
 
         private void listBox1_SelectedValueChanged(object sender, EventArgs e)
         {
-            var s = this.allSongsListBox.SelectedItem as ISong;
+            var s = allSongsListBox.SelectedItem as ISong;
             if (s != null)
             {
-                this.songPreview1.ShowSong(s);
-                this.allSongsListBox.Focus();
+                songPreview1.ShowSong(s);
+                allSongsListBox.Focus();
             }
             else
             {
-                this.songPreview1.Reset();
+                songPreview1.Reset();
             }
         }
 
         private void listBox2_SelectedValueChanged(object sender, EventArgs e)
         {
-            var s = this.personalListsListBox.SelectedItem as ISong;
+            var s = personalListsListBox.SelectedItem as ISong;
             if (s != null)
             {
-                this.songPreview2.ShowSong(s);
-                this.personalListsListBox.Focus();
+                songPreview2.ShowSong(s);
+                personalListsListBox.Focus();
             }
             else
             {
-                this.songPreview2.Reset();
+                songPreview2.Reset();
             }
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            this.searchTask.RunTask(EventArgs.Empty);
-            this.songPreview3.Reset();
+            searchTask.RunTask(EventArgs.Empty);
+            songPreview3.Reset();
         }
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
-            this.searchTask.CancelTask();
-            this.ExecuteSearch();
+            searchTask.CancelTask();
+            ExecuteSearch();
         }
 
         private void menuItem62_Click(object sender, EventArgs e)
@@ -3219,7 +3219,7 @@ namespace Lyra2.LyraShell
 
         private void menuItem63_Click(object sender, EventArgs e)
         {
-            if (this.storage.ToBeCommited)
+            if (storage.ToBeCommited)
             {
                 MessageBox.Show(this,
                                 "Index konnte nicht neu gebildet werden!" + Util.NL +
@@ -3227,7 +3227,7 @@ namespace Lyra2.LyraShell
                                 "Suchindex erneuern...", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (this.storage.CleanSearchIndex())
+            if (storage.CleanSearchIndex())
             {
                 MessageBox.Show(this, "Index wurde erfolgreich neu gebildet.", "Suchindex erneuern...",
                                 MessageBoxButtons.OK,
@@ -3249,7 +3249,7 @@ namespace Lyra2.LyraShell
 
         private void menuItem70_Click(object sender, EventArgs e)
         {
-            using (var se = new StyleEditor(this.storage))
+            using (var se = new StyleEditor(storage))
             {
                 se.StartPosition = FormStartPosition.CenterParent;
                 se.ShowDialog(this);
@@ -3260,7 +3260,7 @@ namespace Lyra2.LyraShell
         {
             if (e.KeyCode == Keys.Enter)
             {
-                this.listBox1_dblClick(sender, e);
+                listBox1_dblClick(sender, e);
             }
         }
 
@@ -3268,7 +3268,7 @@ namespace Lyra2.LyraShell
         {
             if (e.KeyCode == Keys.Enter)
             {
-                this.listBox2_DoubleClick(sender, e);
+                listBox2_DoubleClick(sender, e);
             }
         }
 
@@ -3276,42 +3276,42 @@ namespace Lyra2.LyraShell
         {
             if (e.KeyCode == Keys.Enter)
             {
-                this.listBox3_dblClick(sender, e);
+                listBox3_dblClick(sender, e);
             }
         }
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.personalListsListBox.SelectedIndex < 0)
+            if (personalListsListBox.SelectedIndex < 0)
             {
-                this.songPreview2.Reset();
+                songPreview2.Reset();
             }
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.allSongsListBox.SelectedIndex < 0)
+            if (allSongsListBox.SelectedIndex < 0)
             {
-                this.songPreview1.Reset();
+                songPreview1.Reset();
             }
         }
 
         private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.searchListBox.SelectedIndex < 0)
+            if (searchListBox.SelectedIndex < 0)
             {
-                this.songPreview3.Reset();
+                songPreview3.Reset();
             }
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            this.songPreview3.Reset();
+            songPreview3.Reset();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            this.ResetQuery();
+            ResetQuery();
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -3352,11 +3352,11 @@ namespace Lyra2.LyraShell
             if (sfd.ShowDialog(this) == DialogResult.OK)
             {
                 var sw = new StreamWriter(sfd.FileName, false);
-                var fileTitle = "Lyra Titel-Index " + DateTime.Now.ToString("ddMMyyyy") + "  [" + this.allSongsListBox.Items.Count + " Songs]";
+                var fileTitle = "Lyra Titel-Index " + DateTime.Now.ToString("ddMMyyyy") + "  [" + allSongsListBox.Items.Count + " Songs]";
                 sw.WriteLine(fileTitle);
                 sw.WriteLine("".PadRight(fileTitle.Length, '-'));
                 sw.WriteLine();
-                foreach (ISong s in this.allSongsListBox.Items)
+                foreach (ISong s in allSongsListBox.Items)
                 {
                     var title = s.Number.ToString().PadRight(5, ' ') + ":  " + s.Title;
                     sw.WriteLine(title);
@@ -3369,10 +3369,10 @@ namespace Lyra2.LyraShell
 
         private void MoveUpDownPanelResizeHandler(object sender, EventArgs e)
         {
-            var middle = (this.moveUpDownPanel.Height - 30) / 2 + 30;
+            var middle = (moveUpDownPanel.Height - 30) / 2 + 30;
 
-            this.moveListItemUpBtn.Top = middle - 5 - this.moveListItemUpBtn.Height;
-            this.moveListItemDownBtn.Top = middle + 5;
+            moveListItemUpBtn.Top = middle - 5 - moveListItemUpBtn.Height;
+            moveListItemDownBtn.Top = middle + 5;
         }
     }
 }

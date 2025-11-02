@@ -18,18 +18,18 @@ namespace Lyra2.LyraShell
 
     public Style SelectedStyle
     {
-      get { return this._selectedStyle; }
+      get { return _selectedStyle; }
       private set
       {
-        if (this._selectedStyle != value)
+        if (_selectedStyle != value)
         {
-          this._selectedStyle = value;
-          this.stylesList.SelectedItem = value;
-          this.UpdateStyleInfo();
-          this.UpdatePreviewPanel();
-          this.delStyleBtn.Enabled = !value.IsDefault;
-          this.setDefaultStyleBtn.Enabled = !value.IsDefault;
-          this.newFromSelectedBtn.Enabled = value != null;
+          _selectedStyle = value;
+          stylesList.SelectedItem = value;
+          UpdateStyleInfo();
+          UpdatePreviewPanel();
+          delStyleBtn.Enabled = !value.IsDefault;
+          setDefaultStyleBtn.Enabled = !value.IsDefault;
+          newFromSelectedBtn.Enabled = value != null;
         }
       }
     }
@@ -39,180 +39,180 @@ namespace Lyra2.LyraShell
     private void UpdateStyleInfo()
     {
 
-      if (this.SelectedStyle == null)
+      if (SelectedStyle == null)
       {
         return;
       }
 
-      if (this.isUpdating) return;
-        this.isUpdating = true;
+      if (isUpdating) return;
+        isUpdating = true;
 
-      this.styleName.Text = this.SelectedStyle.Name;
-      this.fontName.Value = this.SelectedStyle.Font;
-      this.fontColor.Color = this.SelectedStyle.ForegroundColor ?? Util.COLOR;
-      this.fontSize.Value = this.SelectedStyle.FontSize;
-      this.bgColor.Color = this.SelectedStyle.BackgroundColor ?? Util.BGCOLOR;
-      this.backgroundImage.Text = this.SelectedStyle.BackgroundImageUri;
-      this.transparency.Value = this.SelectedStyle.Transparency;
-      this.transPreviewImage.Image = Util.handlePic(false, Resources.TransparencyPreview, new Size(32, 32), true, this.transparency.Value);
-      this.transLabel.Text = (this.transparency.MaxValue - this.transparency.Value) + @"%";
-      this.scale.Checked = this.SelectedStyle.Scale;
-      this.titleMode.Value = (int) this.SelectedStyle.TitleMode;
-      this.titleForegroundColor.Color = this.SelectedStyle.TitleForegroundColor ?? Util.TITLECOLOR;
-      this.titleBackgroundColor.Color = this.SelectedStyle.TitleBackgroundColor ?? Util.TITLEBGCOLOR;
-      this.titleFont.Value = this.SelectedStyle.TitleFont;
-      this.titleFontSize.Value = this.SelectedStyle.TitleFontSize;
+      styleName.Text = SelectedStyle.Name;
+      fontName.Value = SelectedStyle.Font;
+      fontColor.Color = SelectedStyle.ForegroundColor ?? Util.COLOR;
+      fontSize.Value = SelectedStyle.FontSize;
+      bgColor.Color = SelectedStyle.BackgroundColor ?? Util.BGCOLOR;
+      backgroundImage.Text = SelectedStyle.BackgroundImageUri;
+      transparency.Value = SelectedStyle.Transparency;
+      transPreviewImage.Image = Util.handlePic(false, Resources.TransparencyPreview, new Size(32, 32), true, transparency.Value);
+      transLabel.Text = (transparency.MaxValue - transparency.Value) + @"%";
+      scale.Checked = SelectedStyle.Scale;
+      titleMode.Value = (int) SelectedStyle.TitleMode;
+      titleForegroundColor.Color = SelectedStyle.TitleForegroundColor ?? Util.TITLECOLOR;
+      titleBackgroundColor.Color = SelectedStyle.TitleBackgroundColor ?? Util.TITLEBGCOLOR;
+      titleFont.Value = SelectedStyle.TitleFont;
+      titleFontSize.Value = SelectedStyle.TitleFontSize;
 
-      this.UpdatePreviewPanel();
-        this.isUpdating = false;
+      UpdatePreviewPanel();
+        isUpdating = false;
     }
 
     public StyleEditor()
     {
-        this.InitializeComponent();
+        InitializeComponent();
     }
 
     public StyleEditor(IStorage storage)
       : this()
     {
-        this._storage = storage;
-      this._styles = this._storage.Styles;
-      this.stylesList.BeginUpdate();
-      foreach (var style in this._styles)
+        _storage = storage;
+      _styles = _storage.Styles;
+      stylesList.BeginUpdate();
+      foreach (var style in _styles)
       {
-        this.stylesList.Items.Add(style);
+        stylesList.Items.Add(style);
       }
-      if (this._styles.Count > 0)
+      if (_styles.Count > 0)
       {
-        this.stylesList.SelectedIndex = this._styles.IndexOf(this._styles.First(s => s.IsDefault));
+        stylesList.SelectedIndex = _styles.IndexOf(_styles.First(s => s.IsDefault));
       }
-      this.stylesList.EndUpdate();
+      stylesList.EndUpdate();
     }
 
     private void OnSelectedIndexChangedHandler(object sender, EventArgs e)
     {
-      if (this.stylesList.Items.Count == 0)
+      if (stylesList.Items.Count == 0)
       {
         return;
       }
 
-      if (this.stylesList.SelectedIndex < 0)
+      if (stylesList.SelectedIndex < 0)
       {
-        this.stylesList.SelectedIndex = 0;
+        stylesList.SelectedIndex = 0;
       }
       else
       {
-        this.SelectedStyle = (Style)this.stylesList.SelectedItem;
+        SelectedStyle = (Style)stylesList.SelectedItem;
       }
 
-      this.stylesListPanel.Enabled = true;
-      this.saveCancelPanel.Visible = false;
-      this.saveCancelPanel.Enabled = false;
+      stylesListPanel.Enabled = true;
+      saveCancelPanel.Visible = false;
+      saveCancelPanel.Enabled = false;
     }
 
     private void OnStyleValueChanged(object sender, EventArgs e)
     {
-      if (this.isUpdating) return;
+      if (isUpdating) return;
 
-      this.stylesListPanel.Enabled = false;
-      this.saveCancelPanel.Visible = true;
-      this.saveCancelPanel.Enabled = true;
+      stylesListPanel.Enabled = false;
+      saveCancelPanel.Visible = true;
+      saveCancelPanel.Enabled = true;
 
-      if (sender == this.transparency)
+      if (sender == transparency)
       {
-        this.transPreviewImage.Image = Util.handlePic(false, Resources.TransparencyPreview, new Size(32, 32), true, this.transparency.Value);
-        this.transLabel.Text = (this.transparency.MaxValue - this.transparency.Value) + @"%";
+        transPreviewImage.Image = Util.handlePic(false, Resources.TransparencyPreview, new Size(32, 32), true, transparency.Value);
+        transLabel.Text = (transparency.MaxValue - transparency.Value) + @"%";
       }
 
-      this.UpdatePreviewPanel();
+      UpdatePreviewPanel();
     }
 
     private void CancelBtnClickHandler(object sender, EventArgs e)
     {
       // undo "new"
-      if (this.SelectedStyle.IsNew)
+      if (SelectedStyle.IsNew)
       {
-        this.stylesList.Items.Remove(this.SelectedStyle);
-        this.SelectedStyle = this.stylesList.Items.Count > 0 ? this.stylesList.Items[0] as Style : null;
+        stylesList.Items.Remove(SelectedStyle);
+        SelectedStyle = stylesList.Items.Count > 0 ? stylesList.Items[0] as Style : null;
       }
 
       // reset
-      this.UpdateStyleInfo();
+      UpdateStyleInfo();
 
-      this.stylesListPanel.Enabled = true;
-      this.saveCancelPanel.Visible = false;
-      this.saveCancelPanel.Enabled = false;
+      stylesListPanel.Enabled = true;
+      saveCancelPanel.Visible = false;
+      saveCancelPanel.Enabled = false;
     }
 
     private void SaveBtnClickHandler(object sender, EventArgs e)
     {
       // save current style
-      this.SelectedStyle.Name = this.styleName.Text;
-      this.SelectedStyle.Font = this.fontName.Value as string ?? "";
-      this.SelectedStyle.ForegroundColor = this.fontColor.Color;
-      this.SelectedStyle.FontSize = (int)this.fontSize.Value;
-      this.SelectedStyle.BackgroundColor = this.bgColor.Color;
-      this.SelectedStyle.BackgroundImageUri = this.backgroundImage.Text;
-      this.SelectedStyle.Transparency = this.transparency.Value;
-      this.SelectedStyle.Scale = this.scale.Checked;
-      this.SelectedStyle.TitleMode = (TitleMode)this.titleMode.Value;
-      this.SelectedStyle.TitleForegroundColor = this.titleForegroundColor.Color;
-      this.SelectedStyle.TitleBackgroundColor = this.titleBackgroundColor.Color;
-      this.SelectedStyle.TitleFont = this.titleFont.Value as string ?? "";
-      this.SelectedStyle.TitleFontSize = (int)this.titleFontSize.Value;
+      SelectedStyle.Name = styleName.Text;
+      SelectedStyle.Font = fontName.Value as string ?? "";
+      SelectedStyle.ForegroundColor = fontColor.Color;
+      SelectedStyle.FontSize = (int)fontSize.Value;
+      SelectedStyle.BackgroundColor = bgColor.Color;
+      SelectedStyle.BackgroundImageUri = backgroundImage.Text;
+      SelectedStyle.Transparency = transparency.Value;
+      SelectedStyle.Scale = scale.Checked;
+      SelectedStyle.TitleMode = (TitleMode)titleMode.Value;
+      SelectedStyle.TitleForegroundColor = titleForegroundColor.Color;
+      SelectedStyle.TitleBackgroundColor = titleBackgroundColor.Color;
+      SelectedStyle.TitleFont = titleFont.Value as string ?? "";
+      SelectedStyle.TitleFontSize = (int)titleFontSize.Value;
 
-      if (this.SelectedStyle.Save())
+      if (SelectedStyle.Save())
       {
-        this.stylesListPanel.Enabled = true;
-        this.saveCancelPanel.Visible = false;
-        this.saveCancelPanel.Enabled = false;
+        stylesListPanel.Enabled = true;
+        saveCancelPanel.Visible = false;
+        saveCancelPanel.Enabled = false;
 
-        this.stylesList.BeginUpdate();
-        var style = this.SelectedStyle;
-        var idx = this.stylesList.SelectedIndex;
-        this.stylesList.Items.Remove(style);
-        this.stylesList.Items.Insert(idx, style);
-        this.stylesList.SelectedIndex = idx;
-        this.stylesList.EndUpdate();
+        stylesList.BeginUpdate();
+        var style = SelectedStyle;
+        var idx = stylesList.SelectedIndex;
+        stylesList.Items.Remove(style);
+        stylesList.Items.Insert(idx, style);
+        stylesList.SelectedIndex = idx;
+        stylesList.EndUpdate();
       }
     }
 
     private void DeleteClickHandler(object sender, EventArgs e)
     {
-      if (!this._storage.IsStyleInUse(this.SelectedStyle) ||
+      if (!_storage.IsStyleInUse(SelectedStyle) ||
             MessageBox.Show(this, @"Dieser Style wird von mindestens einem Lied verwendet." + Environment.NewLine +
                                                    @"Soll er trotzdem gelöscht werden?", @"Löschen bestätigen",
                                              MessageBoxButtons.YesNo,
                                              MessageBoxIcon.Exclamation) == DialogResult.Yes)
       {
-        var styleToDelete = this.SelectedStyle;
-        this.stylesList.Items.Remove(styleToDelete);
-        this.SelectedStyle = this.stylesList.Items.Count > 0 ? this.stylesList.Items[0] as Style : null;
+        var styleToDelete = SelectedStyle;
+        stylesList.Items.Remove(styleToDelete);
+        SelectedStyle = stylesList.Items.Count > 0 ? stylesList.Items[0] as Style : null;
         styleToDelete.Delete();
       }
     }
 
     private void NewStyleClickHandler(object sender, EventArgs e)
     {
-      var name = sender == this.newFromSelectedBtn && this.SelectedStyle != null ? this.SelectedStyle.Name + " (Kopie)"
+      var name = sender == newFromSelectedBtn && SelectedStyle != null ? SelectedStyle.Name + " (Kopie)"
           : "Neuer Style " + DateTime.Now.ToString("dd.MM.yyyy");
-      var newStyle = Style.CreateNewStyle(this._storage.PhysicalStorage, name);
-      this.stylesList.Items.Add(newStyle);
+      var newStyle = Style.CreateNewStyle(_storage.PhysicalStorage, name);
+      stylesList.Items.Add(newStyle);
 
-      if (sender == this.newFromSelectedBtn && this.SelectedStyle != null)
+      if (sender == newFromSelectedBtn && SelectedStyle != null)
       {
-        newStyle.BackgroundColor = this.SelectedStyle.BackgroundColor;
-        newStyle.BackgroundImageUri = this.SelectedStyle.BackgroundImageUri;
-        newStyle.Font = this.SelectedStyle.Font;
-        newStyle.FontSize = this.SelectedStyle.FontSize;
-        newStyle.ForegroundColor = this.SelectedStyle.ForegroundColor;
-        newStyle.Scale = this.SelectedStyle.Scale;
-        newStyle.Transparency = this.SelectedStyle.Transparency;
-        newStyle.TitleMode = this.SelectedStyle.TitleMode;
-        newStyle.TitleForegroundColor = this.SelectedStyle.TitleForegroundColor;
-        newStyle.TitleBackgroundColor = this.SelectedStyle.TitleBackgroundColor;
-        newStyle.TitleFont = this.SelectedStyle.TitleFont;
-        newStyle.TitleFontSize = this.SelectedStyle.TitleFontSize;
+        newStyle.BackgroundColor = SelectedStyle.BackgroundColor;
+        newStyle.BackgroundImageUri = SelectedStyle.BackgroundImageUri;
+        newStyle.Font = SelectedStyle.Font;
+        newStyle.FontSize = SelectedStyle.FontSize;
+        newStyle.ForegroundColor = SelectedStyle.ForegroundColor;
+        newStyle.Scale = SelectedStyle.Scale;
+        newStyle.Transparency = SelectedStyle.Transparency;
+        newStyle.TitleMode = SelectedStyle.TitleMode;
+        newStyle.TitleForegroundColor = SelectedStyle.TitleForegroundColor;
+        newStyle.TitleBackgroundColor = SelectedStyle.TitleBackgroundColor;
+        newStyle.TitleFont = SelectedStyle.TitleFont;
+        newStyle.TitleFontSize = SelectedStyle.TitleFontSize;
       }
       else
       {
@@ -221,11 +221,11 @@ namespace Lyra2.LyraShell
         newStyle.ForegroundColor = Util.COLOR;
         newStyle.BackgroundColor = Util.BGCOLOR;
       }
-      this.SelectedStyle = newStyle;
+      SelectedStyle = newStyle;
 
-      this.stylesListPanel.Enabled = false;
-      this.saveCancelPanel.Visible = true;
-      this.saveCancelPanel.Enabled = true;
+      stylesListPanel.Enabled = false;
+      saveCancelPanel.Visible = true;
+      saveCancelPanel.Enabled = true;
     }
 
     private void BrowseBackgroundBtnClickHandler(object sender, EventArgs e)
@@ -234,9 +234,9 @@ namespace Lyra2.LyraShell
       {
         openFileDialog.Title = @"Hintergrundbild auswählen...";
 
-        if (!string.IsNullOrEmpty(this.backgroundImage.Text) && File.Exists(this.backgroundImage.Text))
+        if (!string.IsNullOrEmpty(backgroundImage.Text) && File.Exists(backgroundImage.Text))
         {
-          openFileDialog.InitialDirectory = Path.GetDirectoryName(this.backgroundImage.Text);
+          openFileDialog.InitialDirectory = Path.GetDirectoryName(backgroundImage.Text);
         }
         else
         {
@@ -245,7 +245,7 @@ namespace Lyra2.LyraShell
         openFileDialog.Filter = @"Bild Dateien|*.png; *.gif; *.jpg; *.bmp";
         if (openFileDialog.ShowDialog(this) == DialogResult.OK)
         {
-          this.backgroundImage.Text = openFileDialog.FileName;
+          backgroundImage.Text = openFileDialog.FileName;
         }
       }
     }
@@ -254,23 +254,23 @@ namespace Lyra2.LyraShell
     {
       var tempStyle = new Style
                         {
-                          Name = this.styleName.Text,
-                          Font = this.fontName.Value as string ?? "",
-                          ForegroundColor = this.fontColor.Color,
-                          FontSize = (int)this.fontSize.Value,
-                          BackgroundColor = this.bgColor.Color,
-                          BackgroundImageUri = this.backgroundImage.Text,
-                          Transparency = this.transparency.Value,
-                          Scale = this.scale.Checked,
-                          TitleMode = (TitleMode)this.titleMode.Value,
-                          TitleForegroundColor = this.titleForegroundColor.Color,
-                          TitleBackgroundColor = this.titleBackgroundColor.Color,
-                          TitleFont = this.titleFont.Value as string ?? "",
-                          TitleFontSize = (int)this.titleFontSize.Value
+                          Name = styleName.Text,
+                          Font = fontName.Value as string ?? "",
+                          ForegroundColor = fontColor.Color,
+                          FontSize = (int)fontSize.Value,
+                          BackgroundColor = bgColor.Color,
+                          BackgroundImageUri = backgroundImage.Text,
+                          Transparency = transparency.Value,
+                          Scale = scale.Checked,
+                          TitleMode = (TitleMode)titleMode.Value,
+                          TitleForegroundColor = titleForegroundColor.Color,
+                          TitleBackgroundColor = titleBackgroundColor.Color,
+                          TitleFont = titleFont.Value as string ?? "",
+                          TitleFontSize = (int)titleFontSize.Value
                         };
 
 
-      var previewBitmap = new Bitmap(400, this.previewPanel.ClientArea.Height);
+      var previewBitmap = new Bitmap(400, previewPanel.ClientArea.Height);
       var g = Graphics.FromImage(previewBitmap);
       var clip = new Rectangle(0, 0, previewBitmap.Width, previewBitmap.Height);
       if (tempStyle.HasBackgroundImage)
@@ -282,32 +282,32 @@ namespace Lyra2.LyraShell
         g.FillRectangle(new SolidBrush(tempStyle.BackgroundColor ?? Util.BGCOLOR), clip);
       }
 
-      this.exampleSongText.Font = tempStyle.GetFont() ?? Util.FONT;
-      this.exampleSongText.ForeColor = tempStyle.ForegroundColor ?? Util.COLOR;
-      this.previewPanel.Appearance.ImageBackground = previewBitmap;
-      this.previewPanel.Appearance.ImageBackgroundStyle = ImageBackgroundStyle.Tiled;
-      this.viewTitle.TitleFont = tempStyle.GetTitleFont() ?? Util.TITLEFONT;
-      this.viewTitle.TitleBackgroundColor = tempStyle.TitleBackgroundColor ?? Util.TITLEBGCOLOR;
-      this.viewTitle.TitleForegroundColor = tempStyle.TitleForegroundColor ?? Util.TITLECOLOR;
-      this.viewTitle.Mode = tempStyle.TitleMode;
+      exampleSongText.Font = tempStyle.GetFont() ?? Util.FONT;
+      exampleSongText.ForeColor = tempStyle.ForegroundColor ?? Util.COLOR;
+      previewPanel.Appearance.ImageBackground = previewBitmap;
+      previewPanel.Appearance.ImageBackgroundStyle = ImageBackgroundStyle.Tiled;
+      viewTitle.TitleFont = tempStyle.GetTitleFont() ?? Util.TITLEFONT;
+      viewTitle.TitleBackgroundColor = tempStyle.TitleBackgroundColor ?? Util.TITLEBGCOLOR;
+      viewTitle.TitleForegroundColor = tempStyle.TitleForegroundColor ?? Util.TITLECOLOR;
+      viewTitle.Mode = tempStyle.TitleMode;
 
-        this.exampleSongText.Top = this.viewTitle.Mode == TitleMode.None ? 10 : (this.viewTitle.Bottom + 10);
+        exampleSongText.Top = viewTitle.Mode == TitleMode.None ? 10 : (viewTitle.Bottom + 10);
     }
 
     private void SetAsDefaultBtnClickHandler(object sender, EventArgs e)
     {
-      this._storage.SetStyleAsDefault(this.SelectedStyle);
-      this.stylesList.BeginUpdate();
-      var style = this.SelectedStyle;
-      this.stylesList.Items.Clear();
-      foreach (var s in this._storage.Styles)
+      _storage.SetStyleAsDefault(SelectedStyle);
+      stylesList.BeginUpdate();
+      var style = SelectedStyle;
+      stylesList.Items.Clear();
+      foreach (var s in _storage.Styles)
       {
-        this.stylesList.Items.Add(s);
+        stylesList.Items.Add(s);
       }
-      this.stylesList.SelectedItem = style;
-      this.stylesList.EndUpdate();
-      this.delStyleBtn.Enabled = false;
-      this.setDefaultStyleBtn.Enabled = false;
+      stylesList.SelectedItem = style;
+      stylesList.EndUpdate();
+      delStyleBtn.Enabled = false;
+      setDefaultStyleBtn.Enabled = false;
     }
   }
 }

@@ -60,33 +60,33 @@ namespace Lyra2.LyraShell
             //
             // Required for Windows Form Designer support
             //
-            this.InitializeComponent();
+            InitializeComponent();
             this.owner = owner;
-            View.SongDisplayed += this.ViewSongDisplayed;
-            View.ScrollDataChanged += this.ViewScrollDataChangedHandler;
-            this.Update(View.CurrentSongInfo);
-            this.bgw.DoWork += this.UnblinkWork;
-            this.bgw.WorkerSupportsCancellation = true;
-            foreach (Control control in this.Controls)
+            View.SongDisplayed += ViewSongDisplayed;
+            View.ScrollDataChanged += ViewScrollDataChangedHandler;
+            Update(View.CurrentSongInfo);
+            bgw.DoWork += UnblinkWork;
+            bgw.WorkerSupportsCancellation = true;
+            foreach (Control control in Controls)
             {
-                control.MouseWheel += this.MouseWheelHandler;
+                control.MouseWheel += MouseWheelHandler;
             }
 
-            this.scrollBox.MouseWheel += this.MouseWheelHandler;
-            this.MouseWheel += this.MouseWheelHandler;
-            this.jumpMarksListBox.MouseWheel += this.MouseWheelHandler;
+            scrollBox.MouseWheel += MouseWheelHandler;
+            MouseWheel += MouseWheelHandler;
+            jumpMarksListBox.MouseWheel += MouseWheelHandler;
         }
 
         private void OnTimerTick(object sender, EventArgs e)
         {
             if (songDisplayStarted == null)
             {
-                this.infoLabel.Text = $"{DateTime.Now:D}";
+                infoLabel.Text = $"{DateTime.Now:D}";
             }
             else
             {
                 var runningSince = (DateTime.Now - songDisplayStarted.Value).Humanize(culture: new CultureInfo("de-CH"), minUnit: TimeUnit.Minute);
-                this.infoLabel.Text = $"{DateTime.Now:D} - Lied wird angezeigt seit {runningSince}";
+                infoLabel.Text = $"{DateTime.Now:D} - Lied wird angezeigt seit {runningSince}";
             }
         }
 
@@ -94,21 +94,21 @@ namespace Lyra2.LyraShell
         {
             #region    Precondition
 
-            var mousePos = this.scrollBox.PointToClient(MousePosition);
-            if (!this.scrollBox.ClientRectangle.Contains(mousePos)) return;
+            var mousePos = scrollBox.PointToClient(MousePosition);
+            if (!scrollBox.ClientRectangle.Contains(mousePos)) return;
 
             #endregion Precondition
 
             if (e.Delta < 0)
             {
                 // down
-                this.scrollDownBtn_Click(this, e);
-                this.ScrollBoxBlink(true);
+                scrollDownBtn_Click(this, e);
+                ScrollBoxBlink(true);
             }
             else
             {
-                this.scrollUpBtn_Click(this, e);
-                this.ScrollBoxBlink(false);
+                scrollUpBtn_Click(this, e);
+                ScrollBoxBlink(false);
             }
         }
 
@@ -117,75 +117,75 @@ namespace Lyra2.LyraShell
             Thread.Sleep(100);
             if (!e.Cancel)
             {
-                this.Invoke(new MethodInvoker(() => this.scrollImage.Visible = false));
+                Invoke(new MethodInvoker(() => scrollImage.Visible = false));
             }
         }
 
         private void ScrollBoxBlink(bool down)
         {
-            this.scrollImage.Image = down ? Resources.scroll_down_bg : Resources.scroll_up_bg;
-            this.scrollImage.Visible = true;
-            if (!this.bgw.IsBusy)
+            scrollImage.Image = down ? Resources.scroll_down_bg : Resources.scroll_up_bg;
+            scrollImage.Visible = true;
+            if (!bgw.IsBusy)
             {
-                this.bgw.RunWorkerAsync(Color.DimGray);
+                bgw.RunWorkerAsync(Color.DimGray);
             }
         }
 
         private void ViewSongDisplayed(object sender, SongDisplayedEventArgs args)
         {
-            this.Update(args);
+            Update(args);
         }
 
         private void ViewScrollDataChangedHandler(object sender, ScrollDataEventArgs e)
         {
-            this.scrollVisual.UpdateScrollData(e);
+            scrollVisual.UpdateScrollData(e);
         }
 
         private void Update(SongDisplayedEventArgs songInfo)
         {
             if (songInfo == null)
             {
-                this.titleLabel.Text = @"Es wird kein Lied präsentiert.";
-                this.titleLabel.Enabled = false;
-                this.infoLabel.Text = $"{DateTime.Now:D}";
-                this.sourceLabel.Text = "*";
-                this.nextBtn.Enabled = false;
-                this.lastBtn.Enabled = false;
-                this.nextLabel.Visible = false;
-                this.prevLabel.Visible = false;
-                this.nextBtn.Visible = false;
-                this.lastBtn.Visible = false;
-                this.rightPane.Visible = false;
-                this.sourceLabel.Visible = false;
-                this.jumpMarksListBox.Items.Clear();
-                this.scrollVisual.UpdateScrollData(null);
-                this.songDisplayStarted = null;
+                titleLabel.Text = @"Es wird kein Lied präsentiert.";
+                titleLabel.Enabled = false;
+                infoLabel.Text = $"{DateTime.Now:D}";
+                sourceLabel.Text = "*";
+                nextBtn.Enabled = false;
+                lastBtn.Enabled = false;
+                nextLabel.Visible = false;
+                prevLabel.Visible = false;
+                nextBtn.Visible = false;
+                lastBtn.Visible = false;
+                rightPane.Visible = false;
+                sourceLabel.Visible = false;
+                jumpMarksListBox.Items.Clear();
+                scrollVisual.UpdateScrollData(null);
+                songDisplayStarted = null;
                 return;
             }
 
-            this.songDisplayStarted = DateTime.Now;
-            this.sourceLabel.Visible = true;
-            this.rightPane.Visible = true;
-            this.titleLabel.Text = songInfo.DisplayedSong != null ? $"{songInfo.DisplayedSong.Number.ToString().PadLeft(4, '0')} {songInfo.DisplayedSong.Title}" : "";
-            this.titleLabel.Enabled = true;
-            this.infoLabel.Text = $"{DateTime.Now:D}";
-            this.sourceLabel.Text = songInfo.DisplayedSong != null ? $"Anzeigequelle [{songInfo.Source}]" : "";
-            this.nextLabel.Visible = true;
-            this.prevLabel.Visible = true;
-            this.nextBtn.Visible = true;
-            this.lastBtn.Visible = true;
-            this.nextBtn.Enabled = songInfo.NextSong != null;
-            this.lastBtn.Enabled = songInfo.PreviousSong != null;
-            this.nextLabel.Text = songInfo.NextSong != null ? $"{songInfo.NextSong.Number.ToString().PadLeft(4, '0')} {songInfo.NextSong.Title}" : "";
-            this.prevLabel.Text = songInfo.PreviousSong != null ? $"{songInfo.PreviousSong.Number.ToString().PadLeft(4, '0')} {songInfo.PreviousSong.Title}" : "";
-            this.jumpMarksListBox.BeginUpdate();
-            this.jumpMarksListBox.Items.Clear();
+            songDisplayStarted = DateTime.Now;
+            sourceLabel.Visible = true;
+            rightPane.Visible = true;
+            titleLabel.Text = songInfo.DisplayedSong != null ? $"{songInfo.DisplayedSong.Number.ToString().PadLeft(4, '0')} {songInfo.DisplayedSong.Title}" : "";
+            titleLabel.Enabled = true;
+            infoLabel.Text = $"{DateTime.Now:D}";
+            sourceLabel.Text = songInfo.DisplayedSong != null ? $"Anzeigequelle [{songInfo.Source}]" : "";
+            nextLabel.Visible = true;
+            prevLabel.Visible = true;
+            nextBtn.Visible = true;
+            lastBtn.Visible = true;
+            nextBtn.Enabled = songInfo.NextSong != null;
+            lastBtn.Enabled = songInfo.PreviousSong != null;
+            nextLabel.Text = songInfo.NextSong != null ? $"{songInfo.NextSong.Number.ToString().PadLeft(4, '0')} {songInfo.NextSong.Title}" : "";
+            prevLabel.Text = songInfo.PreviousSong != null ? $"{songInfo.PreviousSong.Number.ToString().PadLeft(4, '0')} {songInfo.PreviousSong.Title}" : "";
+            jumpMarksListBox.BeginUpdate();
+            jumpMarksListBox.Items.Clear();
             foreach (var jumpMark in songInfo.Jumpmarks)
             {
-                this.jumpMarksListBox.Items.Add(jumpMark);
+                jumpMarksListBox.Items.Add(jumpMark);
             }
 
-            this.jumpMarksListBox.EndUpdate();
+            jumpMarksListBox.EndUpdate();
         }
 
         /// <summary>
@@ -195,13 +195,13 @@ namespace Lyra2.LyraShell
         {
             if (disposing)
             {
-                if (this.components != null)
+                if (components != null)
                 {
-                    this.components.Dispose();
+                    components.Dispose();
                 }
-                View.SongDisplayed -= this.ViewSongDisplayed;
-                View.ScrollDataChanged -= this.ViewScrollDataChangedHandler;
-                this.timer.Tick -= OnTimerTick;
+                View.SongDisplayed -= ViewSongDisplayed;
+                View.ScrollDataChanged -= ViewScrollDataChangedHandler;
+                timer.Tick -= OnTimerTick;
             }
             base.Dispose(disposing);
         }
@@ -655,11 +655,11 @@ namespace Lyra2.LyraShell
         {
             #region    Precondition
 
-            if (this.jumpMarksListBox.SelectedItem == null) return;
+            if (jumpMarksListBox.SelectedItem == null) return;
 
             #endregion Precondition
 
-            var jumpMark = (JumpMark)this.jumpMarksListBox.SelectedItem;
+            var jumpMark = (JumpMark)jumpMarksListBox.SelectedItem;
             View.ScrollToPosition(jumpMark.Position);
         }
     }

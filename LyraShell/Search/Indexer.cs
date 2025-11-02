@@ -49,42 +49,42 @@ namespace Lyra2.LyraShell.Search
         /// <param name="name">Name of this provider</param>
         public Indexer(IDictionary<string, int> searchFields, string name)
         {
-            this._name = name;
-            this._items = new Dictionary<Guid, TElement>();
-            this._indexedItems = new List<Guid>();
-            this._stdAnalyzer = new StandardAnalyzer(Version.LUCENE_30);
-            this._indexDirectory = new RAMDirectory();
-            this.ClearIndex();
+            _name = name;
+            _items = new Dictionary<Guid, TElement>();
+            _indexedItems = new List<Guid>();
+            _stdAnalyzer = new StandardAnalyzer(Version.LUCENE_30);
+            _indexDirectory = new RAMDirectory();
+            ClearIndex();
 
             // init
-            this.InitializeIndexUpdateWorker();
-            this.InitializeIndexSearch(searchFields);
+            InitializeIndexUpdateWorker();
+            InitializeIndexSearch(searchFields);
         }
 
         #region    Init
 
         private void InitializeIndexUpdateWorker()
         {
-            this._indexUpdater = new BackgroundWorker { WorkerReportsProgress = true, WorkerSupportsCancellation = true };
+            _indexUpdater = new BackgroundWorker { WorkerReportsProgress = true, WorkerSupportsCancellation = true };
 
             // events
-            this._indexUpdater.DoWork += this.DoIndexUpdate;
-            this._indexUpdater.ProgressChanged += this.ProgressChangedHandler;
-            this._indexUpdater.RunWorkerCompleted += this.UpdateComplete;
+            _indexUpdater.DoWork += DoIndexUpdate;
+            _indexUpdater.ProgressChanged += ProgressChangedHandler;
+            _indexUpdater.RunWorkerCompleted += UpdateComplete;
         }
 
         private void InitializeIndexSearch(IDictionary<string, int> searchFields)
         {
             // set search fields
-            this._searchFields = new Dictionary<string, int>(searchFields);
+            _searchFields = new Dictionary<string, int>(searchFields);
 
             // get default (most weighted) field
             var maxWeight = 0;
-            foreach (var field in this._searchFields)
+            foreach (var field in _searchFields)
             {
                 if (field.Value > maxWeight)
                 {
-                    this._defaultField = field.Key;
+                    _defaultField = field.Key;
                     maxWeight = field.Value;
                 }
             }
@@ -98,8 +98,8 @@ namespace Lyra2.LyraShell.Search
 
         public bool IsAndQuery
         {
-            get { return this._isAndQuery; }
-            set { this._isAndQuery = value; }
+            get { return _isAndQuery; }
+            set { _isAndQuery = value; }
         }
 
         #endregion Settings
@@ -111,7 +111,7 @@ namespace Lyra2.LyraShell.Search
         /// </summary>
         public string SearchProviderName
         {
-            get { return this._name; }
+            get { return _name; }
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace Lyra2.LyraShell.Search
         /// </summary>
         public int NumberOfIndexedItems
         {
-            get { return this._items.Count; }
+            get { return _items.Count; }
         }
 
         /// <summary>
@@ -131,9 +131,9 @@ namespace Lyra2.LyraShell.Search
         {
             get
             {
-                lock (this._safe)
+                lock (_safe)
                 {
-                    return this._items.ContainsKey(key) ? this._items[key] : default(TElement);
+                    return _items.ContainsKey(key) ? _items[key] : default(TElement);
                 }
             }
         }
@@ -143,7 +143,7 @@ namespace Lyra2.LyraShell.Search
         /// </summary>
         public bool IsIndexReady
         {
-            get { return this._isIndexReady; }
+            get { return _isIndexReady; }
         }
 
         private int _progress = 100;
@@ -153,13 +153,13 @@ namespace Lyra2.LyraShell.Search
         /// </summary>
         public int Progress
         {
-            get { return this._progress; }
+            get { return _progress; }
             private set
             {
-                if (this._progress != value)
+                if (_progress != value)
                 {
-                    this._progress = value;
-                    this.OnProgressChanged(new IndexerProgressChangedEventArgs(value));
+                    _progress = value;
+                    OnProgressChanged(new IndexerProgressChangedEventArgs(value));
                 }
             }
         }
@@ -174,15 +174,15 @@ namespace Lyra2.LyraShell.Search
         /// <returns></returns>
         private IndexWriter OpenIndexWriter(bool create = false)
         {
-            return new IndexWriter(this._indexDirectory, this._stdAnalyzer, create, IndexWriter.MaxFieldLength.UNLIMITED);
+            return new IndexWriter(_indexDirectory, _stdAnalyzer, create, IndexWriter.MaxFieldLength.UNLIMITED);
         }
 
         public void ClearIndex()
         {
-            using (var writer = this.OpenIndexWriter(true))
+            using (var writer = OpenIndexWriter(true))
             {
-                this._indexedItems.Clear();
-                this._items.Clear();
+                _indexedItems.Clear();
+                _items.Clear();
             }
         }
 
@@ -191,7 +191,7 @@ namespace Lyra2.LyraShell.Search
         /// </summary>
         public void Optimize()
         {
-            using (var writer = this.OpenIndexWriter())
+            using (var writer = OpenIndexWriter())
             {
                 writer.Optimize();
             }
@@ -199,9 +199,9 @@ namespace Lyra2.LyraShell.Search
 
         public void ReInitialize()
         {
-            var itemsCopy = new List<TElement>(this._items.Values);
-            this.ClearIndex();
-            this.AddObjectsToSearch(itemsCopy);
+            var itemsCopy = new List<TElement>(_items.Values);
+            ClearIndex();
+            AddObjectsToSearch(itemsCopy);
         }
 
         /// <summary>
@@ -221,7 +221,7 @@ namespace Lyra2.LyraShell.Search
 
             #endregion Precondition
 
-            return this.AddObjectsToSearch(new List<TElement>(new[] { obj }));
+            return AddObjectsToSearch(new List<TElement>(new[] { obj }));
         }
 
         /// <summary>
@@ -233,38 +233,38 @@ namespace Lyra2.LyraShell.Search
         {
             #region    Precondition
 
-            lock (this._safe)
+            lock (_safe)
             {
-                if (!this._isIndexReady || this._indexUpdater.IsBusy || objs == null || objs.Count() == 0) return false;
-                this._isIndexReady = false;
+                if (!_isIndexReady || _indexUpdater.IsBusy || objs == null || objs.Count() == 0) return false;
+                _isIndexReady = false;
             }
 
             #endregion Precondition
 
-            this._indexUpdater.RunWorkerAsync(objs);
+            _indexUpdater.RunWorkerAsync(objs);
 
             return true;
         }
 
         private void DoIndexUpdate(object sender, DoWorkEventArgs e)
         {
-            lock (this._safe)
+            lock (_safe)
             {
                 var objs = (IList<TElement>)e.Argument;
-                this.Progress = 0;
+                Progress = 0;
                 try
                 {
-                    using (var writer = this.OpenIndexWriter())
+                    using (var writer = OpenIndexWriter())
                     {
                         var count = 0;
                         foreach (var obj in objs)
                         {
-                            if (!this._items.ContainsKey(obj.Key))
+                            if (!_items.ContainsKey(obj.Key))
                             {
-                                this._items.Add(obj.Key, obj);
-                                this.Index(writer, obj);
+                                _items.Add(obj.Key, obj);
+                                Index(writer, obj);
                             }
-                            this._indexUpdater.ReportProgress((int)(++count * 100.0f / objs.Count));
+                            _indexUpdater.ReportProgress((int)(++count * 100.0f / objs.Count));
                             // check if cancellation pending
                             if (e.Cancel) break;
                         }
@@ -280,7 +280,7 @@ namespace Lyra2.LyraShell.Search
 
         private void ProgressChangedHandler(object sender, ProgressChangedEventArgs e)
         {
-            this.Progress = e.ProgressPercentage;
+            Progress = e.ProgressPercentage;
         }
 
 
@@ -295,7 +295,7 @@ namespace Lyra2.LyraShell.Search
             #region    Precondition
 
             // already indexed
-            if (this._indexedItems.Contains(obj.Key)) return false;
+            if (_indexedItems.Contains(obj.Key)) return false;
 
             #endregion Precondition
 
@@ -306,7 +306,7 @@ namespace Lyra2.LyraShell.Search
                 foreach (var field in obj.SearchableText)
                 {
                     var fld = new Field(field.Key, QueryHelper.NormalizeText(field.Value), Field.Store.NO, Field.Index.ANALYZED);
-                    fld.Boost = this._searchFields[field.Key];
+                    fld.Boost = _searchFields[field.Key];
                     doc.Add(fld);
                 }
 
@@ -322,10 +322,10 @@ namespace Lyra2.LyraShell.Search
 
         private void UpdateComplete(object sender, RunWorkerCompletedEventArgs e)
         {
-            lock (this._safe)
+            lock (_safe)
             {
-                this.Progress = 100;
-                this._isIndexReady = true;
+                Progress = 100;
+                _isIndexReady = true;
             }
         }
 
@@ -333,9 +333,9 @@ namespace Lyra2.LyraShell.Search
 
         private void OnProgressChanged(IndexerProgressChangedEventArgs args)
         {
-            if (this.ProgressChanged != null)
+            if (ProgressChanged != null)
             {
-                this.ProgressChanged(this, args);
+                ProgressChanged(this, args);
             }
         }
 
@@ -354,11 +354,11 @@ namespace Lyra2.LyraShell.Search
         {
             var results = new List<RatedResult<TElement>>();
 
-            lock (this._safe)
+            lock (_safe)
             {
                 #region    Precondition
 
-                if (this._searchFields.Count == 0 || !this._isIndexReady)
+                if (_searchFields.Count == 0 || !_isIndexReady)
                 {
                     throw new Exception("Index not ready to be queried!");
                 }
@@ -371,22 +371,22 @@ namespace Lyra2.LyraShell.Search
 
                 try
                 {
-                    using (var indexSearcher = new IndexSearcher(this._indexDirectory, true))
+                    using (var indexSearcher = new IndexSearcher(_indexDirectory, true))
                     {
                         var fields = new List<string>();
                         if (defaultFieldOnly)
                         {
-                            fields.Add(this._defaultField);
+                            fields.Add(_defaultField);
                         }
                         else
                         {
-                            fields.AddRange(this._searchFields.Keys);
+                            fields.AddRange(_searchFields.Keys);
                         }
 
                         var queryParser =
-                            new MultiFieldQueryParser(Version.LUCENE_30, fields.ToArray(), this._stdAnalyzer);
-                        var hitCollector = TopScoreDocCollector.Create(this._items.Count, true);
-                        var preparedQuery = this.PrepareLuceneQuery(query);
+                            new MultiFieldQueryParser(Version.LUCENE_30, fields.ToArray(), _stdAnalyzer);
+                        var hitCollector = TopScoreDocCollector.Create(_items.Count, true);
+                        var preparedQuery = PrepareLuceneQuery(query);
                         var luceneQuery = queryParser.Parse(preparedQuery);
                         indexSearcher.Search(luceneQuery, hitCollector);
 
@@ -395,10 +395,10 @@ namespace Lyra2.LyraShell.Search
                             var doc = indexSearcher.Doc(scoreDoc.Doc);
                             var key = new Guid(doc.GetField(KeyFieldName).StringValue);
 
-                            if (!this._items.ContainsKey(key)) continue;
+                            if (!_items.ContainsKey(key)) continue;
 
                             double rating = scoreDoc.Score;
-                            var result = new RatedResult<TElement>(this._items[key], rating);
+                            var result = new RatedResult<TElement>(_items[key], rating);
                             results.Add(result);
                         }
                     }
@@ -428,7 +428,7 @@ namespace Lyra2.LyraShell.Search
 
                 if (keyWord == "OR" || keyWord == "AND")
                 {
-                    luceneQuery = this.RemoveLastOperator(luceneQuery) + " " + keyWord + " ";
+                    luceneQuery = RemoveLastOperator(luceneQuery) + " " + keyWord + " ";
                 }
                 else if (keyWord == "(" || keyWord == ")")
                 {
@@ -436,25 +436,25 @@ namespace Lyra2.LyraShell.Search
                 }
                 else
                 {
-                    luceneQuery += word + this.BoolOperator;
+                    luceneQuery += word + BoolOperator;
                 }
             }
 
-            var preparedQuery = this.RemoveLastOperator(luceneQuery.ToString());
+            var preparedQuery = RemoveLastOperator(luceneQuery.ToString());
 
             return preparedQuery.Trim();
         }
 
         private string BoolOperator
         {
-            get { return this.IsAndQuery ? " AND " : " OR "; }
+            get { return IsAndQuery ? " AND " : " OR "; }
         }
 
         private string RemoveLastOperator(string preparedQuery)
         {
-            if (preparedQuery.EndsWith(this.BoolOperator))
+            if (preparedQuery.EndsWith(BoolOperator))
             {
-                return preparedQuery.Substring(0, preparedQuery.Length - this.BoolOperator.Length);
+                return preparedQuery.Substring(0, preparedQuery.Length - BoolOperator.Length);
             }
 
             return preparedQuery;
@@ -473,7 +473,7 @@ namespace Lyra2.LyraShell.Search
         ///<filterpriority>1</filterpriority>
         IEnumerator<TElement> IEnumerable<TElement>.GetEnumerator()
         {
-            return this._items.Values.GetEnumerator();
+            return _items.Values.GetEnumerator();
         }
 
         #endregion
@@ -489,7 +489,7 @@ namespace Lyra2.LyraShell.Search
         ///<filterpriority>2</filterpriority>
         public IEnumerator GetEnumerator()
         {
-            return this._items.Values.GetEnumerator();
+            return _items.Values.GetEnumerator();
         }
 
         #endregion
@@ -507,7 +507,7 @@ namespace Lyra2.LyraShell.Search
 
             public int Progress
             {
-                get { return this.progress; }
+                get { return progress; }
             }
         }
 
@@ -517,9 +517,9 @@ namespace Lyra2.LyraShell.Search
 
         public void Dispose()
         {
-            if (this._indexDirectory != null)
+            if (_indexDirectory != null)
             {
-                this._indexDirectory.Dispose();
+                _indexDirectory.Dispose();
             }
         }
 

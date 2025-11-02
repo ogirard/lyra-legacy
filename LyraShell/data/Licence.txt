@@ -7,7 +7,7 @@ frei verwendet und weitergegeben werden.
 
 The MIT License (MIT)
 
-Copyright (c) Olivier Girard, Andreas Jost 2018
+Copyright (c) Olivier Girard, Andreas Jost 2025
 
 All rights reserved.
 

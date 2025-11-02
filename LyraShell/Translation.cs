@@ -10,18 +10,18 @@ namespace Lyra2.LyraShell
 
         public string ID
         {
-            get { return this.id; }
+            get { return id; }
         }
 
         private string title;
 
         public string Title
         {
-            get { return this.title; }
+            get { return title; }
             set
             {
-                this.title = value;
-                this.toupdate = true;
+                title = value;
+                toupdate = true;
             }
         }
 
@@ -29,11 +29,11 @@ namespace Lyra2.LyraShell
 
         public string Text
         {
-            get { return this.text; }
+            get { return text; }
             set
             {
-                this.text = value;
-                this.toupdate = true;
+                text = value;
+                toupdate = true;
             }
         }
 
@@ -41,11 +41,11 @@ namespace Lyra2.LyraShell
 
         public int Language
         {
-            get { return this.lang; }
+            get { return lang; }
             set
             {
-                this.lang = value;
-                this.toupdate = true;
+                lang = value;
+                toupdate = true;
             }
         }
 
@@ -53,11 +53,11 @@ namespace Lyra2.LyraShell
 
         public bool Unformatted
         {
-            get { return this.unformatted; }
+            get { return unformatted; }
             set
             {
-                this.unformatted = value;
-                this.toupdate = true;
+                unformatted = value;
+                toupdate = true;
             }
         }
 
@@ -67,25 +67,25 @@ namespace Lyra2.LyraShell
 
         public bool ToUpdate
         {
-            get { return this.toupdate; }
+            get { return toupdate; }
         }
 
         private bool deleted = false;
 
         public bool Deleted
         {
-            get { return this.deleted; }
+            get { return deleted; }
         }
 
         public void Delete()
         {
-            this.deleted = true;
+            deleted = true;
         }
 
         public Translation(string title, string text, int lang, bool unformatted, string id, bool isNew)
             : this(title, text, lang, unformatted, id)
         {
-            this.toupdate = isNew;
+            toupdate = isNew;
         }
 
         public Translation(string title, string text, int lang, bool unformatted, string id)
@@ -128,7 +128,7 @@ namespace Lyra2.LyraShell
 					break;
 			}
 			str += "\"" + this.title + "\"";*/
-            return this.title;
+            return title;
         }
     }
 }

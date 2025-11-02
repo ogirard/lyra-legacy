@@ -20,27 +20,27 @@ namespace Lyra2.LyraShell
 
 		public string URL
 		{
-			get { return this.url; }
+			get { return url; }
 		}
 
 		public string Name
 		{
-			get { return this.name; }
+			get { return name; }
 		}
 
 		public string Version
 		{
-			get { return this.version; }
+			get { return version; }
 		}
 
 		public string List
 		{
-			get { return this.listurl; }
+			get { return listurl; }
 		}
 
 		public override string ToString()
 		{
-			return this.name + "  [ver: " + this.version + "]";
+			return name + "  [ver: " + version + "]";
 		}
 	}
 }

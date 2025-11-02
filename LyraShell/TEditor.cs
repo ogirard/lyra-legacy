@@ -2,7 +2,6 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using Lyra2.UtilShared;
 
 namespace Lyra2.LyraShell
 {
@@ -57,27 +56,27 @@ namespace Lyra2.LyraShell
             //
             // Erforderlich für die Windows Form-Designerunterstützung
             //
-            this.InitializeComponent();
-            this.AcceptButton = this.button1;
+            InitializeComponent();
+            AcceptButton = button1;
             this.song = song;
             this.trans = trans;
             this.lb = lb;
             this.owner = owner;
-            this.textBox2.Text = this.song.Number.ToString();
-            this.textBox2.Enabled = false;
+            textBox2.Text = this.song.Number.ToString();
+            textBox2.Enabled = false;
             tEditor = this;
             TEditorOpen = true;
             if (this.trans != null)
             {
-                this.textBox1.Text = this.trans.Title;
-                this.richTextBox1.Text = this.trans.Text;
-                this.checkBox1.Checked = this.trans.Unformatted;
-                this.panel1.Enabled = !this.trans.Unformatted;
+                textBox1.Text = this.trans.Title;
+                richTextBox1.Text = this.trans.Text;
+                checkBox1.Checked = this.trans.Unformatted;
+                panel1.Enabled = !this.trans.Unformatted;
             }
             else
             {
-                this.textBox1.Text = "";
-                this.richTextBox1.Text = "";
+                textBox1.Text = "";
+                richTextBox1.Text = "";
             }
         }
 
@@ -88,9 +87,9 @@ namespace Lyra2.LyraShell
         {
             if (disposing)
             {
-                if (this.components != null)
+                if (components != null)
                 {
-                    this.components.Dispose();
+                    components.Dispose();
                 }
             }
             TEditorOpen = false;
@@ -433,44 +432,44 @@ namespace Lyra2.LyraShell
         // abbrechen
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         // ok
         private void button1_Click(object sender, EventArgs e)
         {
-            if (this.trans != null)
+            if (trans != null)
             {
-                this.trans.Title = this.textBox1.Text;
-                this.trans.Text = this.richTextBox1.Text;
-                this.trans.Language = this.comboBox2.SelectedIndex;
-                this.trans.Unformatted = this.checkBox1.Checked;
+                trans.Title = textBox1.Text;
+                trans.Text = richTextBox1.Text;
+                trans.Language = comboBox2.SelectedIndex;
+                trans.Unformatted = checkBox1.Checked;
             }
             else
             {
-                this.trans =
-                    new Translation(this.textBox1.Text, this.richTextBox1.Text, this.comboBox2.SelectedIndex,
-                                    this.checkBox1.Checked, PhysicalXml.HighestTrID, true);
-                this.song.AddTranslation(this.trans);
+                trans =
+                    new Translation(textBox1.Text, richTextBox1.Text, comboBox2.SelectedIndex,
+                                    checkBox1.Checked, PhysicalXml.HighestTrID, true);
+                song.AddTranslation(trans);
             }
-            this.song.ShowTranslations(this.lb);
-            this.song.RefreshTransMenu();
-            this.song.Update();
-            this.owner.ToUpdate(true);
-            this.Close();
+            song.ShowTranslations(lb);
+            song.RefreshTransMenu();
+            song.Update();
+            owner.ToUpdate(true);
+            Close();
         }
 
         private void TEditor_Load(object sender, EventArgs e)
         {
-            this.comboBox2.Items.Clear();
+            comboBox2.Items.Clear();
             for (var i = 0; i < Util.LangNR; i++)
             {
-                this.comboBox2.Items.Add(Util.getLanguageString(i, false));
+                comboBox2.Items.Add(Util.getLanguageString(i, false));
             }
-            this.comboBox2.SelectedIndex = 0;
-            if (this.trans != null)
+            comboBox2.SelectedIndex = 0;
+            if (trans != null)
             {
-                this.comboBox2.SelectedIndex = this.trans.Language;
+                comboBox2.SelectedIndex = trans.Language;
             }
         }
 
@@ -500,53 +499,53 @@ namespace Lyra2.LyraShell
         // Refrain
         private void button3_Click(object sender, EventArgs e)
         {
-            this.format(Util.REF, true);
+            format(Util.REF, true);
         }
 
         // bold
         private void button5_Click(object sender, EventArgs e)
         {
-            this.format(Util.BOLD, false);
+            format(Util.BOLD, false);
         }
 
         // italic
         private void button6_Click(object sender, EventArgs e)
         {
-            this.format(Util.ITALIC, false);
+            format(Util.ITALIC, false);
         }
 
         // special
         private void button7_Click(object sender, EventArgs e)
         {
-            this.format(Util.SPEC, false);
+            format(Util.SPEC, false);
         }
 
         // einrücken
         private void button8_Click(object sender, EventArgs e)
         {
-            this.format(Util.BLOCK + this.comboBox1.SelectedItem.ToString(), true);
+            format(Util.BLOCK + comboBox1.SelectedItem.ToString(), true);
         }
 
         // tab
         private void button9_Click(object sender, EventArgs e)
         {
-            var pos = this.richTextBox1.SelectionStart;
-            this.richTextBox1.Text = this.richTextBox1.Text.Insert(pos, '\t'.ToString());
-            this.richTextBox1.Focus();
-            this.richTextBox1.Select(pos + 1, 0);
+            var pos = richTextBox1.SelectionStart;
+            richTextBox1.Text = richTextBox1.Text.Insert(pos, '\t'.ToString());
+            richTextBox1.Focus();
+            richTextBox1.Select(pos + 1, 0);
         }
 
         // undo
         private void button4_Click(object sender, EventArgs e)
         {
-            if (this.undo != "")
+            if (undo != "")
             {
-                this.richTextBox1.Rtf = this.undo;
-                this.undo = "";
+                richTextBox1.Rtf = undo;
+                undo = "";
             }
-            else if (this.richTextBox1.CanUndo)
+            else if (richTextBox1.CanUndo)
             {
-                this.richTextBox1.Undo();
+                richTextBox1.Undo();
             }
         }
 
@@ -554,49 +553,49 @@ namespace Lyra2.LyraShell
 
         private void format(string tag, bool nl)
         {
-            this.button4.Enabled = true;
-            this.button4.BackColor = Color.LightSteelBlue;
-            this.undo = this.richTextBox1.Rtf;
-            var left = this.richTextBox1.SelectionStart;
-            var right = this.richTextBox1.SelectionLength + left + tag.Length + 2;
-            this.richTextBox1.Text = this.richTextBox1.Text.Insert(left, "<" + tag + ">");
-            this.richTextBox1.Text = this.richTextBox1.Text.Insert(right, "</" + tag + ">");
+            button4.Enabled = true;
+            button4.BackColor = Color.LightSteelBlue;
+            undo = richTextBox1.Rtf;
+            var left = richTextBox1.SelectionStart;
+            var right = richTextBox1.SelectionLength + left + tag.Length + 2;
+            richTextBox1.Text = richTextBox1.Text.Insert(left, "<" + tag + ">");
+            richTextBox1.Text = richTextBox1.Text.Insert(right, "</" + tag + ">");
             if (nl)
             {
-                if (((right + tag.Length + 3) < this.richTextBox1.Text.Length) &&
-                    (this.richTextBox1.Text[right + tag.Length + 3] != '\n'))
+                if (((right + tag.Length + 3) < richTextBox1.Text.Length) &&
+                    (richTextBox1.Text[right + tag.Length + 3] != '\n'))
                 {
-                    this.richTextBox1.Text = this.richTextBox1.Text.Insert(right + tag.Length + 3, "\n");
+                    richTextBox1.Text = richTextBox1.Text.Insert(right + tag.Length + 3, "\n");
                 }
-                if ((left > 0) && (this.richTextBox1.Text[left - 1] != '\n'))
+                if ((left > 0) && (richTextBox1.Text[left - 1] != '\n'))
                 {
-                    this.richTextBox1.Text = this.richTextBox1.Text.Insert(left, "\n");
+                    richTextBox1.Text = richTextBox1.Text.Insert(left, "\n");
                     right++;
                 }
             }
-            this.richTextBox1.Focus();
-            this.richTextBox1.Select(right, 0);
+            richTextBox1.Focus();
+            richTextBox1.Select(right, 0);
         }
 
         // unformatted
         private void checkBox1_Click(object sender, EventArgs e)
         {
-            if (this.checkBox1.Checked)
+            if (checkBox1.Checked)
             {
                 if (MessageBox.Show(this, "Achtung!" + Util.NL + "Alle Formatierungen gehen verloren.",
                                     "lyra", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
-                    this.richTextBox1.Text = this.cleanFormat(this.richTextBox1.Text);
-                    this.panel1.Enabled = false;
+                    richTextBox1.Text = cleanFormat(richTextBox1.Text);
+                    panel1.Enabled = false;
                 }
                 else
                 {
-                    this.checkBox1.Checked = false;
+                    checkBox1.Checked = false;
                 }
             }
             else
             {
-                this.panel1.Enabled = true;
+                panel1.Enabled = true;
             }
         }
     }

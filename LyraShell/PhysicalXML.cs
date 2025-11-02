@@ -42,14 +42,14 @@ namespace Lyra2.LyraShell
 
         public PhysicalXml(string url)
         {
-            this.gitStore = new GitStore(Path.GetDirectoryName(url));
-            this.xmlurl = url;
-            this.doc = new XmlDocument();
+            gitStore = new GitStore(Path.GetDirectoryName(url));
+            xmlurl = url;
+            doc = new XmlDocument();
         }
 
         public SortedList GetSongs()
         {
-            return this.GetSongs(new SortedList(), this.xmlurl, false);
+            return GetSongs(new SortedList(), xmlurl, false);
         }
 
         private IList<Style> styles;
@@ -57,22 +57,22 @@ namespace Lyra2.LyraShell
 
         public IList<Style> Styles
         {
-            get { return this.styles; }
+            get { return styles; }
         }
 
         public void SaveStyle(Style style)
         {
             if (style.IsNew)
             {
-                this.styles.Add(style);
+                styles.Add(style);
             }
-            this.SaveStyleDoc();
+            SaveStyleDoc();
         }
 
         public void DeleteStyle(Style style)
         {
-            this.styles.Remove(style);
-            this.SaveStyleDoc();
+            styles.Remove(style);
+            SaveStyleDoc();
         }
 
         public void SetStyleAsDefault(Style style)
@@ -82,30 +82,30 @@ namespace Lyra2.LyraShell
                 return;
             }
 
-            foreach (var s in this.Styles)
+            foreach (var s in Styles)
             {
                 if (s.IsDefault)
                 {
                     s.IsDefault = false;
-                    this.SaveStyle(s);
+                    SaveStyle(s);
                     break;
                 }
             }
 
             style.IsDefault = true;
-            this.SaveStyle(style);
+            SaveStyle(style);
         }
 
         private void SaveStyleDoc()
         {
             #region    Precondition
 
-            if (string.IsNullOrEmpty(this.currentStylePath) || !File.Exists(this.currentStylePath)) return;
+            if (string.IsNullOrEmpty(currentStylePath) || !File.Exists(currentStylePath)) return;
 
             #endregion Precondition
 
             var stylesDoc = new XmlDocument();
-            stylesDoc.Load(this.currentStylePath);
+            stylesDoc.Load(currentStylePath);
             var stylesNode = stylesDoc.SelectSingleNode("//Styles");
             if (stylesNode != null)
             {
@@ -116,7 +116,7 @@ namespace Lyra2.LyraShell
                 stylesNode = stylesDoc.DocumentElement.AppendChild(stylesDoc.CreateElement("Styles"));
             }
 
-            foreach (var style in this.Styles)
+            foreach (var style in Styles)
             {
                 stylesNode.AppendChild(style.Serialize(stylesDoc));
             }
@@ -127,7 +127,7 @@ namespace Lyra2.LyraShell
                 stylesDoc.WriteTo(xmlTextWriter);
                 xmlTextWriter.Flush();
                 var xml = stringWriter.GetStringBuilder().ToString();
-                this.gitStore.CommitFile(this.currentStylePath, xml);
+                gitStore.CommitFile(currentStylePath, xml);
             }
         }
 
@@ -140,9 +140,9 @@ namespace Lyra2.LyraShell
             var start = Util.getCurrentTicks();
             try
             {
-                this.doc.Load(url);
-                this.InitStyles(url);
-                var nodes = this.doc.GetElementsByTagName("Song");
+                doc.Load(url);
+                InitStyles(url);
+                var nodes = doc.GetElementsByTagName("Song");
                 for (var i = 0; i < nodes.Count; i++)
                 {
                     var songNode = nodes[i];
@@ -174,18 +174,18 @@ namespace Lyra2.LyraShell
                     if (songNode.Attributes["style"] != null && !string.IsNullOrEmpty(songNode.Attributes["style"].InnerText))
                     {
                         var styleId = Guid.Parse(songNode.Attributes["style"].InnerText);
-                        newSong.Style = this.Styles.FirstOrDefault(s => s.ID == styleId);
+                        newSong.Style = Styles.FirstOrDefault(s => s.ID == styleId);
                         newSong.UseDefaultStyle = false;
                     }
                     else
                     {
                         // use default style for this song
-                        newSong.Style = this.Styles.FirstOrDefault(s => s.IsDefault);
+                        newSong.Style = Styles.FirstOrDefault(s => s.IsDefault);
                         newSong.UseDefaultStyle = true;
                     }
 
 
-                    this.GetTranslations(newSong, translations, imp);
+                    GetTranslations(newSong, translations, imp);
 
                     try
                     {
@@ -235,29 +235,29 @@ namespace Lyra2.LyraShell
 
         private void InitStyles(string url)
         {
-            this.styles = new List<Style>();
+            styles = new List<Style>();
             var stylesDoc = new XmlDocument();
 
-            var stylesRef = this.doc["lyra"].Attributes["stylesref"] != null ? this.doc["lyra"].Attributes["stylesref"].InnerText : "lyrastyles.xml";
+            var stylesRef = doc["lyra"].Attributes["stylesref"] != null ? doc["lyra"].Attributes["stylesref"].InnerText : "lyrastyles.xml";
             if (string.IsNullOrEmpty(stylesRef))
             {
                 stylesRef = "lyrastyles.xml";
             }
 
-            this.currentStylePath = Path.GetDirectoryName(url) + "\\" + stylesRef;
-            if (!File.Exists(this.currentStylePath))
+            currentStylePath = Path.GetDirectoryName(url) + "\\" + stylesRef;
+            if (!File.Exists(currentStylePath))
             {
-                File.WriteAllText(this.currentStylePath,
+                File.WriteAllText(currentStylePath,
                                   "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + Environment.NewLine + "<lyra>" + Environment.NewLine + "  <Styles />" +
                                   Environment.NewLine + "</lyra>" + Environment.NewLine);
             }
-            stylesDoc.Load(this.currentStylePath);
+            stylesDoc.Load(currentStylePath);
             foreach (XmlNode styleNode in stylesDoc.SelectNodes("//Styles/Style"))
             {
-                this.styles.Add(new Style(styleNode, this));
+                styles.Add(new Style(styleNode, this));
             }
 
-            if (this.styles.Count == 0)
+            if (styles.Count == 0)
             {
                 var defaultStyle = Style.CreateNewStyle(this, "Standard");
                 defaultStyle.BackgroundColor = Util.BGCOLOR;
@@ -267,10 +267,10 @@ namespace Lyra2.LyraShell
                 defaultStyle.IsDefault = true;
                 defaultStyle.Save();
             }
-            else if (!this.styles.Any(s => s.IsDefault))
+            else if (!styles.Any(s => s.IsDefault))
             {
-                this.styles.First().IsDefault = true;
-                this.styles.First().Save();
+                styles.First().IsDefault = true;
+                styles.First().Save();
             }
 
         }
@@ -284,7 +284,7 @@ namespace Lyra2.LyraShell
             XmlNode curt;
             for (var i = 0; i < trs.Length; i++)
             {
-                if ((curt = this.doc.GetElementById(trs[i])) != null)
+                if ((curt = doc.GetElementById(trs[i])) != null)
                 {
                     var transchildren = curt.ChildNodes;
 
@@ -327,12 +327,12 @@ namespace Lyra2.LyraShell
                 XmlNode curNode, newNode, nr, title, text;
                 XmlAttribute transattr, idattr, descattr;
 
-                var songs = this.doc.GetElementsByTagName("Songs")[0];
+                var songs = doc.GetElementsByTagName("Songs")[0];
 
                 // remove all, if songs have been replaced!
                 if (Util.DELALL)
                 {
-                    var translations = this.doc.GetElementsByTagName("Translations")[0];
+                    var translations = doc.GetElementsByTagName("Translations")[0];
                     songs.RemoveAll();
                     translations.RemoveAll();
                 }
@@ -349,7 +349,7 @@ namespace Lyra2.LyraShell
                     {
                         j--;
                         internList.Remove(curSong.ID);
-                        if ((curNode = this.doc.GetElementById(curSong.ID)) != null)
+                        if ((curNode = doc.GetElementById(curSong.ID)) != null)
                         {
                             songs.RemoveChild(curNode);
                             curSong.UpdateTranslations(this);
@@ -369,7 +369,7 @@ namespace Lyra2.LyraShell
                     if (curSong.ToUpdate)
                     {
                         // id exists
-                        if ((curNode = this.doc.GetElementById(curSong.ID)) != null)
+                        if ((curNode = doc.GetElementById(curSong.ID)) != null)
                         {
                             // update node
                             var children = curNode.ChildNodes;
@@ -388,7 +388,7 @@ namespace Lyra2.LyraShell
 
                             if (curNode.Attributes["style"] == null)
                             {
-                                var styleAttr = this.doc.CreateAttribute("style");
+                                var styleAttr = doc.CreateAttribute("style");
                                 curNode.Attributes.Append(styleAttr);
                             }
                             curNode.Attributes["style"].InnerText = curSong.UseDefaultStyle ? "" : curSong.Style.ID.ToString().Trim('{', '}');
@@ -397,25 +397,25 @@ namespace Lyra2.LyraShell
                         else
                         {
                             // create node
-                            newNode = this.doc.CreateNode(XmlNodeType.Element, "Song", this.doc.NamespaceURI);
+                            newNode = doc.CreateNode(XmlNodeType.Element, "Song", doc.NamespaceURI);
 
-                            nr = this.doc.CreateNode(XmlNodeType.Element, "Number", this.doc.NamespaceURI);
-                            title = this.doc.CreateNode(XmlNodeType.Element, "Title", this.doc.NamespaceURI);
-                            text = this.doc.CreateNode(XmlNodeType.Element, "Text", this.doc.NamespaceURI);
+                            nr = doc.CreateNode(XmlNodeType.Element, "Number", doc.NamespaceURI);
+                            title = doc.CreateNode(XmlNodeType.Element, "Title", doc.NamespaceURI);
+                            text = doc.CreateNode(XmlNodeType.Element, "Text", doc.NamespaceURI);
 
                             nr.InnerText = curSong.Number.ToString();
                             title.InnerText = curSong.Title;
                             text.InnerText = curSong.Text;
 
-                            transattr = this.doc.CreateAttribute("trans", this.doc.NamespaceURI);
+                            transattr = doc.CreateAttribute("trans", doc.NamespaceURI);
                             transattr.Value = "";
 
-                            idattr = this.doc.CreateAttribute("id", this.doc.NamespaceURI);
+                            idattr = doc.CreateAttribute("id", doc.NamespaceURI);
                             idattr.Value = "";
-                            descattr = this.doc.CreateAttribute("zus", this.doc.NamespaceURI);
+                            descattr = doc.CreateAttribute("zus", doc.NamespaceURI);
                             descattr.Value = "";
 
-                            newNode.Attributes.Append(this.doc.CreateAttribute("id"));
+                            newNode.Attributes.Append(doc.CreateAttribute("id"));
                             newNode.Attributes["id"].InnerText = curSong.Style.ID.ToString().Trim('{', '}');
 
                             newNode.AppendChild(nr);
@@ -440,10 +440,10 @@ namespace Lyra2.LyraShell
                 using (var stringWriter = new StringWriter())
                 using (var xmlTextWriter = XmlWriter.Create(stringWriter))
                 {
-                    this.doc.WriteTo(xmlTextWriter);
+                    doc.WriteTo(xmlTextWriter);
                     xmlTextWriter.Flush();
                     var xml = stringWriter.GetStringBuilder().ToString();
-                    this.gitStore.CommitFile(dataFile, xml);
+                    gitStore.CommitFile(dataFile, xml);
                 }
 
 
@@ -461,7 +461,7 @@ namespace Lyra2.LyraShell
         // throws NotValidException, XmlException
         {
             var list = "";
-            var translations = this.doc.GetElementsByTagName("Translations")[0];
+            var translations = doc.GetElementsByTagName("Translations")[0];
 
             Translation curTrans;
             XmlNode transNode;
@@ -478,7 +478,7 @@ namespace Lyra2.LyraShell
                 {
                     trans.Remove(curTrans.ID);
                     j--;
-                    if ((transNode = this.doc.GetElementById(curTrans.ID)) != null)
+                    if ((transNode = doc.GetElementById(curTrans.ID)) != null)
                     {
                         translations.RemoveChild(transNode);
                     }
@@ -494,7 +494,7 @@ namespace Lyra2.LyraShell
                 list += curTrans.ID + ",";
                 if (curTrans.ToUpdate)
                 {
-                    if ((transNode = this.doc.GetElementById(curTrans.ID)) != null)
+                    if ((transNode = doc.GetElementById(curTrans.ID)) != null)
                     {
                         var transChildren = transNode.ChildNodes;
                         if ((transChildren[0].Name == "Title") &&
@@ -514,13 +514,13 @@ namespace Lyra2.LyraShell
                     // doesn't exist, create new Node
                     else
                     {
-                        newTrans = this.doc.CreateNode(XmlNodeType.Element, "Translation", this.doc.NamespaceURI);
+                        newTrans = doc.CreateNode(XmlNodeType.Element, "Translation", doc.NamespaceURI);
 
-                        title = this.doc.CreateNode(XmlNodeType.Element, "Title", this.doc.NamespaceURI);
-                        text = this.doc.CreateNode(XmlNodeType.Element, "Text", this.doc.NamespaceURI);
-                        lang = this.doc.CreateAttribute("lang", this.doc.NamespaceURI);
-                        id = this.doc.CreateAttribute("id", this.doc.NamespaceURI);
-                        uf = this.doc.CreateAttribute("unform", this.doc.NamespaceURI);
+                        title = doc.CreateNode(XmlNodeType.Element, "Title", doc.NamespaceURI);
+                        text = doc.CreateNode(XmlNodeType.Element, "Text", doc.NamespaceURI);
+                        lang = doc.CreateAttribute("lang", doc.NamespaceURI);
+                        id = doc.CreateAttribute("id", doc.NamespaceURI);
+                        uf = doc.CreateAttribute("unform", doc.NamespaceURI);
 
                         lang.Value = Util.getLanguageString(curTrans.Language, true);
                         id.Value = curTrans.ID;

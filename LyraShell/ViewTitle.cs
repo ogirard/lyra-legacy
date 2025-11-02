@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
 
 namespace Lyra2.LyraShell
@@ -9,20 +8,20 @@ namespace Lyra2.LyraShell
   {
     public Color TitleBackgroundColor
     {
-      get { return this.headerBackground.Appearance.BackColor; }
-      set { this.headerBackground.Appearance.BackColor = value; }
+      get { return headerBackground.Appearance.BackColor; }
+      set { headerBackground.Appearance.BackColor = value; }
     }
 
     private Color _titleForegroundColor;
 
     public Color TitleForegroundColor
     {
-      get { return this._titleForegroundColor; }
+      get { return _titleForegroundColor; }
       set
       {
-          this._titleForegroundColor = value;
-          this.number.Appearance.ForeColor = value;
-          this.title.Appearance.ForeColor = value;
+          _titleForegroundColor = value;
+          number.Appearance.ForeColor = value;
+          title.Appearance.ForeColor = value;
       }
     }
 
@@ -30,25 +29,25 @@ namespace Lyra2.LyraShell
 
     public Font TitleFont
     {
-      get { return this._titleFont; }
+      get { return _titleFont; }
       set
       {
-          this._titleFont = value;
+          _titleFont = value;
         if (value == null)
         {
-            this.number.Appearance.ResetFontData();
-            this.title.Appearance.ResetFontData();
+            number.Appearance.ResetFontData();
+            title.Appearance.ResetFontData();
         }
         else
         {
-            this.number.Appearance.FontData.Name = value.Name;
-            this.title.Appearance.FontData.Name = value.Name;
+            number.Appearance.FontData.Name = value.Name;
+            title.Appearance.FontData.Name = value.Name;
 
-            this.number.Appearance.FontData.SizeInPoints = value.SizeInPoints;
-            this.title.Appearance.FontData.SizeInPoints = value.SizeInPoints;
+            number.Appearance.FontData.SizeInPoints = value.SizeInPoints;
+            title.Appearance.FontData.SizeInPoints = value.SizeInPoints;
         }
 
-          this.UpdateSize();
+          UpdateSize();
       }
     }
 
@@ -56,25 +55,25 @@ namespace Lyra2.LyraShell
 
     public TitleMode Mode
     {
-      get { return this._mode; }
+      get { return _mode; }
       set
       {
-          this._mode = value;
-        switch (this.Mode)
+          _mode = value;
+        switch (Mode)
         {
           case TitleMode.NumberAndTitle:
           default:
-              this.number.Visible = true;
-              this.title.Visible = true;
-            this.Visible = true;
+              number.Visible = true;
+              title.Visible = true;
+            Visible = true;
             break;
           case TitleMode.TitleOnly:
-              this.number.Visible = false;
-              this.title.Visible = true;
-            this.Visible = true;
+              number.Visible = false;
+              title.Visible = true;
+            Visible = true;
             break;
           case TitleMode.None:
-            this.Visible = false;
+            Visible = false;
             break;
         }
       }
@@ -82,47 +81,47 @@ namespace Lyra2.LyraShell
 
     public string Title
     {
-      get { return this.title.Text; }
+      get { return title.Text; }
       set
       {
-          this.title.Text = value;
-          this.UpdateSize();
+          title.Text = value;
+          UpdateSize();
       }
     }
 
     public string Number
     {
-      get { return this.number.Text; }
+      get { return number.Text; }
       set
       {
-          this.number.Text = value;
-          this.UpdateSize();
+          number.Text = value;
+          UpdateSize();
       }
     }
 
     private void UpdateSize()
     {
-      using (var graphics = this.CreateGraphics())
+      using (var graphics = CreateGraphics())
       {
         var height = 8;
-        if (!string.IsNullOrEmpty(this.Number) && this._titleFont != null)
+        if (!string.IsNullOrEmpty(Number) && _titleFont != null)
         {
-          height = Math.Max((int)graphics.MeasureString(this.Number, this._titleFont).Height, height);  
+          height = Math.Max((int)graphics.MeasureString(Number, _titleFont).Height, height);  
         }
 
-        if (!string.IsNullOrEmpty(this.Title) && this._titleFont != null)
+        if (!string.IsNullOrEmpty(Title) && _titleFont != null)
         {
-          height = Math.Max((int)graphics.MeasureString(this.Title, this._titleFont).Height, height);
+          height = Math.Max((int)graphics.MeasureString(Title, _titleFont).Height, height);
         }
 
-        this.Height = height + 8;
+        Height = height + 8;
       }
     }
 
     public ViewTitle()
     {
-        this.InitializeComponent();
-        this.headerBackground.Padding = new Padding(5);
+        InitializeComponent();
+        headerBackground.Padding = new Padding(5);
     }
   }
 }

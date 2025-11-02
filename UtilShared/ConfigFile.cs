@@ -17,7 +17,7 @@ namespace Lyra2.UtilShared
 			xdoc.LoadXml(Crypto.DecryptFile(path));
 			foreach(XmlNode p in xdoc.GetElementsByTagName("property"))
 			{
-				this.properties.Add(p.Attributes["name"].InnerText,p.InnerText);
+				properties.Add(p.Attributes["name"].InnerText,p.InnerText);
 			}
 		}
 
@@ -30,17 +30,17 @@ namespace Lyra2.UtilShared
 		{
 			get
 			{
-				if (this.properties.ContainsKey(name))
+				if (properties.ContainsKey(name))
 				{
-					return (string)this.properties[name];
+					return (string)properties[name];
 				}
 				return "n/a";
 			}
 			set
 			{
-				if (this.properties.ContainsKey(name))
+				if (properties.ContainsKey(name))
 				{
-					this.properties[name] = value;
+					properties[name] = value;
 				}
 			}
 		}
@@ -52,9 +52,9 @@ namespace Lyra2.UtilShared
 		/// <returns><code>true</code> if successful, <code>false</code> otherwise</returns>
 		public bool removeProperty(string name)
 		{
-			if (this.properties.ContainsKey(name))
+			if (properties.ContainsKey(name))
 			{
-				this.properties.Remove(name);
+				properties.Remove(name);
 				return true;
 			}
 			return false;
@@ -68,9 +68,9 @@ namespace Lyra2.UtilShared
 		/// <returns><code>true</code> if successful, <code>false</code> otherwise</returns>
 		public bool addProperty(string name, string val)
 		{
-			if (!this.properties.ContainsKey(name))
+			if (!properties.ContainsKey(name))
 			{
-				this.properties.Add(name,val);
+				properties.Add(name,val);
 				return true;
 			}
 			return false;
@@ -87,16 +87,16 @@ namespace Lyra2.UtilShared
 			XmlAttribute desc = config.Attributes["desc"];
 			config.RemoveAll();
 			config.Attributes.Append(desc);
-			foreach(string str in this.properties.Keys)
+			foreach(string str in properties.Keys)
 			{
 				XmlNode n = xdoc.CreateElement("property",xdoc.NamespaceURI);
-				n.InnerText = (string)this.properties[str];
+				n.InnerText = (string)properties[str];
 				XmlAttribute a = xdoc.CreateAttribute("name",xdoc.NamespaceURI);
 				a.InnerText = str;
 				n.Attributes.Append(a);
 				config.AppendChild(n);
 			}
-			Crypto.EncryptFile(this.xdoc.OuterXml,filename);
+			Crypto.EncryptFile(xdoc.OuterXml,filename);
 		}
 	}
 }

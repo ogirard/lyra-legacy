@@ -51,15 +51,15 @@ namespace Lyra2.LyraShell
         private Info(GUI owner)
         {
             this.owner = owner;
-            this.InitializeComponent();
-            this.label21.Text = Util.VER;
-            this.label22.Text = Util.BUILD;
-            this.label23.Text = GUI.DEBUG ? "ja" : "nein";
-            this.label24.Text = ".NET Framework " + Util.DOTNET;
-            this.label25.Text = Util.NRSONGS.ToString();
-            this.label26.Text = Util.NRUSE != 0 ? Convert.ToString(Util.TOTALLOAD / Util.NRUSE / TimeSpan.TicksPerMillisecond) + " ms" : "0 ms";
-            this.label27.Text = Util.NRSEARCH != 0 ? Convert.ToString(Util.TOTALSEARCH / Util.NRSEARCH / TimeSpan.TicksPerMillisecond) + " ms" : "0 ms";
-            this.label28.Text = Util.getUseTime();
+            InitializeComponent();
+            label21.Text = Util.VER;
+            label22.Text = Util.BUILD;
+            label23.Text = GUI.DEBUG ? "ja" : "nein";
+            label24.Text = ".NET Framework " + Util.DOTNET;
+            label25.Text = Util.NRSONGS.ToString();
+            label26.Text = Util.NRUSE != 0 ? Convert.ToString(Util.TOTALLOAD / Util.NRUSE / TimeSpan.TicksPerMillisecond) + " ms" : "0 ms";
+            label27.Text = Util.NRSEARCH != 0 ? Convert.ToString(Util.TOTALSEARCH / Util.NRSEARCH / TimeSpan.TicksPerMillisecond) + " ms" : "0 ms";
+            label28.Text = Util.getUseTime();
 
         }
 
@@ -68,13 +68,13 @@ namespace Lyra2.LyraShell
         /// </summary>
         protected override void Dispose(bool disposing)
         {
-            this.owner.Enabled = true;
+            owner.Enabled = true;
             info = null;
             if (disposing)
             {
-                if (this.components != null)
+                if (components != null)
                 {
-                    this.components.Dispose();
+                    components.Dispose();
                 }
             }
             base.Dispose(disposing);

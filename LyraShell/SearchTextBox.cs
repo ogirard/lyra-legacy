@@ -12,41 +12,41 @@ namespace Lyra2.LyraShell
 		
 		public string DefaultText
 		{
-			get { return this.defaultText; }
+			get { return defaultText; }
 			set
 			{
-				this.defaultText = value;
-				if(this.Text == "")
+				defaultText = value;
+				if(Text == "")
 				{
-					this.Text = value;
-					this.ForeColor = Color.DimGray;
+					Text = value;
+					ForeColor = Color.DimGray;
 				}
 			}
 		}
 		
 		public SearchTextBox()
 		{
-			this.Enter += new EventHandler(this.SearchTextBox_Enter);
-			this.Leave += new EventHandler(this.SearchTextBox_Leave);
-			this.Text = this.defaultText;
-			this.ForeColor = Color.DimGray;
+			Enter += new EventHandler(SearchTextBox_Enter);
+			Leave += new EventHandler(SearchTextBox_Leave);
+			Text = defaultText;
+			ForeColor = Color.DimGray;
 		}
 
 		private void SearchTextBox_Enter(object sender, EventArgs e)
 		{
-			if(this.Text == this.defaultText)
+			if(Text == defaultText)
 			{
-				this.ForeColor = Color.Black;
-				this.Text = "";
+				ForeColor = Color.Black;
+				Text = "";
 			}
 		}
 
 		private void SearchTextBox_Leave(object sender, EventArgs e)
 		{
-			if(this.Text == "")
+			if(Text == "")
 			{
-				this.ForeColor = Color.DimGray;
-				this.Text = this.defaultText;
+				ForeColor = Color.DimGray;
+				Text = defaultText;
 			}
 
 		}

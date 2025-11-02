@@ -7,19 +7,19 @@ namespace Lyra2.LyraShell
   {
     public ScrollVisualPanel()
     {
-        this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+        SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
 
-        this.BorderColor = Color.FromArgb(237, 237, 237);
-        this.BackgroundColor = Color.White;
-        this.ScrollBarColor = Color.FromArgb(222, 222, 222);
+        BorderColor = Color.FromArgb(237, 237, 237);
+        BackgroundColor = Color.White;
+        ScrollBarColor = Color.FromArgb(222, 222, 222);
     }
 
     private ScrollDataEventArgs _scrollData = null;
 
     public void UpdateScrollData(ScrollDataEventArgs scrollData)
     {
-        this._scrollData = scrollData;
-        this.Refresh();
+        _scrollData = scrollData;
+        Refresh();
     }
 
     private Color _borderColor;
@@ -27,11 +27,11 @@ namespace Lyra2.LyraShell
 
     public Color BorderColor
     {
-      get { return this._borderColor; }
+      get { return _borderColor; }
       set
       {
-          this._borderColor = value;
-          this._borderPen = new Pen(this._borderColor);
+          _borderColor = value;
+          _borderPen = new Pen(_borderColor);
       }
     }
 
@@ -40,11 +40,11 @@ namespace Lyra2.LyraShell
 
     public Color ScrollBarColor
     {
-      get { return this._scrollBarColor; }
+      get { return _scrollBarColor; }
       set
       {
-          this._scrollBarColor = value;
-          this._scrollBarBrush = new SolidBrush(this._scrollBarColor);
+          _scrollBarColor = value;
+          _scrollBarBrush = new SolidBrush(_scrollBarColor);
       }
     }
 
@@ -53,11 +53,11 @@ namespace Lyra2.LyraShell
 
     public Color BackgroundColor
     {
-      get { return this._backgroundColor; }
+      get { return _backgroundColor; }
       set
       {
-          this._backgroundColor = value;
-          this._backgroundBrush = new SolidBrush(this._backgroundColor);
+          _backgroundColor = value;
+          _backgroundBrush = new SolidBrush(_backgroundColor);
       }
     }
 
@@ -68,26 +68,26 @@ namespace Lyra2.LyraShell
       var g = paintEventArgs.Graphics;
       var rect = paintEventArgs.ClipRectangle;
 
-      g.FillRectangle(this._backgroundBrush, rect);
+      g.FillRectangle(_backgroundBrush, rect);
 
-      if (this._scrollData != null)
+      if (_scrollData != null)
       {
-        if (this._scrollData.DesiredHeight == this._scrollData.DisplayHeight || this._scrollData.DesiredHeight == 0)
+        if (_scrollData.DesiredHeight == _scrollData.DisplayHeight || _scrollData.DesiredHeight == 0)
         {
-          g.FillRectangle(this._scrollBarBrush, rect);
+          g.FillRectangle(_scrollBarBrush, rect);
         }
         else
         {
-          var fraction = (float)rect.Height / this._scrollData.DesiredHeight;
-          var position = (int)(fraction * this._scrollData.ScrollPosition);
-          var height = (int)(fraction * this._scrollData.DisplayHeight);
+          var fraction = (float)rect.Height / _scrollData.DesiredHeight;
+          var position = (int)(fraction * _scrollData.ScrollPosition);
+          var height = (int)(fraction * _scrollData.DisplayHeight);
           var barRect = new Rectangle(rect.X, position, rect.Width, height);
-          g.FillRectangle(this._scrollBarBrush, barRect);
-          g.DrawRectangle(this._borderPen, barRect);
+          g.FillRectangle(_scrollBarBrush, barRect);
+          g.DrawRectangle(_borderPen, barRect);
         }
       }
 
-      g.DrawRectangle(this._borderPen, new Rectangle(rect.Location, new Size(rect.Width - 1, rect.Height - 1)));
+      g.DrawRectangle(_borderPen, new Rectangle(rect.Location, new Size(rect.Width - 1, rect.Height - 1)));
     }
   }
 }

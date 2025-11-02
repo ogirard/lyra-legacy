@@ -30,21 +30,21 @@ namespace Lyra2.LyraShell
 
 		private PictView(string directory)
 		{
-		    this.InitializeComponent();
-			this.Width = View.Display.Bounds.Width;
-			this.Height = View.Display.Bounds.Height;
-			this.Top = View.Display.Bounds.Top;
-			this.Left = View.Display.Bounds.Left;
-			this.pictureBox1.Height = this.Height;
-			this.pictureBox1.Width = this.Width;
-			this.pictureBox1.Top = 0;
-			this.pictureBox1.Left = 0;
+		    InitializeComponent();
+			Width = View.Display.Bounds.Width;
+			Height = View.Display.Bounds.Height;
+			Top = View.Display.Bounds.Top;
+			Left = View.Display.Bounds.Left;
+			pictureBox1.Height = Height;
+			pictureBox1.Width = Width;
+			pictureBox1.Top = 0;
+			pictureBox1.Left = 0;
 
-			this.KeyDown += new KeyEventHandler(this.PictView_KeyDown);
-			this.pictureBox1.MouseDown += new MouseEventHandler(this.pictureBox1_MouseDown);
-			this.label1.Visible = false;
-			this.files = Directory.GetFiles(directory);
-			this.nextImage();
+			KeyDown += new KeyEventHandler(PictView_KeyDown);
+			pictureBox1.MouseDown += new MouseEventHandler(pictureBox1_MouseDown);
+			label1.Visible = false;
+			files = Directory.GetFiles(directory);
+			nextImage();
 		}
 
 		private int current = -1;
@@ -54,7 +54,7 @@ namespace Lyra2.LyraShell
 		/// </summary>
 		private void nextImage()
 		{
-			this.setImage(1);
+			setImage(1);
 		}
 
 		/// <summary>
@@ -62,31 +62,31 @@ namespace Lyra2.LyraShell
 		/// </summary>
 		private void prevImage()
 		{
-			this.setImage(-1);
+			setImage(-1);
 		}
 
 		// set the image
 		private void setImage(int diff)
 		{
-			if (!this.label1.Visible)
+			if (!label1.Visible)
 			{
-				diff += this.files.Length;
-				this.current = (this.current + diff)%this.files.Length;
+				diff += files.Length;
+				current = (current + diff)%files.Length;
 				var count = 0;
-				while (!(this.files[this.current].ToLower().EndsWith(".jpg")
-					|| this.files[this.current].ToLower().EndsWith(".gif")
-					|| this.files[this.current].ToLower().EndsWith(".png")
-					|| this.files[this.current].ToLower().EndsWith(".bmp")))
+				while (!(files[current].ToLower().EndsWith(".jpg")
+					|| files[current].ToLower().EndsWith(".gif")
+					|| files[current].ToLower().EndsWith(".png")
+					|| files[current].ToLower().EndsWith(".bmp")))
 				{
-					this.current = (this.current + diff)%this.files.Length;
-					if (++count > this.files.Length)
+					current = (current + diff)%files.Length;
+					if (++count > files.Length)
 					{
-						this.label1.Visible = true;
+						label1.Visible = true;
 						return;
 					}
 				}
-				var img = Image.FromFile(this.files[this.current]);
-				this.pictureBox1.Image = Util.stretchProportional(img, new Size(this.Width, this.Height));
+				var img = Image.FromFile(files[current]);
+				pictureBox1.Image = Util.stretchProportional(img, new Size(Width, Height));
 			}
 		}
 
@@ -98,9 +98,9 @@ namespace Lyra2.LyraShell
 			pview = null;
 			if (disposing)
 			{
-				if (this.components != null)
+				if (components != null)
 				{
-				    this.components.Dispose();
+				    components.Dispose();
 				}
 			}
 			base.Dispose(disposing);
@@ -161,16 +161,16 @@ namespace Lyra2.LyraShell
 		{
 			if (e.KeyCode == Keys.Escape)
 			{
-				this.Close();
-				this.Dispose();
+				Close();
+				Dispose();
 			}
 			else if (e.KeyCode == Keys.PageDown)
 			{
-				this.prevImage();
+				prevImage();
 			}
 			else if (e.KeyCode == Keys.PageUp)
 			{
-				this.nextImage();
+				nextImage();
 			}
 		}
 
@@ -179,11 +179,11 @@ namespace Lyra2.LyraShell
 		{
 			if (e.Button == MouseButtons.Left)
 			{
-				this.nextImage();
+				nextImage();
 			}
 			else if (e.Button == MouseButtons.Right)
 			{
-				this.prevImage();
+				prevImage();
 			}
 		}
 	}

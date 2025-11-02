@@ -7,14 +7,14 @@ namespace Lyra2.LyraShell.Search
 
         public E Result
         {
-            get { return this.result; }
+            get { return result; }
         }
 
         private readonly double rating;
 
         public double Rating
         {
-            get { return this.rating; }
+            get { return rating; }
         }
         
         /// <summary>
@@ -32,7 +32,7 @@ namespace Lyra2.LyraShell.Search
         /// <returns></returns>
         public override string ToString()
         {
-            return this.Result == null ? "<n/a>" : ("<" + this.Result.Key + ", " + this.Rating + ">");
+            return Result == null ? "<n/a>" : ("<" + Result.Key + ", " + Rating + ">");
         }
     }
 }

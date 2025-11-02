@@ -53,9 +53,9 @@ namespace Lyra2.LyraShell
 			//
 			// Required for Windows Form Designer support
 			//
-		    this.InitializeComponent();
+		    InitializeComponent();
 			this.owner = owner;
-			this.AcceptButton = this.button1;
+			AcceptButton = button1;
 		}
 
 		/// <summary>
@@ -65,9 +65,9 @@ namespace Lyra2.LyraShell
 		{
 			if (disposing)
 			{
-				if (this.components != null)
+				if (components != null)
 				{
-				    this.components.Dispose();
+				    components.Dispose();
 				}
 			}
 			base.Dispose(disposing);
@@ -168,14 +168,14 @@ namespace Lyra2.LyraShell
 		// cancel
 		private void button2_Click(object sender, System.EventArgs e)
 		{
-			this.Close();
+			Close();
 		}
 
 		// ok
 		private void button1_Click(object sender, System.EventArgs e)
 		{
-			result = this.radioButton1.Checked ? FXResult.Delete : this.radioButton2.Checked ? FXResult.NewFile : FXResult.PictChoice;
-			this.Close();
+			result = radioButton1.Checked ? FXResult.Delete : radioButton2.Checked ? FXResult.NewFile : FXResult.PictChoice;
+			Close();
 		}
 	}
 }

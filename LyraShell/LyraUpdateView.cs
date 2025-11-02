@@ -44,15 +44,15 @@ namespace Lyra2.LyraShell
 
 		private LyraUpdateView(string url, string desc, UpdateFileURL[] versions, bool backup)
 		{
-		    this.InitializeComponent();
+		    InitializeComponent();
 
-			this.label4.Text = url;
-			this.label5.Text = desc;
+			label4.Text = url;
+			label5.Text = desc;
 			foreach (var v in versions)
 			{
-				this.comboBox1.Items.Add(v);
+				comboBox1.Items.Add(v);
 			}
-			this.comboBox1.SelectedIndex = 0;
+			comboBox1.SelectedIndex = 0;
 			this.backup = backup;
 		}
 
@@ -73,9 +73,9 @@ namespace Lyra2.LyraShell
 		{
 			if (disposing)
 			{
-				if (this.components != null)
+				if (components != null)
 				{
-				    this.components.Dispose();
+				    components.Dispose();
 				}
 			}
 			base.Dispose(disposing);
@@ -248,7 +248,7 @@ namespace Lyra2.LyraShell
 			}
 			catch (Exception exp)
 			{
-				this.DialogResult = DialogResult.Abort;
+				DialogResult = DialogResult.Abort;
 				Util.MBoxError("Download fehlgeschlagen!", exp);
 			}
 		}
@@ -256,16 +256,16 @@ namespace Lyra2.LyraShell
 		// do update!
 		private void button1_Click(object sender, EventArgs e)
 		{
-			this.downloadCurtext(((UpdateFileURL) this.comboBox1.SelectedItem).URL);
-			if (this.backup)
+			downloadCurtext(((UpdateFileURL) comboBox1.SelectedItem).URL);
+			if (backup)
 			{
-				this.backupCurtext();
+				backupCurtext();
 			}
 
 			var doc = new XmlDocument();
 			doc.Load(LISTFILE);
 			var listroot = doc.GetElementsByTagName("lists")[0];
-			foreach (XMLWrapperObject xmlobj in this.checkedListBox1.CheckedItems)
+			foreach (XMLWrapperObject xmlobj in checkedListBox1.CheckedItems)
 			{
 				try
 				{
@@ -295,7 +295,7 @@ namespace Lyra2.LyraShell
 		// change list-content
 		private void selectVersion(UpdateFileURL ver)
 		{
-			this.checkedListBox1.Items.Clear();
+			checkedListBox1.Items.Clear();
 			if (ver.List != "")
 			{
 				var doc = new XmlDocument();
@@ -311,7 +311,7 @@ namespace Lyra2.LyraShell
 					{
 						var name = curList.ChildNodes[0].InnerText + "  [" +
 							curList.ChildNodes[2].InnerText + "]";
-						this.checkedListBox1.Items.Add(new XMLWrapperObject(curList, name));
+						checkedListBox1.Items.Add(new XMLWrapperObject(curList, name));
 					}
 					stream.Close();
 					response.Close();
@@ -326,7 +326,7 @@ namespace Lyra2.LyraShell
 		// selected Index changed
 		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			this.selectVersion((UpdateFileURL) this.comboBox1.SelectedItem);
+			selectVersion((UpdateFileURL) comboBox1.SelectedItem);
 		}
 
 		private class XMLWrapperObject
@@ -342,12 +342,12 @@ namespace Lyra2.LyraShell
 
 			public XmlNode Node
 			{
-				get { return this.node; }
+				get { return node; }
 			}
 
 			public override string ToString()
 			{
-				return this.name;
+				return name;
 			}
 
 		}

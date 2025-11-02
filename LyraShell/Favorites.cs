@@ -54,9 +54,9 @@ namespace Lyra2.LyraShell
             //
             // Required for Windows Form Designer support
             //
-            this.InitializeComponent();
-            this.StartPosition = FormStartPosition.Manual;
-            this.Closing += this.Favorites_Closing;
+            InitializeComponent();
+            StartPosition = FormStartPosition.Manual;
+            Closing += Favorites_Closing;
             this.owner = owner;
         }
 
@@ -67,9 +67,9 @@ namespace Lyra2.LyraShell
         {
             if (disposing)
             {
-                if (this.components != null)
+                if (components != null)
                 {
-                    this.components.Dispose();
+                    components.Dispose();
                 }
             }
             base.Dispose(disposing);
@@ -205,30 +205,30 @@ namespace Lyra2.LyraShell
 
         private void Favorites_Closing(object sender, CancelEventArgs e)
         {
-            StorePersonalizationSettings(this.owner.Personalizer, false);
+            StorePersonalizationSettings(owner.Personalizer, false);
             _this = null;
         }
 
         
         private void listBox3_DoubleClick(object sender, EventArgs e)
         {
-            if (this.favoritesListBox.SelectedItem is Song)
+            if (favoritesListBox.SelectedItem is Song)
             {
-                View.ShowSong((Song)this.favoritesListBox.SelectedItem, this.owner, this.favoritesListBox, "Favoriten");
+                View.ShowSong((Song)favoritesListBox.SelectedItem, owner, favoritesListBox, "Favoriten");
             }
         }
 
         private void listBox3_SelectedValueChanged(object sender, EventArgs e)
         {
-            var s = this.favoritesListBox.SelectedItem as ISong;
+            var s = favoritesListBox.SelectedItem as ISong;
             if (s != null)
             {
-                this.favoritesSongPreview.ShowSong(s);
-                this.favoritesListBox.Focus();
+                favoritesSongPreview.ShowSong(s);
+                favoritesListBox.Focus();
             }
             else
             {
-                this.favoritesSongPreview.Reset();
+                favoritesSongPreview.Reset();
             }
         }
 
@@ -263,9 +263,9 @@ namespace Lyra2.LyraShell
 
         private void favoritesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.favoritesListBox.SelectedIndex < 0)
+            if (favoritesListBox.SelectedIndex < 0)
             {
-                this.favoritesSongPreview.Reset();
+                favoritesSongPreview.Reset();
             }
         }
 

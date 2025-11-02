@@ -10,41 +10,41 @@ namespace Lyra2.LyraShell
 	{
 		public void ClearSongs()
 		{
-			this.Items.Clear();
+			Items.Clear();
 		}
 		
 		public void AddSong(Song song)
 		{
-			this.BeginUpdate();
+			BeginUpdate();
 			var lvi = new ListViewItem();
 			lvi.Tag = song;
 			lvi.Text = song.Number.ToString();
 			lvi.SubItems.Add(song.Title);
-			this.Items.Add(lvi);
-			this.EndUpdate();
+			Items.Add(lvi);
+			EndUpdate();
 		}
 		
 		public void AddSongs(ICollection songs)
 		{
-			this.BeginUpdate();
+			BeginUpdate();
 			foreach(Song song in songs)
 			{
 				var lvi = new ListViewItem();
 				lvi.Tag = song;
 				lvi.Text = song.Number.ToString();
 				lvi.SubItems.Add(song.Title);
-				this.Items.Add(lvi);
+				Items.Add(lvi);
 			}
-			this.EndUpdate();
+			EndUpdate();
 		}
 		
 		public Song SelectedSong
 		{
 			get
 			{
-				if(this.SelectedItems.Count == 1)
+				if(SelectedItems.Count == 1)
 				{
-					return (Song)this.SelectedItems[0].Tag;
+					return (Song)SelectedItems[0].Tag;
 				}
 				else
 				{
@@ -56,7 +56,7 @@ namespace Lyra2.LyraShell
 		public ICollection GetSongs()
 		{
 			var songs = new ArrayList();
-			foreach(ListViewItem lvi in this.Items)
+			foreach(ListViewItem lvi in Items)
 			{
 				songs.Add(lvi.Tag);
 			}
@@ -65,20 +65,20 @@ namespace Lyra2.LyraShell
 		
 		public SongList()
 		{
-			this.FullRowSelect = true;
-			this.GridLines = true;
-			this.HeaderStyle = ColumnHeaderStyle.Clickable;
-			this.LabelWrap = true;
-			this.MultiSelect = false;
-			this.AllowColumnReorder = false;
+			FullRowSelect = true;
+			GridLines = true;
+			HeaderStyle = ColumnHeaderStyle.Clickable;
+			LabelWrap = true;
+			MultiSelect = false;
+			AllowColumnReorder = false;
 			var nrCol = new ColumnHeader();
 			nrCol.Text = "Nummer";
 			nrCol.Width = 36;
-			this.Columns.Add(nrCol);
+			Columns.Add(nrCol);
 			var titleCol = new ColumnHeader();
 			titleCol.Text = "Titel";
-			titleCol.Width = this.Width - 48;
-			this.Columns.Add(titleCol);
+			titleCol.Width = Width - 48;
+			Columns.Add(titleCol);
 		}
 	}
 }

@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml;
-using Lyra2.UtilShared;
 
 namespace Lyra2.LyraShell
 {
@@ -64,22 +63,22 @@ namespace Lyra2.LyraShell
             //
             // Erforderlich für die Windows Form-Designerunterstützung
             //
-            this.InitializeComponent();
+            InitializeComponent();
 
             this.owner = owner;
             this.box = box;
             this.idtext = idtext;
-            this.updateFields(Util.BASEURL);
-            this.AcceptButton = this.button1;
+            updateFields(Util.BASEURL);
+            AcceptButton = button1;
         }
 
         private void updateFields(string url)
         {
-            this.textBox4.Text = this.project;
-            this.textBox1.Text = url;
+            textBox4.Text = project;
+            textBox1.Text = url;
             var sep = url.EndsWith("\\") ? "" : "\\";
-            this.textBox2.Text = url + sep + this.project + "\\lyra.html";
-            this.textBox3.Text = url + sep + this.project + "\\data";
+            textBox2.Text = url + sep + project + "\\lyra.html";
+            textBox3.Text = url + sep + project + "\\data";
         }
 
         /// <summary>
@@ -89,9 +88,9 @@ namespace Lyra2.LyraShell
         {
             if (disposing)
             {
-                if (this.components != null)
+                if (components != null)
                 {
-                    this.components.Dispose();
+                    components.Dispose();
                 }
             }
             myHTML = null;
@@ -364,13 +363,13 @@ namespace Lyra2.LyraShell
         // Abbrechen
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         //OK
         private void button1_Click(object sender, EventArgs e)
         {
-            if (Directory.Exists(this.textBox3.Text) || File.Exists(this.textBox2.Text))
+            if (Directory.Exists(textBox3.Text) || File.Exists(textBox2.Text))
             {
                 var dr =
                     MessageBox.Show(this, "Achtung! Sie überschreiben möglicherweise eine bereits erstellte HTML-Datei!",
@@ -384,11 +383,11 @@ namespace Lyra2.LyraShell
                     try
                     {
                         //remove all files
-                        if (Directory.Exists(this.textBox1.Text + "\\" + this.textBox4.Text))
+                        if (Directory.Exists(textBox1.Text + "\\" + textBox4.Text))
                         {
-                            Directory.Delete(this.textBox1.Text + "\\" + this.textBox4.Text, true);
+                            Directory.Delete(textBox1.Text + "\\" + textBox4.Text, true);
                         }
-                        this.Enabled = false;
+                        Enabled = false;
                     }
                     catch (Exception ex)
                     {
@@ -398,29 +397,29 @@ namespace Lyra2.LyraShell
                     }
                 }
             }
-            if (this.radioButton1.Checked)
+            if (radioButton1.Checked)
             {
-                if (this.SaveHTML(this.box))
+                if (SaveHTML(box))
                 {
-                    this.owner.Status = "HTML erfolgreich erstellt! :-)";
+                    owner.Status = "HTML erfolgreich erstellt! :-)";
                 }
                 else
                 {
-                    this.owner.Status = "HTML-Generierung fehlgeschlagen! :-(";
+                    owner.Status = "HTML-Generierung fehlgeschlagen! :-(";
                 }
             }
             else
             {
-                if (this.SaveXML())
+                if (SaveXML())
                 {
-                    this.owner.Status = "HTML erfolgreich erstellt! :-)";
+                    owner.Status = "HTML erfolgreich erstellt! :-)";
                 }
                 else
                 {
-                    this.owner.Status = "HTML-Generierung fehlgeschlagen! :-(";
+                    owner.Status = "HTML-Generierung fehlgeschlagen! :-(";
                 }
             }
-            this.Close();
+            Close();
         }
 
         // durchsuchen...
@@ -432,14 +431,14 @@ namespace Lyra2.LyraShell
 
             if (dr == DialogResult.OK)
             {
-                this.updateFields(fb.DirectoryPath);
+                updateFields(fb.DirectoryPath);
             }
         }
 
         private void textBox4_LostFocus(object sender, EventArgs args)
         {
-            this.project = this.textBox4.Text;
-            this.updateFields(this.textBox1.Text);
+            project = textBox4.Text;
+            updateFields(textBox1.Text);
         }
 
 
@@ -486,16 +485,16 @@ namespace Lyra2.LyraShell
             var table = "<ul><table cellspacing=\"1\" cellpadding=\"2\" bgcolor=\"#aaaaaa\" width=\"800\">\n\t\t" +
                            "<tr>\n\t\t\t<td width=\"50\" bgcolor=\"dddddd\">\n\t\t\t\t<b>" + song.Number +
                            "</b>\n\t\t\t</td>\n\t\t\t<td width=\"710\" bgcolor=\"#dddddd\">" +
-                           this.cleanText(song.Title, false) +
+                           cleanText(song.Title, false) +
                            "</td>\n\t\t\t<td width=\"20\" bgcolor=\"#dddddd\"><a class=\"top\" href=\"" +
-                           this.getBack(this.box, song) +
+                           getBack(box, song) +
                            "\" target=\"content\">back</a></td>\n\t\t\t" +
                            "<td width=\"20\" bgcolor=\"#dddddd\"><a class=\"top\" href=\"" +
-                           this.getNext(this.box, song) +
+                           getNext(box, song) +
                            "\" target=\"content\">next</a></td>\n\t\t</tr>\n\t\t<tr>" +
                            "\n\t\t\t<td width=\"800\" style=\"padding:10px;\" colspan=\"4\" bgcolor=\"#f4f4f4\">" +
-                           this.cleanText(song.Text, this.checkBox1.Checked) + "</td>\n\t\t</tr>\n\t" +
-                           this.createTransTable(song.GetTransEnum()) + "</table></ul><br />\n\n\t";
+                           cleanText(song.Text, checkBox1.Checked) + "</td>\n\t\t</tr>\n\t" +
+                           createTransTable(song.GetTransEnum()) + "</table></ul><br />\n\n\t";
 
             return table;
         }
@@ -509,7 +508,7 @@ namespace Lyra2.LyraShell
                 var trans = (ITranslation) translist.Value;
                 res += "<tr>\n\t\t\t<td></td><td colspan=\"3\" bgcolor=\"dddddd\">" + trans + "</td></tr>\n\t\t";
                 res += "<tr>\n\t\t\t<td colspan=\"4\" style=\"padding:10px;\" bgcolor=\"#f4f4f4\">" +
-                       this.cleanText(trans.Text, this.checkBox1.Checked) + "</td></tr>\n\t\t";
+                       cleanText(trans.Text, checkBox1.Checked) + "</td></tr>\n\t\t";
             }
             return res;
         }
@@ -665,11 +664,11 @@ namespace Lyra2.LyraShell
         {
             try
             {
-                this.XMLFile(this.box);
-                this.XSLFile();
-                this.HTMLFile();
+                XMLFile(box);
+                XSLFile();
+                HTMLFile();
                 // logo-image
-                File.Copy(Util.BASEURL + "\\doc\\logo_kl.jpg", this.textBox3.Text + "\\logo_kl.jpg", true);
+                File.Copy(Util.BASEURL + "\\doc\\logo_kl.jpg", textBox3.Text + "\\logo_kl.jpg", true);
 
                 return true;
             }
@@ -682,14 +681,14 @@ namespace Lyra2.LyraShell
 
         private void XSLFile()
         {
-            var writer = File.CreateText(this.textBox3.Text + "\\lyraxsl.xsl");
-            writer.Write(this.XSL_1 + this.cleanXML(this.idtext) + this.XSL_2);
+            var writer = File.CreateText(textBox3.Text + "\\lyraxsl.xsl");
+            writer.Write(XSL_1 + cleanXML(idtext) + XSL_2);
             writer.Close();
         }
 
         private void HTMLFile()
         {
-            var writer = File.CreateText(this.textBox2.Text);
+            var writer = File.CreateText(textBox2.Text);
             var html = "<html>\n\t" +
                           "<body>\n\t<script type=\"text/javascript\">// Load XML\n\t\t" +
                           "var xml = new ActiveXObject(\"Microsoft.XMLDOM\")\n\t\t" +
@@ -705,16 +704,16 @@ namespace Lyra2.LyraShell
         private void XMLFile(ListBox box)
         {
             // Create Directories
-            Directory.CreateDirectory(this.textBox1.Text);
-            Directory.CreateDirectory(this.textBox3.Text);
+            Directory.CreateDirectory(textBox1.Text);
+            Directory.CreateDirectory(textBox3.Text);
 
             // Create XML-File
-            var writer = File.CreateText(this.textBox3.Text + "\\lyradata.xml");
-            writer.Write(this.DTD);
+            var writer = File.CreateText(textBox3.Text + "\\lyradata.xml");
+            writer.Write(DTD);
             writer.Close();
 
             var doc = new XmlDocument();
-            doc.Load(this.textBox3.Text + "\\lyradata.xml");
+            doc.Load(textBox3.Text + "\\lyradata.xml");
             XmlNode mainNode, curNode, nr, title, text, trans;
             XmlAttribute idattr;
             // create main node
@@ -736,7 +735,7 @@ namespace Lyra2.LyraShell
                 idattr.Value = song.ID;
                 nr.InnerText = song.Number.ToString();
                 title.InnerText = song.Title;
-                text.InnerText = this.cleanXML(song.Text);
+                text.InnerText = cleanXML(song.Text);
 
                 curNode.Attributes.Append(idattr);
                 curNode.AppendChild(nr);
@@ -755,7 +754,7 @@ namespace Lyra2.LyraShell
                     transtext = doc.CreateNode(XmlNodeType.Element, "Text", doc.NamespaceURI);
 
                     transtitle.InnerText = curtrans.ToString();
-                    transtext.InnerText = this.cleanXML(curtrans.Text);
+                    transtext.InnerText = cleanXML(curtrans.Text);
 
                     transmain.AppendChild(transtitle);
                     transmain.AppendChild(transtext);
@@ -768,7 +767,7 @@ namespace Lyra2.LyraShell
                 mainNode.AppendChild(curNode);
             }
             doc.AppendChild(mainNode);
-            doc.Save(this.textBox3.Text + "\\lyradata.xml");
+            doc.Save(textBox3.Text + "\\lyradata.xml");
         }
 
 
@@ -792,42 +791,42 @@ namespace Lyra2.LyraShell
             try
             {
                 // Create Directories
-                Directory.CreateDirectory(this.textBox1.Text);
-                Directory.CreateDirectory(this.textBox3.Text);
+                Directory.CreateDirectory(textBox1.Text);
+                Directory.CreateDirectory(textBox3.Text);
 
                 // Create Frame -> lyra.html
-                var writer = File.CreateText(this.textBox2.Text);
-                writer.Write(this.HTMLHEADER + this.CLOSEHEADER + this.frame);
+                var writer = File.CreateText(textBox2.Text);
+                writer.Write(HTMLHEADER + CLOSEHEADER + frame);
                 writer.Close();
 
                 // logo-image
-                File.Copy(Util.BASEURL + "\\doc\\logo.jpg", this.textBox3.Text + "\\logo.jpg", true);
+                File.Copy(Util.BASEURL + "\\doc\\logo.jpg", textBox3.Text + "\\logo.jpg", true);
                 // Create Links
-                var links = File.CreateText(this.textBox3.Text + "\\inhalt.html");
-                links.Write(this.HTMLHEADER);
+                var links = File.CreateText(textBox3.Text + "\\inhalt.html");
+                links.Write(HTMLHEADER);
                 links.Write("\tspan.smallgr\n\t\t\t{\n\t\t\t\tfont-size:8pt;\n\t\t\t\tcolor:#666666;\n\t\t\t}\n\n\t\t");
                 links.Write("\ttd.over\n\t\t\t{\n\t\t\t\tcursor:pointer;\n\t\t\t\tbackground-color:#c3dff5;\n\t\t\t\t" +
                             "border-style:solid;\n\t\t\t\tborder-color:#888888;\n\t\t\t\tcolor:#000066\n\t\t\t}\n\n\t\t\t" +
                             "td.out\n\t\t\t{\n\t\t\t\tborder-width:1px;\n\t\t\t\tborder-style:solid;\n\t\t\t\t" +
                             "border-color:#a9cde8;\n\t\t\t}\n\t\t");
 
-                links.Write(this.CLOSEHEADER);
+                links.Write(CLOSEHEADER);
                 links.Write("<body class=\"menue\" topmargin=\"0\" rightmargin=\"0\">\n\n\t");
                 links.Write(
                     "<a href=\"front.html\" target=\"content\"><img src=\"logo.jpg\" border=\"0\" alt=\"lyra HTML Liedtexte\"/></a>" +
                     "<br />\n\t<br />\n\t" + "<h1>Inhaltsverzeichnis</h1>\n\n\t");
-                links.Write("<span class=\"smallgr\"><b>" + this.idtext + "</b></span><br />\n\t");
+                links.Write("<span class=\"smallgr\"><b>" + idtext + "</b></span><br />\n\t");
                 links.Write("<span class=\"smallgr\">generated by lyra " + Util.GetDate() +
                             "</span><br />\n\t<br />\n\t<br />\n\t");
                 links.Write("<table>\n\t\t");
 
                 // Create Inhalt
-                var front = File.CreateText(this.textBox3.Text + "\\front.html");
-                front.Write(this.HTMLHEADER + this.CLOSEHEADER);
+                var front = File.CreateText(textBox3.Text + "\\front.html");
+                front.Write(HTMLHEADER + CLOSEHEADER);
                 front.Write("<body>\n\n\t<h2>lyra Liedtexte (HTML)</h2>\n\t<br />\n\t<br />\n\t");
                 var fronttxt = "HTML Dateien, generiert von lyra " + Util.VER + Util.HTMLNL;
                 fronttxt += "Datum: " + Util.GetDate() + Util.HTMLNL + Util.HTMLNL + Util.HTMLNL;
-                fronttxt += "Generiert aus:" + Util.HTMLNL + "<b>" + this.idtext + "</b>" + Util.HTMLNL + Util.HTMLNL +
+                fronttxt += "Generiert aus:" + Util.HTMLNL + "<b>" + idtext + "</b>" + Util.HTMLNL + Util.HTMLNL +
                             "Beinhaltet ";
                 switch (this.box.Items.Count)
                 {
@@ -854,9 +853,9 @@ namespace Lyra2.LyraShell
                     var song = (ISong) en.Current;
                     if (song != null)
                     {
-                        var songhtml = File.CreateText(this.textBox3.Text + "\\" + song.ID + ".html");
-                        songhtml.Write(this.HTMLHEADER);
-                        songhtml.Write(this.songstyle);
+                        var songhtml = File.CreateText(textBox3.Text + "\\" + song.ID + ".html");
+                        songhtml.Write(HTMLHEADER);
+                        songhtml.Write(songstyle);
 
                         var refcolor = Util.hexValue(Util.REFCOLOR.R) +
                                           Util.hexValue(Util.REFCOLOR.G) +
@@ -867,17 +866,17 @@ namespace Lyra2.LyraShell
                         refstyle += "\n\t\t\t}\n\n\t\t\t";
 
                         songhtml.Write(refstyle);
-                        songhtml.Write(this.CLOSEHEADER);
+                        songhtml.Write(CLOSEHEADER);
                         songhtml.Write("<body>\n\n\t" + Util.HTMLNL + Util.HTMLNL + Util.HTMLNL +
-                                       this.createSongTable(song));
+                                       createSongTable(song));
                         songhtml.Write("</body>\n</html>");
                         songhtml.Close();
                         links.Write("<tr><td class=\"out\" onMouseOver=\"this.className='over'\" " +
                                     "onMouseOut=\"this.className='out'\" onClick=\"parent.frames['content'].location.href='" +
                                     song.ID +
                                     ".html'\">");
-                        links.Write(this.cleanText(song.Number.ToString(), false) + "&nbsp;&nbsp;&nbsp;" +
-                                    this.cleanText(song.Title, false) + "</td></tr>\n\t\t");
+                        links.Write(cleanText(song.Number.ToString(), false) + "&nbsp;&nbsp;&nbsp;" +
+                                    cleanText(song.Title, false) + "</td></tr>\n\t\t");
                     }
                 }
 

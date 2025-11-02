@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Net;
 using System.Windows.Forms;
 using System.Xml;
@@ -33,9 +32,9 @@ namespace Lyra2.LyraShell
 
 		private LyraUpdate()
 		{
-		    this.InitializeComponent();
-			this.textBox1.Text = Util.UPDATESERVER;
-			this.label5.Focus();
+		    InitializeComponent();
+			textBox1.Text = Util.UPDATESERVER;
+			label5.Focus();
 		}
 
 		public static DialogResult ShowUpdate(GUI owner)
@@ -55,9 +54,9 @@ namespace Lyra2.LyraShell
 			lyraUpdate = null;
 			if (disposing)
 			{
-				if (this.components != null)
+				if (components != null)
 				{
-				    this.components.Dispose();
+				    components.Dispose();
 				}
 			}
 			base.Dispose(disposing);
@@ -218,14 +217,14 @@ namespace Lyra2.LyraShell
 		// cancel
 		private void button2_Click(object sender, EventArgs e)
 		{
-			this.Dispose();
+			Dispose();
 		}
 
 		// execute update!
 		private void button1_Click(object sender, EventArgs e)
 		{
-			this.doUpdate();
-			this.Dispose();
+			doUpdate();
+			Dispose();
 		}
 
 		// get download-url
@@ -234,7 +233,7 @@ namespace Lyra2.LyraShell
 			var doc = new XmlDocument();
 			try
 			{
-				var request = WebRequest.Create(this.textBox1.Text + "/updatedesc.xml");
+				var request = WebRequest.Create(textBox1.Text + "/updatedesc.xml");
 				var response = (HttpWebResponse) request.GetResponse();
 				var stream = response.GetResponseStream();
 				doc.Load(stream);
@@ -258,8 +257,8 @@ namespace Lyra2.LyraShell
 					server.ChildNodes[1].InnerText + "]";
 				var serverurl = server.ChildNodes[2].InnerText;
 
-				this.DialogResult = LyraUpdateView.ShowUpdateView((GUI) this.Owner,
-				                                                  serverurl, desc, ver, this.checkBox1.Checked);
+				DialogResult = LyraUpdateView.ShowUpdateView((GUI) Owner,
+				                                                  serverurl, desc, ver, checkBox1.Checked);
 
 				stream.Close();
 				response.Close();

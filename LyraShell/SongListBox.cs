@@ -18,24 +18,24 @@ namespace Lyra2.LyraShell
 
     public SongListBox()
     {
-      this.DrawMode = DrawMode.OwnerDrawFixed;
-      this.ItemHeight = 15;
-      this.DrawItem += this.SongListBox_DrawItem;
-      this.Sorted = false;
-      this.bgBrush = new SolidBrush(this.BackColor);
-      this.foreColBrush = new SolidBrush(this.ForeColor);
+      DrawMode = DrawMode.OwnerDrawFixed;
+      ItemHeight = 15;
+      DrawItem += SongListBox_DrawItem;
+      Sorted = false;
+      bgBrush = new SolidBrush(BackColor);
+      foreColBrush = new SolidBrush(ForeColor);
     }
 
     protected override void OnBackColorChanged(EventArgs e)
     {
       base.OnBackColorChanged(e);
-      this.bgBrush = new SolidBrush(this.BackColor);
+      bgBrush = new SolidBrush(BackColor);
     }
 
     protected override void OnForeColorChanged(EventArgs e)
     {
       base.OnForeColorChanged(e);
-      this.foreColBrush = new SolidBrush(this.ForeColor);
+      foreColBrush = new SolidBrush(ForeColor);
     }
 
     private readonly Brush highlight = new SolidBrush(Color.FromArgb(251, 225, 98));
@@ -55,42 +55,42 @@ namespace Lyra2.LyraShell
 
     private void SongListBox_DrawItem(object sender, DrawItemEventArgs e)
     {
-      if (e.Index < this.Items.Count && e.Index >= 0)
+      if (e.Index < Items.Count && e.Index >= 0)
       {
         var selected = (e.State & DrawItemState.Selected) == DrawItemState.Selected;
 
         // background
-        if (e.Index < this.nrOfNumberMatches)
+        if (e.Index < nrOfNumberMatches)
         {
-          e.Graphics.FillRectangle(this.highlightLight, e.Bounds);
+          e.Graphics.FillRectangle(highlightLight, e.Bounds);
         }
         else
         {
-          e.Graphics.FillRectangle(this.bgBrush, e.Bounds);
+          e.Graphics.FillRectangle(bgBrush, e.Bounds);
         }
         if (selected)
         {
-          e.Graphics.FillRectangle(this.selectedBackColorOverlay, e.Bounds);
+          e.Graphics.FillRectangle(selectedBackColorOverlay, e.Bounds);
         }
 
-        var item = this.Items[e.Index];
+        var item = Items[e.Index];
         if (item is Song)
         {
           var song = (Song)item;
 
-          this.DrawString(e.Graphics, Util.toFour(song.Number), e.Font, Brushes.DimGray,
-                              new RectangleF(e.Bounds.X, e.Bounds.Y, 50, e.Bounds.Height), this.highlightLight, this.highlightBorderLight);
+          DrawString(e.Graphics, Util.toFour(song.Number), e.Font, Brushes.DimGray,
+                              new RectangleF(e.Bounds.X, e.Bounds.Y, 50, e.Bounds.Height), highlightLight, highlightBorderLight);
 
           // it's a number match...
           var titleFrame = new RectangleF(e.Bounds.X + 50, e.Bounds.Y, e.Bounds.Width - 50,
                                                 e.Bounds.Height);
-          this.DrawString(e.Graphics, song.Title, this.titleFont, this.normalTextColor, titleFrame, this.highlight, this.highlightBorder);
+          DrawString(e.Graphics, song.Title, titleFont, normalTextColor, titleFrame, highlight, highlightBorder);
 
-          if (this.nrOfNumberMatches <= e.Index)
+          if (nrOfNumberMatches <= e.Index)
           {
-            if (this.method == SortMethod.RatingDescending || this.method == SortMethod.RatingAscending)
+            if (method == SortMethod.RatingDescending || method == SortMethod.RatingAscending)
             {
-              var rating = this.Ratings[song];
+              var rating = Ratings[song];
               var space = RatingWidth * rating;
 
               Brush b = new LinearGradientBrush(new Point(e.Bounds.Left, e.Bounds.Top),
@@ -101,53 +101,53 @@ namespace Lyra2.LyraShell
         }
         else
         {
-          e.Graphics.DrawString(item.ToString(), e.Font, this.foreColBrush, new RectangleF(e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
+          e.Graphics.DrawString(item.ToString(), e.Font, foreColBrush, new RectangleF(e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
         }
-        if (this.nrOfNumberMatches > 0 && e.Index == this.nrOfNumberMatches - 1 && this.Items.Count > this.nrOfNumberMatches)
+        if (nrOfNumberMatches > 0 && e.Index == nrOfNumberMatches - 1 && Items.Count > nrOfNumberMatches)
         {
-          e.Graphics.DrawLine(this.separatorLine, e.Bounds.X, e.Bounds.Bottom - 1, e.Bounds.Right, e.Bounds.Bottom - 1);
+          e.Graphics.DrawLine(separatorLine, e.Bounds.X, e.Bounds.Bottom - 1, e.Bounds.Right, e.Bounds.Bottom - 1);
         }
         e.DrawFocusRectangle();
       }
       // scrolled?
-      if (this.oldTopIndex != this.TopIndex)
+      if (oldTopIndex != TopIndex)
       {
-        var scrollArgs = new ScrollEventArgs(this.oldTopIndex > this.TopIndex ?
-            ScrollEventType.SmallDecrement : ScrollEventType.SmallIncrement, this.TopIndex);
-        this.OnScroll(scrollArgs);
+        var scrollArgs = new ScrollEventArgs(oldTopIndex > TopIndex ?
+            ScrollEventType.SmallDecrement : ScrollEventType.SmallIncrement, TopIndex);
+        OnScroll(scrollArgs);
       }
-      this.oldTopIndex = this.TopIndex;
+      oldTopIndex = TopIndex;
     }
 
     private IList<string> searchTags;
 
     public void SetSearchTags(IList<string> tags)
     {
-      this.searchTags = new List<string>();
+      searchTags = new List<string>();
       foreach (var tag in tags)
       {
-        this.searchTags.Add(tag.Replace("*", "").Replace("?", "").ToLowerInvariant());
+        searchTags.Add(tag.Replace("*", "").Replace("?", "").ToLowerInvariant());
       }
-      this.Refresh();
+      Refresh();
     }
 
     private int nrOfNumberMatches = 0;
 
     public int NrOfNumberMatches
     {
-      get { return this.nrOfNumberMatches; }
-      set { this.nrOfNumberMatches = value; }
+      get { return nrOfNumberMatches; }
+      set { nrOfNumberMatches = value; }
     }
 
     public void ResetSearchTags()
     {
-      this.searchTags = null;
-      this.Refresh();
+      searchTags = null;
+      Refresh();
     }
 
     private void DrawString(Graphics g, string text, Font font, Brush brush, RectangleF bounds, Brush highlightBrush, Pen highlightBorder)
     {
-      if (!this.HasSearchTagMatch(text))
+      if (!HasSearchTagMatch(text))
       {
         g.DrawString(text, font, brush, bounds);
       }
@@ -155,7 +155,7 @@ namespace Lyra2.LyraShell
       {
         var lowerText = QueryHelper.PrepareForComparison(text);
         var intervals = new List<CharacterRange>();
-        foreach (var searchTag in this.searchTags)
+        foreach (var searchTag in searchTags)
         {
           var pos = lowerText.IndexOf(QueryHelper.PrepareForComparison(searchTag), StringComparison.InvariantCulture);
           while (pos >= 0 && pos < lowerText.Length)
@@ -204,15 +204,15 @@ namespace Lyra2.LyraShell
 
     public IDictionary<ISong, float> Ratings
     {
-      get { return this.ratings; }
+      get { return ratings; }
     }
 
     private int CompareRating(ISong a, ISong b)
     {
       var ar = 0f;
       var br = 0f;
-      if (this.ratings.ContainsKey(a)) ar = this.ratings[a];
-      if (this.ratings.ContainsKey(b)) br = this.ratings[b];
+      if (ratings.ContainsKey(a)) ar = ratings[a];
+      if (ratings.ContainsKey(b)) br = ratings[b];
 
       if (ar == br)
       {
@@ -230,79 +230,79 @@ namespace Lyra2.LyraShell
     {
       #region    Precondition
 
-      if (this.sortedSongs == null || this.numberSongs == null) return;
+      if (sortedSongs == null || numberSongs == null) return;
 
       #endregion Precondition
 
       this.method = method;
 
-      this.BeginUpdate();
+      BeginUpdate();
 
       switch (method)
       {
         case SortMethod.NumberAscending:
-            this.sortedSongs.Sort((a, b) => a.Number.CompareTo(b.Number));
+            sortedSongs.Sort((a, b) => a.Number.CompareTo(b.Number));
           break;
         case SortMethod.NumberDescending:
-            this.sortedSongs.Sort((a, b) => -a.Number.CompareTo(b.Number));
+            sortedSongs.Sort((a, b) => -a.Number.CompareTo(b.Number));
           break;
         case SortMethod.RatingAscending:
-            this.sortedSongs.Sort((a, b) => -this.CompareRating(a, b));
+            sortedSongs.Sort((a, b) => -CompareRating(a, b));
           break;
         case SortMethod.RatingDescending:
-            this.sortedSongs.Sort(this.CompareRating);
+            sortedSongs.Sort(CompareRating);
           break;
         case SortMethod.TitleAscending:
-            this.sortedSongs.Sort((a, b) => a.Title.CompareTo(b.Title));
+            sortedSongs.Sort((a, b) => a.Title.CompareTo(b.Title));
           break;
         case SortMethod.TitleDescending:
-            this.sortedSongs.Sort((a, b) => -a.Title.CompareTo(b.Title));
+            sortedSongs.Sort((a, b) => -a.Title.CompareTo(b.Title));
           break;
       }
 
-      this.Items.Clear();
-      this.Items.AddRange(this.numberSongs.ToArray());
-      this.Items.AddRange(this.sortedSongs.ToArray());
+      Items.Clear();
+      Items.AddRange(numberSongs.ToArray());
+      Items.AddRange(sortedSongs.ToArray());
 
-      this.EndUpdate();
+      EndUpdate();
     }
 
     private bool HasSearchTagMatch(string text)
     {
       #region    Precondition
 
-      if (this.searchTags == null) return false;
+      if (searchTags == null) return false;
 
       #endregion Precondition
 
-      return QueryHelper.Contains(text, this.searchTags);
+      return QueryHelper.Contains(text, searchTags);
     }
 
     protected virtual void OnScroll(ScrollEventArgs e)
     {
-      if (this.Scrolled != null)
+      if (Scrolled != null)
       {
-        this.Scrolled(this, e);
+        Scrolled(this, e);
       }
     }
 
     public void ShowSongs(List<ISong> numberSongs, List<ISong> songs, SortMethod method)
     {
       this.numberSongs = numberSongs;
-      this.nrOfNumberMatches = numberSongs.Count;
-      this.sortedSongs = songs;
-      this.Sort(method);
+      nrOfNumberMatches = numberSongs.Count;
+      sortedSongs = songs;
+      Sort(method);
     }
 
     public void ClearSongs()
     {
-      this.BeginUpdate();
-      this.numberSongs = null;
-      this.nrOfNumberMatches = 0;
-      this.sortedSongs = null;
-      this.Items.Clear();
-      this.ResetSearchTags();
-      this.EndUpdate();
+      BeginUpdate();
+      numberSongs = null;
+      nrOfNumberMatches = 0;
+      sortedSongs = null;
+      Items.Clear();
+      ResetSearchTags();
+      EndUpdate();
     }
   }
 }

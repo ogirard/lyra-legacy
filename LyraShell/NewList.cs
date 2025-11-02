@@ -53,9 +53,9 @@ namespace Lyra2.LyraShell
 			//
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
-		    this.InitializeComponent();
+		    InitializeComponent();
 			this.owner = owner;
-			this.AcceptButton = this.button1;
+			AcceptButton = button1;
 		}
 
 		/// <summary>
@@ -65,9 +65,9 @@ namespace Lyra2.LyraShell
 		{
 			if (disposing)
 			{
-				if (this.components != null)
+				if (components != null)
 				{
-				    this.components.Dispose();
+				    components.Dispose();
 				}
 			}
 			base.Dispose(disposing);
@@ -181,21 +181,21 @@ namespace Lyra2.LyraShell
 
 		private void button3_Click(object sender, EventArgs e)
 		{
-			this.Close();
+			Close();
 		}
 
 	    private string[] songs;
 		private void button1_Click(object sender, EventArgs e)
 		{
-			this.owner.CreateNewList(this.nameTextBox.Text, this.authorTextBox.Text, this.songs);
-			this.Close();
+			owner.CreateNewList(nameTextBox.Text, authorTextBox.Text, songs);
+			Close();
 		}
 
 		private void NewList_KeyDown(object sender, KeyEventArgs ke)
 		{
 			if (ke.KeyCode == Keys.Enter)
 			{
-				this.button1_Click(sender, ke);
+				button1_Click(sender, ke);
 			}
 		}
 	}

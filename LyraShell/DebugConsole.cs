@@ -21,8 +21,8 @@ namespace Lyra2.LyraShell
 
 		private DebugConsole()
 		{
-		    this.InitializeComponent();
-			this.Clear();
+		    InitializeComponent();
+			Clear();
 		}
 
 		/// <summary>
@@ -32,9 +32,9 @@ namespace Lyra2.LyraShell
 		{
 			if (disposing)
 			{
-				if (this.components != null)
+				if (components != null)
 				{
-				    this.components.Dispose();
+				    components.Dispose();
 				}
 			}
 			base.Dispose(disposing);
@@ -139,16 +139,16 @@ namespace Lyra2.LyraShell
 
 		private void adaptSize(object sender, EventArgs args)
 		{
-			this.textBox1.Left = 0;
-			this.textBox1.Top = 50;
-			this.textBox1.Width = this.ClientRectangle.Width;
-			this.textBox1.Height = this.ClientRectangle.Height - 50;
-			this.button1.Left = this.textBox1.Right - this.button1.Width;
+			textBox1.Left = 0;
+			textBox1.Top = 50;
+			textBox1.Width = ClientRectangle.Width;
+			textBox1.Height = ClientRectangle.Height - 50;
+			button1.Left = textBox1.Right - button1.Width;
 		}
 
 		private void Clear()
 		{
-			this.textBox1.Text = "";
+			textBox1.Text = "";
 		}
 
 		public static void Append(string msg, Exception ex)
@@ -191,7 +191,7 @@ namespace Lyra2.LyraShell
 		// clear console
 		private void button1_Click(object sender, EventArgs e)
 		{
-			this.Clear();
+			Clear();
 		}
 	}
 }

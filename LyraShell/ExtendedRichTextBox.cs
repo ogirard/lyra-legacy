@@ -15,14 +15,14 @@ namespace Lyra2.LyraShell
 
     public ExtendedRichTextBox()
     {
-        this.ScrollBars = RichTextBoxScrollBars.None;
-        this._contentSize = this.Size;
-        this.Enabled = false;
+        ScrollBars = RichTextBoxScrollBars.None;
+        _contentSize = Size;
+        Enabled = false;
     }
 
     public bool IsMouseOver
     {
-      get { return this._mouseOver; }
+      get { return _mouseOver; }
     }
 
     #region Transparency
@@ -79,32 +79,32 @@ namespace Lyra2.LyraShell
 
     public void ScrollDown()
     {
-      SendMessage(new HandleRef(this, this.Handle), WM_VSCROLL, this.SB_LINEDOWN, IntPtr.Zero);
+      SendMessage(new HandleRef(this, Handle), WM_VSCROLL, SB_LINEDOWN, IntPtr.Zero);
     }
 
     public void ScrollUp()
     {
-      SendMessage(new HandleRef(this, this.Handle), WM_VSCROLL, this.SB_LINEUP, IntPtr.Zero);
+      SendMessage(new HandleRef(this, Handle), WM_VSCROLL, SB_LINEUP, IntPtr.Zero);
     }
 
     public void ScrollPageDown()
     {
-      SendMessage(new HandleRef(this, this.Handle), WM_VSCROLL, this.SB_PAGEDOWN, IntPtr.Zero);
+      SendMessage(new HandleRef(this, Handle), WM_VSCROLL, SB_PAGEDOWN, IntPtr.Zero);
     }
 
     public void ScrollPageUp()
     {
-      SendMessage(new HandleRef(this, this.Handle), WM_VSCROLL, this.SB_PAGEUP, IntPtr.Zero);
+      SendMessage(new HandleRef(this, Handle), WM_VSCROLL, SB_PAGEUP, IntPtr.Zero);
     }
 
     public void ScrollToTop()
     {
-      SendMessage(new HandleRef(this, this.Handle), WM_VSCROLL, this.SB_TOP, IntPtr.Zero);
+      SendMessage(new HandleRef(this, Handle), WM_VSCROLL, SB_TOP, IntPtr.Zero);
     }
 
     public void ScrollToBottom()
     {
-      SendMessage(new HandleRef(this, this.Handle), WM_VSCROLL, this.SB_BOTTOM, IntPtr.Zero);
+      SendMessage(new HandleRef(this, Handle), WM_VSCROLL, SB_BOTTOM, IntPtr.Zero);
     }
 
     public Point ScrollPosition
@@ -113,7 +113,7 @@ namespace Lyra2.LyraShell
       {
         var scrollPoint = new Point();
 
-        SendMessage(new HandleRef(this, this.Handle), EM_GETSCROLLPOS, 0, ref scrollPoint);
+        SendMessage(new HandleRef(this, Handle), EM_GETSCROLLPOS, 0, ref scrollPoint);
         return scrollPoint;
       }
     }
@@ -122,13 +122,13 @@ namespace Lyra2.LyraShell
 
     private void OnScrollDataChanged()
     {
-      if (this.ScrollDataChanged != null)
+      if (ScrollDataChanged != null)
       {
-          this.ScrollDataChanged(this, new ScrollDataEventArgs
+          ScrollDataChanged(this, new ScrollDataEventArgs
         {
-          DesiredHeight = Math.Max(this._contentSize.Height, this.Height),
-          DisplayHeight = this.Height,
-          ScrollPosition = this.ScrollPosition.Y
+          DesiredHeight = Math.Max(_contentSize.Height, Height),
+          DisplayHeight = Height,
+          ScrollPosition = ScrollPosition.Y
         });
       }
     }
@@ -136,26 +136,26 @@ namespace Lyra2.LyraShell
     protected override void OnVScroll(EventArgs e)
     {
       base.OnVScroll(e);
-        this.OnScrollDataChanged();
+        OnScrollDataChanged();
     }
 
     protected override void OnContentsResized(ContentsResizedEventArgs e)
     {
       base.OnContentsResized(e);
-        this._contentSize = e.NewRectangle.Size;
-        this.OnScrollDataChanged();
+        _contentSize = e.NewRectangle.Size;
+        OnScrollDataChanged();
     }
 
     protected override void OnMouseEnter(EventArgs e)
     {
       base.OnMouseEnter(e);
-        this._mouseOver = true;
+        _mouseOver = true;
     }
 
     protected override void OnMouseLeave(EventArgs e)
     {
       base.OnMouseLeave(e);
-        this._mouseOver = false;
+        _mouseOver = false;
     }
 
     #endregion Scrolling

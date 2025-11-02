@@ -15,27 +15,27 @@ namespace Lyra2.LyraShell
 
         public IList<JumpMark> Jumpmarks
         {
-            get { return this.jumpmarks; }
+            get { return jumpmarks; }
         }
 
         public ISong DisplayedSong
         {
-            get { return this.song; }
+            get { return song; }
         }
 
         public ISong NextSong
         {
-            get { return this.next; }
+            get { return next; }
         }
 
         public ISong PreviousSong
         {
-            get { return this.previous; }
+            get { return previous; }
         }
 
         public string Source
         {
-            get { return this.source; }
+            get { return source; }
         }
 
 
@@ -46,7 +46,7 @@ namespace Lyra2.LyraShell
             this.next = next;
             this.previous = previous;
             this.source = source;
-            this.jumpmarks = new List<JumpMark>();
+            jumpmarks = new List<JumpMark>();
         }
     }
 }

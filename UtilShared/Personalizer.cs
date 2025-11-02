@@ -12,14 +12,14 @@ namespace Lyra2.UtilShared
         public Personalizer(string fileName)
         {
             this.fileName = fileName;
-            this.values = new Dictionary<string, string>();
+            values = new Dictionary<string, string>();
         }
 
         public bool Load()
         {
             if(File.Exists(fileName))
             {
-                this.values.Clear();
+                values.Clear();
                 using(StreamReader reader = new StreamReader(fileName))
                 {
                     string line;
@@ -28,7 +28,7 @@ namespace Lyra2.UtilShared
                         string[] entry = line.Split(new char[] {'='}, StringSplitOptions.RemoveEmptyEntries);
                         if(entry.Length == 2)
                         {
-                            this.values.Add(entry[0].Trim(), entry[1].Trim());
+                            values.Add(entry[0].Trim(), entry[1].Trim());
                         }
                     }
                 }
@@ -41,28 +41,28 @@ namespace Lyra2.UtilShared
         {
             get
             {
-                if(this.values.ContainsKey(key))
+                if(values.ContainsKey(key))
                 {
-                    return this.values[key];
+                    return values[key];
                 }
                 return null;
             }
             set
             {
-                if(this.values.ContainsKey(key))
+                if(values.ContainsKey(key))
                 {
-                    this.values[key] = value;    
+                    values[key] = value;    
                 }
                 else
                 {
-                    this.values.Add(key, value);
+                    values.Add(key, value);
                 }
             }
         }
 
         public int GetIntValue(string key)
         {
-            if(this.values.ContainsKey(key))
+            if(values.ContainsKey(key))
             {
                 return int.Parse(this[key]);
             }

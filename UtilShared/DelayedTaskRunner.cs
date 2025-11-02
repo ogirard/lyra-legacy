@@ -36,11 +36,11 @@ namespace Lyra2.UtilShared
         public DelayedTaskRunner(int delay)
         {
             this.delay = delay;
-            this.timer = new Timer(delay);
-            this.timer.BeginInit();
-            this.timer.AutoReset = false;
-            this.timer.Elapsed += new ElapsedEventHandler(this.TimerElapsedHandler);
-            this.timer.EndInit();
+            timer = new Timer(delay);
+            timer.BeginInit();
+            timer.AutoReset = false;
+            timer.Elapsed += new ElapsedEventHandler(TimerElapsedHandler);
+            timer.EndInit();
         }
 
         private void TimerElapsedHandler(object sender, ElapsedEventArgs e)
@@ -49,21 +49,21 @@ namespace Lyra2.UtilShared
 
             lock (lockObj)
             {
-                if (this.taskRunning || this.currentArgs == null)
+                if (taskRunning || currentArgs == null)
                 {
                     return;
                 }
                 else
                 {
-                    this.taskRunning = true;
+                    taskRunning = true;
                 }
             }
 
             #endregion Precondition
 
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
-            this.timer.Stop();
-            this.OnRunTaskTrigger(this.currentArgs);
+            timer.Stop();
+            OnRunTaskTrigger(currentArgs);
         }
 
         /// <summary>
@@ -71,11 +71,11 @@ namespace Lyra2.UtilShared
         /// </summary>
         public int Delay
         {
-            get { return this.delay; }
+            get { return delay; }
             set
             {
-                this.delay = value;
-                this.timer.Interval = this.delay;
+                delay = value;
+                timer.Interval = delay;
             }
         }
 
@@ -87,29 +87,29 @@ namespace Lyra2.UtilShared
         /// <param name="args">arguments for delayed tasks</param>
         public void RunTask(TArgs args)
         {
-            this.cultureInfo = Thread.CurrentThread.CurrentUICulture;
+            cultureInfo = Thread.CurrentThread.CurrentUICulture;
 
-            if (this.timer.Enabled)
+            if (timer.Enabled)
             {
-                this.timer.Stop();
+                timer.Stop();
             }
-            this.currentArgs = args;
+            currentArgs = args;
 
-            this.timer.Start();
+            timer.Start();
         }
 
         protected virtual void OnRunTaskTrigger(TArgs args)
         {
-            if (this.RunDelayedTask != null)
+            if (RunDelayedTask != null)
             {
-                this.RunDelayedTask(this, args);
+                RunDelayedTask(this, args);
             }
 
             #region    Postcondition
 
             lock (lockObj)
             {
-                this.taskRunning = false;
+                taskRunning = false;
             }
 
             #endregion Postcondition
@@ -120,16 +120,16 @@ namespace Lyra2.UtilShared
         /// </summary>
         public void CancelTask()
         {
-            if (this.timer.Enabled)
+            if (timer.Enabled)
             {
-                this.timer.Stop();
+                timer.Stop();
             }
 
             #region    Postcondition
 
             lock (lockObj)
             {
-                this.taskRunning = false;
+                taskRunning = false;
             }
 
             #endregion Postcondition

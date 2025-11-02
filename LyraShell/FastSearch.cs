@@ -13,8 +13,8 @@ namespace Lyra2.LyraShell
 
     public FastSearch()
     {
-      this.indexer = new Indexer<Song>(Song.SongIndexFields, "Fast Search");
-      this.nrIndex = new Dictionary<int, IList<Song>>();
+      indexer = new Indexer<Song>(Song.SongIndexFields, "Fast Search");
+      nrIndex = new Dictionary<int, IList<Song>>();
     }
 
     #region Implementation of ISearch
@@ -23,19 +23,19 @@ namespace Lyra2.LyraShell
     {
       if (!append)
       {
-        this.indexer.ClearIndex();
-        this.nrIndex.Clear();
+        indexer.ClearIndex();
+        nrIndex.Clear();
       }
-      this.indexer.AddObjectsToSearch(values);
+      indexer.AddObjectsToSearch(values);
       foreach (var song in values)
       {
-        if (!this.nrIndex.ContainsKey(song.Number))
+        if (!nrIndex.ContainsKey(song.Number))
         {
-          this.nrIndex.Add(song.Number, new List<Song>());
+          nrIndex.Add(song.Number, new List<Song>());
         }
-        if (!this.nrIndex[song.Number].Contains(song))
+        if (!nrIndex[song.Number].Contains(song))
         {
-          this.nrIndex[song.Number].Add(song);
+          nrIndex[song.Number].Add(song);
         }
       }
     }
@@ -50,7 +50,7 @@ namespace Lyra2.LyraShell
       {
         foreach (var nr in lQuery.Numbers)
         {
-          var nrMatches = this.nrIndex.ContainsKey(nr) ? this.nrIndex[nr] : null;
+          var nrMatches = nrIndex.ContainsKey(nr) ? nrIndex[nr] : null;
           if (nrMatches != null)
           {
             numberSongs.AddRange(nrMatches);
@@ -62,7 +62,7 @@ namespace Lyra2.LyraShell
       resultBox.Ratings.Clear();
       if (!string.IsNullOrEmpty(lQuery.Query))
       {
-        foreach (var songResult in this.indexer.SearchObjects(query, !text))
+        foreach (var songResult in indexer.SearchObjects(query, !text))
         {
           if (numberSongs.Contains(songResult.Result)) continue;
           resultBox.Ratings.Add(songResult.Result, (float)songResult.Rating);
@@ -95,9 +95,9 @@ namespace Lyra2.LyraShell
 
     public void Dispose()
     {
-      if (this.indexer != null)
+      if (indexer != null)
       {
-        this.indexer.Dispose();
+        indexer.Dispose();
       }
     }
   }

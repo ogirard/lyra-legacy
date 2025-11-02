@@ -31,9 +31,9 @@ namespace Lyra2.LyraShell
 
 		private Pswd()
 		{
-		    this.InitializeComponent();
-			this.Height = 104;
-			this.AcceptButton = this.button1;
+		    InitializeComponent();
+			Height = 104;
+			AcceptButton = button1;
 		}
 
 		/// <summary>
@@ -43,9 +43,9 @@ namespace Lyra2.LyraShell
 		{
 			if (disposing)
 			{
-				if (this.components != null)
+				if (components != null)
 				{
-				    this.components.Dispose();
+				    components.Dispose();
 				}
 			}
 			base.Dispose(disposing);
@@ -220,7 +220,7 @@ namespace Lyra2.LyraShell
 			{
 				var configFile = new ConfigFile(Util.CONFIGPATH);
 				var pw = configFile["pw"];
-				return pw.Equals(this.textBox1.Text);
+				return pw.Equals(textBox1.Text);
 			}
 			catch (Exception e)
 			{
@@ -232,51 +232,51 @@ namespace Lyra2.LyraShell
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			if (this.checkPsw())
+			if (checkPsw())
 			{
-				this.options.enableChanges();
+				options.enableChanges();
 				ok = true;
-				this.options.Focus();
-				this.Close();
+				options.Focus();
+				Close();
 			}
 			else
 			{
 				Util.MBoxError("Falsches Passwort!");
 				ok = false;
-				this.textBox1.Text = "";
-				this.textBox1.Select();
+				textBox1.Text = "";
+				textBox1.Select();
 			}
 		}
 
 		// Abbrechen
 		private void button2_Click(object sender, EventArgs e)
 		{
-			this.options.Focus();
-			this.Close();
+			options.Focus();
+			Close();
 		}
 
 		// ändern
 		private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			this.button1.Enabled = false;
-			this.Height = 160;
+			button1.Enabled = false;
+			Height = 160;
 		}
 
 		// psw setzen
 		private void button3_Click(object sender, EventArgs e)
 		{
-			if (this.checkPsw() &&
-				this.textBox2.Text == this.textBox3.Text &&
-				this.textBox2.Text != "")
+			if (checkPsw() &&
+				textBox2.Text == textBox3.Text &&
+				textBox2.Text != "")
 			{
 				var configFile = new ConfigFile(Util.CONFIGPATH);
-				configFile["pw"] = this.textBox2.Text;
+				configFile["pw"] = textBox2.Text;
 				configFile.Save(Util.CONFIGPATH);
 
-				this.Height = 104;
-				this.button1.Enabled = true;
-				this.textBox1.Text = "";
-				this.textBox1.Select();
+				Height = 104;
+				button1.Enabled = true;
+				textBox1.Text = "";
+				textBox1.Select();
 			}
 			else
 			{
@@ -289,7 +289,7 @@ namespace Lyra2.LyraShell
 		{
 			if (ke.KeyCode == Keys.Enter)
 			{
-				this.button1_Click(sender, ke);
+				button1_Click(sender, ke);
 			}
 		}
 	}

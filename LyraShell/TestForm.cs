@@ -1,6 +1,3 @@
-using System;
-using System.Drawing;
-using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
 
@@ -22,16 +19,16 @@ namespace Lyra2.LyraShell
 			//
 			// Required for Windows Form Designer support
 			//
-		    this.InitializeComponent();
-			this.listBox1.BeginUpdate();
+		    InitializeComponent();
+			listBox1.BeginUpdate();
 			for(var i = 0; i < 50; i++)
 			{
 				var item = new ExtendedListBoxItem();
 				item.MaxString = "Das ist ein Liedtext, resp. eine tolle Vorschau...";
 				item.MinString = (i+1) + " Liedtitel";
-				this.listBox1.AddItem(item);
+				listBox1.AddItem(item);
 			}
-			this.listBox1.EndUpdate();
+			listBox1.EndUpdate();
 		}
 
 		/// <summary>
@@ -41,9 +38,9 @@ namespace Lyra2.LyraShell
 		{
 			if( disposing )
 			{
-				if(this.components != null)
+				if(components != null)
 				{
-				    this.components.Dispose();
+				    components.Dispose();
 				}
 			}
 			base.Dispose( disposing );

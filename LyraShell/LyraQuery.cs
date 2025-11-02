@@ -3,7 +3,6 @@
  * Created: Montag, 18. Februar 2008
  */
 
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Lyra2.LyraShell
@@ -33,22 +32,22 @@ namespace Lyra2.LyraShell
 
         public string Query
         {
-            get { return this.query; }
+            get { return query; }
         }
 
         public string LuceneQuery
         {
-            get { return this.luceneQuery; }
+            get { return luceneQuery; }
         }
 
         public IList<int> Numbers
         {
-            get { return this.numbers; }
+            get { return numbers; }
         }
 
         public bool Exact
         {
-            get { return this.exact; }
+            get { return exact; }
         }
     }
 }

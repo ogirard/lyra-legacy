@@ -23,13 +23,13 @@ namespace Lyra2.LyraShell
 
         public string ID
         {
-            get { return this.id; }
+            get { return id; }
         }
 
         // pay attention! changes id to next free ID over s700.
         public string nextID()
         {
-            return this.id = PhysicalXml.HighestID;
+            return id = PhysicalXml.HighestID;
         }
 
 
@@ -38,7 +38,7 @@ namespace Lyra2.LyraShell
 
         public int Number
         {
-            get { return this.nr; }
+            get { return nr; }
         }
 
         // desc
@@ -46,11 +46,11 @@ namespace Lyra2.LyraShell
 
         public string Desc
         {
-            get { return this.zus; }
+            get { return zus; }
             set
             {
-                this.zus = value;
-                this.toupdate = true;
+                zus = value;
+                toupdate = true;
             }
         }
 
@@ -59,11 +59,11 @@ namespace Lyra2.LyraShell
 
         public string Title
         {
-            get { return this.title; }
+            get { return title; }
             set
             {
-                this.title = value;
-                this.toupdate = true;
+                title = value;
+                toupdate = true;
             }
         }
 
@@ -76,12 +76,12 @@ namespace Lyra2.LyraShell
         {
             get
             {
-                return this.text;
+                return text;
             }
             set
             {
-                this.text = value;
-                this.toupdate = true;
+                text = value;
+                toupdate = true;
             }
         }
 
@@ -95,51 +95,51 @@ namespace Lyra2.LyraShell
         /// </summary>
         public SortedList Translations
         {
-            get { return this.translations; }
+            get { return translations; }
         }
 
         public IDictionaryEnumerator GetTransEnum()
         {
-            return this.translations.GetEnumerator();
+            return translations.GetEnumerator();
         }
 
         public ITranslation GetTranslation(string lang)
         {
-            return (ITranslation)this.translations[lang];
+            return (ITranslation)translations[lang];
         }
 
         public bool HasTrans
         {
-            get { return (this.translations.Count > 0); }
+            get { return (translations.Count > 0); }
         }
 
         public void AddTranslation(ITranslation t)
         {
-            this.translations.Add(t.ID, t);
-            this.transMenu = this.getTransMenuItem();
+            translations.Add(t.ID, t);
+            transMenu = getTransMenuItem();
         }
 
         public void RemoveTranslation(ITranslation t)
         {
             t.Delete();
-            this.translations.Remove(t.ID);
-            this.transMenu = this.getTransMenuItem();
+            translations.Remove(t.ID);
+            transMenu = getTransMenuItem();
         }
 
         public void RefreshTransMenu()
         {
-            this.transMenu = this.getTransMenuItem();
+            transMenu = getTransMenuItem();
         }
 
         public string UpdateTranslations(IPhysicalStorage pStorage)
         {
-            return pStorage.CommitTranslations(this.translations);
+            return pStorage.CommitTranslations(translations);
         }
 
         public void ShowTranslations(ListBox box)
         {
             box.Items.Clear();
-            var en = this.translations.GetEnumerator();
+            var en = translations.GetEnumerator();
             en.Reset();
             while (en.MoveNext())
             {
@@ -154,16 +154,16 @@ namespace Lyra2.LyraShell
 
         public bool UseDefaultStyle
         {
-            get { return this.useDefaultStyle; }
-            set { this.useDefaultStyle = value; }
+            get { return useDefaultStyle; }
+            set { useDefaultStyle = value; }
         }
 
         private Style style;
 
         public Style Style
         {
-            get { return this.style; }
-            set { this.style = value; }
+            get { return style; }
+            set { style = value; }
         }
 
         // cons
@@ -174,13 +174,13 @@ namespace Lyra2.LyraShell
             this.text = text;
             this.id = id;
             this.zus = zus;
-            this.internalId = Guid.NewGuid();
+            internalId = Guid.NewGuid();
         }
 
         public Song(int nr, string title, string text, string id, string zus, bool isNew)
           : this(nr, title, text, id, zus)
         {
-            this.toupdate = isNew;
+            toupdate = isNew;
         }
 
         // indicates if an update ist necessary
@@ -188,12 +188,12 @@ namespace Lyra2.LyraShell
 
         public bool ToUpdate
         {
-            get { return this.toupdate; }
+            get { return toupdate; }
         }
 
         public void Update()
         {
-            this.toupdate = true;
+            toupdate = true;
         }
 
         // indicates if song is deleted
@@ -201,26 +201,26 @@ namespace Lyra2.LyraShell
 
         public bool Deleted
         {
-            get { return this.deleted; }
+            get { return deleted; }
         }
 
         public void Delete()
         {
             // remove translations
-            var en = this.translations.GetEnumerator();
+            var en = translations.GetEnumerator();
             en.Reset();
             while (en.MoveNext())
             {
                 ((Translation)en.Value).Delete();
             }
             // this
-            this.deleted = true;
+            deleted = true;
         }
 
         // util
         public override string ToString()
         {
-            return Util.toFour(this.nr) + ":\t" + this.title;
+            return Util.toFour(nr) + ":\t" + title;
         }
 
         private View view = null;
@@ -230,21 +230,21 @@ namespace Lyra2.LyraShell
         public MenuItem GetTransMenu(View view)
         {
             this.view = view;
-            return this.transMenu;
+            return transMenu;
         }
 
         public MenuItem TransMenu
         {
             get
             {
-                this.view = null;
-                return this.transMenu;
+                view = null;
+                return transMenu;
             }
         }
 
         private MenuItem getTransMenuItem()
         {
-            var en = this.translations.GetEnumerator();
+            var en = translations.GetEnumerator();
             en.Reset();
             var menu = new MenuItem();
             menu.Text = "Überse&tzungen";
@@ -253,7 +253,7 @@ namespace Lyra2.LyraShell
                 if (!((Translation)en.Value).Deleted)
                 {
                     var newItem = new MenuItem(((Translation)en.Value).ToString());
-                    newItem.Click += new EventHandler(this.handleTransClick);
+                    newItem.Click += new EventHandler(handleTransClick);
                     menu.MenuItems.Add(newItem);
                 }
             }
@@ -269,8 +269,8 @@ namespace Lyra2.LyraShell
         {
             try
             {
-                if (this.transMenu == null) return;
-                foreach (MenuItem mi in this.transMenu.MenuItems)
+                if (transMenu == null) return;
+                foreach (MenuItem mi in transMenu.MenuItems)
                 {
                     mi.Checked = false;
                 }
@@ -285,17 +285,17 @@ namespace Lyra2.LyraShell
             if (!((MenuItem)sender).Checked)
             {
                 var i = 0;
-                this.uncheck();
-                while ((MenuItem)sender != this.transMenu.MenuItems[i]) i++;
-                this.transMenu.MenuItems[i].Checked = true;
+                uncheck();
+                while ((MenuItem)sender != transMenu.MenuItems[i]) i++;
+                transMenu.MenuItems[i].Checked = true;
 
-                if (this.view == null)
+                if (view == null)
                 {
-                    View.ShowSong(this, (Translation)this.translations.GetByIndex(i), owner, owner.StandardNavigate, "Übersetzung");
+                    View.ShowSong(this, (Translation)translations.GetByIndex(i), owner, owner.StandardNavigate, "Übersetzung");
                 }
                 else
                 {
-                    this.view.RefreshSong(this, ((Translation)this.translations.GetByIndex(i)));
+                    view.RefreshSong(this, ((Translation)translations.GetByIndex(i)));
                 }
             }
         }
@@ -303,21 +303,21 @@ namespace Lyra2.LyraShell
         // copy translations
         public void acceptTranslation(SortedList trans)
         {
-            this.translations = trans;
+            translations = trans;
         }
 
         public void copyTranslation(ISong to)
         {
-            to.acceptTranslation(this.translations);
+            to.acceptTranslation(translations);
         }
 
         public ITranslation GetTranslation(int index)
         {
-            if (index < 0 || index >= this.translations.Count)
+            if (index < 0 || index >= translations.Count)
             {
-                index %= this.translations.Count;
+                index %= translations.Count;
             }
-            return (ITranslation)this.translations.GetByIndex(index);
+            return (ITranslation)translations.GetByIndex(index);
         }
 
         #region IComparable Members
@@ -327,7 +327,7 @@ namespace Lyra2.LyraShell
             if (obj is Song)
             {
                 var s = (Song)obj;
-                return this.ToString().CompareTo(s.ToString());
+                return ToString().CompareTo(s.ToString());
             }
             return 0;
         }
@@ -346,9 +346,9 @@ namespace Lyra2.LyraShell
                 // renew each time ("fresh" data required for correct indexing)
                 var searchableText = new Dictionary<string, string>
                                                               {
-                                                                {TitleField, this.Title},
-                                                                {TextField, RemoveTags(this.Text)},
-                                                                {NumberField, this.Number.ToString(CultureInfo.InvariantCulture)}
+                                                                {TitleField, Title},
+                                                                {TextField, RemoveTags(Text)},
+                                                                {NumberField, Number.ToString(CultureInfo.InvariantCulture)}
                                                               };
                 return searchableText;
             }
@@ -381,7 +381,7 @@ namespace Lyra2.LyraShell
         /// </summary>
         public Guid Key
         {
-            get { return this.internalId; }
+            get { return internalId; }
         }
 
         #region    Static
@@ -405,7 +405,7 @@ namespace Lyra2.LyraShell
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return Equals(other.id, this.id) && other.nr == this.nr;
+            return Equals(other.id, id) && other.nr == nr;
         }
 
         public override bool Equals(object obj)
@@ -413,14 +413,14 @@ namespace Lyra2.LyraShell
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != typeof(Song)) return false;
-            return this.Equals((Song)obj);
+            return Equals((Song)obj);
         }
 
         public override int GetHashCode()
         {
             unchecked
             {
-                return ((this.id != null ? this.id.GetHashCode() : 0) * 397) ^ this.nr;
+                return ((id != null ? id.GetHashCode() : 0) * 397) ^ nr;
             }
         }
     }

@@ -1,5 +1,4 @@
 using System;
-using System.Security.Principal;
 using System.Windows.Forms;
 
 
@@ -26,14 +25,14 @@ namespace Lyra2.LyraShell
 			//
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
-		    this.InitializeComponent();
-			this.AcceptButton = this.okBtn;
+		    InitializeComponent();
+			AcceptButton = okBtn;
 		}
 
         public string JumpMarkName
         {
-            get { return this.nameTextBox.Text; }
-            set { this.nameTextBox.Text = value; }
+            get { return nameTextBox.Text; }
+            set { nameTextBox.Text = value; }
         }
 		/// <summary>
 		/// Die verwendeten Ressourcen bereinigen.
@@ -42,9 +41,9 @@ namespace Lyra2.LyraShell
 		{
 			if (disposing)
 			{
-				if (this.components != null)
+				if (components != null)
 				{
-				    this.components.Dispose();
+				    components.Dispose();
 				}
 			}
 			base.Dispose(disposing);
@@ -137,7 +136,7 @@ namespace Lyra2.LyraShell
 
 		private void button3_Click(object sender, EventArgs e)
 		{
-			this.Close();
+			Close();
 		}
 	}
 }

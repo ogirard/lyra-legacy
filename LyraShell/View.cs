@@ -78,29 +78,29 @@ namespace Lyra2.LyraShell
 
         private Color ResolvedForegroundColor
         {
-            get { return this._song != null ? this._song.Style.ForegroundColor ?? Util.COLOR : Util.COLOR; }
+            get { return _song != null ? _song.Style.ForegroundColor ?? Util.COLOR : Util.COLOR; }
         }
 
         private Color ResolvedRefrainForegroundColor
         {
-            get { return this._song != null ? this._song.Style.ForegroundColor ?? Util.REFCOLOR : Util.REFCOLOR; }
+            get { return _song != null ? _song.Style.ForegroundColor ?? Util.REFCOLOR : Util.REFCOLOR; }
         }
 
         private Color ResolveBackgroundColor
         {
-            get { return this._song != null ? this._song.Style.BackgroundColor ?? Util.BGCOLOR : Util.BGCOLOR; }
+            get { return _song != null ? _song.Style.BackgroundColor ?? Util.BGCOLOR : Util.BGCOLOR; }
         }
 
         private Font ResolvedFont
         {
-            get { return this._song != null ? this._song.Style.GetFont() ?? Util.FONT : Util.FONT; }
+            get { return _song != null ? _song.Style.GetFont() ?? Util.FONT : Util.FONT; }
         }
 
         private Image GetResolvedBackgroundImage()
         {
-            if (this._song != null && this._song.Style.HasBackgroundImage)
+            if (_song != null && _song.Style.HasBackgroundImage)
             {
-                return this._song.Style.GetBackgroundImage(new Size(this.Width, this.Height), Util.KEEPRATIO);
+                return _song.Style.GetBackgroundImage(new Size(Width, Height), Util.KEEPRATIO);
             }
 
             return null;
@@ -108,17 +108,17 @@ namespace Lyra2.LyraShell
 
         private Color ResolveTitleForegroundColor
         {
-            get { return this._song != null ? this._song.Style.TitleForegroundColor ?? Util.TITLECOLOR : Util.TITLECOLOR; }
+            get { return _song != null ? _song.Style.TitleForegroundColor ?? Util.TITLECOLOR : Util.TITLECOLOR; }
         }
 
         private Font ResolvedTitleFont
         {
-            get { return this._song != null ? this._song.Style.GetTitleFont() ?? Util.TITLEFONT : Util.TITLEFONT; }
+            get { return _song != null ? _song.Style.GetTitleFont() ?? Util.TITLEFONT : Util.TITLEFONT; }
         }
 
         private Color ResolveTitleBackgroundColor
         {
-            get { return this._song != null ? this._song.Style.TitleBackgroundColor ?? Util.TITLEBGCOLOR : Util.TITLEBGCOLOR; }
+            get { return _song != null ? _song.Style.TitleBackgroundColor ?? Util.TITLEBGCOLOR : Util.TITLEBGCOLOR; }
         }
 
         #endregion Styling
@@ -276,19 +276,19 @@ namespace Lyra2.LyraShell
 
         public View()
         {
-            this.InitializeComponent();
-            this.InitializeContextMenu();
-            this.InitializeSongPresenters();
-            this._scrollVisual.Visible = false;
+            InitializeComponent();
+            InitializeContextMenu();
+            InitializeSongPresenters();
+            _scrollVisual.Visible = false;
 
-            this.Closed += ViewClosedHandler;
-            this.Closing += ViewClosingHandler;
-            ScrollDataChanged += this.OnScrollDataChanged;
+            Closed += ViewClosedHandler;
+            Closing += ViewClosingHandler;
+            ScrollDataChanged += OnScrollDataChanged;
         }
 
         private void OnScrollDataChanged(object sender, ScrollDataEventArgs scrollDataEventArgs)
         {
-            this._scrollVisual.UpdateScrollData(scrollDataEventArgs);
+            _scrollVisual.UpdateScrollData(scrollDataEventArgs);
         }
 
         private ListBox navigate;
@@ -298,8 +298,8 @@ namespace Lyra2.LyraShell
         {
             get
             {
-                this.pos = (this.pos + this.navigate.Items.Count + 1) % this.navigate.Items.Count;
-                return this.pos;
+                pos = (pos + navigate.Items.Count + 1) % navigate.Items.Count;
+                return pos;
             }
         }
 
@@ -307,181 +307,181 @@ namespace Lyra2.LyraShell
         {
             get
             {
-                this.pos = (this.pos + this.navigate.Items.Count - 1) % this.navigate.Items.Count;
-                return this.pos;
+                pos = (pos + navigate.Items.Count - 1) % navigate.Items.Count;
+                return pos;
             }
         }
 
 
         public void RefreshSong(ISong song, ITranslation trans)
         {
-            this._song = song;
-            this._trans = trans;
-            this.RefreshSong();
+            _song = song;
+            _trans = trans;
+            RefreshSong();
         }
 
         public void RefreshSong(ISong song)
         {
-            if (this._song != null) this._song.uncheck();
-            this.RefreshSong(song, null);
+            if (_song != null) _song.uncheck();
+            RefreshSong(song, null);
         }
 
         private bool haspgbr;
 
         public void RefreshSong()
         {
-            addSongToHistory(this._song);
-            this.SetCurrentSongInfo();
-            this._richTextBox1.Font = _this.ResolvedFont;
-            this._richTextBox2.Font = _this.ResolvedFont;
-            this.BackColor = _this.ResolveBackgroundColor;
-            if (this._trans == null) this.transCount = 0;
+            addSongToHistory(_song);
+            SetCurrentSongInfo();
+            _richTextBox1.Font = _this.ResolvedFont;
+            _richTextBox2.Font = _this.ResolvedFont;
+            BackColor = _this.ResolveBackgroundColor;
+            if (_trans == null) transCount = 0;
 
             // update title and number
-            this._title.Number = this._song.Number.ToString();
-            this._title.Title = this._song.Title;
-            this._title.Mode = this._song != null && this._song.Style != null ? this._song.Style.TitleMode : TitleMode.NumberAndTitle;
-            this._title.TitleForegroundColor = this.ResolveTitleForegroundColor;
-            this._title.TitleBackgroundColor = this.ResolveTitleBackgroundColor;
-            this._lyraBtn.Appearance.BackColor = this._title.Mode == TitleMode.None ? Color.Transparent : this.ResolveTitleBackgroundColor;
-            this._title.TitleFont = this.ResolvedTitleFont;
+            _title.Number = _song.Number.ToString();
+            _title.Title = _song.Title;
+            _title.Mode = _song != null && _song.Style != null ? _song.Style.TitleMode : TitleMode.NumberAndTitle;
+            _title.TitleForegroundColor = ResolveTitleForegroundColor;
+            _title.TitleBackgroundColor = ResolveTitleBackgroundColor;
+            _lyraBtn.Appearance.BackColor = _title.Mode == TitleMode.None ? Color.Transparent : ResolveTitleBackgroundColor;
+            _title.TitleFont = ResolvedTitleFont;
 
-            this.UpdatePresenterSizeAndPosition();
-            this._richTextBox2.Text = "";
-            this._richTextBox2.Visible = false;
+            UpdatePresenterSizeAndPosition();
+            _richTextBox2.Text = "";
+            _richTextBox2.Visible = false;
 
-            RichTextBox myrtb = this._richTextBox1;
-            if (this._trans != null)
+            RichTextBox myrtb = _richTextBox1;
+            if (_trans != null)
             {
-                this._menuItem7.Visible = true;
-                if (Util.SHOWRIGHT && !this.haspgbr)
+                _menuItem7.Visible = true;
+                if (Util.SHOWRIGHT && !haspgbr)
                 {
-                    myrtb = this._richTextBox2;
-                    this._richTextBox2.Top = this._richTextBox1.Top;
-                    this._richTextBox2.Height = this._richTextBox1.Height;
-                    this._richTextBox2.Width = (this._richTextBox2.Parent.Width - 24) / 2 - 6;
-                    this._richTextBox1.Width = this._richTextBox2.Width;
-                    this._richTextBox2.Left = this._richTextBox1.Right + 12;
-                    this._richTextBox2.Visible = true;
+                    myrtb = _richTextBox2;
+                    _richTextBox2.Top = _richTextBox1.Top;
+                    _richTextBox2.Height = _richTextBox1.Height;
+                    _richTextBox2.Width = (_richTextBox2.Parent.Width - 24) / 2 - 6;
+                    _richTextBox1.Width = _richTextBox2.Width;
+                    _richTextBox2.Left = _richTextBox1.Right + 12;
+                    _richTextBox2.Visible = true;
                 }
 
-                myrtb.Text = this._trans.Text;
-                if (this._trans.Unformatted)
+                myrtb.Text = _trans.Text;
+                if (_trans.Unformatted)
                 {
                     myrtb.Text += "\n\n<special>(wird nicht gesungen)</special>";
                 }
             }
             else
             {
-                this._menuItem7.Visible = false;
-                this._richTextBox1.Text = this._song.Text;
+                _menuItem7.Visible = false;
+                _richTextBox1.Text = _song.Text;
                 var findpos = 0;
-                this.haspgbr = false;
-                if ((findpos = this._richTextBox1.Find("<" + Util.PGBR + " />", 0, RichTextBoxFinds.MatchCase)) != -1)
+                haspgbr = false;
+                if ((findpos = _richTextBox1.Find("<" + Util.PGBR + " />", 0, RichTextBoxFinds.MatchCase)) != -1)
                 {
-                    var text = this._richTextBox1.Text.Substring(0, findpos);
-                    this._richTextBox2.Text = this._richTextBox1.Text.Substring(findpos + Util.PGBR.Length + 5);
+                    var text = _richTextBox1.Text.Substring(0, findpos);
+                    _richTextBox2.Text = _richTextBox1.Text.Substring(findpos + Util.PGBR.Length + 5);
                     if (Util.SHOWRIGHT)
                     {
-                        this._richTextBox1.Text = text;
-                        this._richTextBox2.Visible = true;
-                        this.formatall(myrtb);
-                        myrtb = this._richTextBox2;
-                        this.haspgbr = true;
-                        this._richTextBox2.Top = this._richTextBox1.Top;
-                        this._richTextBox2.Height = this._richTextBox1.Height;
-                        this._richTextBox2.Width = (this._richTextBox2.Parent.Width - 24) / 2 - 6;
-                        this._richTextBox1.Width = this._richTextBox2.Width;
-                        this._richTextBox2.Left = this._richTextBox1.Right + 12;
+                        _richTextBox1.Text = text;
+                        _richTextBox2.Visible = true;
+                        formatall(myrtb);
+                        myrtb = _richTextBox2;
+                        haspgbr = true;
+                        _richTextBox2.Top = _richTextBox1.Top;
+                        _richTextBox2.Height = _richTextBox1.Height;
+                        _richTextBox2.Width = (_richTextBox2.Parent.Width - 24) / 2 - 6;
+                        _richTextBox1.Width = _richTextBox2.Width;
+                        _richTextBox2.Left = _richTextBox1.Right + 12;
                     }
                     else
                     {
-                        this._richTextBox1.Text = text + "\n" + this._richTextBox2.Text;
+                        _richTextBox1.Text = text + "\n" + _richTextBox2.Text;
                     }
                 }
             }
 
-            if (this._contextMenu1.MenuItems.Count == 5) this._contextMenu1.MenuItems.RemoveAt(3);
+            if (_contextMenu1.MenuItems.Count == 5) _contextMenu1.MenuItems.RemoveAt(3);
 
 
-            if (this._song.GetTransMenu(this) != null)
+            if (_song.GetTransMenu(this) != null)
             {
-                this._contextMenu1.MenuItems.Add(3, this._song.GetTransMenu(this));
+                _contextMenu1.MenuItems.Add(3, _song.GetTransMenu(this));
             }
 
-            if (this._trans != null && this._trans.Unformatted)
+            if (_trans != null && _trans.Unformatted)
             {
-                this.formatUnform(myrtb);
+                formatUnform(myrtb);
             }
             else
             {
-                this.formatall(myrtb);
+                formatall(myrtb);
             }
 
             if (Util.SHOWNR && Util.CTRLSHOWNR)
             {
-                (new Thread(this.ShowNrAtStart)).Start();
+                (new Thread(ShowNrAtStart)).Start();
             }
             else
             {
-                this._panel2.Hide();
+                _panel2.Hide();
             }
 
-            this.BackgroundImage = this.GetResolvedBackgroundImage();
+            BackgroundImage = GetResolvedBackgroundImage();
 
-            this._richTextBox1.ScrollToTop();
-            this._richTextBox2.ScrollToTop();
+            _richTextBox1.ScrollToTop();
+            _richTextBox2.ScrollToTop();
             OnSongDisplayed(currentSongInfo);
-            this.Focus();
+            Focus();
         }
 
         private void UpdatePresenterSizeAndPosition()
         {
-            if (this._richTextBox1 == null)
+            if (_richTextBox1 == null)
             {
                 return;
             }
 
-            this._richTextBox1.Left = 12;
-            this._richTextBox1.Width = this._richTextBox1.Parent.Width - 24;
-            this._richTextBox1.Top = this._title.Visible ? this._title.Bottom + 12 : 12;
-            this._richTextBox1.Height = this._richTextBox1.Parent.Height - 12 - this._richTextBox1.Top;
-            this._scrollVisual.Top = this._richTextBox1.Top;
-            this._scrollVisual.Height = this._richTextBox1.Height;
+            _richTextBox1.Left = 12;
+            _richTextBox1.Width = _richTextBox1.Parent.Width - 24;
+            _richTextBox1.Top = _title.Visible ? _title.Bottom + 12 : 12;
+            _richTextBox1.Height = _richTextBox1.Parent.Height - 12 - _richTextBox1.Top;
+            _scrollVisual.Top = _richTextBox1.Top;
+            _scrollVisual.Height = _richTextBox1.Height;
         }
 
         private void SetCurrentSongInfo()
         {
-            var currentSongPosition = this.navigate.Items.IndexOf(this._song);
-            currentSongInfo = new SongDisplayedEventArgs(this._song,
-                                                         (ISong)this.navigate.Items[
-                                                           (currentSongPosition + 1 + this.navigate.Items.Count) % this.navigate.Items.Count],
-                                                         (ISong)this.navigate.Items[
-                                                           (currentSongPosition - 1 + this.navigate.Items.Count) % this.navigate.Items.Count],
-                                                         this._source);
+            var currentSongPosition = navigate.Items.IndexOf(_song);
+            currentSongInfo = new SongDisplayedEventArgs(_song,
+                                                         (ISong)navigate.Items[
+                                                           (currentSongPosition + 1 + navigate.Items.Count) % navigate.Items.Count],
+                                                         (ISong)navigate.Items[
+                                                           (currentSongPosition - 1 + navigate.Items.Count) % navigate.Items.Count],
+                                                         _source);
 
         }
 
         private void formatall(RichTextBox rtb)
         {
             rtb.SelectAll();
-            rtb.SelectionFont = this.ResolvedFont;
-            rtb.SelectionColor = this.ResolvedForegroundColor;
+            rtb.SelectionFont = ResolvedFont;
+            rtb.SelectionColor = ResolvedForegroundColor;
             // Format Refrain
             if (Util.refmode)
             {
-                this.format(rtb, Util.REF, this.ResolvedFont, this.ResolvedRefrainForegroundColor, 16, "Refrain:" + Util.RTNL, "");
+                format(rtb, Util.REF, ResolvedFont, ResolvedRefrainForegroundColor, 16, "Refrain:" + Util.RTNL, "");
             }
             else
             {
-                this.format(rtb, Util.REF, new Font(this.ResolvedFont, FontStyle.Bold), this.ResolvedRefrainForegroundColor, 0, "", "");
+                format(rtb, Util.REF, new Font(ResolvedFont, FontStyle.Bold), ResolvedRefrainForegroundColor, 0, "", "");
             }
 
-            this.format(rtb, Util.SPEC, Util.SPECFONT, this.ResolvedForegroundColor, 0, "", "");
-            this.formatBlock(rtb);
-            this.format(rtb, Util.BOLD, null, this.ResolvedForegroundColor, 0, "", "");
-            this.format(rtb, Util.ITALIC, null, this.ResolvedForegroundColor, 0, "", "");
-            this.GetJumpMarks(rtb);
+            format(rtb, Util.SPEC, Util.SPECFONT, ResolvedForegroundColor, 0, "", "");
+            formatBlock(rtb);
+            format(rtb, Util.BOLD, null, ResolvedForegroundColor, 0, "", "");
+            format(rtb, Util.ITALIC, null, ResolvedForegroundColor, 0, "", "");
+            GetJumpMarks(rtb);
         }
 
         private void GetJumpMarks(RichTextBox rtb)
@@ -507,11 +507,11 @@ namespace Lyra2.LyraShell
 
         private void formatUnform(RichTextBox rtb)
         {
-            this.format(rtb, Util.REF, Util.TRANSFONT, this.ResolvedRefrainForegroundColor, 0, "Refrain :" + Util.RTNL, "");
-            this.format(rtb, Util.SPEC, new Font(Util.SPECFONT.FontFamily, Util.TRANSFONT.Size, Util.SPECFONT.Style), this.ResolvedForegroundColor, 0, "", "");
-            this.formatBlock(rtb);
-            this.format(rtb, Util.BOLD, Util.TRANSFONT, this.ResolvedForegroundColor, 0, "", "");
-            this.format(rtb, Util.ITALIC, Util.TRANSFONT, this.ResolvedForegroundColor, 0, "", "");
+            format(rtb, Util.REF, Util.TRANSFONT, ResolvedRefrainForegroundColor, 0, "Refrain :" + Util.RTNL, "");
+            format(rtb, Util.SPEC, new Font(Util.SPECFONT.FontFamily, Util.TRANSFONT.Size, Util.SPECFONT.Style), ResolvedForegroundColor, 0, "", "");
+            formatBlock(rtb);
+            format(rtb, Util.BOLD, Util.TRANSFONT, ResolvedForegroundColor, 0, "", "");
+            format(rtb, Util.ITALIC, Util.TRANSFONT, ResolvedForegroundColor, 0, "", "");
             rtb.SelectAll();
             rtb.SelectionFont = Util.TRANSFONT;
         }
@@ -555,7 +555,7 @@ namespace Lyra2.LyraShell
                     }
                     rtb.Select(start, 8);
                     rtb.SelectionFont = new Font(rtb.SelectionFont, FontStyle.Bold);
-                    rtb.SelectionColor = this.ResolvedRefrainForegroundColor;
+                    rtb.SelectionColor = ResolvedRefrainForegroundColor;
                     rtb.SelectionIndent = 0;
                 }
             }
@@ -578,11 +578,11 @@ namespace Lyra2.LyraShell
                 var blockTextStart = blockStart + Util.BLOCK.Length + tag.Length + 2;
                 rtb.Select(blockTextStart, 1);
                 
-                var preservedFont = rtb.SelectionFont ?? this.ResolvedFont;
+                var preservedFont = rtb.SelectionFont ?? ResolvedFont;
                 var preservedColor = rtb.SelectionColor;
                 
                 // Now format the block with preserved font and color
-                this.format(rtb, tag, preservedFont, preservedColor, offset, "", "");
+                format(rtb, tag, preservedFont, preservedColor, offset, "", "");
             }
         }
 
@@ -593,9 +593,9 @@ namespace Lyra2.LyraShell
         {
             if (disposing)
             {
-                if (this._components != null)
+                if (_components != null)
                 {
-                    this._components.Dispose();
+                    _components.Dispose();
                 }
             }
             base.Dispose(disposing);
@@ -603,149 +603,149 @@ namespace Lyra2.LyraShell
 
         private void UpdateViewPanel()
         {
-            this._viewPanel.BackColor = Color.Transparent;
-            this._viewPanel.Top = 0;
-            this._viewPanel.Height = this._viewPanel.Parent.Height;
-            this._viewPanel.Width = Math.Min(this._viewPanel.Parent.Height * 3 / 2, this.Width);
-            this._viewPanel.Left = Math.Max((this._viewPanel.Parent.Width - this._viewPanel.Width) / 2, this.Left);
+            _viewPanel.BackColor = Color.Transparent;
+            _viewPanel.Top = 0;
+            _viewPanel.Height = _viewPanel.Parent.Height;
+            _viewPanel.Width = Math.Min(_viewPanel.Parent.Height * 3 / 2, Width);
+            _viewPanel.Left = Math.Max((_viewPanel.Parent.Width - _viewPanel.Width) / 2, Left);
         }
 
         private void InitializeSongPresenters()
         {
-            this._viewPanel = new Panel();
-            this._richTextBox1 = new ExtendedRichTextBox();
-            this._richTextBox2 = new ExtendedRichTextBox();
+            _viewPanel = new Panel();
+            _richTextBox1 = new ExtendedRichTextBox();
+            _richTextBox2 = new ExtendedRichTextBox();
 
             //
             // viewPanel
             //
-            this.Controls.Add(this._viewPanel);
-            this.UpdateViewPanel();
+            Controls.Add(_viewPanel);
+            UpdateViewPanel();
 
             // 
             // richTextBox1
             // 
 
-            this._viewPanel.Controls.Add(this._richTextBox1);
-            this._richTextBox1.BackColor = Color.White;
-            this._richTextBox1.BorderStyle = BorderStyle.None;
-            this._richTextBox1.Cursor = Cursors.Arrow;
-            this._richTextBox1.Font =
+            _viewPanel.Controls.Add(_richTextBox1);
+            _richTextBox1.BackColor = Color.White;
+            _richTextBox1.BorderStyle = BorderStyle.None;
+            _richTextBox1.Cursor = Cursors.Arrow;
+            _richTextBox1.Font =
               new Font("Microsoft Sans Serif", 12F, FontStyle.Regular,
                        GraphicsUnit.Point, 0);
-            this._richTextBox1.Name = "richTextBox1";
-            this._richTextBox1.ReadOnly = true;
-            this._richTextBox1.TabIndex = 1;
-            this._richTextBox1.TabStop = false;
-            this._richTextBox1.Text = "Text";
-            this._richTextBox1.KeyDown += this.OnKeyDown;
-            this._richTextBox1.GotFocus += this.HandlePresenterFocus;
-            this._richTextBox1.Anchor = AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Top;
-            this._richTextBox1.MouseEnter += this.PresenterMouseEnterHandler;
-            this._richTextBox1.MouseLeave += this.PresenterMouseLeaveHandler;
+            _richTextBox1.Name = "richTextBox1";
+            _richTextBox1.ReadOnly = true;
+            _richTextBox1.TabIndex = 1;
+            _richTextBox1.TabStop = false;
+            _richTextBox1.Text = "Text";
+            _richTextBox1.KeyDown += OnKeyDown;
+            _richTextBox1.GotFocus += HandlePresenterFocus;
+            _richTextBox1.Anchor = AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Top;
+            _richTextBox1.MouseEnter += PresenterMouseEnterHandler;
+            _richTextBox1.MouseLeave += PresenterMouseLeaveHandler;
 
             // 
             // richTextBox2
             // 
-            this._viewPanel.Controls.Add(this._richTextBox2);
-            this._richTextBox2.BackColor = Color.White;
-            this._richTextBox2.BorderStyle = BorderStyle.None;
-            this._richTextBox2.Cursor = Cursors.Arrow;
-            this._richTextBox2.Font =
+            _viewPanel.Controls.Add(_richTextBox2);
+            _richTextBox2.BackColor = Color.White;
+            _richTextBox2.BorderStyle = BorderStyle.None;
+            _richTextBox2.Cursor = Cursors.Arrow;
+            _richTextBox2.Font =
               new Font("Microsoft Sans Serif", 12F, FontStyle.Regular,
                        GraphicsUnit.Point, 0);
-            this._richTextBox2.Name = "richTextBox2";
-            this._richTextBox2.ReadOnly = true;
-            this._richTextBox2.TabIndex = 7;
-            this._richTextBox2.TabStop = false;
-            this._richTextBox2.Text = "TextRight";
-            this._richTextBox2.Visible = false;
-            this._richTextBox2.KeyDown += this.OnKeyDown;
-            this._richTextBox2.GotFocus += this.HandlePresenterFocus;
-            this._richTextBox2.MouseEnter += this.PresenterMouseEnterHandler;
-            this._richTextBox2.MouseLeave += this.PresenterMouseLeaveHandler;
+            _richTextBox2.Name = "richTextBox2";
+            _richTextBox2.ReadOnly = true;
+            _richTextBox2.TabIndex = 7;
+            _richTextBox2.TabStop = false;
+            _richTextBox2.Text = "TextRight";
+            _richTextBox2.Visible = false;
+            _richTextBox2.KeyDown += OnKeyDown;
+            _richTextBox2.GotFocus += HandlePresenterFocus;
+            _richTextBox2.MouseEnter += PresenterMouseEnterHandler;
+            _richTextBox2.MouseLeave += PresenterMouseLeaveHandler;
         }
 
         private void PresenterMouseLeaveHandler(object sender, EventArgs e)
         {
-            this._scrollVisual.Visible = false;
+            _scrollVisual.Visible = false;
         }
 
         private void PresenterMouseEnterHandler(object sender, EventArgs e)
         {
-            this._scrollVisual.Visible = true;
+            _scrollVisual.Visible = true;
         }
 
         private void HandlePresenterFocus(object sender, EventArgs e)
         {
-            this._title.Focus();
+            _title.Focus();
         }
 
         private void InitializeContextMenu()
         {
-            this._contextMenu1 = new ContextMenu();
-            this._menuItem1 = new MenuItem();
-            this._menuItem3 = new MenuItem();
-            this._menuItem4 = new MenuItem();
-            this._menuItem6 = new MenuItem();
-            this._menuItem7 = new MenuItem();
-            this._menuItem5 = new MenuItem();
-            this._menuItem2 = new MenuItem();
+            _contextMenu1 = new ContextMenu();
+            _menuItem1 = new MenuItem();
+            _menuItem3 = new MenuItem();
+            _menuItem4 = new MenuItem();
+            _menuItem6 = new MenuItem();
+            _menuItem7 = new MenuItem();
+            _menuItem5 = new MenuItem();
+            _menuItem2 = new MenuItem();
 
             // menuItem1
             // 
-            this._menuItem1.Index = 0;
-            this._menuItem1.MenuItems.AddRange(new[]
+            _menuItem1.Index = 0;
+            _menuItem1.MenuItems.AddRange(new[]
                                       {
-                                          this._menuItem3, this._menuItem4
+                                          _menuItem3, _menuItem4
                                       });
-            this._menuItem1.Text = "&Navigation";
+            _menuItem1.Text = "&Navigation";
             // 
             // menuItem3
             // 
-            this._menuItem3.Index = 0;
-            this._menuItem3.Text = "&>>";
-            this._menuItem3.Click += this.MoveNext_Handler;
+            _menuItem3.Index = 0;
+            _menuItem3.Text = "&>>";
+            _menuItem3.Click += MoveNext_Handler;
             // 
             // menuItem4
             // 
-            this._menuItem4.Index = 1;
-            this._menuItem4.Text = "&<<";
-            this._menuItem4.Click += this.MovePrevious_Handler;
+            _menuItem4.Index = 1;
+            _menuItem4.Text = "&<<";
+            _menuItem4.Click += MovePrevious_Handler;
             // 
             // menuItem6
             // 
-            this._menuItem6.Index = 1;
-            this._menuItem6.Text = "&rechtes Fenster benützen";
-            this._menuItem6.Click += this.menuItem6_Click;
+            _menuItem6.Index = 1;
+            _menuItem6.Text = "&rechtes Fenster benützen";
+            _menuItem6.Click += menuItem6_Click;
             // 
             // menuItem7
             // 
-            this._menuItem7.Index = 2;
-            this._menuItem7.Text = "&Originaltext anzeigen";
-            this._menuItem7.Visible = false;
-            this._menuItem7.Click += this.menuItem7_Click;
+            _menuItem7.Index = 2;
+            _menuItem7.Text = "&Originaltext anzeigen";
+            _menuItem7.Visible = false;
+            _menuItem7.Click += menuItem7_Click;
             // 
             // menuItem5
             // 
-            this._menuItem5.Index = 3;
-            this._menuItem5.Text = "Über&setzungen";
+            _menuItem5.Index = 3;
+            _menuItem5.Text = "Über&setzungen";
             // 
             // menuItem2
             // 
-            this._menuItem2.Index = 4;
-            this._menuItem2.Text = "schlie&ssen";
-            this._menuItem2.Click += this.menuItem2_Click;
+            _menuItem2.Index = 4;
+            _menuItem2.Text = "schlie&ssen";
+            _menuItem2.Click += menuItem2_Click;
 
             // 
             // contextMenu1
             // 
-            this._contextMenu1.MenuItems.AddRange(new[]
+            _contextMenu1.MenuItems.AddRange(new[]
                                          {
-                                             this._menuItem1, this._menuItem6, this._menuItem7, this._menuItem5, this._menuItem2
+                                             _menuItem1, _menuItem6, _menuItem7, _menuItem5, _menuItem2
                                          });
 
-            this._lyraBtn.ContextMenu = this._contextMenu1;
+            _lyraBtn.ContextMenu = _contextMenu1;
         }
 
         #region Windows Form Designer generated code
@@ -926,58 +926,58 @@ namespace Lyra2.LyraShell
         protected override void OnLoad(EventArgs e)
         {
             // init Screen
-            this.Width = Display.Bounds.Width;
-            this.Height = Display.Bounds.Height;
-            this.Top = Display.Bounds.Top;
-            this.Left = Display.Bounds.Left;
+            Width = Display.Bounds.Width;
+            Height = Display.Bounds.Height;
+            Top = Display.Bounds.Top;
+            Left = Display.Bounds.Left;
 
-            this._label8.Top = this._label8.Parent.Height - this._label8.Height;
-            this._label8.Left = this._label8.Parent.Width - this._label8.Width;
+            _label8.Top = _label8.Parent.Height - _label8.Height;
+            _label8.Left = _label8.Parent.Width - _label8.Width;
 
-            this.UpdateViewPanel();
+            UpdateViewPanel();
 
-            this._richTextBox2.Top = this._richTextBox1.Top;
-            this._richTextBox2.Height = this._richTextBox1.Height;
-            this._richTextBox2.Width = this._richTextBox1.Width / 2 - 5;
-            this._richTextBox2.Left = this._richTextBox1.Left + this._richTextBox2.Width + 10;
-            this._richTextBox2.Height = this._richTextBox1.Height;
+            _richTextBox2.Top = _richTextBox1.Top;
+            _richTextBox2.Height = _richTextBox1.Height;
+            _richTextBox2.Width = _richTextBox1.Width / 2 - 5;
+            _richTextBox2.Left = _richTextBox1.Left + _richTextBox2.Width + 10;
+            _richTextBox2.Height = _richTextBox1.Height;
 
             // init Titlebar
-            this._menuItem6.Checked = true;
+            _menuItem6.Checked = true;
 
             // show nr
-            this._panel2.Width = Display.Bounds.Width;
-            this._panel2.Height = Display.Bounds.Height;
-            this._panel2.Top = 0;
-            this._panel2.Left = 0;
+            _panel2.Width = Display.Bounds.Width;
+            _panel2.Height = Display.Bounds.Height;
+            _panel2.Top = 0;
+            _panel2.Left = 0;
 
-            this._label5.Left = Display.Bounds.Width / 2;
-            this._label5.Top = Display.Bounds.Height / 2 - this._label5.Height / 2;
-            this._label9.Top = this._label5.Bottom + 2;
-            this._label9.Left = this._label5.Left;
-            this._pictureBox1.Left = this._pictureBox1.Parent.Width / 2 - this._pictureBox1.Width;
-            this._pictureBox1.Top = this._label5.Top;
-            this._label5.Text = this._song.Number.ToString();
-            this._label9.Text = this._song.Desc;
+            _label5.Left = Display.Bounds.Width / 2;
+            _label5.Top = Display.Bounds.Height / 2 - _label5.Height / 2;
+            _label9.Top = _label5.Bottom + 2;
+            _label9.Left = _label5.Left;
+            _pictureBox1.Left = _pictureBox1.Parent.Width / 2 - _pictureBox1.Width;
+            _pictureBox1.Top = _label5.Top;
+            _label5.Text = _song.Number.ToString();
+            _label9.Text = _song.Desc;
 
-            if (this._trans != null)
+            if (_trans != null)
             {
-                this.RefreshSong(this._song, this._trans);
+                RefreshSong(_song, _trans);
             }
             else
             {
-                this.RefreshSong(this._song);
+                RefreshSong(_song);
             }
 
-            this._panel4.Bounds = this.Bounds;
-            this._panel4.Visible = Black;
+            _panel4.Bounds = Bounds;
+            _panel4.Visible = Black;
         }
 
         protected override void OnResize(EventArgs e)
         {
             base.OnResize(e);
 
-            this.UpdatePresenterSizeAndPosition();
+            UpdatePresenterSizeAndPosition();
         }
 
         private bool DISABLEACTIONS;
@@ -989,39 +989,39 @@ namespace Lyra2.LyraShell
         {
             CrossThreadInvoke showNr = delegate
                                          {
-                                             this._panel2.Show();
-                                             this._label5.Text = this._song.Number.ToString(CultureInfo.InvariantCulture);
-                                             this._label9.Text = this._song.Desc;
-                                             this.DISABLEACTIONS = true;
+                                             _panel2.Show();
+                                             _label5.Text = _song.Number.ToString(CultureInfo.InvariantCulture);
+                                             _label9.Text = _song.Desc;
+                                             DISABLEACTIONS = true;
                                          };
-            this.Invoke(showNr);
+            Invoke(showNr);
             Thread.Sleep(Util.TIMER * 1000);
             CrossThreadInvoke hideNr = delegate
                                          {
-                                             this.DISABLEACTIONS = false;
-                                             this._panel2.Hide();
+                                             DISABLEACTIONS = false;
+                                             _panel2.Hide();
                                              Util.CTRLSHOWNR = true;
                                          };
-            this.Invoke(hideNr);
+            Invoke(hideNr);
         }
 
         private void LyraButtonClickHandler(object sender, MouseEventArgs e)
         {
-            this._contextMenu1.Show(this, this.PointToClient(this._lyraBtn.PointToScreen(new Point(0, 0))));
+            _contextMenu1.Show(this, PointToClient(_lyraBtn.PointToScreen(new Point(0, 0))));
         }
 
         private void menuItem2_Click(object sender, EventArgs e)
         {
-            this._song.uncheck();
+            _song.uncheck();
             _countViews--;
-            this._owner.Status = "ok";
-            this.Close();
+            _owner.Status = "ok";
+            Close();
         }
 
         // show song
         private void menuItem7_Click(object sender, EventArgs e)
         {
-            this.RefreshSong(this._song);
+            RefreshSong(_song);
         }
 
         // back
@@ -1036,7 +1036,7 @@ namespace Lyra2.LyraShell
                 Util.CTRLSHOWNR = Util.SHOWNR;
             }
 
-            this.RefreshSong((ISong)this.navigate.Items[this.NextPos]);
+            RefreshSong((ISong)navigate.Items[NextPos]);
         }
 
         // forward
@@ -1051,7 +1051,7 @@ namespace Lyra2.LyraShell
                 Util.CTRLSHOWNR = Util.SHOWNR;
             }
 
-            this.RefreshSong((ISong)this.navigate.Items[this.LastPos]);
+            RefreshSong((ISong)navigate.Items[LastPos]);
         }
 
         private int transCount;
@@ -1059,15 +1059,15 @@ namespace Lyra2.LyraShell
         protected override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);
-            this.OnKeyDown(this, e);
+            OnKeyDown(this, e);
         }
 
         private void OnKeyDown(object sender, KeyEventArgs ke)
         {
-            if (this.DISABLEACTIONS) return;
+            if (DISABLEACTIONS) return;
             if ((ke.KeyCode == Keys.F4 && ke.Alt) || (ke.KeyCode == Keys.Escape))
             {
-                this.menuItem2_Click(sender, ke);
+                menuItem2_Click(sender, ke);
             }
             else if (ke.KeyCode == Keys.B && ke.Control)
             {
@@ -1075,13 +1075,13 @@ namespace Lyra2.LyraShell
             }
             else if (ke.KeyCode == Keys.PageDown)
             {
-                this.MovePrevious_Handler(sender, ke);
-                this.updatePreview();
+                MovePrevious_Handler(sender, ke);
+                updatePreview();
             }
             else if (ke.KeyCode == Keys.PageUp)
             {
-                this.MoveNext_Handler(sender, ke);
-                this.updatePreview();
+                MoveNext_Handler(sender, ke);
+                updatePreview();
             }
             else if(ke.KeyCode == Keys.Up)
             {
@@ -1125,31 +1125,31 @@ namespace Lyra2.LyraShell
             }
             else if (ke.KeyCode == Keys.F9)
             {
-                this.activatePreview();
+                activatePreview();
             }
             else if (ke.KeyCode == Keys.T)
             {
-                this.RefreshSong(this._song, this._song.GetTranslation(this.transCount++));
+                RefreshSong(_song, _song.GetTranslation(transCount++));
             }
             else if (ke.KeyCode == Keys.U)
             {
-                this.RefreshSong(this._song);
+                RefreshSong(_song);
             }
         }
 
         private void menuItem6_Click(object sender, EventArgs e)
         {
-            this._menuItem6.Checked = !this._menuItem6.Checked;
-            Util.SHOWRIGHT = this._menuItem6.Checked;
-            this._richTextBox2.Text = "";
-            this._richTextBox2.Visible = false;
-            if (this._menuItem7.Visible)
+            _menuItem6.Checked = !_menuItem6.Checked;
+            Util.SHOWRIGHT = _menuItem6.Checked;
+            _richTextBox2.Text = "";
+            _richTextBox2.Visible = false;
+            if (_menuItem7.Visible)
             {
-                this.menuItem7_Click(this, new EventArgs());
+                menuItem7_Click(this, new EventArgs());
             }
             else
             {
-                this.RefreshSong(this._song);
+                RefreshSong(_song);
             }
         }
 
@@ -1157,24 +1157,24 @@ namespace Lyra2.LyraShell
 
         private void activatePreview()
         {
-            this.isactivated = !this.isactivated;
-            if (this.isactivated)
+            isactivated = !isactivated;
+            if (isactivated)
             {
-                this.updatePreview();
+                updatePreview();
             }
 
-            this._label8.Visible = this.isactivated;
+            _label8.Visible = isactivated;
         }
 
         private void updatePreview()
         {
             var next =
-              ((ISong)this.navigate.Items[(this.pos + this.navigate.Items.Count + 1) % this.navigate.Items.Count]).
+              ((ISong)navigate.Items[(pos + navigate.Items.Count + 1) % navigate.Items.Count]).
                 Number.ToString(CultureInfo.InvariantCulture);
             var last =
-              ((ISong)this.navigate.Items[(this.pos + this.navigate.Items.Count - 1) % this.navigate.Items.Count]).
+              ((ISong)navigate.Items[(pos + navigate.Items.Count - 1) % navigate.Items.Count]).
                 Number.ToString(CultureInfo.InvariantCulture);
-            this._label8.Text = "PgUp:" + next + Util.NL + "PgDn:" + last;
+            _label8.Text = "PgUp:" + next + Util.NL + "PgDn:" + last;
         }
 
         private static void ViewClosingHandler(object sender, CancelEventArgs e)
@@ -1194,28 +1194,28 @@ namespace Lyra2.LyraShell
 
         private void LyraButtonMouseEnterHandler(object sender, EventArgs e)
         {
-            this._lyraBtn.Appearance.AlphaLevel = 255;
+            _lyraBtn.Appearance.AlphaLevel = 255;
         }
 
         private void LyraButtonMouseLeaveHandler(object sender, EventArgs e)
         {
-            this._lyraBtn.Appearance.AlphaLevel = LyraBtnMinimumAlpha;
+            _lyraBtn.Appearance.AlphaLevel = LyraBtnMinimumAlpha;
         }
 
         protected override void OnMouseWheel(MouseEventArgs e)
         {
-            if (!this._richTextBox1.IsMouseOver)
+            if (!_richTextBox1.IsMouseOver)
             {
                 return;
             }
 
             if (e.Delta > 0)
             {
-                this._richTextBox1.ScrollUp();
+                _richTextBox1.ScrollUp();
             }
             else
             {
-                this._richTextBox1.ScrollDown();
+                _richTextBox1.ScrollDown();
             }
 
             base.OnMouseWheel(e);
@@ -1245,12 +1245,12 @@ namespace Lyra2.LyraShell
                     var left = xml.IndexOf("\"", pos, StringComparison.InvariantCulture) + 1;
                     var right = 0;
                     if (left >= 0) right = xml.IndexOf("\"", left, StringComparison.InvariantCulture);
-                    this.name = xml.Substring(left, right - left);
+                    name = xml.Substring(left, right - left);
                 }
             }
             catch (Exception)
             {
-                this.name = "n/a";
+                name = "n/a";
             }
 
             this.position = position;
@@ -1258,17 +1258,17 @@ namespace Lyra2.LyraShell
 
         public string Name
         {
-            get { return this.name; }
+            get { return name; }
         }
 
         public int Position
         {
-            get { return this.position; }
+            get { return position; }
         }
 
         public override string ToString()
         {
-            return this.name;
+            return name;
         }
     }
 }

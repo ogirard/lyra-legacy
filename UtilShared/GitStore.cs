@@ -9,7 +9,7 @@ namespace Lyra2.UtilShared
     {
         private readonly string repositoryRoot;
 
-        private string GitIgnorePath => $"{this.repositoryRoot}\\.gitignore";
+        private string GitIgnorePath => $"{repositoryRoot}\\.gitignore";
 
         public GitStore(string repositoryRoot)
         {
@@ -22,19 +22,19 @@ namespace Lyra2.UtilShared
 
         public void CommitFile(string file, string content)
         {
-            using (var repo = new Repository(this.repositoryRoot))
+            using (var repo = new Repository(repositoryRoot))
             {
                 var gitignore = $"# Lyra .gitignore to track single files{Environment.NewLine}*";
-                if (File.Exists(this.GitIgnorePath))
+                if (File.Exists(GitIgnorePath))
                 {
-                    gitignore = File.ReadAllText(this.GitIgnorePath);
+                    gitignore = File.ReadAllText(GitIgnorePath);
                 }
 
                 var fileName = Path.GetFileName(file);
                 if (!gitignore.Contains($"!{fileName}"))
                 {
                     gitignore += Environment.NewLine + $"!{fileName}";
-                    File.WriteAllText(this.GitIgnorePath, gitignore);
+                    File.WriteAllText(GitIgnorePath, gitignore);
                     if (repo.Index.All(s => s.Path != ".gitignore"))
                     {
                         repo.Index.Add(".gitignore");

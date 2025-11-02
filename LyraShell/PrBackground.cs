@@ -22,17 +22,17 @@ namespace Lyra2.LyraShell
 		public PrBackground(GUI owner)
 		{
 			this.owner = owner;
-		    this.InitializeComponent();
+		    InitializeComponent();
 
 			// init Screen
-			this.Width = Screen.PrimaryScreen.Bounds.Width;
-			this.Height = Screen.PrimaryScreen.Bounds.Height;
-			this.Top = 0;
-			this.Left = 0;
+			Width = Screen.PrimaryScreen.Bounds.Width;
+			Height = Screen.PrimaryScreen.Bounds.Height;
+			Top = 0;
+			Left = 0;
 
-			this.label1.Text = "lyra v" + Util.VER + " " + Util.BUILD;
-			this.label1.Top = this.Height - this.label1.Height - 15;
-			this.label1.Left = this.Width - this.label1.Width - 15;
+			label1.Text = "lyra v" + Util.VER + " " + Util.BUILD;
+			label1.Top = Height - label1.Height - 15;
+			label1.Left = Width - label1.Width - 15;
 		}
 
 		/// <summary>
@@ -40,12 +40,12 @@ namespace Lyra2.LyraShell
 		/// </summary>
 		protected override void Dispose(bool disposing)
 		{
-			if (this.bgbitmap != null) this.bgbitmap.Dispose();
+			if (bgbitmap != null) bgbitmap.Dispose();
 			if (disposing)
 			{
-				if (this.components != null)
+				if (components != null)
 				{
-				    this.components.Dispose();
+				    components.Dispose();
 				}
 			}
 			base.Dispose(disposing);
@@ -61,10 +61,10 @@ namespace Lyra2.LyraShell
 			switch (Util.PREMODE)
 			{
 				case 0:
-					g.FillRectangle(new SolidBrush(Util.UNICOLOR), 0, 0, this.Width, this.Height);
+					g.FillRectangle(new SolidBrush(Util.UNICOLOR), 0, 0, Width, Height);
 					break;
 				case 1:
-					g.FillRectangle(new LinearGradientBrush(new Point(0, 0), new Point(0, this.Height), Util.GRADCOL1, Util.GRADCOL2), 0, 0, this.Width, this.Height);
+					g.FillRectangle(new LinearGradientBrush(new Point(0, 0), new Point(0, Height), Util.GRADCOL1, Util.GRADCOL2), 0, 0, Width, Height);
 					break;
 				case 2:
 					{
@@ -72,20 +72,20 @@ namespace Lyra2.LyraShell
 						{
 							if (Util.CASCADEPIC)
 							{
-								this.BackgroundImage = Util.BGIMG;
+								BackgroundImage = Util.BGIMG;
 							}
 							else
 							{
-								if (this.bgbitmap == null)
+								if (bgbitmap == null)
 								{
-									this.bgbitmap = new Bitmap(Util.BGIMG, new Size(this.Width, this.Height));
+									bgbitmap = new Bitmap(Util.BGIMG, new Size(Width, Height));
 								}
-								g.DrawImage(this.bgbitmap, 0, 0, this.Width, this.Height);
+								g.DrawImage(bgbitmap, 0, 0, Width, Height);
 							}
 						}
 						else
 						{
-							g.FillRectangle(new SolidBrush(Util.UNICOLOR), 0, 0, this.Width, this.Height);
+							g.FillRectangle(new SolidBrush(Util.UNICOLOR), 0, 0, Width, Height);
 						}
 						break;
 					}
@@ -138,7 +138,7 @@ namespace Lyra2.LyraShell
 		private void PrBackground_GotFocus(object sender, EventArgs e)
 		{
 			History.ForceFocus();
-			this.owner.Focus();
+			owner.Focus();
 		}
 	}
 }

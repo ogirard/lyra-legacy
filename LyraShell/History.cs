@@ -58,13 +58,13 @@ namespace Lyra2.LyraShell
             //
             // Required for Windows Form Designer support
             //
-            this.InitializeComponent();
-            this.StartPosition = FormStartPosition.Manual;
-            this.changedHandler = this.View_HistoryChanged;
-            View.HistoryChanged += this.changedHandler;
-            this.Closing += this.History_Closing;
+            InitializeComponent();
+            StartPosition = FormStartPosition.Manual;
+            changedHandler = View_HistoryChanged;
+            View.HistoryChanged += changedHandler;
+            Closing += History_Closing;
             this.owner = owner;
-            this.loadHistory();
+            loadHistory();
         }
 
         /// <summary>
@@ -74,9 +74,9 @@ namespace Lyra2.LyraShell
         {
             if (disposing)
             {
-                if (this.components != null)
+                if (components != null)
                 {
-                    this.components.Dispose();
+                    components.Dispose();
                 }
             }
             base.Dispose(disposing);
@@ -221,59 +221,59 @@ namespace Lyra2.LyraShell
 
         private void View_HistoryChanged(object sender, EventArgs e)
         {
-            this.loadHistory();
+            loadHistory();
         }
 
         private void History_Closing(object sender, CancelEventArgs e)
         {
-            View.HistoryChanged -= this.changedHandler;
-            StorePersonalizationSettings(this.owner.Personalizer, false);
+            View.HistoryChanged -= changedHandler;
+            StorePersonalizationSettings(owner.Personalizer, false);
             _this = null;
         }
 
         private void loadHistory()
         {
-            this.historyListBox.BeginUpdate();
-            this.historyListBox.Items.Clear();
+            historyListBox.BeginUpdate();
+            historyListBox.Items.Clear();
             foreach (Song s in View.SongHistory)
             {
                 if (s.ID != Util.PREVIEW_SONG_ID)
                 {
-                    this.historyListBox.Items.Insert(0, s);
+                    historyListBox.Items.Insert(0, s);
                 }
             }
 
-            if (this.historyListBox.Items.Count == 0)
+            if (historyListBox.Items.Count == 0)
             {
-                this.historyListBox.Items.Add("Es sind noch keine Lieder geöffnet worden!");
+                historyListBox.Items.Add("Es sind noch keine Lieder geöffnet worden!");
             }
             else
             {
                 // select first item in history
-                this.historyListBox.SelectedIndex = 0;
+                historyListBox.SelectedIndex = 0;
             }
-            this.historyListBox.EndUpdate();
+            historyListBox.EndUpdate();
         }
 
         private void listBox3_DoubleClick(object sender, EventArgs e)
         {
-            if (this.historyListBox.SelectedItem is Song)
+            if (historyListBox.SelectedItem is Song)
             {
-                View.ShowSong((Song)this.historyListBox.SelectedItem, this.owner, this.historyListBox, "History");
+                View.ShowSong((Song)historyListBox.SelectedItem, owner, historyListBox, "History");
             }
         }
 
         private void listBox3_SelectedValueChanged(object sender, EventArgs e)
         {
-            var s = this.historyListBox.SelectedItem as ISong;
+            var s = historyListBox.SelectedItem as ISong;
             if (s != null)
             {
-                this.historySongPreview.ShowSong(s);
-                this.historyListBox.Focus();
+                historySongPreview.ShowSong(s);
+                historyListBox.Focus();
             }
             else
             {
-                this.historySongPreview.Reset();
+                historySongPreview.Reset();
             }
         }
 
@@ -308,9 +308,9 @@ namespace Lyra2.LyraShell
 
         private void historyListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.historyListBox.SelectedIndex < 0)
+            if (historyListBox.SelectedIndex < 0)
             {
-                this.historySongPreview.Reset();
+                historySongPreview.Reset();
             }
         }
 
@@ -353,7 +353,7 @@ namespace Lyra2.LyraShell
         {
 
             var songs = new List<string>();
-            foreach (var song in this.historyListBox.Items)
+            foreach (var song in historyListBox.Items)
             {
                 if (song is ISong)
                 {
@@ -361,7 +361,7 @@ namespace Lyra2.LyraShell
                 }
 
             }
-            NewList.ShowNewList(this.owner, "History vom " + DateTime.Now.ToString("dddd, dd.MM.yyyy"), songs.ToArray());
+            NewList.ShowNewList(owner, "History vom " + DateTime.Now.ToString("dddd, dd.MM.yyyy"), songs.ToArray());
         }
 
         private void SaveHistoryAsTextFile(object sender, EventArgs e)
@@ -374,13 +374,13 @@ namespace Lyra2.LyraShell
             fd.RestoreDirectory = true;
             fd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             fd.FileName = DateTime.Now.ToString("yyyy-MM-dd") + "_history.txt";
-            if (fd.ShowDialog(this.owner) == DialogResult.OK)
+            if (fd.ShowDialog(owner) == DialogResult.OK)
             {
                 using (var sw = new StreamWriter(fd.FileName, false, Encoding.UTF8))
                 {
                     sw.WriteLine("History vom " + DateTime.Now.ToString("dddd, dd.MM.yyyy"));
                     sw.WriteLine();
-                    foreach (var item in this.historyListBox.Items)
+                    foreach (var item in historyListBox.Items)
                     {
                         if (item is ISong)
                         {

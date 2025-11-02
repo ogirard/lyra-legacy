@@ -18,7 +18,7 @@ namespace Lyra2.LyraShell
 			///
 			/// Required for Windows.Forms Class Composition Designer support
 			///
-		    this.InitializeComponent();
+		    InitializeComponent();
 		}
 
 		/// <summary> 
@@ -28,9 +28,9 @@ namespace Lyra2.LyraShell
 		{
 			if( disposing )
 			{
-				if(this.components != null)
+				if(components != null)
 				{
-				    this.components.Dispose();
+				    components.Dispose();
 				}
 			}
 			base.Dispose( disposing );

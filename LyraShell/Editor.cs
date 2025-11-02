@@ -62,94 +62,94 @@ namespace Lyra2.LyraShell
 
         public bool UndoEnabled
         {
-            get => this.toolbars.Toolbars[0].Tools["undo"].SharedProps.Enabled;
-            set { this.toolbars.Toolbars[0].Tools["undo"].SharedProps.Enabled = value; }
+            get => toolbars.Toolbars[0].Tools["undo"].SharedProps.Enabled;
+            set { toolbars.Toolbars[0].Tools["undo"].SharedProps.Enabled = value; }
         }
 
         public Editor(ISong song, GUI owner, IStorage storage)
         {
             this.song = song;
             this.owner = owner;
-            this._storage = storage;
-            this.styles = this._storage.Styles;
+            _storage = storage;
+            styles = _storage.Styles;
 
             open = true;
             editor = this;
-            this.AcceptButton = this.button1;
-            this.InitializeComponent();
-            this.comboStyle.BeginUpdate();
-            this.bottomPanel.Height = 93;
+            AcceptButton = button1;
+            InitializeComponent();
+            comboStyle.BeginUpdate();
+            bottomPanel.Height = 93;
             foreach (var style in storage.Styles)
             {
-                this.comboStyle.Items.Add(style);
+                comboStyle.Items.Add(style);
             }
-            this.comboStyle.EndUpdate();
+            comboStyle.EndUpdate();
 
             if (song != null)
             {
-                this.textBox1.Text = song.Title;
-                this.textBox2.Text = song.Number.ToString();
-                this.editorTextBox.Text = song.Text;
-                this.button12.Enabled = true;
+                textBox1.Text = song.Title;
+                textBox2.Text = song.Number.ToString();
+                editorTextBox.Text = song.Text;
+                button12.Enabled = true;
                 if (song.Desc == "")
                 {
-                    this.checkBox1.Checked = false;
-                    this.textBox3.Text = "---";
-                    this.textBox3.Enabled = false;
+                    checkBox1.Checked = false;
+                    textBox3.Text = "---";
+                    textBox3.Enabled = false;
                 }
                 else
                 {
-                    this.checkBox1.Checked = true;
-                    this.textBox3.Text = song.Desc;
-                    this.textBox3.Enabled = true;
+                    checkBox1.Checked = true;
+                    textBox3.Text = song.Desc;
+                    textBox3.Enabled = true;
                 }
-                this.useDefaultStyleCheckBox.Checked = this.song.UseDefaultStyle;
+                useDefaultStyleCheckBox.Checked = this.song.UseDefaultStyle;
                 if (!this.song.UseDefaultStyle)
                 {
-                    this.comboStyle.SelectedItem = this.song.Style;
+                    comboStyle.SelectedItem = this.song.Style;
                 }
             }
             else
             {
-                this.textBox1.Text = "";
-                this.textBox2.Text = "";
-                this.editorTextBox.Text = "";
-                this.textBox2.Enabled = true;
-                this.textBox3.Text = "---";
-                this.checkBox1.Checked = false;
-                this.textBox3.Enabled = false;
-                this.useDefaultStyleCheckBox.Checked = true;
-                this.comboStyle.SelectedItem = this.styles.FirstOrDefault(s => s.IsDefault);
+                textBox1.Text = "";
+                textBox2.Text = "";
+                editorTextBox.Text = "";
+                textBox2.Enabled = true;
+                textBox3.Text = "---";
+                checkBox1.Checked = false;
+                textBox3.Enabled = false;
+                useDefaultStyleCheckBox.Checked = true;
+                comboStyle.SelectedItem = styles.FirstOrDefault(s => s.IsDefault);
             }
 
-            this.toolbars.ToolClick += this.ToolbarsClickHandler;
-            var combo = (ComboBoxTool)this.toolbars.Toolbars[0].Tools["indentCombo"];
-            this.UndoEnabled = false;
+            toolbars.ToolClick += ToolbarsClickHandler;
+            var combo = (ComboBoxTool)toolbars.Toolbars[0].Tools["indentCombo"];
+            UndoEnabled = false;
             combo.SelectedIndex = 0;
         }
 
         private void OpenStyleEditorClickHandler(object sender, EventArgs e)
         {
-            using (var se = new StyleEditor(this._storage))
+            using (var se = new StyleEditor(_storage))
             {
                 se.ShowDialog(this);
-                this.comboStyle.BeginUpdate();
-                this.comboStyle.Items.Clear();
-                foreach (var style in this.styles)
+                comboStyle.BeginUpdate();
+                comboStyle.Items.Clear();
+                foreach (var style in styles)
                 {
-                    this.comboStyle.Items.Add(style);
+                    comboStyle.Items.Add(style);
                 }
 
-                if (this.song != null && !this.song.UseDefaultStyle)
+                if (song != null && !song.UseDefaultStyle)
                 {
-                    this.comboStyle.SelectedItem = this.song.Style;
+                    comboStyle.SelectedItem = song.Style;
                 }
                 else
                 {
-                    this.comboStyle.SelectedItem = this.styles.FirstOrDefault(s => s.IsDefault);
+                    comboStyle.SelectedItem = styles.FirstOrDefault(s => s.IsDefault);
                 }
 
-                this.comboStyle.EndUpdate();
+                comboStyle.EndUpdate();
             }
         }
 
@@ -158,24 +158,24 @@ namespace Lyra2.LyraShell
             switch (e.Tool.Key)
             {
                 case "bold":    // ButtonTool
-                    this.FormatText(Util.BOLD, false);
+                    FormatText(Util.BOLD, false);
                     break;
 
                 case "italic":    // ButtonTool
-                    this.FormatText(Util.ITALIC, false);
+                    FormatText(Util.ITALIC, false);
                     break;
 
                 case "refrain":    // ButtonTool
-                    this.FormatText(Util.REF, true);
+                    FormatText(Util.REF, true);
                     break;
 
                 case "special":    // ButtonTool
-                    this.FormatText(Util.SPEC, false);
+                    FormatText(Util.SPEC, false);
                     break;
 
                 case "tab":    // ButtonTool
-                    this.undo.Push((this.editorTextBox.Rtf, this.editorTextBox.SelectionStart, this.editorTextBox.SelectionLength, this.editorTextBox.ScrollPosition));
-                    this.editorTextBox.ModifyWithStableScroll(editor =>
+                    undo.Push((editorTextBox.Rtf, editorTextBox.SelectionStart, editorTextBox.SelectionLength, editorTextBox.ScrollPosition));
+                    editorTextBox.ModifyWithStableScroll(editor =>
                     {
                         var tabpos = editor.SelectionStart;
                         editor.Text = editor.Text.Insert(tabpos, '\t'.ToString());
@@ -185,13 +185,13 @@ namespace Lyra2.LyraShell
                     break;
 
                 case "indent":    // ButtonTool
-                    var combo = (ComboBoxTool)this.toolbars.Toolbars[0].Tools["indentCombo"];
-                    this.FormatText(Util.BLOCK + ((ValueListItem)combo.SelectedItem).DisplayText, true);
+                    var combo = (ComboBoxTool)toolbars.Toolbars[0].Tools["indentCombo"];
+                    FormatText(Util.BLOCK + ((ValueListItem)combo.SelectedItem).DisplayText, true);
                     break;
 
                 case "Seitenumbruch":    // ButtonTool
-                    this.undo.Push((this.editorTextBox.Rtf, this.editorTextBox.SelectionStart, this.editorTextBox.SelectionLength, this.editorTextBox.ScrollPosition));
-                    this.editorTextBox.ModifyWithStableScroll(editor =>
+                    undo.Push((editorTextBox.Rtf, editorTextBox.SelectionStart, editorTextBox.SelectionLength, editorTextBox.ScrollPosition));
+                    editorTextBox.ModifyWithStableScroll(editor =>
                     {
                         int findpos;
                         if ((findpos = editor.Find("<" + Util.PGBR + " />", 0, RichTextBoxFinds.MatchCase)) == -1)
@@ -222,14 +222,14 @@ namespace Lyra2.LyraShell
                     break;
 
                 case "jumpmark":    // ButtonTool
-                    this.editorTextBox.ModifyWithStableScroll(editor =>
+                    editorTextBox.ModifyWithStableScroll(editor =>
                     {
                         var ijm = new InsertJumpMark();
                         var line = editor.GetLineFromCharIndex(editor.SelectionStart) + 1;
                         ijm.JumpMarkName = "Sprungmarke Zeile " + line;
                         if (ijm.ShowDialog(this) == DialogResult.OK)
                         {
-                            this.undo.Push((this.editorTextBox.Rtf, this.editorTextBox.SelectionStart, this.editorTextBox.SelectionLength, this.editorTextBox.ScrollPosition));
+                            undo.Push((editorTextBox.Rtf, editorTextBox.SelectionStart, editorTextBox.SelectionLength, editorTextBox.ScrollPosition));
                             var jmpMarkPos = editor.SelectionStart;
                             var jumpMark = string.IsNullOrEmpty(ijm.JumpMarkName)
                                 ? "Sprungmarke Zeile " + line
@@ -242,22 +242,22 @@ namespace Lyra2.LyraShell
                     });
                     break;
                 case "undo":    // ButtonTool
-                    if (this.undo.Count > 0)
+                    if (undo.Count > 0)
                     {
-                        var (rtf, start, length, scroll) = this.undo.Pop();
-                        this.editorTextBox.Rtf = rtf;
-                        this.editorTextBox.SelectionStart = start;
-                        this.editorTextBox.SelectionLength = length;
-                        this.editorTextBox.ScrollPosition = scroll;
+                        var (rtf, start, length, scroll) = undo.Pop();
+                        editorTextBox.Rtf = rtf;
+                        editorTextBox.SelectionStart = start;
+                        editorTextBox.SelectionLength = length;
+                        editorTextBox.ScrollPosition = scroll;
                     }
-                    else if (this.editorTextBox.CanUndo)
+                    else if (editorTextBox.CanUndo)
                     {
-                        this.editorTextBox.Undo();
+                        editorTextBox.Undo();
                     }
                     break;
             }
 
-            this.UndoEnabled = this.editorTextBox.CanUndo || this.undo.Count > 0;
+            UndoEnabled = editorTextBox.CanUndo || undo.Count > 0;
         }
 
 
@@ -270,9 +270,9 @@ namespace Lyra2.LyraShell
             open = false;
             if (disposing)
             {
-                if (this.components != null)
+                if (components != null)
                 {
-                    this.components.Dispose();
+                    components.Dispose();
                 }
             }
             base.Dispose(disposing);
@@ -844,7 +844,7 @@ namespace Lyra2.LyraShell
         // abbrechen
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         // ok
@@ -853,45 +853,45 @@ namespace Lyra2.LyraShell
             int nr;
             try
             {
-                nr = Int32.Parse(this.textBox2.Text);
+                nr = Int32.Parse(textBox2.Text);
             }
             catch (Exception ex)
             {
                 Util.MBoxError("Überprüfen Sie die Liednummer!", ex);
-                this.textBox2.Focus();
-                this.textBox2.SelectAll();
+                textBox2.Focus();
+                textBox2.SelectAll();
                 return;
             }
-            var title = this.textBox1.Text;
-            var text = this.editorTextBox.Text;
-            var desc = this.textBox3.Text == @"---" ? "" : this.textBox3.Text;
-            if (this.toDel != null && nr == this.toDel.Number) // number hasn't changed!
+            var title = textBox1.Text;
+            var text = editorTextBox.Text;
+            var desc = textBox3.Text == @"---" ? "" : textBox3.Text;
+            if (toDel != null && nr == toDel.Number) // number hasn't changed!
             {
-                this.song = this.toDel;
+                song = toDel;
             }
-            if (this.song != null)
+            if (song != null)
             {
-                this.song.Title = title;
-                this.song.Text = text;
-                this.song.Desc = desc;
-                this.song.Style = this.comboStyle.SelectedItem as Style;
-                this.song.UseDefaultStyle = this.useDefaultStyleCheckBox.Checked;
-                this.owner.Status = "Liedtext editiert...";
+                song.Title = title;
+                song.Text = text;
+                song.Desc = desc;
+                song.Style = comboStyle.SelectedItem as Style;
+                song.UseDefaultStyle = useDefaultStyleCheckBox.Checked;
+                owner.Status = "Liedtext editiert...";
             }
             else
             {
                 var id = "s" + Util.toFour(nr);
                 ISong newSong = new Song(nr, title, text, id, desc, true);
-                newSong.Style = this.comboStyle.SelectedItem as Style;
-                newSong.UseDefaultStyle = this.useDefaultStyleCheckBox.Checked;
-                if (this.toDel != null)
+                newSong.Style = comboStyle.SelectedItem as Style;
+                newSong.UseDefaultStyle = useDefaultStyleCheckBox.Checked;
+                if (toDel != null)
                 {
-                    CopyTrans(this.toDel, newSong);
-                    this.toDel.Delete();
+                    CopyTrans(toDel, newSong);
+                    toDel.Delete();
                 }
                 try
                 {
-                    this.owner.AddSong(newSong);
+                    owner.AddSong(newSong);
                 }
                 catch
                 {
@@ -906,24 +906,24 @@ namespace Lyra2.LyraShell
                     if (dr == DialogResult.Yes)
                     {
                         newSong.nextID();
-                        this.owner.AddSong(newSong);
+                        owner.AddSong(newSong);
                     }
                     else
                     {
                         return;
                     }
                 }
-                this.owner.Status = "Neues Lied erfolgreich hinzugefügt...";
+                owner.Status = "Neues Lied erfolgreich hinzugefügt...";
             }
-            this.owner.UpdateListBox();
-            this.owner.ToUpdate(true);
-            this.Close();
+            owner.UpdateListBox();
+            owner.ToUpdate(true);
+            Close();
         }
 
         private void FormatText(string tag, bool nl)
         {
-            this.undo.Push((this.editorTextBox.Rtf, this.editorTextBox.SelectionStart, this.editorTextBox.SelectionLength, this.editorTextBox.ScrollPosition));
-            this.editorTextBox.ModifyWithStableScroll(editor =>
+            undo.Push((editorTextBox.Rtf, editorTextBox.SelectionStart, editorTextBox.SelectionLength, editorTextBox.ScrollPosition));
+            editorTextBox.ModifyWithStableScroll(editor =>
             {
                 var left = editor.SelectionStart;
                 var right = editor.SelectionLength + left + tag.Length + 2;
@@ -956,23 +956,23 @@ namespace Lyra2.LyraShell
             int nr;
             try
             {
-                nr = Int32.Parse(this.textBox2.Text);
+                nr = Int32.Parse(textBox2.Text);
             }
             catch (Exception ex)
             {
                 Util.MBoxError("Überprüfen Sie die Liednummer!", ex);
-                this.textBox2.Focus();
-                this.textBox2.SelectAll();
+                textBox2.Focus();
+                textBox2.SelectAll();
                 return;
             }
-            if (this.toDel != null && nr == this.toDel.Number)
+            if (toDel != null && nr == toDel.Number)
             {
-                this.song = this.toDel;
-                this.toDel = null;
-                this.textBox2.Enabled = false;
-                this.button12.Enabled = true;
+                song = toDel;
+                toDel = null;
+                textBox2.Enabled = false;
+                button12.Enabled = true;
             }
-            if (this.song == null)
+            if (song == null)
             {
                 var add = MessageBox.Show(this, @"Das neue Lied muss zuerst gespeichert werden." + Environment.NewLine +
                                                          @"Soll das Lied jetzt hinzugefügt werden?", @"lyra Hinweis",
@@ -982,20 +982,20 @@ namespace Lyra2.LyraShell
                 {
                     return;
                 }
-                var title = this.textBox1.Text;
-                var text = this.editorTextBox.Text;
+                var title = textBox1.Text;
+                var text = editorTextBox.Text;
                 var id = "s" + Util.toFour(nr);
-                var desc = this.checkBox1.Checked ? this.textBox3.Text : "";
-                this.song = new Song(nr, title, text, id, desc, true);
-                this.song.UseDefaultStyle = this.useDefaultStyleCheckBox.Checked;
-                if (this.toDel != null)
+                var desc = checkBox1.Checked ? textBox3.Text : "";
+                song = new Song(nr, title, text, id, desc, true);
+                song.UseDefaultStyle = useDefaultStyleCheckBox.Checked;
+                if (toDel != null)
                 {
-                    CopyTrans(this.toDel, this.song);
-                    this.toDel.Delete();
+                    CopyTrans(toDel, song);
+                    toDel.Delete();
                 }
                 try
                 {
-                    this.owner.AddSong(this.song);
+                    owner.AddSong(song);
                 }
                 catch
                 {
@@ -1007,37 +1007,37 @@ namespace Lyra2.LyraShell
 
                     if (dr == DialogResult.Yes)
                     {
-                        this.song.nextID();
-                        this.owner.AddSong(this.song);
+                        song.nextID();
+                        owner.AddSong(song);
                     }
                     else
                     {
                         return;
                     }
                 }
-                this.owner.Status = "Neues Lied erfolgreich hinzugefügt...";
-                this.owner.UpdateListBox();
-                this.owner.ToUpdate(true);
-                this.textBox2.Enabled = false;
-                this.button12.Enabled = true;
+                owner.Status = "Neues Lied erfolgreich hinzugefügt...";
+                owner.UpdateListBox();
+                owner.ToUpdate(true);
+                textBox2.Enabled = false;
+                button12.Enabled = true;
             }
 
-            if (!this.transshown)
+            if (!transshown)
             {
-                this.bottomPanel.Height = 180;
-                this.transshown = true;
-                this.button10.Text = "<< Übersetzungen";
-                this.song.ShowTranslations(this.listBox1);
-                if (this.listBox1.Items.Count > 0)
+                bottomPanel.Height = 180;
+                transshown = true;
+                button10.Text = "<< Übersetzungen";
+                song.ShowTranslations(listBox1);
+                if (listBox1.Items.Count > 0)
                 {
-                    this.listBox1.SelectedIndex = 0;
+                    listBox1.SelectedIndex = 0;
                 }
             }
             else
             {
-                this.bottomPanel.Height = 93;
-                this.transshown = false;
-                this.button10.Text = "Übersetzungen >>";
+                bottomPanel.Height = 93;
+                transshown = false;
+                button10.Text = "Übersetzungen >>";
             }
         }
 
@@ -1047,7 +1047,7 @@ namespace Lyra2.LyraShell
         {
             if (!TEditor.TEditorOpen)
             {
-                (new TEditor(this.listBox1, this.song, this.owner)).Show();
+                (new TEditor(listBox1, song, owner)).Show();
             }
             else
             {
@@ -1058,11 +1058,11 @@ namespace Lyra2.LyraShell
         // edit
         private void button17_Click(object sender, EventArgs e)
         {
-            if (this.listBox1.SelectedItems.Count == 1)
+            if (listBox1.SelectedItems.Count == 1)
             {
                 if (!TEditor.TEditorOpen)
                 {
-                    (new TEditor(this.listBox1, this.song, this.owner, (ITranslation)this.listBox1.SelectedItem)).Show();
+                    (new TEditor(listBox1, song, owner, (ITranslation)listBox1.SelectedItem)).Show();
                 }
                 else
                 {
@@ -1074,11 +1074,11 @@ namespace Lyra2.LyraShell
         // del
         private void button14_Click(object sender, EventArgs e)
         {
-            if (this.listBox1.SelectedItems.Count == 1)
+            if (listBox1.SelectedItems.Count == 1)
             {
-                this.song.RemoveTranslation((ITranslation)this.listBox1.SelectedItem);
-                this.song.ShowTranslations(this.listBox1);
-                this.owner.ToUpdate(true);
+                song.RemoveTranslation((ITranslation)listBox1.SelectedItem);
+                song.ShowTranslations(listBox1);
+                owner.ToUpdate(true);
             }
         }
 
@@ -1095,14 +1095,14 @@ namespace Lyra2.LyraShell
 
         private void button12_Click(object sender, EventArgs e)
         {
-            if (this.transshown)
+            if (transshown)
             {
-                this.button10_Click(sender, e);
+                button10_Click(sender, e);
             }
-            this.button12.Enabled = false;
-            this.textBox2.Enabled = true;
-            this.toDel = this.song;
-            this.song = null;
+            button12.Enabled = false;
+            textBox2.Enabled = true;
+            toDel = song;
+            song = null;
         }
 
         private static void CopyTrans(ISong from, ISong to)
@@ -1113,16 +1113,16 @@ namespace Lyra2.LyraShell
         // checkBox
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.checkBox1.Checked)
+            if (checkBox1.Checked)
             {
-                this.textBox3.Enabled = true;
-                this.textBox3.Text = "";
-                this.textBox3.SelectAll();
+                textBox3.Enabled = true;
+                textBox3.Text = "";
+                textBox3.SelectAll();
             }
             else
             {
-                this.textBox3.Enabled = false;
-                this.textBox3.Text = "---";
+                textBox3.Enabled = false;
+                textBox3.Text = "---";
             }
         }
 
@@ -1131,9 +1131,9 @@ namespace Lyra2.LyraShell
         {
             if (((keyData & Keys.B) == Keys.B) && (keyData & Keys.Control) == Keys.Control)
             {
-                if (this.owner != null)
+                if (owner != null)
                 {
-                    this.owner.BlackScreen();
+                    owner.BlackScreen();
                 }
             }
             return base.ProcessCmdKey(ref msg, keyData);
@@ -1142,36 +1142,36 @@ namespace Lyra2.LyraShell
         private void previewButton_Click(object sender, EventArgs e)
         {
             var id = Util.PREVIEW_SONG_ID;
-            var title = this.textBox1.Text;
-            var text = this.editorTextBox.Text;
+            var title = textBox1.Text;
+            var text = editorTextBox.Text;
             var nr = 0;
             try
             {
-                nr = int.Parse(this.textBox2.Text);
+                nr = int.Parse(textBox2.Text);
             }
             catch (Exception)
             { }
-            var desc = this.textBox3.Text == @"---" ? "" : this.textBox3.Text;
+            var desc = textBox3.Text == @"---" ? "" : textBox3.Text;
             ISong previewSong = new Song(nr, title, text, id, desc, true);
-            previewSong.Style = this.comboStyle.SelectedItem as Style;
+            previewSong.Style = comboStyle.SelectedItem as Style;
             var previewListBox = new ListBox();
             previewListBox.Items.Add(previewSong);
-            View.ShowSong(previewSong, this.owner, previewListBox, "Vorschau aus Editor");
+            View.ShowSong(previewSong, owner, previewListBox, "Vorschau aus Editor");
         }
 
         private void useDefaultStyleCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.useDefaultStyleCheckBox.Checked)
+            if (useDefaultStyleCheckBox.Checked)
             {
-                this.comboStyle.SelectedItem = this._storage.Styles.FirstOrDefault(style => style.IsDefault);
-                this.comboStyle.Enabled = false;
+                comboStyle.SelectedItem = _storage.Styles.FirstOrDefault(style => style.IsDefault);
+                comboStyle.Enabled = false;
             }
             else
             {
-                this.comboStyle.SelectedItem = this.song != null
-                                                   ? this.song.Style
-                                                   : this._storage.Styles.FirstOrDefault(style => style.IsDefault);
-                this.comboStyle.Enabled = true;
+                comboStyle.SelectedItem = song != null
+                                                   ? song.Style
+                                                   : _storage.Styles.FirstOrDefault(style => style.IsDefault);
+                comboStyle.Enabled = true;
             }
 
         }

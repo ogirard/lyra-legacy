@@ -38,15 +38,15 @@ namespace Lyra2.LyraShell
         public SongPreview()
         {
             // This call is required by the Windows.Forms Form Designer.
-            this.InitializeComponent();
-            this.Reset();
+            InitializeComponent();
+            Reset();
         }
 
         public void Reset()
         {
-            this.nrPreview.Text = "?";
-            this.titlePreview.Text = "Kein Lied ausgewählt!";
-            this.flowPanel.Controls.Clear();
+            nrPreview.Text = "?";
+            titlePreview.Text = "Kein Lied ausgewählt!";
+            flowPanel.Controls.Clear();
         }
 
         public void ShowSong(ISong song)
@@ -57,15 +57,15 @@ namespace Lyra2.LyraShell
             }
 
             this.song = song;
-            this.nrPreview.Text = song.Number.ToString();
-            this.titlePreview.Text = song.Title;
+            nrPreview.Text = song.Number.ToString();
+            titlePreview.Text = song.Title;
 
             var text = Util.CleanText(song.Text).TrimEnd('\n');
-            this.flowPanel.Controls.Clear();
-            var height = this.flowPanel.Height - this.flowPanel.Padding.Vertical;
-            var width = this.flowPanel.Width - this.flowPanel.Padding.Horizontal;
+            flowPanel.Controls.Clear();
+            var height = flowPanel.Height - flowPanel.Padding.Vertical;
+            var width = flowPanel.Width - flowPanel.Padding.Horizontal;
 
-            var box = GraphicUtils.MeasureString(text, this.flowPanel.Font);
+            var box = GraphicUtils.MeasureString(text, flowPanel.Font);
             var columnWidth = box.Width + 16;
             var columnCount = Math.Min((int)Math.Ceiling(box.Height / (decimal)height), (int)Math.Floor((decimal)width / columnWidth));
 
@@ -91,7 +91,7 @@ namespace Lyra2.LyraShell
                     Width = columnWidth
                 };
 
-                var labelHeight = GraphicUtils.MeasureString(label.Text, this.flowPanel.Font).Height;
+                var labelHeight = GraphicUtils.MeasureString(label.Text, flowPanel.Font).Height;
                 label.Height = labelHeight + 8;
                 columnHeight = Math.Max(columnHeight, label.Height);
 
@@ -108,8 +108,8 @@ namespace Lyra2.LyraShell
                 controls.Insert(0, label);
             }
 
-            this.flowPanel.Controls.AddRange(controls.ToArray());
-            this.flowPanel.AutoScrollMinSize = new Size(0, columnHeight);
+            flowPanel.Controls.AddRange(controls.ToArray());
+            flowPanel.AutoScrollMinSize = new Size(0, columnHeight);
         }
 
         protected override void OnSizeChanged(EventArgs e)
@@ -125,9 +125,9 @@ namespace Lyra2.LyraShell
         {
             if (disposing)
             {
-                if (this.components != null)
+                if (components != null)
                 {
-                    this.components.Dispose();
+                    components.Dispose();
                 }
             }
             base.Dispose(disposing);

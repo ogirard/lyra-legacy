@@ -23,17 +23,17 @@ namespace Lyra2.LyraShell
         {
             this.myComboBox = myComboBox;
             this.storage = storage;
-            this.gitStore = new GitStore(Path.GetDirectoryName(Util.BASEURL + "\\" + Util.LISTURL));
-            this.doc = new XmlDocument();
+            gitStore = new GitStore(Path.GetDirectoryName(Util.BASEURL + "\\" + Util.LISTURL));
+            doc = new XmlDocument();
             try
             {
-                this.doc.Load(Util.BASEURL + "\\" + Util.LISTURL);
-                var nodes = this.doc.GetElementsByTagName("List");
+                doc.Load(Util.BASEURL + "\\" + Util.LISTURL);
+                var nodes = doc.GetElementsByTagName("List");
                 foreach (XmlNode node in nodes)
                 {
                     myComboBox.Items.Add(new MyList(node, storage));
                 }
-                this.update();
+                update();
             }
             catch (Exception e)
             {
@@ -69,61 +69,61 @@ namespace Lyra2.LyraShell
                 }
                 Util.MBoxError("Gelöschte Songs wurden von der aktuellen Liste entfernt!");
             }
-            this.currentList = list;
+            currentList = list;
         }
 
         public void Refresh(ListBox show)
         {
-            this.setCurrent(this.currentList, show);
+            setCurrent(currentList, show);
         }
 
         public void MoveLast(int pos)
         {
             if (pos >= 0)
             {
-                for (var i = this.currentList.Count - 1; i > pos; i--)
+                for (var i = currentList.Count - 1; i > pos; i--)
                 {
-                    this.MoveSongUp(i);
+                    MoveSongUp(i);
                 }
             }
         }
 
         public void DeleteCurrent()
         {
-            this.doc.GetElementsByTagName("lists")[0].RemoveChild(this.currentList.RemoveMe());
-            this.update();
+            doc.GetElementsByTagName("lists")[0].RemoveChild(currentList.RemoveMe());
+            update();
         }
 
         public int MoveSongUp(int index)
         {
-            var i = this.currentList.Up(index);
-            this.update();
+            var i = currentList.Up(index);
+            update();
             return i;
         }
 
         public int MoveSongDown(int index)
         {
-            var i = this.currentList.Down(index);
-            this.update();
+            var i = currentList.Down(index);
+            update();
             return i;
         }
 
         public void AddSongToCurrent(ISong song)
         {
-            this.currentList.AddSong(song);
-            this.update();
+            currentList.AddSong(song);
+            update();
         }
 
         public void AddSongToCurrentById(string id)
         {
-            this.currentList.AddSongById(id);
-            this.update();
+            currentList.AddSongById(id);
+            update();
         }
 
         public void RemoveSongFromCurrent(int index)
         {
-            this.currentList.RemoveSong(index);
-            this.update();
+            currentList.RemoveSong(index);
+            update();
         }
 
         private void update()
@@ -133,10 +133,10 @@ namespace Lyra2.LyraShell
                 using (var stringWriter = new StringWriter())
                 using (var xmlTextWriter = XmlWriter.Create(stringWriter))
                 {
-                    this.doc.WriteTo(xmlTextWriter);
+                    doc.WriteTo(xmlTextWriter);
                     xmlTextWriter.Flush();
                     var xml = stringWriter.GetStringBuilder().ToString();
-                    this.gitStore.CommitFile(Util.LISTURL, xml);
+                    gitStore.CommitFile(Util.LISTURL, xml);
                 }
             }
             catch (IOException ioe)
@@ -149,15 +149,15 @@ namespace Lyra2.LyraShell
         {
             try
             {
-                var lists = this.doc.GetElementsByTagName("lists")[0];
-                var list = this.doc.CreateNode(XmlNodeType.Element, "List", this.doc.NamespaceURI);
-                var namenode = this.doc.CreateNode(XmlNodeType.Element, "Title", this.doc.NamespaceURI);
+                var lists = doc.GetElementsByTagName("lists")[0];
+                var list = doc.CreateNode(XmlNodeType.Element, "List", doc.NamespaceURI);
+                var namenode = doc.CreateNode(XmlNodeType.Element, "Title", doc.NamespaceURI);
                 namenode.InnerText = name;
-                var authornode = this.doc.CreateNode(XmlNodeType.Element, "Author", this.doc.NamespaceURI);
+                var authornode = doc.CreateNode(XmlNodeType.Element, "Author", doc.NamespaceURI);
                 authornode.InnerText = author;
-                var datenode = this.doc.CreateNode(XmlNodeType.Element, "Date", this.doc.NamespaceURI);
+                var datenode = doc.CreateNode(XmlNodeType.Element, "Date", doc.NamespaceURI);
                 datenode.InnerText = date;
-                var songsnode = this.doc.CreateNode(XmlNodeType.Element, "Songs", this.doc.NamespaceURI);
+                var songsnode = doc.CreateNode(XmlNodeType.Element, "Songs", doc.NamespaceURI);
                 var songsString = "";
                 if (songs != null)
                 {
@@ -172,8 +172,8 @@ namespace Lyra2.LyraShell
                 list.AppendChild(datenode);
                 list.AppendChild(songsnode);
                 lists.AppendChild(list);
-                this.update();
-                this.myComboBox.Items.Add(new MyList(list, this.storage));
+                update();
+                myComboBox.Items.Add(new MyList(list, storage));
             }
             catch (XmlException xmlEx)
             {
@@ -204,9 +204,9 @@ namespace Lyra2.LyraShell
                 (childnodes[2].Name == "Date") &&
                 (childnodes[3].Name == "Songs"))
             {
-                this.name = childnodes[0].InnerText;
-                this.author = childnodes[1].InnerText;
-                this.date = childnodes[2].InnerText;
+                name = childnodes[0].InnerText;
+                author = childnodes[1].InnerText;
+                date = childnodes[2].InnerText;
 
                 var ids = childnodes[3].InnerText.Split(',');
                 var notfound = false;
@@ -216,7 +216,7 @@ namespace Lyra2.LyraShell
                     var song = this.storage.getSongById(id);
                     if (song != null && !song.Deleted)
                     {
-                        this.Add(this.Count, this.storage.getSongById(id));
+                        Add(Count, this.storage.getSongById(id));
                         songs += id + ",";
                     }
                     else if (id.Trim() != "")
@@ -239,26 +239,26 @@ namespace Lyra2.LyraShell
 
         public void AddSong(ISong song)
         {
-            this.Add(this.Count, song);
-            this.myNode.ChildNodes[3].InnerText = this.updateList();
+            Add(Count, song);
+            myNode.ChildNodes[3].InnerText = updateList();
         }
 
         public void AddSongById(string id)
         {
-            this.Add(this.Count, this.storage.getSongById(id));
-            this.myNode.ChildNodes[3].InnerText += this.updateList();
+            Add(Count, storage.getSongById(id));
+            myNode.ChildNodes[3].InnerText += updateList();
         }
 
         public void RemoveSong(int index)
         {
             try
             {
-                for (; index < this.Count - 1; index++)
+                for (; index < Count - 1; index++)
                 {
-                    this.Down(index);
+                    Down(index);
                 }
-                this.Remove(index);
-                this.myNode.ChildNodes[3].InnerText = this.updateList();
+                Remove(index);
+                myNode.ChildNodes[3].InnerText = updateList();
             }
             catch (Exception ex)
             {
@@ -268,12 +268,12 @@ namespace Lyra2.LyraShell
 
         public XmlNode RemoveMe()
         {
-            return this.myNode;
+            return myNode;
         }
 
         private string updateList()
         {
-            var en = this.GetEnumerator();
+            var en = GetEnumerator();
             en.Reset();
             var list = "";
             while (en.MoveNext())
@@ -286,12 +286,12 @@ namespace Lyra2.LyraShell
 
         public int Up(int index)
         {
-            if (index > 0 && index < this.Count)
+            if (index > 0 && index < Count)
             {
-                var temp = this.GetByIndex(index);
-                this.SetByIndex(index, this.GetByIndex(index - 1));
-                this.SetByIndex(index - 1, temp);
-                this.myNode.ChildNodes[3].InnerText = this.updateList();
+                var temp = GetByIndex(index);
+                SetByIndex(index, GetByIndex(index - 1));
+                SetByIndex(index - 1, temp);
+                myNode.ChildNodes[3].InnerText = updateList();
                 return index - 1;
             }
             return index;
@@ -299,12 +299,12 @@ namespace Lyra2.LyraShell
 
         public int Down(int index)
         {
-            if (index >= 0 && index < this.Count - 1)
+            if (index >= 0 && index < Count - 1)
             {
-                var temp = this.GetByIndex(index + 1);
-                this.SetByIndex(index + 1, this.GetByIndex(index));
-                this.SetByIndex(index, temp);
-                this.myNode.ChildNodes[3].InnerText = this.updateList();
+                var temp = GetByIndex(index + 1);
+                SetByIndex(index + 1, GetByIndex(index));
+                SetByIndex(index, temp);
+                myNode.ChildNodes[3].InnerText = updateList();
                 return index + 1;
             }
             return index;
@@ -312,17 +312,17 @@ namespace Lyra2.LyraShell
 
         public void exportMe(StreamWriter writer)
         {
-            writer.WriteLine(this.name);
-            writer.WriteLine(this.author);
-            writer.WriteLine(this.date);
-            writer.WriteLine(this.updateList());
+            writer.WriteLine(name);
+            writer.WriteLine(author);
+            writer.WriteLine(date);
+            writer.WriteLine(updateList());
             writer.Flush();
             writer.Close();
         }
 
         public override string ToString()
         {
-            return this.name + "    {" + this.author + "@" + this.date + "}";
+            return name + "    {" + author + "@" + date + "}";
         }
     }
 }

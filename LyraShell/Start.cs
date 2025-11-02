@@ -15,8 +15,8 @@ namespace Lyra2.LyraShell
 
     public Start()
     {
-        this.InitializeComponent();
-        this.label2.Text = Util.VER;
+        InitializeComponent();
+        label2.Text = Util.VER;
     }
 
     /// <summary>
@@ -26,9 +26,9 @@ namespace Lyra2.LyraShell
     {
       if (disposing)
       {
-        if (this.components != null)
+        if (components != null)
         {
-            this.components.Dispose();
+            components.Dispose();
         }
       }
       base.Dispose(disposing);
@@ -94,7 +94,7 @@ namespace Lyra2.LyraShell
 
     private void MoveTop(object sender, System.EventArgs args)
     {
-      this.Focus();
+      Focus();
     }
   }
 }

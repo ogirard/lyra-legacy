@@ -150,8 +150,8 @@ namespace Lyra2.LyraShell
 
 		public FolderBrowser()
 		{
-		    this.m_Flags = BrowseFlags.BIF_DEFAULT;
-		    this.m_strTitle = "";
+		    m_Flags = BrowseFlags.BIF_DEFAULT;
+		    m_strTitle = "";
 		}
 
 		/// <summary>
@@ -161,7 +161,7 @@ namespace Lyra2.LyraShell
 		/// </summary>
 		public string DirectoryPath
 		{
-			get { return this.m_strDirectoryPath; }
+			get { return m_strDirectoryPath; }
 		}
 
 		/// <summary>
@@ -171,7 +171,7 @@ namespace Lyra2.LyraShell
 		/// </summary>
 		public string DisplayName
 		{
-			get { return this.m_strDisplayName; }
+			get { return m_strDisplayName; }
 		}
 
 		/// <summary>
@@ -180,7 +180,7 @@ namespace Lyra2.LyraShell
 		/// </summary>
 		public string Title
 		{
-			set { this.m_strTitle = value; }
+			set { m_strTitle = value; }
 		}
 
 		/// <summary>
@@ -188,7 +188,7 @@ namespace Lyra2.LyraShell
 		/// </summary>
 		public BrowseFlags Flags
 		{
-			set { this.m_Flags = value; }
+			set { m_Flags = value; }
 		}
 
 		/// <summary>
@@ -212,11 +212,11 @@ namespace Lyra2.LyraShell
 			var pszPath = IntPtr.Zero;
 			try
 			{
-				if (this.m_strTitle.Length != 0)
+				if (m_strTitle.Length != 0)
 				{
-					bi.lpszTitle = this.m_strTitle;
+					bi.lpszTitle = m_strTitle;
 				}
-				bi.ulFlags = (int) this.m_Flags;
+				bi.ulFlags = (int) m_Flags;
 				bi.pszDisplayName = Marshal.AllocHGlobal(256);
 				// Call SHBrowseForFolder
 				idListPtr = Win32SDK.SHBrowseForFolder(bi);
@@ -230,8 +230,8 @@ namespace Lyra2.LyraShell
 				pszPath = Marshal.AllocHGlobal(256);
 				// Call SHGetPathFromIDList to get folder path.
 				// Convert the returned native poiner to string.
-			    this.m_strDirectoryPath = Marshal.PtrToStringAuto(pszPath);
-				this.m_strDisplayName = Marshal.PtrToStringAuto(bi.pszDisplayName);
+			    m_strDirectoryPath = Marshal.PtrToStringAuto(pszPath);
+				m_strDisplayName = Marshal.PtrToStringAuto(bi.pszDisplayName);
 			}
 			catch (Exception ex)
 			{

@@ -27,13 +27,13 @@ namespace Lyra2.LyraShell
 			//
 			// Erforderlich für die Windows Form-Designerunterstützung
 			//
-		    this.InitializeComponent();
-			this.AcceptButton = this.button1;
+		    InitializeComponent();
+			AcceptButton = button1;
 			try
 			{
 				// StreamReader reader = new StreamReader(Util.NEWSURL);
 				// this.textBox1.Text = reader.ReadToEnd();
-				this.richTextBox1.LoadFile(Util.BASEURL + "\\" + Util.INFORTF);
+				richTextBox1.LoadFile(Util.BASEURL + "\\" + Util.INFORTF);
 			}
 			catch (System.IO.IOException ioe)
 			{
@@ -48,9 +48,9 @@ namespace Lyra2.LyraShell
 		{
 			if (disposing)
 			{
-				if (this.components != null)
+				if (components != null)
 				{
-				    this.components.Dispose();
+				    components.Dispose();
 				}
 			}
 			base.Dispose(disposing);
@@ -171,14 +171,14 @@ namespace Lyra2.LyraShell
 
 		private void Frst_Load(object sender, EventArgs e)
 		{
-			this.label1.Text = "lyra v." + Util.VER + Util.NL;
-			this.label1.Text += "underlies GNU Public Licence";
-			this.checkBox1.Select();
+			label1.Text = "lyra v." + Util.VER + Util.NL;
+			label1.Text += "underlies GNU Public Licence";
+			checkBox1.Select();
 		}
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			if (!this.checkBox1.Checked && this.change)
+			if (!checkBox1.Checked && change)
 			{
 				try
 				{
@@ -193,12 +193,12 @@ namespace Lyra2.LyraShell
 				}
 			}
 			shown = false;
-			this.Close();
+			Close();
 		}
 
 		private void Frst_LostFocus(object sender, EventArgs e)
 		{
-			this.Focus();
+			Focus();
 		}
 
 		private static Frst info = null;
